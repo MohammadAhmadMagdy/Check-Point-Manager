@@ -1,27 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace CheckPointDataAccessLayer
 {
     public class clsGroupData
     {
-        private static readonly string ConnectionString = clsDataAccessSettings.ConnectionString;
-        public static bool GetGroupByID(int GroupID, ref string GroupName)
+        public static DataTable GetAllGroups()
+        {
+            DataTable dt = new DataTable();
+
+            string Query = "SELECT * FROM Groups";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                using (var Reader = Command.ExecuteReader())
+                {
+                    if (Reader.HasRows)
+                        dt.Load(Reader);
+                }
+            }
+
+            return dt;
+        }
+        public static bool GetGroupByID(int GroupID, ref int GroupNumber, ref string GroupName)
         {
             bool IsFound = false;
 
-            string Query = "SELECT * FROM Groups WHERE GroupID = @GroupID";
+            string Query = @"SELECT * FROM Groups WHERE GroupID = @GroupID";
 
-            using (var Connection = new SQLiteConnection(ConnectionString))
+            using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))
             {
                 Command.Parameters.AddWithValue("@GroupID", GroupID);
-
-                Connection.Open();
 
                 using (var Reader = Command.ExecuteReader())
                 {
@@ -30,24 +47,48 @@ namespace CheckPointDataAccessLayer
                         IsFound = true;
 
                         GroupName = Reader["GroupName"].ToString();
+                        GroupNumber = Convert.ToInt32(Reader["GroupNumber"]);
                     }
                 }
             }
 
             return IsFound;
         }
-        public static bool GetGroupByName(string GroupName, ref int GroupID)
+        public static bool GetGroupByNumber(int GroupNumber, ref int GroupID, ref string GroupName)
+        {
+            bool IsFound = false;
+
+            string Query = @"SELECT * FROM Groups WHERE GroupNumber = @GroupNumber";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@GroupNumber", GroupNumber);
+
+                using (var Reader = Command.ExecuteReader())
+                {
+                    if (Reader.Read())
+                    {
+                        IsFound = true;
+
+                        GroupName = Reader["GroupName"].ToString();
+                        GroupID = Convert.ToInt32(Reader["GroupID"]);
+                    }
+                }
+            }
+
+            return IsFound;
+        }
+        public static bool GetGroupByName(string GroupName, ref int GroupID, ref int GroupNumber)
         {
             bool IsFound = false;
 
             string Query = "SELECT * FROM Groups WHERE GroupName = @GroupName";
 
-            using (var Connection = new SQLiteConnection(ConnectionString))
+            using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))
             {
                 Command.Parameters.AddWithValue("@GroupName", GroupName);
-
-                Connection.Open();
 
                 using (var Reader = Command.ExecuteReader())
                 {
@@ -56,8 +97,120 @@ namespace CheckPointDataAccessLayer
                         IsFound = true;
 
                         GroupID = Convert.ToInt32(Reader["GroupID"]);
+                        GroupNumber = Convert.ToInt32(Reader["GroupNumber"]);
                     }
                 }
+            }
+
+            return IsFound;
+        }
+        public static int AddNewGroup(int GroupNumber, string GroupName)
+        {
+            try
+            {
+                int GroupID = -1;
+
+                string Query = @"INSERT INTO Groups (GroupNumber, GroupName)
+                             VALUES (@GroupNumber, @GroupName);
+                             SELECT last_insert_rowid();";
+
+                using (var Connection = clsDataAccessSettings.GetConnection())
+                using (var Command = new SQLiteCommand(Query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@GroupNumber", GroupNumber);
+                    Command.Parameters.AddWithValue("@GroupName", GroupName);
+
+                    var Result = Command.ExecuteScalar();
+
+                    if (Result != null && int.TryParse(Result.ToString(), out int InsertedID))
+                    {
+                        GroupID = InsertedID;
+                    }
+                }
+
+                return GroupID;
+            }
+            catch (SQLiteException ex) when (ex.ResultCode == SQLiteErrorCode.Constraint)
+            {
+                return -1;
+            }
+        }
+        public static bool UpdateGroup(int GroupID, int GroupNumber, string GroupName)
+        {
+            try
+            {
+                int AffectedRows = 0;
+
+                string Query = @"UPDATE Groups SET GroupNumber = @GroupNumber , GroupName = @GroupName 
+                             WHERE GroupID = @GroupID";
+
+                using (var Connection = clsDataAccessSettings.GetConnection())
+                using (var Command = new SQLiteCommand(Query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@GroupID", GroupID);
+                    Command.Parameters.AddWithValue("@GroupNumber", GroupNumber);
+                    Command.Parameters.AddWithValue("@GroupName", GroupName);
+
+                    AffectedRows = Command.ExecuteNonQuery();
+                }
+
+                return AffectedRows > 0;
+            }
+            catch (SQLiteException ex) when (ex.ResultCode == SQLiteErrorCode.Constraint)
+            {
+                return false;
+            }
+        }
+        public static bool DeleteGroupByID(int GroupID)
+        {
+            int AffectedRows = 0;
+
+            string Query = @"DELETE FROM Groups 
+                             WHERE GroupID = @GroupID";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@GroupID", GroupID);
+
+                AffectedRows = Command.ExecuteNonQuery();
+            }
+
+            return AffectedRows > 0;
+        }
+        public static bool DeleteGroupByNumber(int GroupNumber)
+        {
+            int AffectedRows = 0;
+
+            string Query = @"DELETE FROM Groups 
+                             WHERE GroupNumber = @GroupNumber";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@GroupNumber", GroupNumber);
+
+                AffectedRows = Command.ExecuteNonQuery();
+            }
+
+            return AffectedRows > 0;
+        }
+        public static bool DoesGroupNumberExist(int GroupNumber)
+        {
+            bool IsFound = false;
+
+            string Query = @"SELECT 1 FROM Groups
+                             WHERE GroupNumber = @GroupNumber
+                             LIMIT 1;";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@GroupNumber", GroupNumber);
+
+                var Result = Command.ExecuteScalar();
+
+                IsFound = (Result != null);
             }
 
             return IsFound;

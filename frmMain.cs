@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckPointBusinessLayer;
 
+
 namespace Check_Point_Manager
 {
     public partial class frmListItems : Form
@@ -40,7 +41,10 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns[3].Width = 100;
 
                 dgvAllStockList.Columns[4].HeaderText = "Retail Price";
-                dgvAllStockList.Columns[4].Width = 160;
+                dgvAllStockList.Columns[4].Width = 120;
+
+                dgvAllStockList.Columns[5].HeaderText = "Group Name";
+                dgvAllStockList.Columns[5].Width = 140;
             }
 
             lblRecords.Text = dgvAllStockList.Rows.Count.ToString();

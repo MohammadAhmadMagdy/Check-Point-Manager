@@ -14,8 +14,6 @@ namespace CheckPointDataAccessLayer
 {
     public class clsItemDataAccess
     {
-        private static readonly string connectionString = clsDataAccessSettings.ConnectionString;
-
         public static List<int> UpdateItemsFromExcel(string ExcelPath)
         {
             var WorkBook = new XLWorkbook(ExcelPath);
@@ -23,10 +21,9 @@ namespace CheckPointDataAccessLayer
 
             List<int> NewItems = new List<int>();
 
-            using (var Connection = new  SQLiteConnection(connectionString))
+            using (var Connection = clsDataAccessSettings.GetConnection())
             {
-                Connection.Open();
-
+                
                 using (var Transaction = Connection.BeginTransaction())
                 {
                     try
@@ -102,7 +99,7 @@ namespace CheckPointDataAccessLayer
             string query = @"INSERT INTO Items (ItemCode, Description, Qty, LzQty, RetailPrice)
                          VALUES (@ItemCode, @Description, @Qty, @LzQty, @RetailPrice)";
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = clsDataAccessSettings.GetConnection())
             using (var command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@ItemCode", itemCode);
@@ -111,7 +108,6 @@ namespace CheckPointDataAccessLayer
                 command.Parameters.AddWithValue("@LzQty", lzQty);
                 command.Parameters.AddWithValue("@RetailPrice", retailPrice);
 
-                connection.Open();
                 return command.ExecuteNonQuery() > 0;
             }
         }
@@ -122,12 +118,11 @@ namespace CheckPointDataAccessLayer
 
             string query = "SELECT * FROM Items WHERE ItemCode = @ItemCode";
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = clsDataAccessSettings.GetConnection())
             using (var command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@ItemCode", ItemCode);
 
-                connection.Open();
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
@@ -151,12 +146,18 @@ namespace CheckPointDataAccessLayer
         {
             DataTable dt = new DataTable();
 
-            string query = "SELECT * FROM Items";
+            string query = @"SELECT 
+                                   Items.*, 
+                                   IFNULL(Groups.GroupName, 'Not Assigned') AS GroupName
+                               FROM Items
+                               LEFT JOIN ItemsGroups ON Items.ItemCode = ItemsGroups.ItemCode
+                               LEFT JOIN Groups ON Groups.GroupID = ItemsGroups.GroupID
+                               ORDER BY Items.ItemCode;
+                               ";
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = clsDataAccessSettings.GetConnection())
             using (var command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
@@ -178,7 +179,7 @@ namespace CheckPointDataAccessLayer
                              RetailPrice = @RetailPrice
                          WHERE ItemCode = @ItemCode";
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = clsDataAccessSettings.GetConnection())
             using (var command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@ItemCode", itemCode);
@@ -187,7 +188,6 @@ namespace CheckPointDataAccessLayer
                 command.Parameters.AddWithValue("@LzQty", lzQty);
                 command.Parameters.AddWithValue("@RetailPrice", retailPrice);
 
-                connection.Open();
                 return command.ExecuteNonQuery() > 0;
             }
         }
@@ -196,12 +196,11 @@ namespace CheckPointDataAccessLayer
         {
             string query = "DELETE FROM Items WHERE ItemCode = @ItemCode";
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = clsDataAccessSettings.GetConnection())
             using (var command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@ItemCode", itemCode);
 
-                connection.Open();
                 return command.ExecuteNonQuery() > 0;
             }
         }
