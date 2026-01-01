@@ -87,6 +87,7 @@
     <Compile Include="clsGroupData.cs" />
     <Compile Include="clsItemData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
+    <Compile Include="clsITemGroupData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

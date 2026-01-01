@@ -25,7 +25,7 @@ namespace CheckPointBusinessLayer
 
             Mode = enMode.AddNew;
         }
-        public clsGroup(int GroupID, int GroupNumber, string GroupName)
+        private clsGroup(int GroupID, int GroupNumber, string GroupName)
         {
             this.GroupID = GroupID;
             this.GroupNumber = GroupNumber;

@@ -147,13 +147,15 @@ namespace CheckPointDataAccessLayer
             DataTable dt = new DataTable();
 
             string query = @"SELECT 
-                                   Items.*, 
-                                   IFNULL(Groups.GroupName, 'Not Assigned') AS GroupName
-                               FROM Items
-                               LEFT JOIN ItemsGroups ON Items.ItemCode = ItemsGroups.ItemCode
-                               LEFT JOIN Groups ON Groups.GroupID = ItemsGroups.GroupID
-                               ORDER BY Items.ItemCode;
-                               ";
+                                  Items.ItemCode,
+                                  Items.Description, Items.Qty, Items.LzQty, Items.RetailPrice, 
+                                  IFNULL(GROUP_CONCAT(Groups.GroupName, ', '), 'Not Assigned') AS GroupName
+                              FROM Items
+                              LEFT JOIN ItemsGroups ON Items.ItemCode = ItemsGroups.ItemCode
+                              LEFT JOIN Groups ON Groups.GroupID = ItemsGroups.GroupID
+                              GROUP BY Items.ItemCode
+                              ORDER BY Items.ItemCode;
+                              ;";
 
             using (var connection = clsDataAccessSettings.GetConnection())
             using (var command = new SQLiteCommand(query, connection))
