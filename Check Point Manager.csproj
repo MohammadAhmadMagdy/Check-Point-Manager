@@ -89,16 +89,34 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAddGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddGroup.Designer.cs">
+      <DependentUpon>frmAddGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmManageListGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageListGroup.Designer.cs">
+      <DependentUpon>frmManageListGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddGroup.resx">
+      <DependentUpon>frmAddGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageListGroup.resx">
+      <DependentUpon>frmManageListGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,6 +126,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -128,6 +147,51 @@
       <Project>{b91f431c-e517-448f-a5e5-073f74929b8e}</Project>
       <Name>CheckPointBusinessLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\text_bullet_list_add_filled_icon_201781.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\text_bullet_list_square_edit_regular_icon_202698.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\add_insert_document_13988.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\file_document_13989.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\list_11066076.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\edit_16167227.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\clipboard_7235464.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\trash-can_4630680.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\list_143582.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\id-card_11071035.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\document_6886723.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\chat_3402165.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\signboard_16058528.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Resources\numbers_11072538.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
