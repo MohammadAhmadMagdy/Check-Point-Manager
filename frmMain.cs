@@ -19,37 +19,67 @@ namespace Check_Point_Manager
         {
             InitializeComponent();
         }
+        private void _FillGroupsComboBox()
+        {
+            DataTable GroupsDT = clsGroup.LoadAllGroupsInfo();
+
+            DataRow Row = GroupsDT.NewRow();
+
+            Row["GroupName"] = "Choose a Check Group";
+            Row["GroupID"] = -1;
+            Row["GroupNumber"] = -1;
+
+            GroupsDT.Rows.InsertAt(Row, 0);
+
+            cmbGroups.DataSource = GroupsDT;
+            cmbGroups.DisplayMember = "GroupName";
+            cmbGroups.ValueMember = "GroupID";
+
+            cmbGroups.SelectedIndex = 0;
+        }
 
         private void frmListItems_Load(object sender, EventArgs e)
         {
+            _FillGroupsComboBox();
+
             _dtAllStockList = clsItem.GetAllStockList();
 
             dgvAllStockList.DataSource = _dtAllStockList;
+
+            dgvAllStockList.EnableHeadersVisualStyles = false;
+            dgvAllStockList.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+            dgvAllStockList.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvAllStockList.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 10, FontStyle.Bold);
+
+            dgvAllStockList.RowsDefaultCellStyle.BackColor = Color.White;
+            dgvAllStockList.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
 
             cmbFilterBy.SelectedIndex = 0;
 
             if (dgvAllStockList.Rows.Count > 0 )
             {
-                dgvAllStockList.Columns["Selected"].HeaderText = "Selected";
-                dgvAllStockList.Columns["Selected"].Width = 55;
+                dgvAllStockList.Columns["Selected"].HeaderText = "Sel";
+                dgvAllStockList.Columns["Selected"].Width = 35;
 
-                dgvAllStockList.Columns["ItemCode"].HeaderText = "Item Code";
-                dgvAllStockList.Columns["ItemCode"].Width = 100;
+                dgvAllStockList.Columns["ItemCode"].HeaderText = "Code";
+                dgvAllStockList.Columns["ItemCode"].Width = 60;
 
                 dgvAllStockList.Columns["Description"].HeaderText = "Description";
-                dgvAllStockList.Columns["Description"].Width = 350;
+                dgvAllStockList.Columns["Description"].Width = 300;
 
                 dgvAllStockList.Columns["Qty"].HeaderText = "Qty";
-                dgvAllStockList.Columns["Qty"].Width = 60;
+                dgvAllStockList.Columns["Qty"].Width = 40;
 
                 dgvAllStockList.Columns["LzQty"].HeaderText = "LzQty";
-                dgvAllStockList.Columns["LzQty"].Width = 60;
+                dgvAllStockList.Columns["LzQty"].Width = 40;
 
-                dgvAllStockList.Columns["RetailPrice"].HeaderText = "Retail Price";
-                dgvAllStockList.Columns["RetailPrice"].Width = 90;
+                dgvAllStockList.Columns["RetailPrice"].HeaderText = "Price";
+                dgvAllStockList.Columns["RetailPrice"].Width = 50;
 
-                dgvAllStockList.Columns["GroupName"].HeaderText = "Group Name";
-                dgvAllStockList.Columns["GroupName"].Width = 270;
+                dgvAllStockList.Columns["GroupName"].HeaderText = "Group";
+                dgvAllStockList.Columns["GroupName"].Width = 90;
             }
 
             lblRecords.Text = dgvAllStockList.Rows.Count.ToString();
@@ -83,7 +113,10 @@ namespace Check_Point_Manager
             if (!string.IsNullOrEmpty(SearchValue) && ColumnName != "None")
             {
                 if (_dtAllStockList.Columns[ColumnName].DataType == typeof(string))
+                {
+                    SearchValue = SearchValue.Replace("'", "''");
                     Filter = $"{ColumnName} Like '%{SearchValue}%'";
+                }
                 else
                     Filter = $"{ColumnName} = {SearchValue}";
 
@@ -101,6 +134,9 @@ namespace Check_Point_Manager
         {
             txbFilterValue.Visible = cmbFilterBy.SelectedIndex != 0;
             txbFilterValue.Text = "";
+
+            if (txbFilterValue.Visible)
+                txbFilterValue.Focus();
 
         }
 
