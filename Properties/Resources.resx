@@ -166,4 +166,52 @@
   <data name="numbers_11072538" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Resources\numbers_11072538.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="add1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_insert_document_139881" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\add_insert_document_13988.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chat_34021651" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\chat_3402165.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clipboard_72354641" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\clipboard_7235464.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="document_68867231" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\document_6886723.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_161672271" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\edit_16167227.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="file_document_139891" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\file_document_13989.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="id_card_11071035" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\id-card_11071035.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="list_110660762" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\list_11066076.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="list_1435821" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\list_143582.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="numbers_110725381" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\numbers_11072538.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="remove_delete_document_13987" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\remove_delete_document_13987.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="signboard_160585281" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\signboard_16058528.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text_bullet_list_add_filled_icon_2017811" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\text_bullet_list_add_filled_icon_201781.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text_bullet_list_square_edit_regular_icon_2026981" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\text_bullet_list_square_edit_regular_icon_202698.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trash_can_4630680" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\trash-can_4630680.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
