@@ -165,6 +165,7 @@ namespace CheckPointDataAccessLayer
                     if (reader.HasRows)
                     {
                         dt.Columns.Add("Selected", typeof(bool));
+                        dt.Columns["Selected"].DefaultValue = false;
                         dt.Load(reader);
                     }
                 }

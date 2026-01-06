@@ -14,13 +14,17 @@ namespace Check_Point_Manager
 {
     public partial class frmListItems : Form
     {
+        private bool _IsLoadingGrous = false;
         private DataTable _dtAllStockList;
+        private DataTable _dtSelectedGroupItems;
         public frmListItems()
         {
             InitializeComponent();
         }
         private void _FillGroupsComboBox()
         {
+            _IsLoadingGrous = true;
+
             DataTable GroupsDT = clsGroup.LoadAllGroupsInfo();
 
             DataRow Row = GroupsDT.NewRow();
@@ -36,12 +40,11 @@ namespace Check_Point_Manager
             cmbGroups.ValueMember = "GroupID";
 
             cmbGroups.SelectedIndex = 0;
+
+            _IsLoadingGrous = false;
         }
-
-        private void frmListItems_Load(object sender, EventArgs e)
+        private void _LoadItemsTable()
         {
-            _FillGroupsComboBox();
-
             _dtAllStockList = clsItem.GetAllStockList();
 
             dgvAllStockList.DataSource = _dtAllStockList;
@@ -58,7 +61,7 @@ namespace Check_Point_Manager
 
             cmbFilterBy.SelectedIndex = 0;
 
-            if (dgvAllStockList.Rows.Count > 0 )
+            if (dgvAllStockList.Rows.Count > 0)
             {
                 dgvAllStockList.Columns["Selected"].HeaderText = "Sel";
                 dgvAllStockList.Columns["Selected"].Width = 35;
@@ -83,6 +86,57 @@ namespace Check_Point_Manager
             }
 
             lblRecords.Text = dgvAllStockList.Rows.Count.ToString();
+        }
+        private void _LoadSelectedGroupItems()
+        {
+            dgvGroupItems.DataSource = _dtSelectedGroupItems;
+
+            dgvGroupItems.EnableHeadersVisualStyles = false;
+            dgvGroupItems.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+            dgvGroupItems.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvGroupItems.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 10, FontStyle.Bold);
+
+            dgvGroupItems.RowsDefaultCellStyle.BackColor = Color.White;
+            dgvGroupItems.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
+
+         
+
+            if (dgvGroupItems.Rows.Count > 0)
+            {   
+                //dgvGroupItems.Columns["Selected"].HeaderText = "Sel";
+                //dgvGroupItems.Columns["Selected"].Width = 35;
+            
+                dgvGroupItems.Columns["ItemCode"].HeaderText = "Code";
+                dgvGroupItems.Columns["ItemCode"].Width = 60;
+          
+                dgvGroupItems.Columns["Description"].HeaderText = "Description";
+                dgvGroupItems.Columns["Description"].Width = 300;
+        
+                dgvGroupItems.Columns["Qty"].HeaderText = "Qty";
+                dgvGroupItems.Columns["Qty"].Width = 40;
+                
+                dgvGroupItems.Columns["LzQty"].HeaderText = "LzQty";
+                dgvGroupItems.Columns["LzQty"].Width = 40;
+                
+                dgvGroupItems.Columns["RetailPrice"].HeaderText = "Price";
+                dgvGroupItems.Columns["RetailPrice"].Width = 50;
+                
+               
+            }
+
+           
+        }
+        private void frmListItems_Load(object sender, EventArgs e)
+        {
+            _FillGroupsComboBox();
+
+            _LoadItemsTable();
+
+            _LoadSelectedGroupItems();
+
+
         }
         private string _GetColumnName()
         {
@@ -144,6 +198,55 @@ namespace Check_Point_Manager
         {
             if (cmbFilterBy.Text == "Item Code")
                 e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
+        }
+
+        private void cmbGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_IsLoadingGrous)
+                return;
+
+            if (cmbGroups.SelectedValue == null)
+                return;
+
+            int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+            if (GroupID == -1)
+                return;
+
+            _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
+        }
+
+        private void btnAddSelectedToGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<int> SelectedItems = new List<int>();
+
+                foreach (DataGridViewRow Row in dgvAllStockList.Rows)
+                {
+                    bool IsSelected = Row.Cells["Selected"].Value != null &&
+                                      Convert.ToBoolean(Row.Cells["Selected"].Value);
+                    if (IsSelected)
+                    {
+                        int ItemCode = Convert.ToInt32(Row.Cells["ItemCode"].Value);
+                        SelectedItems.Add(ItemCode);
+                    }
+                }
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+                int NumberOfItemsAdded = clsItemGroup.AddItemsListToGroup(SelectedItems, GroupID);
+
+                MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _LoadSelectedGroupItems();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message, "Error",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
     }
 }

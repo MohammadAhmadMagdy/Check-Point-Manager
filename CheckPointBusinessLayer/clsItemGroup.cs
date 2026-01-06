@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,13 +33,21 @@ namespace CheckPointBusinessLayer
 
             Mode = enMode.Update;
         }
+        public static int AddItemsListToGroup(List<int> ItemCodes, int GroupID)
+        {
+            return clsItemGroupData.AddItemsListToGroup(ItemCodes, GroupID);
+        }
+        public static DataTable GetGroupItemsByGroupID(int GroupID)
+        {
+            return clsItemGroupData.GetGroupItemsByGroupID(GroupID);
+        }
         private bool _AddNew()
         {
-            return clsITemGroupData.AddNew(this.ItemCode, this.GroupID);
+            return clsItemGroupData.AddNew(this.ItemCode, this.GroupID);
         }
         private bool _Update()
         {
-            return clsITemGroupData.Update(this.ItemCode, this.GroupID);
+            return clsItemGroupData.Update(this.ItemCode, this.GroupID);
         }
         public bool Save()
         {
@@ -51,11 +60,11 @@ namespace CheckPointBusinessLayer
         }
         public static bool Delete(int ItemCode, int GroupID)
         {
-            return clsITemGroupData.Delete(ItemCode, GroupID);
+            return clsItemGroupData.Delete(ItemCode, GroupID);
         }
         public bool Delete()
         {
-            return clsITemGroupData.Delete(this.ItemCode, this.GroupID);
+            return clsItemGroupData.Delete(this.ItemCode, this.GroupID);
         }
     }
 }

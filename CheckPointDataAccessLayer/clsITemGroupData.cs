@@ -1,14 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace CheckPointDataAccessLayer
 {
-    public class clsITemGroupData
+    public class clsItemGroupData
     {
+        public static DataTable GetGroupItemsByGroupID(int GroupID)
+        {
+            DataTable dt = new DataTable();
+
+            string Query = @"SELECT Items.ItemCode, Items.Description, Items.Qty, Items.LzQty, Items.RetailPrice
+                                    From Items 
+                                    INNER JOIN ItemsGroups ON Items.ItemCode = ItemsGroups.ItemCode
+		                            WHERE GroupID = @GroupID;";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@GroupID", GroupID);
+
+                using (var Reader = Command.ExecuteReader())
+                {
+                    if (Reader.HasRows)
+                    {
+                        dt.Load(Reader);
+                    }
+                }
+            }
+
+            return dt;
+        }
         public static bool GetItemGroupByItemCode(int ItemCode, ref int GroupID)
         {
             bool IsFound = false;
@@ -80,6 +107,36 @@ namespace CheckPointDataAccessLayer
                     throw;
                 }
             }
+        }
+        public static int AddItemsListToGroup(List<int> ItemCodes , int GroupID)
+        {
+            int TotalInserted = 0;
+
+            if (ItemCodes == null || ItemCodes.Count == 0)
+                return 0;
+
+            string Query = @"INSERT OR IGNORE INTO ItemsGroups (GroupID, ItemCode) 
+                             VALUES (@GroupID, @ItemCode)";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Transaction = Connection.BeginTransaction())
+            using (var Command = new SQLiteCommand(Query, Connection, Transaction))
+            {
+                Command.Parameters.AddWithValue("@GroupID", DbType.Int32);
+                Command.Parameters.AddWithValue("@ItemCode", DbType.Int32);
+
+                Command.Parameters["@GroupID"].Value = GroupID;
+
+                foreach (var IC in ItemCodes)
+                {
+                    Command.Parameters["@ItemCode"].Value = IC;
+                    TotalInserted += Command.ExecuteNonQuery();
+                }
+
+                Transaction.Commit();
+            }
+
+            return TotalInserted;
         }
         public static bool Update(int ItemCode, int GroupID)
         {
