@@ -214,6 +214,7 @@ namespace Check_Point_Manager
                 return;
 
             _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
+            _LoadSelectedGroupItems();
         }
 
         private void btnAddSelectedToGroup_Click(object sender, EventArgs e)
@@ -239,6 +240,7 @@ namespace Check_Point_Manager
                 MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
                 _LoadSelectedGroupItems();
             }
             catch(Exception ex)
