@@ -29,7 +29,7 @@ namespace Check_Point_Manager
 
             DataRow Row = GroupsDT.NewRow();
 
-            Row["GroupName"] = "Choose a Check Group";
+            Row["GroupName"] = "-- SELECT GROUP --";
             Row["GroupID"] = -1;
             Row["GroupNumber"] = -1;
 
@@ -85,10 +85,12 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns["GroupName"].Width = 90;
             }
 
-            lblRecords.Text = dgvAllStockList.Rows.Count.ToString();
+            lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
         }
-        private void _LoadSelectedGroupItems()
+        private void _LoadSelectedGroupItems(int GroupID)
         {
+            _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
+
             dgvGroupItems.DataSource = _dtSelectedGroupItems;
 
             dgvGroupItems.EnableHeadersVisualStyles = false;
@@ -126,7 +128,7 @@ namespace Check_Point_Manager
                
             }
 
-           
+            lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
         }
         private void frmListItems_Load(object sender, EventArgs e)
         {
@@ -134,7 +136,7 @@ namespace Check_Point_Manager
 
             _LoadItemsTable();
 
-            _LoadSelectedGroupItems();
+            //_LoadSelectedGroupItems();
 
 
         }
@@ -181,7 +183,7 @@ namespace Check_Point_Manager
                 _dtAllStockList.DefaultView.RowFilter = string.Empty;
             }
 
-            lblRecords.Text = dgvAllStockList.Rows.Count.ToString();
+            lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
         }
 
         private void cmbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,10 +213,12 @@ namespace Check_Point_Manager
             int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
 
             if (GroupID == -1)
+            {
+                dgvGroupItems.DataSource = null;
                 return;
+            }
 
-            _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
-            _LoadSelectedGroupItems();
+            _LoadSelectedGroupItems(GroupID);
         }
 
         private void btnAddSelectedToGroup_Click(object sender, EventArgs e)
@@ -240,8 +244,8 @@ namespace Check_Point_Manager
                 MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
-                _LoadSelectedGroupItems();
+                _LoadSelectedGroupItems(GroupID);
+                _LoadItemsTable();
             }
             catch(Exception ex)
             {
@@ -249,6 +253,14 @@ namespace Check_Point_Manager
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             
+        }
+
+        private void btnManageGroups_Click(object sender, EventArgs e)
+        {
+            frmManageListGroup frm = new frmManageListGroup();
+            frm.ShowDialog();
+
+            _FillGroupsComboBox();
         }
     }
 }

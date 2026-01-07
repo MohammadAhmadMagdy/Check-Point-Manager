@@ -149,52 +149,112 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\add.png" />
+    <Resource Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\text_bullet_list_add_filled_icon_201781.png" />
+    <Resource Include="Resources\text_bullet_list_add_filled_icon_201781.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\text_bullet_list_square_edit_regular_icon_202698.png" />
+    <Resource Include="Resources\text_bullet_list_square_edit_regular_icon_202698.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\add_insert_document_13988.png" />
+    <Resource Include="Resources\add_insert_document_13988.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\file_document_13989.png" />
+    <Resource Include="Resources\file_document_13989.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\list_11066076.png" />
+    <Resource Include="Resources\list_11066076.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\edit_16167227.png" />
+    <Resource Include="Resources\edit_16167227.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\clipboard_7235464.png" />
+    <Resource Include="Resources\clipboard_7235464.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\trash-can_4630680.png" />
+    <Resource Include="Resources\trash-can_4630680.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\list_143582.png" />
+    <Resource Include="Resources\list_143582.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\id-card_11071035.png" />
+    <Resource Include="Resources\id-card_11071035.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\document_6886723.png" />
+    <Resource Include="Resources\document_6886723.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\chat_3402165.png" />
+    <Resource Include="Resources\chat_3402165.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\signboard_16058528.png" />
+    <Resource Include="Resources\signboard_16058528.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\numbers_11072538.png" />
+    <Resource Include="Resources\numbers_11072538.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Resources\remove_delete_document_13987.png" />
+    <Resource Include="Resources\remove_delete_document_13987.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-arrow %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add_insert_document_13988.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\chat_3402165.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clipboard_7235464.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\document_6886723.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\edit_16167227.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file_document_13989.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\id-card_11071035.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\list_143582.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\list_11066076.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\numbers_11072538.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove_delete_document_13987.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\signboard_16058528.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\text_bullet_list_add_filled_icon_201781.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\text_bullet_list_square_edit_regular_icon_202698.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\trash-can_4630680.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fast-forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
