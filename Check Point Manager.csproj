@@ -89,6 +89,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctrlButtonCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlButtonCard.Designer.cs">
+      <DependentUpon>ctrlButtonCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ctrlButtonCard.resx">
+      <DependentUpon>ctrlButtonCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddGroup.resx">
       <DependentUpon>frmAddGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,7 +206,7 @@
     <Resource Include="Resources\remove_delete_document_13987.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\right-arrow %281%29.png" />
+    <Resource Include="Resources\right-arrow %281%29.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\add.png" />
@@ -248,13 +257,31 @@
     <Resource Include="Resources\trash-can_4630680.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fast-forward.png" />
+    <Resource Include="Resources\fast-forward.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\right-arrow.png" />
+    <Resource Include="Resources\right-arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\right.png" />
+    <Resource Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\data-processing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\data-processing1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />

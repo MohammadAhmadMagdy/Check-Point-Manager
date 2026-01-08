@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Check_Point_Manager
     public partial class frmListItems : Form
     {
         private bool _IsLoadingGrous = false;
+        private string _ExcelFile = "";
         private DataTable _dtAllStockList;
         private DataTable _dtSelectedGroupItems;
         public frmListItems()
@@ -130,14 +132,39 @@ namespace Check_Point_Manager
 
             lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
         }
+        private string _SelectExcelFile()
+        {
+            string FilePath = null;
+
+            string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string TargetFolder = Path.Combine(DesktopPath, "Check Point Update");
+
+            if (!Directory.Exists(TargetFolder))
+            {
+                Directory.CreateDirectory(TargetFolder);
+            }
+
+            using (OpenFileDialog Dialog  = new OpenFileDialog())
+            {
+                Dialog.Title = "Choose Stock File";
+                Dialog.Filter = "Excel Files|*.xlsx;*.xls";
+                Dialog.InitialDirectory = TargetFolder;
+
+                if(Dialog.ShowDialog() == DialogResult.OK)
+                {
+                    FilePath = Dialog.FileName;
+                }
+            }
+
+            return FilePath;
+        }
         private void frmListItems_Load(object sender, EventArgs e)
         {
             _FillGroupsComboBox();
 
             _LoadItemsTable();
 
-            //_LoadSelectedGroupItems();
-
+            ctrlButtonCardUpdate.Enabled = false;
 
         }
         private string _GetColumnName()
@@ -255,12 +282,95 @@ namespace Check_Point_Manager
             
         }
 
-        private void btnManageGroups_Click(object sender, EventArgs e)
+        private void ctrlButtonCardManageGroups_Click(object sender, EventArgs e)
         {
             frmManageListGroup frm = new frmManageListGroup();
             frm.ShowDialog();
 
             _FillGroupsComboBox();
+        }
+
+        private void ctrlButtonCardAddToGp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<int> SelectedItems = new List<int>();
+
+                foreach (DataGridViewRow Row in dgvAllStockList.Rows)
+                {
+                    bool IsSelected = Row.Cells["Selected"].Value != null &&
+                                      Convert.ToBoolean(Row.Cells["Selected"].Value);
+                    if (IsSelected)
+                    {
+                        int ItemCode = Convert.ToInt32(Row.Cells["ItemCode"].Value);
+                        SelectedItems.Add(ItemCode);
+                    }
+                }
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+                int NumberOfItemsAdded = clsItemGroup.AddItemsListToGroup(SelectedItems, GroupID);
+
+                MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _LoadSelectedGroupItems(GroupID);
+                _LoadItemsTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message, "Error",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void ctrlButtonCardBrowseFile_Click(object sender, EventArgs e)
+        {
+            _ExcelFile = _SelectExcelFile();
+
+            if(!string.IsNullOrEmpty(_ExcelFile))
+            {
+                txbFilePath.Text = _ExcelFile;
+                ctrlButtonCardUpdate.Enabled = true;
+            }
+        }
+
+        private void ctrlButtonCardUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(_ExcelFile))
+                {
+                    var NewItemsList = clsItem.UpdateStockAndGetNewItemsCodes(_ExcelFile);
+
+                    if (NewItemsList.Count > 0)
+                    {
+                        MessageBox.Show("Stock Updated Successfully\n" + NewItemsList.Count + " New Items Added", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Stock Updated Successfully\nNo New Items Added", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    txbFilePath.Text = "";
+
+                    lblLastUpdated.Text = DateTime.Now.ToString();
+
+                    frmListItems_Load(null, null);
+                }
+                else
+                {
+                    MessageBox.Show("No File Choosen !!", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

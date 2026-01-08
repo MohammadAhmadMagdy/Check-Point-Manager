@@ -103,6 +103,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap data_processing {
+            get {
+                object obj = ResourceManager.GetObject("data_processing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap document_6886723 {
             get {
                 object obj = ResourceManager.GetObject("document_6886723", resourceCulture);
@@ -123,9 +133,19 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap excel {
+            get {
+                object obj = ResourceManager.GetObject("excel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fast_forward {
             get {
-                object obj = ResourceManager.GetObject("fast-forward", resourceCulture);
+                object obj = ResourceManager.GetObject("fast_forward", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +156,36 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap file_document_13989 {
             get {
                 object obj = ResourceManager.GetObject("file_document_13989", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap file_update {
+            get {
+                object obj = ResourceManager.GetObject("file_update", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder {
+            get {
+                object obj = ResourceManager.GetObject("folder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder1 {
+            get {
+                object obj = ResourceManager.GetObject("folder1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -205,7 +255,7 @@ namespace Check_Point_Manager.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap right_arrow {
             get {
-                object obj = ResourceManager.GetObject("right-arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("right_arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -215,7 +265,7 @@ namespace Check_Point_Manager.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap right_arrow__1_ {
             get {
-                object obj = ResourceManager.GetObject("right-arrow (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("right_arrow__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

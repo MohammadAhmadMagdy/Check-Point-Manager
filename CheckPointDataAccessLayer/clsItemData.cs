@@ -19,11 +19,10 @@ namespace CheckPointDataAccessLayer
             var WorkBook = new XLWorkbook(ExcelPath);
             var WorkSheet = WorkBook.Worksheet(1);
 
-            List<int> NewItems = new List<int>();
+            var NewItems = new List<int>();
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             {
-                
                 using (var Transaction = Connection.BeginTransaction())
                 {
                     try
@@ -43,29 +42,36 @@ namespace CheckPointDataAccessLayer
 
                             string CheckQuery = "SELECT COUNT(*) FROM Items WHERE ItemCode = @ItemCode";
 
-                            using (var CheckCommand =  new SQLiteCommand(CheckQuery, Connection, Transaction))
+                            using (var CheckCommand = new SQLiteCommand(CheckQuery, Connection, Transaction))
                             {
                                 CheckCommand.Parameters.AddWithValue("@ItemCode", ItemCode);
                                 long Count = (long)CheckCommand.ExecuteScalar();
 
                                 if (Count > 0)
                                 {
+                                    // تحديث كامل لكل الأعمدة
                                     string UpdateQuery = @"UPDATE Items 
-                                                           SET Qty = @Qty, LzQty = @LzQty
-                                                           WHERE ItemCode = @ItemCode";
+                                                   SET Description = @Description,
+                                                       Qty = @Qty,
+                                                       LzQty = @LzQty,
+                                                       RetailPrice = @RetailPrice
+                                                   WHERE ItemCode = @ItemCode";
                                     using (var UpdateCommand = new SQLiteCommand(UpdateQuery, Connection, Transaction))
                                     {
+                                        UpdateCommand.Parameters.AddWithValue("@Description", Description);
                                         UpdateCommand.Parameters.AddWithValue("@Qty", Qty);
                                         UpdateCommand.Parameters.AddWithValue("@LzQty", LzQty);
+                                        UpdateCommand.Parameters.AddWithValue("@RetailPrice", RetailPrice);
                                         UpdateCommand.Parameters.AddWithValue("@ItemCode", ItemCode);
                                         UpdateCommand.ExecuteNonQuery();
                                     }
                                 }
                                 else
                                 {
+                                    // إدخال صنف جديد
                                     string InsertQuery = @"INSERT INTO Items 
-                                                           (ItemCode, Description, Qty, LzQty, RetailPrice) 
-                                                          VALUES (@ItemCode, @Descrition, @Qty, @LzQty, @RetailPrice)";
+                                                   (ItemCode, Description, Qty, LzQty, RetailPrice) 
+                                                   VALUES (@ItemCode, @Description, @Qty, @LzQty, @RetailPrice)";
                                     using (var InsertCommand = new SQLiteCommand(InsertQuery, Connection, Transaction))
                                     {
                                         InsertCommand.Parameters.AddWithValue("@ItemCode", ItemCode);
@@ -76,7 +82,7 @@ namespace CheckPointDataAccessLayer
                                         InsertCommand.ExecuteNonQuery();
                                     }
 
-                                    NewItems.Add(ItemCode);
+                                    NewItems.Add(ItemCode); // إشعار بالأصناف الجديدة
                                 }
                             }
                         }
