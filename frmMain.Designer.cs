@@ -45,11 +45,12 @@
             this.gbxItems = new System.Windows.Forms.GroupBox();
             this.gbxUpdateData = new System.Windows.Forms.GroupBox();
             this.txbFilePath = new System.Windows.Forms.TextBox();
+            this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.ctrlButtonCardUpdate = new Check_Point_Manager.ctrlButtonCard();
             this.ctrlButtonCardBrowseFile = new Check_Point_Manager.ctrlButtonCard();
             this.ctrlButtonCardAddToGp = new Check_Point_Manager.ctrlButtonCard();
+            this.ctrlButtonCardExport = new Check_Point_Manager.ctrlButtonCard();
             this.ctrlButtonCardManageGroups = new Check_Point_Manager.ctrlButtonCard();
-            this.lblLastUpdated = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
             this.gbxGroups.SuspendLayout();
@@ -137,6 +138,7 @@
             // 
             this.lblFilterBy.AutoSize = true;
             this.lblFilterBy.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilterBy.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblFilterBy.Location = new System.Drawing.Point(8, 24);
             this.lblFilterBy.Name = "lblFilterBy";
             this.lblFilterBy.Size = new System.Drawing.Size(64, 14);
@@ -168,6 +170,7 @@
             // 
             // gbxGroups
             // 
+            this.gbxGroups.Controls.Add(this.ctrlButtonCardExport);
             this.gbxGroups.Controls.Add(this.ctrlButtonCardManageGroups);
             this.gbxGroups.Controls.Add(this.lblGroupRecordTitle);
             this.gbxGroups.Controls.Add(this.lblGroupRecord);
@@ -221,7 +224,7 @@
             // 
             // gbxUpdateData
             // 
-            this.gbxUpdateData.Controls.Add(this.lblLastUpdated);
+            this.gbxUpdateData.Controls.Add(this.lblUpdateStatus);
             this.gbxUpdateData.Controls.Add(this.ctrlButtonCardUpdate);
             this.gbxUpdateData.Controls.Add(this.txbFilePath);
             this.gbxUpdateData.Controls.Add(this.ctrlButtonCardBrowseFile);
@@ -241,13 +244,23 @@
             this.txbFilePath.Size = new System.Drawing.Size(241, 20);
             this.txbFilePath.TabIndex = 1;
             // 
+            // lblUpdateStatus
+            // 
+            this.lblUpdateStatus.AutoSize = true;
+            this.lblUpdateStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateStatus.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblUpdateStatus.Location = new System.Drawing.Point(138, 108);
+            this.lblUpdateStatus.Name = "lblUpdateStatus";
+            this.lblUpdateStatus.Size = new System.Drawing.Size(0, 16);
+            this.lblUpdateStatus.TabIndex = 3;
+            // 
             // ctrlButtonCardUpdate
             // 
             this.ctrlButtonCardUpdate.Icon = global::Check_Point_Manager.Properties.Resources.file_update;
             this.ctrlButtonCardUpdate.Location = new System.Drawing.Point(11, 89);
             this.ctrlButtonCardUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ctrlButtonCardUpdate.Name = "ctrlButtonCardUpdate";
-            this.ctrlButtonCardUpdate.Size = new System.Drawing.Size(120, 49);
+            this.ctrlButtonCardUpdate.Size = new System.Drawing.Size(101, 49);
             this.ctrlButtonCardUpdate.TabIndex = 2;
             this.ctrlButtonCardUpdate.Title = "Update Stock";
             this.ctrlButtonCardUpdate.Click += new System.EventHandler(this.ctrlButtonCardUpdate_Click);
@@ -258,7 +271,7 @@
             this.ctrlButtonCardBrowseFile.Location = new System.Drawing.Point(11, 21);
             this.ctrlButtonCardBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ctrlButtonCardBrowseFile.Name = "ctrlButtonCardBrowseFile";
-            this.ctrlButtonCardBrowseFile.Size = new System.Drawing.Size(120, 49);
+            this.ctrlButtonCardBrowseFile.Size = new System.Drawing.Size(101, 49);
             this.ctrlButtonCardBrowseFile.TabIndex = 0;
             this.ctrlButtonCardBrowseFile.Title = "Browse File";
             this.ctrlButtonCardBrowseFile.Click += new System.EventHandler(this.ctrlButtonCardBrowseFile_Click);
@@ -266,33 +279,35 @@
             // ctrlButtonCardAddToGp
             // 
             this.ctrlButtonCardAddToGp.Icon = ((System.Drawing.Image)(resources.GetObject("ctrlButtonCardAddToGp.Icon")));
-            this.ctrlButtonCardAddToGp.Location = new System.Drawing.Point(532, 13);
+            this.ctrlButtonCardAddToGp.Location = new System.Drawing.Point(543, 15);
             this.ctrlButtonCardAddToGp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ctrlButtonCardAddToGp.Name = "ctrlButtonCardAddToGp";
-            this.ctrlButtonCardAddToGp.Size = new System.Drawing.Size(112, 50);
+            this.ctrlButtonCardAddToGp.Size = new System.Drawing.Size(101, 49);
             this.ctrlButtonCardAddToGp.TabIndex = 14;
             this.ctrlButtonCardAddToGp.Title = "Add To Group";
             this.ctrlButtonCardAddToGp.Click += new System.EventHandler(this.ctrlButtonCardAddToGp_Click);
             // 
+            // ctrlButtonCardExport
+            // 
+            this.ctrlButtonCardExport.Icon = global::Check_Point_Manager.Properties.Resources.file_export__1_;
+            this.ctrlButtonCardExport.Location = new System.Drawing.Point(307, 14);
+            this.ctrlButtonCardExport.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ctrlButtonCardExport.Name = "ctrlButtonCardExport";
+            this.ctrlButtonCardExport.Size = new System.Drawing.Size(101, 49);
+            this.ctrlButtonCardExport.TabIndex = 15;
+            this.ctrlButtonCardExport.Title = "Export File";
+            this.ctrlButtonCardExport.Click += new System.EventHandler(this.ctrlButtonCardExport_Click);
+            // 
             // ctrlButtonCardManageGroups
             // 
             this.ctrlButtonCardManageGroups.Icon = global::Check_Point_Manager.Properties.Resources.edit_16167227;
-            this.ctrlButtonCardManageGroups.Location = new System.Drawing.Point(405, 13);
+            this.ctrlButtonCardManageGroups.Location = new System.Drawing.Point(416, 14);
             this.ctrlButtonCardManageGroups.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ctrlButtonCardManageGroups.Name = "ctrlButtonCardManageGroups";
-            this.ctrlButtonCardManageGroups.Size = new System.Drawing.Size(112, 50);
+            this.ctrlButtonCardManageGroups.Size = new System.Drawing.Size(101, 49);
             this.ctrlButtonCardManageGroups.TabIndex = 13;
             this.ctrlButtonCardManageGroups.Title = "Manage Groups";
             this.ctrlButtonCardManageGroups.Click += new System.EventHandler(this.ctrlButtonCardManageGroups_Click);
-            // 
-            // lblLastUpdated
-            // 
-            this.lblLastUpdated.AutoSize = true;
-            this.lblLastUpdated.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastUpdated.Location = new System.Drawing.Point(183, 110);
-            this.lblLastUpdated.Name = "lblLastUpdated";
-            this.lblLastUpdated.Size = new System.Drawing.Size(0, 16);
-            this.lblLastUpdated.TabIndex = 3;
             // 
             // frmListItems
             // 
@@ -339,7 +354,8 @@
         private ctrlButtonCard ctrlButtonCardBrowseFile;
         private ctrlButtonCard ctrlButtonCardUpdate;
         private System.Windows.Forms.TextBox txbFilePath;
-        private System.Windows.Forms.Label lblLastUpdated;
+        private System.Windows.Forms.Label lblUpdateStatus;
+        private ctrlButtonCard ctrlButtonCardExport;
     }
 }
 

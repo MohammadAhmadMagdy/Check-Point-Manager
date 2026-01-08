@@ -41,12 +41,11 @@
             this.pnlMain.Controls.Add(this.lblText);
             this.pnlMain.Controls.Add(this.pcbIcon);
             this.pnlMain.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(3, 3);
+            this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(94, 44);
             this.pnlMain.TabIndex = 2;
             this.pnlMain.Click += new System.EventHandler(this.pnlMain_Click);
-            this.pnlMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMain_Paint);
             this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
             this.pnlMain.MouseEnter += new System.EventHandler(this.pnlMain_MouseEnter);
             this.pnlMain.MouseLeave += new System.EventHandler(this.pnlMain_MouseLeave);
@@ -60,7 +59,6 @@
             this.lblText.TabIndex = 2;
             this.lblText.Text = "--Text--";
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblText.Click += new System.EventHandler(this.lblText_Click);
             // 
             // pcbIcon
             // 
@@ -72,7 +70,6 @@
             this.pcbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbIcon.TabIndex = 2;
             this.pcbIcon.TabStop = false;
-           
             // 
             // ctrlButtonCard
             // 
@@ -80,7 +77,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
             this.Name = "ctrlButtonCard";
-            this.Size = new System.Drawing.Size(99, 49);
+            this.Size = new System.Drawing.Size(95, 43);
             this.pnlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.ResumeLayout(false);

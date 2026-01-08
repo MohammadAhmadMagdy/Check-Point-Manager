@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckPointBusinessLayer;
+using ClosedXML.Excel;
 
 
 namespace Check_Point_Manager
@@ -105,29 +106,29 @@ namespace Check_Point_Manager
             dgvGroupItems.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
 
 
-         
+
 
             if (dgvGroupItems.Rows.Count > 0)
-            {   
+            {
                 //dgvGroupItems.Columns["Selected"].HeaderText = "Sel";
                 //dgvGroupItems.Columns["Selected"].Width = 35;
-            
+
                 dgvGroupItems.Columns["ItemCode"].HeaderText = "Code";
                 dgvGroupItems.Columns["ItemCode"].Width = 60;
-          
+
                 dgvGroupItems.Columns["Description"].HeaderText = "Description";
                 dgvGroupItems.Columns["Description"].Width = 300;
-        
+
                 dgvGroupItems.Columns["Qty"].HeaderText = "Qty";
                 dgvGroupItems.Columns["Qty"].Width = 40;
-                
+
                 dgvGroupItems.Columns["LzQty"].HeaderText = "LzQty";
                 dgvGroupItems.Columns["LzQty"].Width = 40;
-                
+
                 dgvGroupItems.Columns["RetailPrice"].HeaderText = "Price";
                 dgvGroupItems.Columns["RetailPrice"].Width = 50;
-                
-               
+
+
             }
 
             lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
@@ -144,13 +145,13 @@ namespace Check_Point_Manager
                 Directory.CreateDirectory(TargetFolder);
             }
 
-            using (OpenFileDialog Dialog  = new OpenFileDialog())
+            using (OpenFileDialog Dialog = new OpenFileDialog())
             {
                 Dialog.Title = "Choose Stock File";
                 Dialog.Filter = "Excel Files|*.xlsx;*.xls";
                 Dialog.InitialDirectory = TargetFolder;
 
-                if(Dialog.ShowDialog() == DialogResult.OK)
+                if (Dialog.ShowDialog() == DialogResult.OK)
                 {
                     FilePath = Dialog.FileName;
                 }
@@ -274,12 +275,12 @@ namespace Check_Point_Manager
                 _LoadSelectedGroupItems(GroupID);
                 _LoadItemsTable();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error" + ex.Message, "Error",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
 
         private void ctrlButtonCardManageGroups_Click(object sender, EventArgs e)
@@ -328,10 +329,11 @@ namespace Check_Point_Manager
         {
             _ExcelFile = _SelectExcelFile();
 
-            if(!string.IsNullOrEmpty(_ExcelFile))
+            if (!string.IsNullOrEmpty(_ExcelFile))
             {
                 txbFilePath.Text = _ExcelFile;
                 ctrlButtonCardUpdate.Enabled = true;
+                lblUpdateStatus.Text = "";
             }
         }
 
@@ -339,24 +341,29 @@ namespace Check_Point_Manager
         {
             try
             {
+                lblUpdateStatus.Text = "Update in Progress .. Please Wait";
+                lblUpdateStatus.Visible = true;
+                Application.DoEvents();
+                Cursor = Cursors.WaitCursor;
+
                 if (!String.IsNullOrEmpty(_ExcelFile))
                 {
                     var NewItemsList = clsItem.UpdateStockAndGetNewItemsCodes(_ExcelFile);
 
                     if (NewItemsList.Count > 0)
                     {
+                        lblUpdateStatus.Text = "Stock Updated";
                         MessageBox.Show("Stock Updated Successfully\n" + NewItemsList.Count + " New Items Added", "Success",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
+                        lblUpdateStatus.Text = "Stock Updated";
                         MessageBox.Show("Stock Updated Successfully\nNo New Items Added", "Success",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     txbFilePath.Text = "";
-
-                    lblLastUpdated.Text = DateTime.Now.ToString();
 
                     frmListItems_Load(null, null);
                 }
@@ -366,10 +373,94 @@ namespace Check_Point_Manager
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error" + ex.Message, "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void ctrlButtonCardExport_Click(object sender, EventArgs e)
+        {
+            if (_dtSelectedGroupItems == null || _dtSelectedGroupItems.Rows.Count == 0)
+            {
+                MessageBox.Show("No Item To Export", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DataTable dtFilteredData = _dtSelectedGroupItems.Clone();
+
+            foreach (DataRow Row in _dtSelectedGroupItems.Rows)
+            {
+                int Qty = Convert.ToInt32(Row["Qty"]);
+                int LzQty = Convert.ToInt32(Row["LzQty"]);
+
+                if (Qty > 0 || LzQty > 0)
+                {
+                    dtFilteredData.ImportRow(Row);
+                }
+            }
+
+            if (dtFilteredData.Rows.Count == 0)
+            {
+                MessageBox.Show("No Items With Quantity", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            using (var wb = new XLWorkbook())
+            {
+                var ws = wb.Worksheets.Add("Group Items");
+
+                // إدخال العناوين يدويًا بدون فلتر أو ألوان
+                for (int col = 0; col < dtFilteredData.Columns.Count; col++)
+                {
+                    ws.Cell(1, col + 1).Value = dtFilteredData.Columns[col].ColumnName;
+                    ws.Cell(1, col + 1).Style.Font.Bold = true;
+                    ws.Cell(1, col + 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                }
+
+                // إدخال البيانات مع تحويل آمن حسب نوع العمود
+                for (int row = 0; row < dtFilteredData.Rows.Count; row++)
+                {
+                    for (int col = 0; col < dtFilteredData.Columns.Count; col++)
+                    {
+                        object value = dtFilteredData.Rows[row][col];
+                        Type columnType = dtFilteredData.Columns[col].DataType;
+
+                        if (columnType == typeof(int))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToInt32(value);
+                        else if (columnType == typeof(decimal))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToDecimal(value);
+                        else if (columnType == typeof(double))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToDouble(value);
+                        else if (columnType == typeof(DateTime))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToDateTime(value);
+                        else
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToString(value);
+                    }
+                }
+
+                // تنسيق الخطوط وضبط الأعمدة
+                ws.Columns().AdjustToContents();
+                ws.Style.Font.FontName = "Segoe UI";
+                ws.Style.Font.FontSize = 11;
+
+                // حفظ الملف
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    FileName = "GroupItems.xlsx"
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    wb.SaveAs(sfd.FileName);
+                    MessageBox.Show("File Exported Successfully");
+                }
             }
         }
     }

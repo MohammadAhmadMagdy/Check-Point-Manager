@@ -16,7 +16,7 @@ namespace Check_Point_Manager
         public ctrlButtonCard()
         {
             InitializeComponent();
-            pnlMain.BackColor = Color.Azure;
+            pnlMain.BackColor = Color.LightCyan;
         }
         [Category("Button Card")]
         public Image Icon
@@ -33,12 +33,12 @@ namespace Check_Point_Manager
 
         private void pnlMain_MouseEnter(object sender, EventArgs e)
         {
-            pnlMain.BackColor = Color.Lavender;
+            pnlMain.BackColor = Color.LightBlue;
         }
 
         private void pnlMain_MouseLeave(object sender, EventArgs e)
         {
-            pnlMain.BackColor = Color.Azure;
+            pnlMain.BackColor = Color.LightCyan;
         }
 
         private void pnlMain_MouseDown(object sender, MouseEventArgs e)
@@ -48,7 +48,7 @@ namespace Check_Point_Manager
 
         private void pnlMain_MouseUp(object sender, MouseEventArgs e)
         {
-            pnlMain.BackColor = Color.Azure;
+            pnlMain.BackColor = Color.LightCyan;
         }
 
         private void pnlMain_Click(object sender, EventArgs e)
@@ -57,15 +57,5 @@ namespace Check_Point_Manager
         }
 
        
-
-        private void lblText_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlMain_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

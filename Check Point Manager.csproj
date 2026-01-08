@@ -283,6 +283,18 @@
   <ItemGroup>
     <None Include="Resources\data-processing1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file-export %281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
