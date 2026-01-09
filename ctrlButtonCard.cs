@@ -16,7 +16,6 @@ namespace Check_Point_Manager
         public ctrlButtonCard()
         {
             InitializeComponent();
-            pnlMain.BackColor = Color.LightCyan;
         }
         [Category("Button Card")]
         public Image Icon
@@ -56,6 +55,9 @@ namespace Check_Point_Manager
             OnClick(e);
         }
 
-       
+        private void ctrlButtonCard_Load(object sender, EventArgs e)
+        {
+            pnlMain.BackColor = Color.LightCyan;
+        }
     }
 }

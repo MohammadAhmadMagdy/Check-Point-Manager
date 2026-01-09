@@ -78,6 +78,7 @@
             this.Controls.Add(this.pnlMain);
             this.Name = "ctrlButtonCard";
             this.Size = new System.Drawing.Size(95, 43);
+            this.Load += new System.EventHandler(this.ctrlButtonCard_Load);
             this.pnlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.ResumeLayout(false);

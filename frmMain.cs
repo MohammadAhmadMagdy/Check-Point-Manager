@@ -249,91 +249,6 @@ namespace Check_Point_Manager
             _LoadSelectedGroupItems(GroupID);
         }
 
-        private void ctrlButtonCardManageGroups_Click(object sender, EventArgs e)
-        {
-            cmbGroups.SelectedIndex = 0;
-
-            frmManageListGroup frm = new frmManageListGroup();
-            frm.ShowDialog();
-
-            
-
-            //_FillGroupsComboBox();
-        }
-
-        private void ctrlButtonCardAddToGp_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if(cmbGroups.SelectedValue == null)
-                {
-                    return;
-                }
-
-                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
-
-                if(GroupID == -1)
-                {
-                    MessageBox.Show("You Should Select A Group First", "Not Allowed", MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
-                    cmbGroups.Focus();
-                    return;
-                }
-
-                List<int> SelectedItems = new List<int>();
-
-                foreach (DataGridViewRow Row in dgvAllStockList.Rows)
-                {
-                    bool IsSelected = Row.Cells["Selected"].Value != null &&
-                                      Convert.ToBoolean(Row.Cells["Selected"].Value);
-                    if (IsSelected)
-                    {
-                        int ItemCode = Convert.ToInt32(Row.Cells["ItemCode"].Value);
-                        SelectedItems.Add(ItemCode);
-                    }
-                }
-
-                if (SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Please Select at Least One Item to Add", "No Items", MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                if(MessageBox.Show("Are you sure you want to add these items to\n" + cmbGroups.Text + " Group ?",
-                    "Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Information) == DialogResult.No)
-                {
-                    return;
-                }
-
-                int NumberOfItemsAdded = clsItemGroup.AddItemsListToGroup(SelectedItems, GroupID);
-
-                MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                _LoadSelectedGroupItems(GroupID);
-                _LoadItemsTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex.Message, "Error",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-
-        private void ctrlButtonCardBrowseFile_Click(object sender, EventArgs e)
-        {
-            _ExcelFile = _SelectExcelFile();
-
-            if (!string.IsNullOrEmpty(_ExcelFile))
-            {
-                txbFilePath.Text = _ExcelFile;
-                ctrlButtonCardUpdate.Enabled = true;
-                lblUpdateStatus.Text = "";
-            }
-        }
-
         private void ctrlButtonCardUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -381,7 +296,88 @@ namespace Check_Point_Manager
             }
         }
 
-        private void ctrlButtonCardExport_Click(object sender, EventArgs e)
+        private void btnBrowseFile_Click(object sender, EventArgs e)
+        {
+            _ExcelFile = _SelectExcelFile();
+
+            if (!string.IsNullOrEmpty(_ExcelFile))
+            {
+                txbFilePath.Text = _ExcelFile;
+                ctrlButtonCardUpdate.Enabled = true;
+                lblUpdateStatus.Text = "";
+            }
+        }
+
+        private void btnAddToGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbGroups.SelectedValue == null)
+                {
+                    return;
+                }
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+                if (GroupID == -1)
+                {
+                    MessageBox.Show("You Should Select A Group First", "Not Allowed", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    cmbGroups.Focus();
+                    return;
+                }
+
+                List<int> SelectedItems = new List<int>();
+
+                foreach (DataGridViewRow Row in dgvAllStockList.Rows)
+                {
+                    bool IsSelected = Row.Cells["Selected"].Value != null &&
+                                      Convert.ToBoolean(Row.Cells["Selected"].Value);
+                    if (IsSelected)
+                    {
+                        int ItemCode = Convert.ToInt32(Row.Cells["ItemCode"].Value);
+                        SelectedItems.Add(ItemCode);
+                    }
+                }
+
+                if (SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Please Select at Least One Item to Add", "No Items", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if (MessageBox.Show("Are you sure you want to add these items to\n" + cmbGroups.Text + " Group ?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                {
+                    return;
+                }
+
+                int NumberOfItemsAdded = clsItemGroup.AddItemsListToGroup(SelectedItems, GroupID);
+
+                MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _LoadSelectedGroupItems(GroupID);
+                _LoadItemsTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message, "Error",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void btnManageGroups_Click(object sender, EventArgs e)
+        {
+            cmbGroups.SelectedIndex = 0;
+
+            frmManageListGroup frm = new frmManageListGroup();
+            frm.ShowDialog();
+        }
+
+        private void btnExportFile_Click(object sender, EventArgs e)
         {
             try
             {
@@ -464,7 +460,7 @@ namespace Check_Point_Manager
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error" + ex.Message);
             }
