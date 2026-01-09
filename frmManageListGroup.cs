@@ -18,13 +18,7 @@ namespace Check_Point_Manager
         {
             InitializeComponent();
         }
-        //private void _AddButtonCardClick(object sender, EventArgs e)
-        //{
-        //    frmAddGroup frm = new frmAddGroup();
-        //    frm.ShowDialog();
-        //    frmManageListGroup_Load(null, null);
-        //}
-
+     
         private void frmManageListGroup_Load(object sender, EventArgs e)
         {
             _AllGroups = clsGroup.LoadAllGroupsInfo();

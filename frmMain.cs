@@ -32,7 +32,7 @@ namespace Check_Point_Manager
 
             DataRow Row = GroupsDT.NewRow();
 
-            Row["GroupName"] = "-- SELECT GROUP --";
+            Row["GroupName"] = "None";
             Row["GroupID"] = -1;
             Row["GroupNumber"] = -1;
 
@@ -249,52 +249,37 @@ namespace Check_Point_Manager
             _LoadSelectedGroupItems(GroupID);
         }
 
-        private void btnAddSelectedToGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                List<int> SelectedItems = new List<int>();
-
-                foreach (DataGridViewRow Row in dgvAllStockList.Rows)
-                {
-                    bool IsSelected = Row.Cells["Selected"].Value != null &&
-                                      Convert.ToBoolean(Row.Cells["Selected"].Value);
-                    if (IsSelected)
-                    {
-                        int ItemCode = Convert.ToInt32(Row.Cells["ItemCode"].Value);
-                        SelectedItems.Add(ItemCode);
-                    }
-                }
-
-                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
-                int NumberOfItemsAdded = clsItemGroup.AddItemsListToGroup(SelectedItems, GroupID);
-
-                MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                _LoadSelectedGroupItems(GroupID);
-                _LoadItemsTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex.Message, "Error",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-
         private void ctrlButtonCardManageGroups_Click(object sender, EventArgs e)
         {
+            cmbGroups.SelectedIndex = 0;
+
             frmManageListGroup frm = new frmManageListGroup();
             frm.ShowDialog();
 
-            _FillGroupsComboBox();
+            
+
+            //_FillGroupsComboBox();
         }
 
         private void ctrlButtonCardAddToGp_Click(object sender, EventArgs e)
         {
             try
             {
+                if(cmbGroups.SelectedValue == null)
+                {
+                    return;
+                }
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+                if(GroupID == -1)
+                {
+                    MessageBox.Show("You Should Select A Group First", "Not Allowed", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    cmbGroups.Focus();
+                    return;
+                }
+
                 List<int> SelectedItems = new List<int>();
 
                 foreach (DataGridViewRow Row in dgvAllStockList.Rows)
@@ -308,7 +293,19 @@ namespace Check_Point_Manager
                     }
                 }
 
-                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+                if (SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Please Select at Least One Item to Add", "No Items", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if(MessageBox.Show("Are you sure you want to add these items to\n" + cmbGroups.Text + " Group ?",
+                    "Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Information) == DialogResult.No)
+                {
+                    return;
+                }
+
                 int NumberOfItemsAdded = clsItemGroup.AddItemsListToGroup(SelectedItems, GroupID);
 
                 MessageBox.Show(NumberOfItemsAdded + " Items Added Successfully To Group", "Success",
@@ -386,81 +383,94 @@ namespace Check_Point_Manager
 
         private void ctrlButtonCardExport_Click(object sender, EventArgs e)
         {
-            if (_dtSelectedGroupItems == null || _dtSelectedGroupItems.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("No Item To Export", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+                Cursor = Cursors.WaitCursor;
 
-            DataTable dtFilteredData = _dtSelectedGroupItems.Clone();
-
-            foreach (DataRow Row in _dtSelectedGroupItems.Rows)
-            {
-                int Qty = Convert.ToInt32(Row["Qty"]);
-                int LzQty = Convert.ToInt32(Row["LzQty"]);
-
-                if (Qty > 0 || LzQty > 0)
+                if (_dtSelectedGroupItems == null || _dtSelectedGroupItems.Rows.Count == 0)
                 {
-                    dtFilteredData.ImportRow(Row);
-                }
-            }
-
-            if (dtFilteredData.Rows.Count == 0)
-            {
-                MessageBox.Show("No Items With Quantity", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            using (var wb = new XLWorkbook())
-            {
-                var ws = wb.Worksheets.Add("Group Items");
-
-                // إدخال العناوين يدويًا بدون فلتر أو ألوان
-                for (int col = 0; col < dtFilteredData.Columns.Count; col++)
-                {
-                    ws.Cell(1, col + 1).Value = dtFilteredData.Columns[col].ColumnName;
-                    ws.Cell(1, col + 1).Style.Font.Bold = true;
-                    ws.Cell(1, col + 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    MessageBox.Show("No Item To Export", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
 
-                // إدخال البيانات مع تحويل آمن حسب نوع العمود
-                for (int row = 0; row < dtFilteredData.Rows.Count; row++)
+                DataTable dtFilteredData = _dtSelectedGroupItems.Clone();
+
+                foreach (DataRow Row in _dtSelectedGroupItems.Rows)
                 {
-                    for (int col = 0; col < dtFilteredData.Columns.Count; col++)
+                    int Qty = Convert.ToInt32(Row["Qty"]);
+                    int LzQty = Convert.ToInt32(Row["LzQty"]);
+
+                    if (Qty > 0 || LzQty > 0)
                     {
-                        object value = dtFilteredData.Rows[row][col];
-                        Type columnType = dtFilteredData.Columns[col].DataType;
-
-                        if (columnType == typeof(int))
-                            ws.Cell(row + 2, col + 1).Value = Convert.ToInt32(value);
-                        else if (columnType == typeof(decimal))
-                            ws.Cell(row + 2, col + 1).Value = Convert.ToDecimal(value);
-                        else if (columnType == typeof(double))
-                            ws.Cell(row + 2, col + 1).Value = Convert.ToDouble(value);
-                        else if (columnType == typeof(DateTime))
-                            ws.Cell(row + 2, col + 1).Value = Convert.ToDateTime(value);
-                        else
-                            ws.Cell(row + 2, col + 1).Value = Convert.ToString(value);
+                        dtFilteredData.ImportRow(Row);
                     }
                 }
 
-                // تنسيق الخطوط وضبط الأعمدة
-                ws.Columns().AdjustToContents();
-                ws.Style.Font.FontName = "Segoe UI";
-                ws.Style.Font.FontSize = 11;
-
-                // حفظ الملف
-                SaveFileDialog sfd = new SaveFileDialog
+                if (dtFilteredData.Rows.Count == 0)
                 {
-                    Filter = "Excel Files|*.xlsx",
-                    FileName = "GroupItems.xlsx"
-                };
-
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    wb.SaveAs(sfd.FileName);
-                    MessageBox.Show("File Exported Successfully");
+                    MessageBox.Show("No Items With Quantity", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
+
+                using (var wb = new XLWorkbook())
+                {
+                    var ws = wb.Worksheets.Add("Group Items");
+
+                    // إدخال العناوين يدويًا بدون فلتر أو ألوان
+                    for (int col = 0; col < dtFilteredData.Columns.Count; col++)
+                    {
+                        ws.Cell(1, col + 1).Value = dtFilteredData.Columns[col].ColumnName;
+                        ws.Cell(1, col + 1).Style.Font.Bold = true;
+                        ws.Cell(1, col + 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    }
+
+                    // إدخال البيانات مع تحويل آمن حسب نوع العمود
+                    for (int row = 0; row < dtFilteredData.Rows.Count; row++)
+                    {
+                        for (int col = 0; col < dtFilteredData.Columns.Count; col++)
+                        {
+                            object value = dtFilteredData.Rows[row][col];
+                            Type columnType = dtFilteredData.Columns[col].DataType;
+
+                            if (columnType == typeof(int))
+                                ws.Cell(row + 2, col + 1).Value = Convert.ToInt32(value);
+                            else if (columnType == typeof(decimal))
+                                ws.Cell(row + 2, col + 1).Value = Convert.ToDecimal(value);
+                            else if (columnType == typeof(double))
+                                ws.Cell(row + 2, col + 1).Value = Convert.ToDouble(value);
+                            else if (columnType == typeof(DateTime))
+                                ws.Cell(row + 2, col + 1).Value = Convert.ToDateTime(value);
+                            else
+                                ws.Cell(row + 2, col + 1).Value = Convert.ToString(value);
+                        }
+                    }
+
+                    // تنسيق الخطوط وضبط الأعمدة
+                    ws.Columns().AdjustToContents();
+                    ws.Style.Font.FontName = "Segoe UI";
+                    ws.Style.Font.FontSize = 11;
+
+                    // حفظ الملف
+                    SaveFileDialog sfd = new SaveFileDialog
+                    {
+                        Filter = "Excel Files|*.xlsx",
+                        FileName = "GroupItems.xlsx"
+                    };
+
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        wb.SaveAs(sfd.FileName);
+                        MessageBox.Show("File Exported Successfully");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
         }
     }
