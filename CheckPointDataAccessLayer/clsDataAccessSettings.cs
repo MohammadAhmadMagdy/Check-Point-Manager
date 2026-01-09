@@ -11,9 +11,9 @@ namespace CheckPointDataAccessLayer
 {
     public class clsDataAccessSettings
     {
-        private static string _ConnectionString = @"Data Source=Stock.db";
+        private static readonly string _dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Stock.db");
 
-
+        private static readonly string _ConnectionString = $"Data Source={_dbPath};Version=3;FailIfMissing=True;";
 
         public static SQLiteConnection GetConnection()
         {
