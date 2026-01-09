@@ -165,7 +165,7 @@ namespace CheckPointDataAccessLayer
         }
         public static bool Delete(int ItemCode, int GroupID)
         {
-            string Query = @"DELETE FROM ItemsCodes 
+            string Query = @"DELETE FROM ItemsGroups 
                              WHERE ItemCode = @ItemCode AND GroupID = @GroupID";
 
             using (var Connection = clsDataAccessSettings.GetConnection())

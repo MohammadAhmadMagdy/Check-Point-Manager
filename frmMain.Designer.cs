@@ -38,6 +38,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblItemRecordsTitle = new System.Windows.Forms.Label();
@@ -49,24 +50,27 @@
             this.cmbFilterBy = new System.Windows.Forms.ComboBox();
             this.txbFilterValue = new System.Windows.Forms.TextBox();
             this.gbxGroups = new System.Windows.Forms.GroupBox();
+            this.btnExportFile = new Check_Point_Manager.ctrlButtonCard();
+            this.btnManageGroups = new Check_Point_Manager.ctrlButtonCard();
             this.lblSelectGroupTitle = new System.Windows.Forms.Label();
             this.lblGroupRecordTitle = new System.Windows.Forms.Label();
             this.lblGroupRecord = new System.Windows.Forms.Label();
             this.gbxItems = new System.Windows.Forms.GroupBox();
+            this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
             this.gbxUpdateData = new System.Windows.Forms.GroupBox();
+            this.btnBrowseFile = new Check_Point_Manager.ctrlButtonCard();
             this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.ctrlButtonCardUpdate = new Check_Point_Manager.ctrlButtonCard();
             this.txbFilePath = new System.Windows.Forms.TextBox();
             this.lblMainTitle = new System.Windows.Forms.Label();
-            this.btnBrowseFile = new Check_Point_Manager.ctrlButtonCard();
-            this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
-            this.btnManageGroups = new Check_Point_Manager.ctrlButtonCard();
-            this.btnExportFile = new Check_Point_Manager.ctrlButtonCard();
+            this.cmsGroupOption = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteFromGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
             this.gbxGroups.SuspendLayout();
             this.gbxItems.SuspendLayout();
             this.gbxUpdateData.SuspendLayout();
+            this.cmsGroupOption.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblItemRecordsTitle
@@ -107,6 +111,7 @@
             this.dgvGroupItems.AllowUserToOrderColumns = true;
             this.dgvGroupItems.BackgroundColor = System.Drawing.Color.White;
             this.dgvGroupItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGroupItems.ContextMenuStrip = this.cmsGroupOption;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -196,6 +201,28 @@
             this.gbxGroups.TabStop = false;
             this.gbxGroups.Text = "Groups";
             // 
+            // btnExportFile
+            // 
+            this.btnExportFile.Icon = global::Check_Point_Manager.Properties.Resources.share;
+            this.btnExportFile.Location = new System.Drawing.Point(289, 25);
+            this.btnExportFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnExportFile.Name = "btnExportFile";
+            this.btnExportFile.Size = new System.Drawing.Size(111, 46);
+            this.btnExportFile.TabIndex = 17;
+            this.btnExportFile.Title = "Export File";
+            this.btnExportFile.Click += new System.EventHandler(this.btnExportFile_Click);
+            // 
+            // btnManageGroups
+            // 
+            this.btnManageGroups.Icon = global::Check_Point_Manager.Properties.Resources.edit_16167227;
+            this.btnManageGroups.Location = new System.Drawing.Point(408, 25);
+            this.btnManageGroups.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnManageGroups.Name = "btnManageGroups";
+            this.btnManageGroups.Size = new System.Drawing.Size(111, 46);
+            this.btnManageGroups.TabIndex = 16;
+            this.btnManageGroups.Title = "Manage Groups";
+            this.btnManageGroups.Click += new System.EventHandler(this.btnManageGroups_Click);
+            // 
             // lblSelectGroupTitle
             // 
             this.lblSelectGroupTitle.AutoSize = true;
@@ -245,6 +272,17 @@
             this.gbxItems.TabStop = false;
             this.gbxItems.Text = "Item List";
             // 
+            // btnAddToGroup
+            // 
+            this.btnAddToGroup.Icon = global::Check_Point_Manager.Properties.Resources.right_arrow;
+            this.btnAddToGroup.Location = new System.Drawing.Point(533, 24);
+            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddToGroup.Name = "btnAddToGroup";
+            this.btnAddToGroup.Size = new System.Drawing.Size(111, 46);
+            this.btnAddToGroup.TabIndex = 16;
+            this.btnAddToGroup.Title = "Add To Group";
+            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
+            // 
             // gbxUpdateData
             // 
             this.gbxUpdateData.Controls.Add(this.btnBrowseFile);
@@ -258,6 +296,17 @@
             this.gbxUpdateData.TabIndex = 14;
             this.gbxUpdateData.TabStop = false;
             this.gbxUpdateData.Text = "Update Stock";
+            // 
+            // btnBrowseFile
+            // 
+            this.btnBrowseFile.Icon = global::Check_Point_Manager.Properties.Resources.folder;
+            this.btnBrowseFile.Location = new System.Drawing.Point(11, 21);
+            this.btnBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnBrowseFile.Name = "btnBrowseFile";
+            this.btnBrowseFile.Size = new System.Drawing.Size(111, 46);
+            this.btnBrowseFile.TabIndex = 16;
+            this.btnBrowseFile.Title = "Browse File";
+            this.btnBrowseFile.Click += new System.EventHandler(this.btnBrowseFile_Click);
             // 
             // lblUpdateStatus
             // 
@@ -300,49 +349,20 @@
             this.lblMainTitle.Text = "Check Point Manager";
             this.lblMainTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnBrowseFile
+            // cmsGroupOption
             // 
-            this.btnBrowseFile.Icon = global::Check_Point_Manager.Properties.Resources.folder;
-            this.btnBrowseFile.Location = new System.Drawing.Point(11, 21);
-            this.btnBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnBrowseFile.Name = "btnBrowseFile";
-            this.btnBrowseFile.Size = new System.Drawing.Size(111, 46);
-            this.btnBrowseFile.TabIndex = 16;
-            this.btnBrowseFile.Title = "Browse File";
-            this.btnBrowseFile.Click += new System.EventHandler(this.btnBrowseFile_Click);
+            this.cmsGroupOption.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteFromGroupToolStripMenuItem});
+            this.cmsGroupOption.Name = "cmsGroupOption";
+            this.cmsGroupOption.Size = new System.Drawing.Size(175, 26);
             // 
-            // btnAddToGroup
+            // deleteFromGroupToolStripMenuItem
             // 
-            this.btnAddToGroup.Icon = global::Check_Point_Manager.Properties.Resources.right_arrow;
-            this.btnAddToGroup.Location = new System.Drawing.Point(533, 24);
-            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddToGroup.Name = "btnAddToGroup";
-            this.btnAddToGroup.Size = new System.Drawing.Size(111, 46);
-            this.btnAddToGroup.TabIndex = 16;
-            this.btnAddToGroup.Title = "Add To Group";
-            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
-            // 
-            // btnManageGroups
-            // 
-            this.btnManageGroups.Icon = global::Check_Point_Manager.Properties.Resources.edit_16167227;
-            this.btnManageGroups.Location = new System.Drawing.Point(408, 25);
-            this.btnManageGroups.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnManageGroups.Name = "btnManageGroups";
-            this.btnManageGroups.Size = new System.Drawing.Size(111, 46);
-            this.btnManageGroups.TabIndex = 16;
-            this.btnManageGroups.Title = "Manage Groups";
-            this.btnManageGroups.Click += new System.EventHandler(this.btnManageGroups_Click);
-            // 
-            // btnExportFile
-            // 
-            this.btnExportFile.Icon = global::Check_Point_Manager.Properties.Resources.share;
-            this.btnExportFile.Location = new System.Drawing.Point(289, 25);
-            this.btnExportFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnExportFile.Name = "btnExportFile";
-            this.btnExportFile.Size = new System.Drawing.Size(111, 46);
-            this.btnExportFile.TabIndex = 17;
-            this.btnExportFile.Title = "Export File";
-            this.btnExportFile.Click += new System.EventHandler(this.btnExportFile_Click);
+            this.deleteFromGroupToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.recycle_bin;
+            this.deleteFromGroupToolStripMenuItem.Name = "deleteFromGroupToolStripMenuItem";
+            this.deleteFromGroupToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.deleteFromGroupToolStripMenuItem.Text = "Delete From Group";
+            this.deleteFromGroupToolStripMenuItem.Click += new System.EventHandler(this.deleteFromGroupToolStripMenuItem_Click);
             // 
             // frmListItems
             // 
@@ -367,6 +387,7 @@
             this.gbxItems.PerformLayout();
             this.gbxUpdateData.ResumeLayout(false);
             this.gbxUpdateData.PerformLayout();
+            this.cmsGroupOption.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -399,6 +420,8 @@
         private ctrlButtonCard btnAddToGroup;
         private ctrlButtonCard btnExportFile;
         private ctrlButtonCard btnManageGroups;
+        private System.Windows.Forms.ContextMenuStrip cmsGroupOption;
+        private System.Windows.Forms.ToolStripMenuItem deleteFromGroupToolStripMenuItem;
     }
 }
 

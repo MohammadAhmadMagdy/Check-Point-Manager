@@ -469,5 +469,19 @@ namespace Check_Point_Manager
                 Cursor = Cursors.Default;
             }
         }
+
+        private void deleteFromGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ItemCode = Convert.ToInt32(dgvGroupItems.CurrentRow.Cells["ItemCode"].Value);
+            int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+            if (!clsItemGroup.Delete(ItemCode,GroupID))
+            {
+                MessageBox.Show("Error!!");
+            }
+
+            _LoadSelectedGroupItems(GroupID);
+            _LoadItemsTable();
+        }
     }
 }
