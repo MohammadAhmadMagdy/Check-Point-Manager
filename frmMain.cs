@@ -159,6 +159,27 @@ namespace Check_Point_Manager
 
             return FilePath;
         }
+        private void _dgvSelectAllRowByRightClick(object sender, MouseEventArgs e)
+        {
+            var DGV = (DataGridView)sender;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                var HitTestInfo = DGV.HitTest(e.X, e.Y);
+                if(HitTestInfo.RowIndex >= 0)
+                {
+                    DGV.ClearSelection();
+                    DGV.Rows[HitTestInfo.RowIndex].Selected = true;
+                }
+            }
+        }
+        private string _GetColumnName()
+        {
+            if (cmbFilterBy.Text == "Item Code")
+                return "ItemCode";
+            else
+                return cmbFilterBy.Text;
+        }
         private void frmListItems_Load(object sender, EventArgs e)
         {
             _FillGroupsComboBox();
@@ -168,20 +189,7 @@ namespace Check_Point_Manager
             ctrlButtonCardUpdate.Enabled = false;
 
         }
-        private string _GetColumnName()
-        {
-            if (cmbFilterBy.Text == "Item Code")
-                return "ItemCode";
-            else
-                return cmbFilterBy.Text;
-        }
-
-        private void dgvAllStockList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                dgvAllStockList.CurrentCell = dgvAllStockList.Rows[e.RowIndex].Cells[e.ColumnIndex];
-        }
-
+  
         private void dgvAllStockList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvAllStockList.Columns["Selected"].Index && e.RowIndex >= 0)
@@ -476,6 +484,80 @@ namespace Check_Point_Manager
             int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
 
             if (!clsItemGroup.Delete(ItemCode,GroupID))
+            {
+                MessageBox.Show("Error!!");
+            }
+
+            _LoadSelectedGroupItems(GroupID);
+            _LoadItemsTable();
+        }
+
+        private void dgvAllStockList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void dgvAllStockList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(!chbFastMode.Checked)
+            {
+                return;
+            }
+
+            try
+            {
+                if (cmbGroups.SelectedValue == null)
+                {
+                    return;
+                }
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+                if (GroupID == -1)
+                {
+                    MessageBox.Show("You Should Select A Group First", "Not Allowed", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    cmbGroups.Focus();
+                    return;
+                }
+
+                int ItemCode = Convert.ToInt32(dgvAllStockList.CurrentRow.Cells[1].Value);
+
+                clsItemGroup ItemGroup = new clsItemGroup();
+
+                ItemGroup.ItemCode = ItemCode;
+                ItemGroup.GroupID = GroupID;
+
+                if(!ItemGroup.Save())
+                {
+                    MessageBox.Show("Error in Adding to Group", "Error", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                }
+
+                _LoadSelectedGroupItems(GroupID);
+                _LoadItemsTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message, "Error",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dgvGroupItems_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!chbFastMode.Checked)
+            {
+                return;
+            }
+
+            int ItemCode = Convert.ToInt32(dgvGroupItems.CurrentRow.Cells["ItemCode"].Value);
+            int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+            if (!clsItemGroup.Delete(ItemCode, GroupID))
             {
                 MessageBox.Show("Error!!");
             }

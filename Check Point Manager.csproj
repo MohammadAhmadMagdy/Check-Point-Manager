@@ -95,11 +95,11 @@
     <Compile Include="ctrlButtonCard.Designer.cs">
       <DependentUpon>ctrlButtonCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddGroup.cs">
+    <Compile Include="frmAddEditGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddGroup.Designer.cs">
-      <DependentUpon>frmAddGroup.cs</DependentUpon>
+    <Compile Include="frmAddEditGroup.Designer.cs">
+      <DependentUpon>frmAddEditGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -118,8 +118,8 @@
     <EmbeddedResource Include="ctrlButtonCard.resx">
       <DependentUpon>ctrlButtonCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddGroup.resx">
-      <DependentUpon>frmAddGroup.cs</DependentUpon>
+    <EmbeddedResource Include="frmAddEditGroup.resx">
+      <DependentUpon>frmAddEditGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -148,6 +148,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="Resources\recycle-bin.png" />
+    <Resource Include="Resources\remove.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\AddNew.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\share %281%29.png" />
+    <Resource Include="Resources\article.png" />
+    <Resource Include="Resources\touch.png" />
+    <Resource Include="Resources\counter.png" />
+    <Resource Include="Resources\office.png" />
+    <Resource Include="Resources\clipboard.png" />
+    <Resource Include="Resources\save.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
