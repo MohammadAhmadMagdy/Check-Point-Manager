@@ -93,7 +93,7 @@ namespace Check_Point_Manager
         private void _LoadSelectedGroupItems(int GroupID)
         {
             _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
-
+            pcbGroupsBackground.Visible = GroupID == -1;
             dgvGroupItems.DataSource = _dtSelectedGroupItems;
 
             dgvGroupItems.EnableHeadersVisualStyles = false;
@@ -251,9 +251,11 @@ namespace Check_Point_Manager
             if (GroupID == -1)
             {
                 dgvGroupItems.DataSource = null;
+                pcbGroupsBackground.Visible = true;
+                lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
                 return;
             }
-
+            
             _LoadSelectedGroupItems(GroupID);
         }
 

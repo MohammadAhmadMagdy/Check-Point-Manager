@@ -27,6 +27,8 @@ namespace Check_Point_Manager
 
             dgvListGroups.DataSource = _AllGroups;
 
+           
+
            dgvListGroups.EnableHeadersVisualStyles = false;
            dgvListGroups.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
            dgvListGroups.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -40,12 +42,13 @@ namespace Check_Point_Manager
             {
                 dgvListGroups.Columns[0].HeaderText = "ID";
                 dgvListGroups.Columns[0].Width = 30;
+                dgvListGroups.Columns[0].Visible = false;
 
-                dgvListGroups.Columns[1].HeaderText = "Number";
+                dgvListGroups.Columns[1].HeaderText = "Group No.";
                 dgvListGroups.Columns[1].Width = 100;
 
                 dgvListGroups.Columns[2].HeaderText = "Group Name";
-                dgvListGroups.Columns[2].Width = 520;
+                dgvListGroups.Columns[2].Width = 630;
             }
 
             lblNumberOfGroups.Text = dgvListGroups.RowCount.ToString();

@@ -41,7 +41,7 @@
             this.pnlMain.Controls.Add(this.lblText);
             this.pnlMain.Controls.Add(this.pcbIcon);
             this.pnlMain.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.Location = new System.Drawing.Point(3, 3);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(94, 44);
             this.pnlMain.TabIndex = 2;
@@ -53,12 +53,15 @@
             // 
             // lblText
             // 
+            this.lblText.Enabled = false;
+            this.lblText.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblText.Location = new System.Drawing.Point(3, 29);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(88, 13);
             this.lblText.TabIndex = 2;
             this.lblText.Text = "--Text--";
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblText.Click += new System.EventHandler(this.Child_Click);
             // 
             // pcbIcon
             // 
@@ -70,6 +73,7 @@
             this.pcbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbIcon.TabIndex = 2;
             this.pcbIcon.TabStop = false;
+            this.pcbIcon.Click += new System.EventHandler(this.Child_Click);
             // 
             // ctrlButtonCard
             // 
@@ -77,7 +81,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
             this.Name = "ctrlButtonCard";
-            this.Size = new System.Drawing.Size(95, 43);
+            this.Size = new System.Drawing.Size(100, 50);
             this.Load += new System.EventHandler(this.ctrlButtonCard_Load);
             this.pnlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
