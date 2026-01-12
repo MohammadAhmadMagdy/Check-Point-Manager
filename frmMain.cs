@@ -567,5 +567,18 @@ namespace Check_Point_Manager
             _LoadSelectedGroupItems(GroupID);
             _LoadItemsTable();
         }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow Row in dgvAllStockList.Rows)
+            {
+                if ((bool)Row.Cells[0].Value == true)
+                {
+                    Row.Cells[0].Value = false;
+                }
+                else
+                    Row.Cells[0].Value = true;
+            }
+        }
     }
 }

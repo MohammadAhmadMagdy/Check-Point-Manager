@@ -52,6 +52,7 @@
             this.cmbFilterBy = new System.Windows.Forms.ComboBox();
             this.txbFilterValue = new System.Windows.Forms.TextBox();
             this.gbxGroups = new System.Windows.Forms.GroupBox();
+            this.pcbGroupsBackground = new System.Windows.Forms.PictureBox();
             this.lblSelectGroupTitle = new System.Windows.Forms.Label();
             this.lblGroupRecordTitle = new System.Windows.Forms.Label();
             this.lblGroupRecord = new System.Windows.Forms.Label();
@@ -61,19 +62,19 @@
             this.txbFilePath = new System.Windows.Forms.TextBox();
             this.lblMainTitle = new System.Windows.Forms.Label();
             this.chbFastMode = new System.Windows.Forms.CheckBox();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnBrowseFile = new Check_Point_Manager.ctrlButtonCard();
             this.ctrlButtonCardUpdate = new Check_Point_Manager.ctrlButtonCard();
             this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
             this.btnExportFile = new Check_Point_Manager.ctrlButtonCard();
             this.btnManageGroups = new Check_Point_Manager.ctrlButtonCard();
-            this.pcbGroupsBackground = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).BeginInit();
             this.cmsGroupOption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
             this.gbxGroups.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).BeginInit();
             this.gbxItems.SuspendLayout();
             this.gbxUpdateData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).BeginInit();
             this.SuspendLayout();
             // 
             // lblItemRecordsTitle
@@ -226,6 +227,17 @@
             this.gbxGroups.TabStop = false;
             this.gbxGroups.Text = "Groups";
             // 
+            // pcbGroupsBackground
+            // 
+            this.pcbGroupsBackground.Enabled = false;
+            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.article;
+            this.pcbGroupsBackground.Location = new System.Drawing.Point(25, 94);
+            this.pcbGroupsBackground.Name = "pcbGroupsBackground";
+            this.pcbGroupsBackground.Size = new System.Drawing.Size(475, 295);
+            this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbGroupsBackground.TabIndex = 18;
+            this.pcbGroupsBackground.TabStop = false;
+            // 
             // lblSelectGroupTitle
             // 
             this.lblSelectGroupTitle.AutoSize = true;
@@ -330,6 +342,17 @@
             this.chbFastMode.Text = "Fast Mode ( Add / Remove Items By Double Click )";
             this.chbFastMode.UseVisualStyleBackColor = true;
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectAll.Location = new System.Drawing.Point(367, 291);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAll.TabIndex = 17;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
             // btnBrowseFile
             // 
             this.btnBrowseFile.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -390,23 +413,13 @@
             this.btnManageGroups.Title = "Manage Groups";
             this.btnManageGroups.Click += new System.EventHandler(this.btnManageGroups_Click);
             // 
-            // pcbGroupsBackground
-            // 
-            this.pcbGroupsBackground.Enabled = false;
-            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.article;
-            this.pcbGroupsBackground.Location = new System.Drawing.Point(25, 94);
-            this.pcbGroupsBackground.Name = "pcbGroupsBackground";
-            this.pcbGroupsBackground.Size = new System.Drawing.Size(475, 295);
-            this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbGroupsBackground.TabIndex = 18;
-            this.pcbGroupsBackground.TabStop = false;
-            // 
             // frmListItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1207, 684);
+            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.chbFastMode);
             this.Controls.Add(this.lblMainTitle);
             this.Controls.Add(this.gbxUpdateData);
@@ -422,11 +435,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).EndInit();
             this.gbxGroups.ResumeLayout(false);
             this.gbxGroups.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).EndInit();
             this.gbxItems.ResumeLayout(false);
             this.gbxItems.PerformLayout();
             this.gbxUpdateData.ResumeLayout(false);
             this.gbxUpdateData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -463,6 +476,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteFromGroupToolStripMenuItem;
         private System.Windows.Forms.CheckBox chbFastMode;
         private System.Windows.Forms.PictureBox pcbGroupsBackground;
+        private System.Windows.Forms.Button btnSelectAll;
     }
 }
 
