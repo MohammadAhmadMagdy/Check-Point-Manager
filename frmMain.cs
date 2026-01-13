@@ -20,6 +20,7 @@ namespace Check_Point_Manager
         private string _ExcelFile = "";
         private DataTable _dtAllStockList;
         private DataTable _dtSelectedGroupItems;
+        private bool _IsAllRowsSelected = false;
         public frmListItems()
         {
             InitializeComponent();
@@ -61,7 +62,8 @@ namespace Check_Point_Manager
             dgvAllStockList.RowsDefaultCellStyle.BackColor = Color.White;
             dgvAllStockList.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
 
-            chbSelectAll.Checked = false;
+            _IsAllRowsSelected = false;
+            btnSelectAll.Text = "Select All";
             cmbFilterBy.SelectedIndex = 2;
             txbFilterValue.Focus();
 
@@ -94,8 +96,10 @@ namespace Check_Point_Manager
         private void _LoadSelectedGroupItems(int GroupID)
         {
             _dtSelectedGroupItems = clsItemGroup.GetGroupItemsByGroupID(GroupID);
-            pcbGroupsBackground.Visible = GroupID == -1;
+            
             dgvGroupItems.DataSource = _dtSelectedGroupItems;
+
+            pcbGroupsBackground.Visible = GroupID == -1;
 
             dgvGroupItems.EnableHeadersVisualStyles = false;
             dgvGroupItems.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
@@ -180,6 +184,18 @@ namespace Check_Point_Manager
                 return "ItemCode";
             else
                 return cmbFilterBy.Text;
+        }
+        private void pcbGroupsBackground_Paint(object sender, PaintEventArgs e)
+        {
+            if (pcbGroupsBackground.Image != null)
+            {
+                e.Graphics.DrawImage(pcbGroupsBackground.Image, new Rectangle(0, 0, pcbGroupsBackground.Width,
+                    pcbGroupsBackground.Height));
+                using (Brush semiTransparentBrush = new SolidBrush(Color.FromArgb(200, Color.Transparent)))
+                {
+                    e.Graphics.FillRectangle(semiTransparentBrush, pcbGroupsBackground.ClientRectangle);
+                }
+            }
         }
         private void frmListItems_Load(object sender, EventArgs e)
         {
@@ -386,6 +402,8 @@ namespace Check_Point_Manager
 
             frmManageListGroup frm = new frmManageListGroup();
             frm.ShowDialog();
+
+            frmListItems_Load(null, null);
         }
 
         private void btnExportFile_Click(object sender, EventArgs e)
@@ -529,6 +547,13 @@ namespace Check_Point_Manager
 
                 int ItemCode = Convert.ToInt32(dgvAllStockList.CurrentRow.Cells[1].Value);
 
+                if(clsItemGroup.DoesItemExistsInThisGroup(ItemCode,GroupID))
+                {
+                    MessageBox.Show("Item already exists in this group","Not Allowed", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 clsItemGroup ItemGroup = new clsItemGroup();
 
                 ItemGroup.ItemCode = ItemCode;
@@ -569,14 +594,18 @@ namespace Check_Point_Manager
             _LoadItemsTable();
         }
 
-        private void chbSelectAll_CheckedChanged(object sender, EventArgs e)
+        private void btnSelectAll_Click(object sender, EventArgs e)
         {
             foreach(DataGridViewRow Row in dgvAllStockList.Rows)
             {
                 if (Row.IsNewRow) continue;
 
-                Row.Cells[0].Value = chbSelectAll.Checked;
+                Row.Cells["Selected"].Value = !_IsAllRowsSelected;
             }
+
+            _IsAllRowsSelected = !_IsAllRowsSelected;
+
+            btnSelectAll.Text = _IsAllRowsSelected ? "DeSelect All" : "Select All";
         }
     }
 }

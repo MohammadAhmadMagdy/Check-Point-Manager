@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txbGroupNumber = new System.Windows.Forms.TextBox();
             this.lblEnterGroupNumber = new System.Windows.Forms.Label();
             this.lblEnterGroupName = new System.Windows.Forms.Label();
@@ -46,9 +47,11 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblCancel = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGpNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txbGroupNumber
@@ -59,6 +62,7 @@
             this.txbGroupNumber.Size = new System.Drawing.Size(170, 28);
             this.txbGroupNumber.TabIndex = 0;
             this.txbGroupNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbGroupNumber_KeyPress);
+            this.txbGroupNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txbGroupNumber_Validating);
             // 
             // lblEnterGroupNumber
             // 
@@ -85,8 +89,9 @@
             this.txbGroupName.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold);
             this.txbGroupName.Location = new System.Drawing.Point(196, 147);
             this.txbGroupName.Name = "txbGroupName";
-            this.txbGroupName.Size = new System.Drawing.Size(456, 28);
+            this.txbGroupName.Size = new System.Drawing.Size(746, 28);
             this.txbGroupName.TabIndex = 2;
+            this.txbGroupName.Validating += new System.ComponentModel.CancelEventHandler(this.txbGroupName_Validating);
             // 
             // lblNewGroupIDTitle
             // 
@@ -149,7 +154,7 @@
             this.lblTitle.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblTitle.Location = new System.Drawing.Point(12, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(666, 49);
+            this.lblTitle.Size = new System.Drawing.Size(952, 49);
             this.lblTitle.TabIndex = 11;
             this.lblTitle.Text = "Add New Check Point Group";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,7 +163,7 @@
             // 
             this.lblSave.AutoSize = true;
             this.lblSave.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSave.Location = new System.Drawing.Point(602, 388);
+            this.lblSave.Location = new System.Drawing.Point(914, 388);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(50, 21);
             this.lblSave.TabIndex = 14;
@@ -175,7 +180,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(20, 201);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(632, 138);
+            this.groupBox1.Size = new System.Drawing.Size(944, 138);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Group Info";
@@ -210,7 +215,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(523, 345);
+            this.btnCancel.Location = new System.Drawing.Point(835, 345);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(57, 40);
             this.btnCancel.TabIndex = 18;
@@ -227,7 +232,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSave.Location = new System.Drawing.Point(606, 345);
+            this.btnSave.Location = new System.Drawing.Point(918, 345);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(46, 40);
             this.btnSave.TabIndex = 17;
@@ -238,18 +243,25 @@
             // 
             this.lblCancel.AutoSize = true;
             this.lblCancel.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancel.Location = new System.Drawing.Point(519, 388);
+            this.lblCancel.Location = new System.Drawing.Point(831, 388);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(61, 21);
             this.lblCancel.TabIndex = 19;
             this.lblCancel.Text = "Cancel";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmAddEditGroup
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(668, 415);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(976, 415);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -271,6 +283,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGpNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,5 +309,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblCancel;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

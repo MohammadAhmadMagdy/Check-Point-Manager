@@ -41,6 +41,10 @@ namespace CheckPointBusinessLayer
         {
             return clsItemGroupData.GetGroupItemsByGroupID(GroupID);
         }
+        public static bool DoesItemExistsInThisGroup(int ItemCode, int GroupID)
+        {
+            return clsItemGroupData.DoesItemExistsInThisGroup(ItemCode, GroupID);
+        }
         private bool _AddNew()
         {
             return clsItemGroupData.AddNew(this.ItemCode, this.GroupID);

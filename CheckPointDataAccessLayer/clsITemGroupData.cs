@@ -84,6 +84,22 @@ namespace CheckPointDataAccessLayer
 
             return IsFound;
         }
+        public static bool DoesItemExistsInThisGroup(int ItemCode, int GroupID)
+        {
+            string Query = @"SELECT EXISTS(
+                             SELECT 1 From ItemsGroups 
+                             WHERE ItemCode = @ItemCode and GroupID = @GroupID);";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@ItemCode", ItemCode);
+                Command.Parameters.AddWithValue("@GroupID", GroupID);
+
+                var Result = Convert.ToInt32(Command.ExecuteScalar());
+                return Result == 1;
+            }
+        }
         public static bool AddNew(int ItemCode, int GroupID)
         {
             string Query = @"INSERT INTO ItemsGroups (ItemCode, GroupID) 

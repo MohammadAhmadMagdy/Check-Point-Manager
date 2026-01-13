@@ -90,7 +90,12 @@ namespace Check_Point_Manager
         {
             string GroupName = dgvListGroups.CurrentRow.Cells[2].Value.ToString();
 
-            if (MessageBox.Show("Are you sure you want to delete Group\n(" + GroupName + ") ?", "Confirm",
+            if (MessageBox.Show("Are you sure you want to completely delete Group\n(" + GroupName + ") ?", "Confirm",
+                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            if(MessageBox.Show("The group will be deleted with all it's items completely\n" +
+                "Are you sure you want to proceed ??", "Confirm",
                  MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 

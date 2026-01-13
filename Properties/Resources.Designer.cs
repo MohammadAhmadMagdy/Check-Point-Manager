@@ -63,6 +63,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _416_4163635_transparent_background_clipboard_icon {
+            get {
+                object obj = ResourceManager.GetObject("_416_4163635_transparent_background_clipboard_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
@@ -126,6 +136,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap clipboard_7235464 {
             get {
                 object obj = ResourceManager.GetObject("clipboard_7235464", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Clipboard1 {
+            get {
+                object obj = ResourceManager.GetObject("Clipboard1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,6 +293,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap images {
+            get {
+                object obj = ResourceManager.GetObject("images", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap list_11066076 {
             get {
                 object obj = ResourceManager.GetObject("list_11066076", resourceCulture);
@@ -286,6 +316,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap list_143582 {
             get {
                 object obj = ResourceManager.GetObject("list_143582", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo__2_ {
+            get {
+                object obj = ResourceManager.GetObject("Logo__2_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

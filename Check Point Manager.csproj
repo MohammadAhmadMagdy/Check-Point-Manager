@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
@@ -159,6 +162,11 @@
     <Resource Include="Resources\office.png" />
     <Resource Include="Resources\clipboard.png" />
     <Resource Include="Resources\save.png" />
+    <Resource Include="Resources\images.jpg" />
+    <Resource Include="Resources\416-4163635_transparent-background-clipboard-icon.png" />
+    <Resource Include="Resources\Clipboard1.jpg" />
+    <Resource Include="Resources\Logo %282%29.jpg" />
+    <Content Include="Icon.ico" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
