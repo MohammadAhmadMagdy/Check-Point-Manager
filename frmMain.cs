@@ -61,8 +61,9 @@ namespace Check_Point_Manager
             dgvAllStockList.RowsDefaultCellStyle.BackColor = Color.White;
             dgvAllStockList.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
 
-
-            cmbFilterBy.SelectedIndex = 0;
+            chbSelectAll.Checked = false;
+            cmbFilterBy.SelectedIndex = 2;
+            txbFilterValue.Focus();
 
             if (dgvAllStockList.Rows.Count > 0)
             {
@@ -87,7 +88,7 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns["GroupName"].HeaderText = "Group";
                 dgvAllStockList.Columns["GroupName"].Width = 90;
             }
-
+            txbFilterValue_TextChanged(null, null);
             lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
         }
         private void _LoadSelectedGroupItems(int GroupID)
@@ -568,16 +569,13 @@ namespace Check_Point_Manager
             _LoadItemsTable();
         }
 
-        private void btnSelectAll_Click(object sender, EventArgs e)
+        private void chbSelectAll_CheckedChanged(object sender, EventArgs e)
         {
             foreach(DataGridViewRow Row in dgvAllStockList.Rows)
             {
-                if ((bool)Row.Cells[0].Value == true)
-                {
-                    Row.Cells[0].Value = false;
-                }
-                else
-                    Row.Cells[0].Value = true;
+                if (Row.IsNewRow) continue;
+
+                Row.Cells[0].Value = chbSelectAll.Checked;
             }
         }
     }

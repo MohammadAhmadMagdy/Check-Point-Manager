@@ -39,8 +39,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblItemRecordsTitle = new System.Windows.Forms.Label();
             this.lblItemRecords = new System.Windows.Forms.Label();
             this.cmbGroups = new System.Windows.Forms.ComboBox();
@@ -48,7 +48,6 @@
             this.cmsGroupOption = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteFromGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvAllStockList = new System.Windows.Forms.DataGridView();
-            this.lblFilterBy = new System.Windows.Forms.Label();
             this.cmbFilterBy = new System.Windows.Forms.ComboBox();
             this.txbFilterValue = new System.Windows.Forms.TextBox();
             this.gbxGroups = new System.Windows.Forms.GroupBox();
@@ -62,12 +61,13 @@
             this.txbFilePath = new System.Windows.Forms.TextBox();
             this.lblMainTitle = new System.Windows.Forms.Label();
             this.chbFastMode = new System.Windows.Forms.CheckBox();
-            this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnBrowseFile = new Check_Point_Manager.ctrlButtonCard();
             this.ctrlButtonCardUpdate = new Check_Point_Manager.ctrlButtonCard();
             this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
             this.btnExportFile = new Check_Point_Manager.ctrlButtonCard();
             this.btnManageGroups = new Check_Point_Manager.ctrlButtonCard();
+            this.chbSelectAll = new System.Windows.Forms.CheckBox();
+            this.gbxFilter = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).BeginInit();
             this.cmsGroupOption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
@@ -75,13 +75,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).BeginInit();
             this.gbxItems.SuspendLayout();
             this.gbxUpdateData.SuspendLayout();
+            this.gbxFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblItemRecordsTitle
             // 
             this.lblItemRecordsTitle.AutoSize = true;
             this.lblItemRecordsTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblItemRecordsTitle.Location = new System.Drawing.Point(8, 406);
+            this.lblItemRecordsTitle.Location = new System.Drawing.Point(6, 427);
             this.lblItemRecordsTitle.Name = "lblItemRecordsTitle";
             this.lblItemRecordsTitle.Size = new System.Drawing.Size(77, 14);
             this.lblItemRecordsTitle.TabIndex = 2;
@@ -92,7 +93,7 @@
             this.lblItemRecords.AutoSize = true;
             this.lblItemRecords.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblItemRecords.Location = new System.Drawing.Point(91, 406);
+            this.lblItemRecords.Location = new System.Drawing.Point(89, 427);
             this.lblItemRecords.Name = "lblItemRecords";
             this.lblItemRecords.Size = new System.Drawing.Size(21, 14);
             this.lblItemRecords.TabIndex = 3;
@@ -102,7 +103,7 @@
             // 
             this.cmbGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGroups.FormattingEnabled = true;
-            this.cmbGroups.Location = new System.Drawing.Point(8, 48);
+            this.cmbGroups.Location = new System.Drawing.Point(8, 67);
             this.cmbGroups.Name = "cmbGroups";
             this.cmbGroups.Size = new System.Drawing.Size(265, 22);
             this.cmbGroups.TabIndex = 8;
@@ -116,15 +117,15 @@
             this.dgvGroupItems.BackgroundColor = System.Drawing.Color.White;
             this.dgvGroupItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGroupItems.ContextMenuStrip = this.cmsGroupOption;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSalmon;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvGroupItems.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvGroupItems.Location = new System.Drawing.Point(8, 77);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightSalmon;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvGroupItems.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvGroupItems.Location = new System.Drawing.Point(8, 96);
             this.dgvGroupItems.Name = "dgvGroupItems";
             this.dgvGroupItems.ReadOnly = true;
             this.dgvGroupItems.RowHeadersVisible = false;
@@ -156,15 +157,15 @@
             this.dgvAllStockList.AllowUserToOrderColumns = true;
             this.dgvAllStockList.BackgroundColor = System.Drawing.Color.White;
             this.dgvAllStockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSalmon;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAllStockList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvAllStockList.Location = new System.Drawing.Point(8, 76);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSalmon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAllStockList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvAllStockList.Location = new System.Drawing.Point(6, 97);
             this.dgvAllStockList.Name = "dgvAllStockList";
             this.dgvAllStockList.RowHeadersVisible = false;
             this.dgvAllStockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -175,17 +176,6 @@
             this.dgvAllStockList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellDoubleClick);
             this.dgvAllStockList.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectAllRowByRightClick);
             // 
-            // lblFilterBy
-            // 
-            this.lblFilterBy.AutoSize = true;
-            this.lblFilterBy.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilterBy.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblFilterBy.Location = new System.Drawing.Point(8, 30);
-            this.lblFilterBy.Name = "lblFilterBy";
-            this.lblFilterBy.Size = new System.Drawing.Size(64, 14);
-            this.lblFilterBy.TabIndex = 4;
-            this.lblFilterBy.Text = "Filter By :";
-            // 
             // cmbFilterBy
             // 
             this.cmbFilterBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -194,17 +184,17 @@
             "None",
             "Item Code",
             "Description"});
-            this.cmbFilterBy.Location = new System.Drawing.Point(8, 47);
+            this.cmbFilterBy.Location = new System.Drawing.Point(6, 21);
             this.cmbFilterBy.Name = "cmbFilterBy";
-            this.cmbFilterBy.Size = new System.Drawing.Size(158, 22);
+            this.cmbFilterBy.Size = new System.Drawing.Size(161, 22);
             this.cmbFilterBy.TabIndex = 5;
             this.cmbFilterBy.SelectedIndexChanged += new System.EventHandler(this.cmbFilterBy_SelectedIndexChanged);
             // 
             // txbFilterValue
             // 
-            this.txbFilterValue.Location = new System.Drawing.Point(172, 48);
+            this.txbFilterValue.Location = new System.Drawing.Point(173, 21);
             this.txbFilterValue.Name = "txbFilterValue";
-            this.txbFilterValue.Size = new System.Drawing.Size(177, 22);
+            this.txbFilterValue.Size = new System.Drawing.Size(189, 22);
             this.txbFilterValue.TabIndex = 6;
             this.txbFilterValue.TextChanged += new System.EventHandler(this.txbFilterValue_TextChanged);
             this.txbFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbFilterValue_KeyPress);
@@ -220,9 +210,9 @@
             this.gbxGroups.Controls.Add(this.dgvGroupItems);
             this.gbxGroups.Controls.Add(this.cmbGroups);
             this.gbxGroups.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxGroups.Location = new System.Drawing.Point(669, 243);
+            this.gbxGroups.Location = new System.Drawing.Point(669, 249);
             this.gbxGroups.Name = "gbxGroups";
-            this.gbxGroups.Size = new System.Drawing.Size(527, 429);
+            this.gbxGroups.Size = new System.Drawing.Size(527, 445);
             this.gbxGroups.TabIndex = 12;
             this.gbxGroups.TabStop = false;
             this.gbxGroups.Text = "Groups";
@@ -231,7 +221,7 @@
             // 
             this.pcbGroupsBackground.Enabled = false;
             this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.article;
-            this.pcbGroupsBackground.Location = new System.Drawing.Point(25, 94);
+            this.pcbGroupsBackground.Location = new System.Drawing.Point(25, 113);
             this.pcbGroupsBackground.Name = "pcbGroupsBackground";
             this.pcbGroupsBackground.Size = new System.Drawing.Size(475, 295);
             this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -243,7 +233,7 @@
             this.lblSelectGroupTitle.AutoSize = true;
             this.lblSelectGroupTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectGroupTitle.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblSelectGroupTitle.Location = new System.Drawing.Point(8, 30);
+            this.lblSelectGroupTitle.Location = new System.Drawing.Point(8, 49);
             this.lblSelectGroupTitle.Name = "lblSelectGroupTitle";
             this.lblSelectGroupTitle.Size = new System.Drawing.Size(104, 14);
             this.lblSelectGroupTitle.TabIndex = 16;
@@ -253,7 +243,7 @@
             // 
             this.lblGroupRecordTitle.AutoSize = true;
             this.lblGroupRecordTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroupRecordTitle.Location = new System.Drawing.Point(8, 407);
+            this.lblGroupRecordTitle.Location = new System.Drawing.Point(8, 426);
             this.lblGroupRecordTitle.Name = "lblGroupRecordTitle";
             this.lblGroupRecordTitle.Size = new System.Drawing.Size(77, 14);
             this.lblGroupRecordTitle.TabIndex = 11;
@@ -264,7 +254,7 @@
             this.lblGroupRecord.AutoSize = true;
             this.lblGroupRecord.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblGroupRecord.Location = new System.Drawing.Point(91, 407);
+            this.lblGroupRecord.Location = new System.Drawing.Point(91, 426);
             this.lblGroupRecord.Name = "lblGroupRecord";
             this.lblGroupRecord.Size = new System.Drawing.Size(21, 14);
             this.lblGroupRecord.TabIndex = 12;
@@ -272,17 +262,16 @@
             // 
             // gbxItems
             // 
+            this.gbxItems.Controls.Add(this.gbxFilter);
+            this.gbxItems.Controls.Add(this.chbSelectAll);
             this.gbxItems.Controls.Add(this.btnAddToGroup);
             this.gbxItems.Controls.Add(this.dgvAllStockList);
             this.gbxItems.Controls.Add(this.lblItemRecordsTitle);
             this.gbxItems.Controls.Add(this.lblItemRecords);
-            this.gbxItems.Controls.Add(this.lblFilterBy);
-            this.gbxItems.Controls.Add(this.txbFilterValue);
-            this.gbxItems.Controls.Add(this.cmbFilterBy);
             this.gbxItems.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxItems.Location = new System.Drawing.Point(12, 243);
+            this.gbxItems.Location = new System.Drawing.Point(12, 249);
             this.gbxItems.Name = "gbxItems";
-            this.gbxItems.Size = new System.Drawing.Size(651, 429);
+            this.gbxItems.Size = new System.Drawing.Size(651, 445);
             this.gbxItems.TabIndex = 13;
             this.gbxItems.TabStop = false;
             this.gbxItems.Text = "Item List";
@@ -335,23 +324,12 @@
             // 
             this.chbFastMode.AutoSize = true;
             this.chbFastMode.ForeColor = System.Drawing.Color.DarkBlue;
-            this.chbFastMode.Location = new System.Drawing.Point(12, 220);
+            this.chbFastMode.Location = new System.Drawing.Point(12, 226);
             this.chbFastMode.Name = "chbFastMode";
             this.chbFastMode.Size = new System.Drawing.Size(266, 17);
             this.chbFastMode.TabIndex = 17;
             this.chbFastMode.Text = "Fast Mode ( Add / Remove Items By Double Click )";
             this.chbFastMode.UseVisualStyleBackColor = true;
-            // 
-            // btnSelectAll
-            // 
-            this.btnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectAll.Location = new System.Drawing.Point(367, 291);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectAll.TabIndex = 17;
-            this.btnSelectAll.Text = "Select All";
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // btnBrowseFile
             // 
@@ -381,7 +359,7 @@
             // 
             this.btnAddToGroup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddToGroup.Icon = global::Check_Point_Manager.Properties.Resources.right;
-            this.btnAddToGroup.Location = new System.Drawing.Point(525, 19);
+            this.btnAddToGroup.Location = new System.Drawing.Point(523, 40);
             this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToGroup.Name = "btnAddToGroup";
             this.btnAddToGroup.Size = new System.Drawing.Size(120, 50);
@@ -393,7 +371,7 @@
             // 
             this.btnExportFile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportFile.Icon = global::Check_Point_Manager.Properties.Resources.share__1_;
-            this.btnExportFile.Location = new System.Drawing.Point(280, 21);
+            this.btnExportFile.Location = new System.Drawing.Point(280, 40);
             this.btnExportFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnExportFile.Name = "btnExportFile";
             this.btnExportFile.Size = new System.Drawing.Size(120, 50);
@@ -405,7 +383,7 @@
             // 
             this.btnManageGroups.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnManageGroups.Icon = global::Check_Point_Manager.Properties.Resources.touch;
-            this.btnManageGroups.Location = new System.Drawing.Point(398, 21);
+            this.btnManageGroups.Location = new System.Drawing.Point(398, 40);
             this.btnManageGroups.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnManageGroups.Name = "btnManageGroups";
             this.btnManageGroups.Size = new System.Drawing.Size(121, 50);
@@ -413,13 +391,37 @@
             this.btnManageGroups.Title = "Manage Groups";
             this.btnManageGroups.Click += new System.EventHandler(this.btnManageGroups_Click);
             // 
+            // chbSelectAll
+            // 
+            this.chbSelectAll.AutoSize = true;
+            this.chbSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chbSelectAll.Font = new System.Drawing.Font("Candara", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbSelectAll.ForeColor = System.Drawing.Color.Black;
+            this.chbSelectAll.Location = new System.Drawing.Point(18, 79);
+            this.chbSelectAll.Name = "chbSelectAll";
+            this.chbSelectAll.Size = new System.Drawing.Size(79, 18);
+            this.chbSelectAll.TabIndex = 17;
+            this.chbSelectAll.Text = "   Select All";
+            this.chbSelectAll.UseVisualStyleBackColor = true;
+            this.chbSelectAll.CheckedChanged += new System.EventHandler(this.chbSelectAll_CheckedChanged);
+            // 
+            // gbxFilter
+            // 
+            this.gbxFilter.Controls.Add(this.cmbFilterBy);
+            this.gbxFilter.Controls.Add(this.txbFilterValue);
+            this.gbxFilter.Location = new System.Drawing.Point(6, 24);
+            this.gbxFilter.Name = "gbxFilter";
+            this.gbxFilter.Size = new System.Drawing.Size(369, 49);
+            this.gbxFilter.TabIndex = 18;
+            this.gbxFilter.TabStop = false;
+            this.gbxFilter.Text = "Filter";
+            // 
             // frmListItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1207, 684);
-            this.Controls.Add(this.btnSelectAll);
+            this.ClientSize = new System.Drawing.Size(1207, 703);
             this.Controls.Add(this.chbFastMode);
             this.Controls.Add(this.lblMainTitle);
             this.Controls.Add(this.gbxUpdateData);
@@ -440,6 +442,8 @@
             this.gbxItems.PerformLayout();
             this.gbxUpdateData.ResumeLayout(false);
             this.gbxUpdateData.PerformLayout();
+            this.gbxFilter.ResumeLayout(false);
+            this.gbxFilter.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,7 +455,6 @@
         private System.Windows.Forms.ComboBox cmbGroups;
         private System.Windows.Forms.DataGridView dgvGroupItems;
         private System.Windows.Forms.DataGridView dgvAllStockList;
-        private System.Windows.Forms.Label lblFilterBy;
         private System.Windows.Forms.ComboBox cmbFilterBy;
         private System.Windows.Forms.TextBox txbFilterValue;
         private System.Windows.Forms.GroupBox gbxGroups;
@@ -476,7 +479,8 @@
         private System.Windows.Forms.ToolStripMenuItem deleteFromGroupToolStripMenuItem;
         private System.Windows.Forms.CheckBox chbFastMode;
         private System.Windows.Forms.PictureBox pcbGroupsBackground;
-        private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.CheckBox chbSelectAll;
+        private System.Windows.Forms.GroupBox gbxFilter;
     }
 }
 
