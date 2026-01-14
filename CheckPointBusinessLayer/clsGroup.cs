@@ -106,5 +106,14 @@ namespace CheckPointBusinessLayer
         {
             return clsGroupData.DoesGroupNumberExist(GroupNumber);
         }
+        public static int GetLastGroupNumber()
+        {
+            return clsGroupData.GetLastGroupNumber();
+        }
+        public static int GenerateNextGroupNumber()
+        {
+            int LastGroupNumber = clsGroupData.GetLastGroupNumber();
+            return (LastGroupNumber > 0) ? LastGroupNumber +1 : 1;
+        }
     }
 }

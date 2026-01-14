@@ -215,6 +215,32 @@ namespace CheckPointDataAccessLayer
 
             return IsFound;
         }
+        public static int GetLastGroupNumber()
+        {
+            int GroupNumber = -1;
+
+            string Query = @"SELECT GroupNumber
+                             FROM Groups
+                             ORDER by GroupNumber DESC
+                             LIMIT 1;";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query,Connection))
+            {
+                var Result = Command.ExecuteScalar();
+
+                if(Result == null || Result == DBNull.Value)
+                {
+                    return 1;
+                }
+                if(!int.TryParse(Result.ToString(), out GroupNumber))
+                {
+                    return 1;
+                }
+            }
+
+            return GroupNumber;
+        }
 
     }
 }

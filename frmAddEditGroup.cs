@@ -34,6 +34,7 @@ namespace Check_Point_Manager
             if(_Mode == enMode.AddNew)
             {
                 lblTitle.Text = "Add New Checking Group";
+               
                 _Group = new clsGroup();
             }
             else
@@ -42,7 +43,7 @@ namespace Check_Point_Manager
             }
 
             txbGroupNumber.Text = "";
-            txbGroupName.Text = "";
+            txbGroupNumber.Text = clsGroup.GenerateNextGroupNumber().ToString();
             lblNewGpID.Text = "[???]";
             lblNewGpNumber.Text = "[???]";
             lblNewGpName.Text = "[???]";
