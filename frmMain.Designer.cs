@@ -53,8 +53,6 @@
             this.txbFilterValue = new System.Windows.Forms.TextBox();
             this.gbxGroups = new System.Windows.Forms.GroupBox();
             this.pcbGroupsBackground = new System.Windows.Forms.PictureBox();
-            this.btnExportFile = new Check_Point_Manager.ctrlButtonCard();
-            this.btnManageGroups = new Check_Point_Manager.ctrlButtonCard();
             this.lblSelectGroupTitle = new System.Windows.Forms.Label();
             this.lblGroupRecordTitle = new System.Windows.Forms.Label();
             this.lblGroupRecord = new System.Windows.Forms.Label();
@@ -63,14 +61,15 @@
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.chbFastMode = new System.Windows.Forms.CheckBox();
             this.gbxFilter = new System.Windows.Forms.GroupBox();
-            this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
             this.gbxUpdateData = new System.Windows.Forms.GroupBox();
-            this.btnBrowseFile = new Check_Point_Manager.ctrlButtonCard();
             this.lblUpdateStatus = new System.Windows.Forms.Label();
-            this.ctrlButtonCardUpdate = new Check_Point_Manager.ctrlButtonCard();
             this.txbFilePath = new System.Windows.Forms.TextBox();
-            this.lblMainTitle = new System.Windows.Forms.Label();
-            this.pcbLogo = new System.Windows.Forms.PictureBox();
+            this.btnBrowseFile = new Check_Point_Manager.ctrlButtonCard();
+            this.ctrlButtonCardUpdate = new Check_Point_Manager.ctrlButtonCard();
+            this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
+            this.btnExportFile = new Check_Point_Manager.ctrlButtonCard();
+            this.btnManageGroups = new Check_Point_Manager.ctrlButtonCard();
+            this.lblChooseFile = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).BeginInit();
             this.cmsGroupOption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
@@ -80,14 +79,13 @@
             this.groupBox1.SuspendLayout();
             this.gbxFilter.SuspendLayout();
             this.gbxUpdateData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblItemRecordsTitle
             // 
             this.lblItemRecordsTitle.AutoSize = true;
             this.lblItemRecordsTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblItemRecordsTitle.Location = new System.Drawing.Point(6, 487);
+            this.lblItemRecordsTitle.Location = new System.Drawing.Point(4, 559);
             this.lblItemRecordsTitle.Name = "lblItemRecordsTitle";
             this.lblItemRecordsTitle.Size = new System.Drawing.Size(77, 14);
             this.lblItemRecordsTitle.TabIndex = 2;
@@ -98,7 +96,7 @@
             this.lblItemRecords.AutoSize = true;
             this.lblItemRecords.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblItemRecords.Location = new System.Drawing.Point(89, 487);
+            this.lblItemRecords.Location = new System.Drawing.Point(87, 559);
             this.lblItemRecords.Name = "lblItemRecords";
             this.lblItemRecords.Size = new System.Drawing.Size(21, 14);
             this.lblItemRecords.TabIndex = 3;
@@ -135,7 +133,7 @@
             this.dgvGroupItems.ReadOnly = true;
             this.dgvGroupItems.RowHeadersVisible = false;
             this.dgvGroupItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGroupItems.Size = new System.Drawing.Size(544, 356);
+            this.dgvGroupItems.Size = new System.Drawing.Size(544, 428);
             this.dgvGroupItems.TabIndex = 9;
             this.dgvGroupItems.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroupItems_CellDoubleClick);
             this.dgvGroupItems.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectAllRowByRightClick);
@@ -170,11 +168,11 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvAllStockList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvAllStockList.Location = new System.Drawing.Point(6, 128);
+            this.dgvAllStockList.Location = new System.Drawing.Point(6, 118);
             this.dgvAllStockList.Name = "dgvAllStockList";
             this.dgvAllStockList.RowHeadersVisible = false;
             this.dgvAllStockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllStockList.Size = new System.Drawing.Size(606, 356);
+            this.dgvAllStockList.Size = new System.Drawing.Size(606, 438);
             this.dgvAllStockList.TabIndex = 0;
             this.dgvAllStockList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvAllStockList_CellBeginEdit);
             this.dgvAllStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellContentClick);
@@ -215,9 +213,9 @@
             this.gbxGroups.Controls.Add(this.dgvGroupItems);
             this.gbxGroups.Controls.Add(this.cmbGroups);
             this.gbxGroups.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxGroups.Location = new System.Drawing.Point(638, 193);
+            this.gbxGroups.Location = new System.Drawing.Point(637, 12);
             this.gbxGroups.Name = "gbxGroups";
-            this.gbxGroups.Size = new System.Drawing.Size(558, 501);
+            this.gbxGroups.Size = new System.Drawing.Size(558, 586);
             this.gbxGroups.TabIndex = 12;
             this.gbxGroups.TabStop = false;
             this.gbxGroups.Text = "Groups";
@@ -226,37 +224,13 @@
             // 
             this.pcbGroupsBackground.Enabled = false;
             this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.Logo__2_;
-            this.pcbGroupsBackground.Location = new System.Drawing.Point(115, 141);
+            this.pcbGroupsBackground.Location = new System.Drawing.Point(32, 141);
             this.pcbGroupsBackground.Name = "pcbGroupsBackground";
-            this.pcbGroupsBackground.Size = new System.Drawing.Size(342, 324);
+            this.pcbGroupsBackground.Size = new System.Drawing.Size(508, 396);
             this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbGroupsBackground.TabIndex = 18;
             this.pcbGroupsBackground.TabStop = false;
             this.pcbGroupsBackground.Paint += new System.Windows.Forms.PaintEventHandler(this.pcbGroupsBackground_Paint);
-            // 
-            // btnExportFile
-            // 
-            this.btnExportFile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportFile.Icon = global::Check_Point_Manager.Properties.Resources.share__1_;
-            this.btnExportFile.Location = new System.Drawing.Point(307, 15);
-            this.btnExportFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnExportFile.Name = "btnExportFile";
-            this.btnExportFile.Size = new System.Drawing.Size(120, 50);
-            this.btnExportFile.TabIndex = 17;
-            this.btnExportFile.Title = "Export File";
-            this.btnExportFile.Click += new System.EventHandler(this.btnExportFile_Click);
-            // 
-            // btnManageGroups
-            // 
-            this.btnManageGroups.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnManageGroups.Icon = global::Check_Point_Manager.Properties.Resources.touch;
-            this.btnManageGroups.Location = new System.Drawing.Point(435, 15);
-            this.btnManageGroups.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnManageGroups.Name = "btnManageGroups";
-            this.btnManageGroups.Size = new System.Drawing.Size(121, 50);
-            this.btnManageGroups.TabIndex = 16;
-            this.btnManageGroups.Title = "Manage Groups";
-            this.btnManageGroups.Click += new System.EventHandler(this.btnManageGroups_Click);
             // 
             // lblSelectGroupTitle
             // 
@@ -273,7 +247,7 @@
             // 
             this.lblGroupRecordTitle.AutoSize = true;
             this.lblGroupRecordTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroupRecordTitle.Location = new System.Drawing.Point(9, 486);
+            this.lblGroupRecordTitle.Location = new System.Drawing.Point(7, 557);
             this.lblGroupRecordTitle.Name = "lblGroupRecordTitle";
             this.lblGroupRecordTitle.Size = new System.Drawing.Size(77, 14);
             this.lblGroupRecordTitle.TabIndex = 11;
@@ -284,7 +258,7 @@
             this.lblGroupRecord.AutoSize = true;
             this.lblGroupRecord.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblGroupRecord.Location = new System.Drawing.Point(92, 486);
+            this.lblGroupRecord.Location = new System.Drawing.Point(90, 557);
             this.lblGroupRecord.Name = "lblGroupRecord";
             this.lblGroupRecord.Size = new System.Drawing.Size(21, 14);
             this.lblGroupRecord.TabIndex = 12;
@@ -299,9 +273,9 @@
             this.gbxItems.Controls.Add(this.lblItemRecordsTitle);
             this.gbxItems.Controls.Add(this.lblItemRecords);
             this.gbxItems.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxItems.Location = new System.Drawing.Point(12, 191);
+            this.gbxItems.Location = new System.Drawing.Point(12, 12);
             this.gbxItems.Name = "gbxItems";
-            this.gbxItems.Size = new System.Drawing.Size(620, 503);
+            this.gbxItems.Size = new System.Drawing.Size(620, 588);
             this.gbxItems.TabIndex = 13;
             this.gbxItems.TabStop = false;
             this.gbxItems.Text = "Item List";
@@ -345,50 +319,27 @@
             // 
             this.gbxFilter.Controls.Add(this.cmbFilterBy);
             this.gbxFilter.Controls.Add(this.txbFilterValue);
-            this.gbxFilter.Location = new System.Drawing.Point(6, 73);
+            this.gbxFilter.Location = new System.Drawing.Point(6, 67);
             this.gbxFilter.Name = "gbxFilter";
             this.gbxFilter.Size = new System.Drawing.Size(369, 49);
             this.gbxFilter.TabIndex = 18;
             this.gbxFilter.TabStop = false;
             this.gbxFilter.Text = "Filter";
             // 
-            // btnAddToGroup
-            // 
-            this.btnAddToGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddToGroup.Icon = global::Check_Point_Manager.Properties.Resources.right;
-            this.btnAddToGroup.Location = new System.Drawing.Point(495, 17);
-            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddToGroup.Name = "btnAddToGroup";
-            this.btnAddToGroup.Size = new System.Drawing.Size(118, 50);
-            this.btnAddToGroup.TabIndex = 16;
-            this.btnAddToGroup.Title = "Add To Group";
-            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
-            // 
             // gbxUpdateData
             // 
+            this.gbxUpdateData.Controls.Add(this.lblChooseFile);
             this.gbxUpdateData.Controls.Add(this.btnBrowseFile);
             this.gbxUpdateData.Controls.Add(this.lblUpdateStatus);
             this.gbxUpdateData.Controls.Add(this.ctrlButtonCardUpdate);
             this.gbxUpdateData.Controls.Add(this.txbFilePath);
             this.gbxUpdateData.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxUpdateData.Location = new System.Drawing.Point(12, 41);
+            this.gbxUpdateData.Location = new System.Drawing.Point(12, 606);
             this.gbxUpdateData.Name = "gbxUpdateData";
-            this.gbxUpdateData.Size = new System.Drawing.Size(385, 144);
+            this.gbxUpdateData.Size = new System.Drawing.Size(1183, 85);
             this.gbxUpdateData.TabIndex = 14;
             this.gbxUpdateData.TabStop = false;
             this.gbxUpdateData.Text = "Update Stock";
-            // 
-            // btnBrowseFile
-            // 
-            this.btnBrowseFile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBrowseFile.Icon = global::Check_Point_Manager.Properties.Resources.search;
-            this.btnBrowseFile.Location = new System.Drawing.Point(12, 21);
-            this.btnBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnBrowseFile.Name = "btnBrowseFile";
-            this.btnBrowseFile.Size = new System.Drawing.Size(120, 58);
-            this.btnBrowseFile.TabIndex = 16;
-            this.btnBrowseFile.Title = "Browse File";
-            this.btnBrowseFile.Click += new System.EventHandler(this.btnBrowseFile_Click);
             // 
             // lblUpdateStatus
             // 
@@ -400,47 +351,103 @@
             this.lblUpdateStatus.Size = new System.Drawing.Size(0, 16);
             this.lblUpdateStatus.TabIndex = 3;
             // 
+            // txbFilePath
+            // 
+            this.txbFilePath.Location = new System.Drawing.Point(95, 38);
+            this.txbFilePath.Multiline = true;
+            this.txbFilePath.Name = "txbFilePath";
+            this.txbFilePath.Size = new System.Drawing.Size(427, 20);
+            this.txbFilePath.TabIndex = 1;
+            // 
+            // btnBrowseFile
+            // 
+            this.btnBrowseFile.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Primary;
+            this.btnBrowseFile.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(240)))));
+            this.btnBrowseFile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBrowseFile.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(210)))), ((int)(((byte)(250)))));
+            this.btnBrowseFile.Icon = global::Check_Point_Manager.Properties.Resources.search;
+            this.btnBrowseFile.Location = new System.Drawing.Point(529, 21);
+            this.btnBrowseFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnBrowseFile.Name = "btnBrowseFile";
+            this.btnBrowseFile.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.btnBrowseFile.Size = new System.Drawing.Size(120, 53);
+            this.btnBrowseFile.TabIndex = 16;
+            this.btnBrowseFile.Title = "Browse File";
+            this.btnBrowseFile.Click += new System.EventHandler(this.btnBrowseFile_Click);
+            // 
             // ctrlButtonCardUpdate
             // 
+            this.ctrlButtonCardUpdate.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Secondary;
+            this.ctrlButtonCardUpdate.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(215)))), ((int)(((byte)(160)))));
             this.ctrlButtonCardUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ctrlButtonCardUpdate.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(230)))), ((int)(((byte)(190)))));
             this.ctrlButtonCardUpdate.Icon = global::Check_Point_Manager.Properties.Resources.data_processing;
-            this.ctrlButtonCardUpdate.Location = new System.Drawing.Point(12, 80);
+            this.ctrlButtonCardUpdate.Location = new System.Drawing.Point(657, 21);
             this.ctrlButtonCardUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ctrlButtonCardUpdate.Name = "ctrlButtonCardUpdate";
+            this.ctrlButtonCardUpdate.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(245)))), ((int)(((byte)(220)))));
             this.ctrlButtonCardUpdate.Size = new System.Drawing.Size(120, 53);
             this.ctrlButtonCardUpdate.TabIndex = 2;
             this.ctrlButtonCardUpdate.Title = "Update Stock";
             this.ctrlButtonCardUpdate.Click += new System.EventHandler(this.ctrlButtonCardUpdate_Click);
             // 
-            // txbFilePath
+            // btnAddToGroup
             // 
-            this.txbFilePath.Location = new System.Drawing.Point(138, 37);
-            this.txbFilePath.Multiline = true;
-            this.txbFilePath.Name = "txbFilePath";
-            this.txbFilePath.Size = new System.Drawing.Size(230, 20);
-            this.txbFilePath.TabIndex = 1;
+            this.btnAddToGroup.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Primary;
+            this.btnAddToGroup.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(240)))));
+            this.btnAddToGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddToGroup.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(210)))), ((int)(((byte)(250)))));
+            this.btnAddToGroup.Icon = global::Check_Point_Manager.Properties.Resources.right;
+            this.btnAddToGroup.Location = new System.Drawing.Point(495, 17);
+            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddToGroup.Name = "btnAddToGroup";
+            this.btnAddToGroup.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.btnAddToGroup.Size = new System.Drawing.Size(118, 50);
+            this.btnAddToGroup.TabIndex = 16;
+            this.btnAddToGroup.Title = "Add To Group";
+            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
             // 
-            // lblMainTitle
+            // btnExportFile
             // 
-            this.lblMainTitle.AutoSize = true;
-            this.lblMainTitle.Font = new System.Drawing.Font("Eras Medium ITC", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMainTitle.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblMainTitle.Location = new System.Drawing.Point(418, 9);
-            this.lblMainTitle.Name = "lblMainTitle";
-            this.lblMainTitle.Size = new System.Drawing.Size(371, 43);
-            this.lblMainTitle.TabIndex = 15;
-            this.lblMainTitle.Text = "Check Point Manager";
-            this.lblMainTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnExportFile.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Primary;
+            this.btnExportFile.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(240)))));
+            this.btnExportFile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportFile.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(210)))), ((int)(((byte)(250)))));
+            this.btnExportFile.Icon = global::Check_Point_Manager.Properties.Resources.share__1_;
+            this.btnExportFile.Location = new System.Drawing.Point(302, 15);
+            this.btnExportFile.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnExportFile.Name = "btnExportFile";
+            this.btnExportFile.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.btnExportFile.Size = new System.Drawing.Size(120, 50);
+            this.btnExportFile.TabIndex = 17;
+            this.btnExportFile.Title = "Export File";
+            this.btnExportFile.Click += new System.EventHandler(this.btnExportFile_Click);
             // 
-            // pcbLogo
+            // btnManageGroups
             // 
-            this.pcbLogo.Image = global::Check_Point_Manager.Properties.Resources.Logo__2_;
-            this.pcbLogo.Location = new System.Drawing.Point(1014, 12);
-            this.pcbLogo.Name = "pcbLogo";
-            this.pcbLogo.Size = new System.Drawing.Size(180, 175);
-            this.pcbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbLogo.TabIndex = 16;
-            this.pcbLogo.TabStop = false;
+            this.btnManageGroups.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Primary;
+            this.btnManageGroups.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(240)))));
+            this.btnManageGroups.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnManageGroups.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(210)))), ((int)(((byte)(250)))));
+            this.btnManageGroups.Icon = global::Check_Point_Manager.Properties.Resources.touch;
+            this.btnManageGroups.Location = new System.Drawing.Point(430, 15);
+            this.btnManageGroups.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnManageGroups.Name = "btnManageGroups";
+            this.btnManageGroups.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.btnManageGroups.Size = new System.Drawing.Size(121, 50);
+            this.btnManageGroups.TabIndex = 16;
+            this.btnManageGroups.Title = "Manage Groups";
+            this.btnManageGroups.Click += new System.EventHandler(this.btnManageGroups_Click);
+            // 
+            // lblChooseFile
+            // 
+            this.lblChooseFile.AutoSize = true;
+            this.lblChooseFile.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChooseFile.Location = new System.Drawing.Point(6, 41);
+            this.lblChooseFile.Name = "lblChooseFile";
+            this.lblChooseFile.Size = new System.Drawing.Size(83, 14);
+            this.lblChooseFile.TabIndex = 17;
+            this.lblChooseFile.Text = "Choose File :";
             // 
             // frmListItems
             // 
@@ -448,8 +455,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1207, 703);
-            this.Controls.Add(this.pcbLogo);
-            this.Controls.Add(this.lblMainTitle);
             this.Controls.Add(this.gbxUpdateData);
             this.Controls.Add(this.gbxItems);
             this.Controls.Add(this.gbxGroups);
@@ -473,9 +478,7 @@
             this.gbxFilter.PerformLayout();
             this.gbxUpdateData.ResumeLayout(false);
             this.gbxUpdateData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbLogo)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -498,8 +501,6 @@
         private ctrlButtonCard ctrlButtonCardUpdate;
         private System.Windows.Forms.TextBox txbFilePath;
         private System.Windows.Forms.Label lblUpdateStatus;
-      
-        private System.Windows.Forms.Label lblMainTitle;
         private System.Windows.Forms.Label lblSelectGroupTitle;
         private ctrlButtonCard btnBrowseFile;
         private ctrlButtonCard btnAddToGroup;
@@ -512,7 +513,7 @@
         private System.Windows.Forms.GroupBox gbxFilter;
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pcbLogo;
+        private System.Windows.Forms.Label lblChooseFile;
     }
 }
 

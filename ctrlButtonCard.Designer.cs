@@ -37,13 +37,15 @@
             // 
             // pnlMain
             // 
-            this.pnlMain.BackColor = System.Drawing.Color.Lavender;
+            this.pnlMain.BackColor = System.Drawing.Color.LightCyan;
             this.pnlMain.Controls.Add(this.lblText);
             this.pnlMain.Controls.Add(this.pcbIcon);
+            this.pnlMain.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(3, 3);
+            this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(94, 44);
+            this.pnlMain.Size = new System.Drawing.Size(100, 50);
             this.pnlMain.TabIndex = 2;
             this.pnlMain.Click += new System.EventHandler(this.pnlMain_Click);
             this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
@@ -53,11 +55,13 @@
             // 
             // lblText
             // 
+            this.lblText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblText.Enabled = false;
-            this.lblText.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText.Location = new System.Drawing.Point(3, 29);
+            this.lblText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText.ForeColor = System.Drawing.Color.Black;
+            this.lblText.Location = new System.Drawing.Point(32, 0);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(88, 13);
+            this.lblText.Size = new System.Drawing.Size(68, 50);
             this.lblText.TabIndex = 2;
             this.lblText.Text = "--Text--";
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -66,10 +70,12 @@
             // pcbIcon
             // 
             this.pcbIcon.BackColor = System.Drawing.Color.Transparent;
+            this.pcbIcon.Dock = System.Windows.Forms.DockStyle.Left;
             this.pcbIcon.Enabled = false;
-            this.pcbIcon.Location = new System.Drawing.Point(3, 3);
+            this.pcbIcon.Location = new System.Drawing.Point(0, 0);
+            this.pcbIcon.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.pcbIcon.Name = "pcbIcon";
-            this.pcbIcon.Size = new System.Drawing.Size(89, 23);
+            this.pcbIcon.Size = new System.Drawing.Size(32, 50);
             this.pcbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbIcon.TabIndex = 2;
             this.pcbIcon.TabStop = false;
@@ -82,7 +88,7 @@
             this.Controls.Add(this.pnlMain);
             this.Name = "ctrlButtonCard";
             this.Size = new System.Drawing.Size(100, 50);
-            this.Load += new System.EventHandler(this.ctrlButtonCard_Load);
+            this.VisibleChanged += new System.EventHandler(this.ctrlButtonCard_VisibleChanged);
             this.pnlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.ResumeLayout(false);
