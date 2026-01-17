@@ -216,14 +216,13 @@ namespace Check_Point_Manager
 
             string columnName = _GetColumnName();
 
-            // لا فلترة
+          
             if (cmb.Text == "None" || string.IsNullOrEmpty(columnName))
             {
                 table.DefaultView.RowFilter = "";
                 return;
             }
 
-            // فلتر ثابت: Not Assigned
             if (cmb.Text == "Not Assigned Items")
             {
                 table.DefaultView.RowFilter = "GroupName = 'Not Assigned'";
@@ -378,7 +377,7 @@ namespace Check_Point_Manager
                             "Do you want to explore Newly Added Items ?", "Success",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            cmbItemsFilterBy.SelectedIndex = 4;
+                            cmbItemsFilterBy.SelectedIndex = 5;
                         }
                     }
                     else
