@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,11 +20,24 @@ namespace Check_Point_Manager
         private bool _IsLoadingGrous = false;
         private string _ExcelFile = "";
         private DataTable _dtAllStockList;
+        private DataTable _dtNewlyAddedItems;
         private DataTable _dtSelectedGroupItems;
         private bool _IsAllRowsSelected = false;
+        private int _NewlyAddedItemsCount = 0;
         public frmListItems()
         {
             InitializeComponent();
+        }
+        private void _AddVisualStyleToTable(DataGridView dgv)
+        {
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 10, FontStyle.Bold);
+
+            dgv.RowsDefaultCellStyle.BackColor = Color.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
         }
         private void _FillGroupsComboBox()
         {
@@ -51,32 +65,34 @@ namespace Check_Point_Manager
         {
             _dtAllStockList = clsItem.GetAllStockList();
 
-            dgvAllStockList.DataSource = _dtAllStockList;
+            _dtNewlyAddedItems = clsItem.GetNewlyAddedItemsList();
 
-            dgvAllStockList.EnableHeadersVisualStyles = false;
-            dgvAllStockList.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-            dgvAllStockList.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvAllStockList.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 10, FontStyle.Bold);
+            if(cmbItemsFilterBy.Text == "Newly Added Items")
+            {
+                dgvAllStockList.DataSource = _dtNewlyAddedItems;
+            }
+            else
+            {
+                dgvAllStockList.DataSource = _dtAllStockList;
+            }
 
-            dgvAllStockList.RowsDefaultCellStyle.BackColor = Color.White;
-            dgvAllStockList.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            _AddVisualStyleToTable(dgvAllStockList);
 
             _IsAllRowsSelected = false;
             btnSelectAll.Text = "Select All";
-            cmbFilterBy.SelectedIndex = 2;
+            
             txbFilterValue.Focus();
 
             if (dgvAllStockList.Rows.Count > 0)
             {
                 dgvAllStockList.Columns["Selected"].HeaderText = "Sel";
-                dgvAllStockList.Columns["Selected"].Width = 35;
+                dgvAllStockList.Columns["Selected"].Width = 30;
 
                 dgvAllStockList.Columns["ItemCode"].HeaderText = "Code";
-                dgvAllStockList.Columns["ItemCode"].Width = 60;
+                dgvAllStockList.Columns["ItemCode"].Width = 55;
 
                 dgvAllStockList.Columns["Description"].HeaderText = "Description";
-                dgvAllStockList.Columns["Description"].Width = 300;
+                dgvAllStockList.Columns["Description"].Width = 290;
 
                 dgvAllStockList.Columns["Qty"].HeaderText = "Qty";
                 dgvAllStockList.Columns["Qty"].Width = 40;
@@ -88,8 +104,9 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns["RetailPrice"].Width = 50;
 
                 dgvAllStockList.Columns["GroupName"].HeaderText = "Group";
-                dgvAllStockList.Columns["GroupName"].Width = 90;
+                dgvAllStockList.Columns["GroupName"].Width = 105;
             }
+
             txbFilterValue_TextChanged(null, null);
             lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
         }
@@ -101,16 +118,7 @@ namespace Check_Point_Manager
 
             pcbGroupsBackground.Visible = GroupID == -1;
 
-            dgvGroupItems.EnableHeadersVisualStyles = false;
-            dgvGroupItems.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-            dgvGroupItems.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvGroupItems.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 10, FontStyle.Bold);
-
-            dgvGroupItems.RowsDefaultCellStyle.BackColor = Color.White;
-            dgvGroupItems.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
-
-
+            _AddVisualStyleToTable(dgvGroupItems);
 
 
             if (dgvGroupItems.Rows.Count > 0)
@@ -180,11 +188,62 @@ namespace Check_Point_Manager
         }
         private string _GetColumnName()
         {
-            if (cmbFilterBy.Text == "Item Code")
-                return "ItemCode";
-            else
-                return cmbFilterBy.Text;
+            string ColumnName = "";
+
+            switch (cmbItemsFilterBy.Text)
+            {
+                case "Item Code":
+                    ColumnName = "ItemCode";
+                    break;
+                case "Not Assigned Items":
+                    ColumnName = "GroupName";
+                    break;
+                case "Group Name":
+                    ColumnName = "GroupName";
+                    break;
+                default:
+                    ColumnName = cmbItemsFilterBy.Text;
+                    break;
+
+            }
+
+            return ColumnName;
         }
+        private void _ApplyFilter(DataTable table, ComboBox cmb, TextBox txb)
+        {
+            if (table == null)
+                return;
+
+            string columnName = _GetColumnName();
+
+            // لا فلترة
+            if (cmb.Text == "None" || string.IsNullOrEmpty(columnName))
+            {
+                table.DefaultView.RowFilter = "";
+                return;
+            }
+
+            // فلتر ثابت: Not Assigned
+            if (cmb.Text == "Not Assigned Items")
+            {
+                table.DefaultView.RowFilter = "GroupName = 'Not Assigned'";
+                return;
+            }
+
+            string searchValue = txb.Text.Trim().Replace("'", "''");
+
+            if (string.IsNullOrEmpty(searchValue))
+            {
+                table.DefaultView.RowFilter = "";
+                return;
+            }
+
+            if (table.Columns[columnName].DataType == typeof(string))
+                table.DefaultView.RowFilter = $"{columnName} LIKE '%{searchValue}%'";
+            else
+                table.DefaultView.RowFilter = $"{columnName} = {searchValue}";
+        }
+
         private void pcbGroupsBackground_Paint(object sender, PaintEventArgs e)
         {
             if (pcbGroupsBackground.Image != null)
@@ -203,58 +262,81 @@ namespace Check_Point_Manager
 
             _LoadItemsTable();
 
+            cmbItemsFilterBy.SelectedIndex = 2;
+            cmbGroupsFilterBy.SelectedIndex = 2;
+
             ctrlButtonCardUpdate.Enabled = false;
 
         }
-  
         private void dgvAllStockList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvAllStockList.Columns["Selected"].Index && e.RowIndex >= 0)
                 dgvAllStockList.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
-
         private void txbFilterValue_TextChanged(object sender, EventArgs e)
         {
-            string ColumnName = _GetColumnName();
-            string SearchValue = txbFilterValue.Text.Trim();
-            string Filter = "";
+            if (dgvAllStockList.DataSource is DataTable dt)
+                _ApplyFilter(dt, cmbItemsFilterBy, txbFilterValue);
 
-            if (!string.IsNullOrEmpty(SearchValue) && ColumnName != "None")
-            {
-                if (_dtAllStockList.Columns[ColumnName].DataType == typeof(string))
-                {
-                    SearchValue = SearchValue.Replace("'", "''");
-                    Filter = $"{ColumnName} Like '%{SearchValue}%'";
-                }
-                else
-                    Filter = $"{ColumnName} = {SearchValue}";
+            //string ColumnName = _GetColumnName();
 
-                _dtAllStockList.DefaultView.RowFilter = Filter;
-            }
-            else
-            {
-                _dtAllStockList.DefaultView.RowFilter = string.Empty;
-            }
+            //if(cmbFilterBy.Text == "Not Assigned Items")
+            //{
+            //    txbFilterValue.Text = "Not Assigned";
+            //}
+
+            //string SearchValue = txbFilterValue.Text.Trim();
+
+            //string Filter = "";
+
+            //if (!string.IsNullOrEmpty(SearchValue) && ColumnName != "None")
+            //{
+            //    if (_dtAllStockList.Columns[ColumnName].DataType == typeof(string))
+            //    {
+            //        SearchValue = SearchValue.Replace("'", "''");
+            //        Filter = $"{ColumnName} Like '%{SearchValue}%'";
+            //    }
+            //    else
+            //        Filter = $"{ColumnName} = {SearchValue}";
+
+            //    _dtAllStockList.DefaultView.RowFilter = Filter;
+            //}
+            //else
+            //{
+            //    _dtAllStockList.DefaultView.RowFilter = string.Empty;
+            //}
 
             lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
         }
-
         private void cmbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txbFilterValue.Visible = cmbFilterBy.SelectedIndex != 0;
+            bool needsText =
+                 cmbItemsFilterBy.Text != "None" &&
+                 cmbItemsFilterBy.Text != "Newly Added Items" &&
+                 cmbItemsFilterBy.Text != "Not Assigned Items";
+
+            txbFilterValue.Visible = needsText;
             txbFilterValue.Text = "";
 
-            if (txbFilterValue.Visible)
-                txbFilterValue.Focus();
+            _LoadItemsTable();
 
+            //txbFilterValue.Visible = (cmbFilterBy.Text != "None" && cmbFilterBy.Text != "Newly Added Items");
+            //txbFilterValue.Text = "";
+
+            //if (txbFilterValue.Visible)
+            //    txbFilterValue.Focus();
+
+            //_LoadItemsTable();
         }
-
+        private void cmbGroupsFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txbGroupsFilterValue.Visible = cmbGroupsFilterBy.Text != "None";
+        }
         private void txbFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cmbFilterBy.Text == "Item Code")
+            if (cmbItemsFilterBy.Text == "Item Code")
                 e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
         }
-
         private void cmbGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_IsLoadingGrous)
@@ -275,7 +357,6 @@ namespace Check_Point_Manager
             
             _LoadSelectedGroupItems(GroupID);
         }
-
         private void ctrlButtonCardUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -287,13 +368,18 @@ namespace Check_Point_Manager
 
                 if (!String.IsNullOrEmpty(_ExcelFile))
                 {
-                    var NewItemsList = clsItem.UpdateStockAndGetNewItemsCodes(_ExcelFile);
+                    _NewlyAddedItemsCount = clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile);
 
-                    if (NewItemsList.Count > 0)
+                    if (_NewlyAddedItemsCount > 0)
                     {
                         lblUpdateStatus.Text = "Stock Updated";
-                        MessageBox.Show("Stock Updated Successfully\n" + NewItemsList.Count + " New Items Added", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                        if (MessageBox.Show("Stock Updated Successfully\n" + _NewlyAddedItemsCount + " New Items Added\n" +
+                            "Do you want to explore Newly Added Items ?", "Success",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            cmbItemsFilterBy.SelectedIndex = 4;
+                        }
                     }
                     else
                     {
@@ -304,7 +390,8 @@ namespace Check_Point_Manager
 
                     txbFilePath.Text = "";
 
-                    frmListItems_Load(null, null);
+                    _LoadItemsTable();
+                    ctrlButtonCardUpdate.Enabled = false;
                 }
                 else
                 {
@@ -322,7 +409,6 @@ namespace Check_Point_Manager
                 Cursor = Cursors.Default;
             }
         }
-
         private void btnBrowseFile_Click(object sender, EventArgs e)
         {
             _ExcelFile = _SelectExcelFile();
@@ -334,7 +420,6 @@ namespace Check_Point_Manager
                 lblUpdateStatus.Text = "";
             }
         }
-
         private void btnAddToGroup_Click(object sender, EventArgs e)
         {
             try
@@ -395,7 +480,6 @@ namespace Check_Point_Manager
             }
 
         }
-
         private void btnManageGroups_Click(object sender, EventArgs e)
         {
             cmbGroups.SelectedIndex = 0;
@@ -405,7 +489,6 @@ namespace Check_Point_Manager
 
             frmListItems_Load(null, null);
         }
-
         private void btnExportFile_Click(object sender, EventArgs e)
         {
             try
@@ -498,7 +581,6 @@ namespace Check_Point_Manager
                 Cursor = Cursors.Default;
             }
         }
-
         private void deleteFromGroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int ItemCode = Convert.ToInt32(dgvGroupItems.CurrentRow.Cells["ItemCode"].Value);
@@ -512,7 +594,6 @@ namespace Check_Point_Manager
             _LoadSelectedGroupItems(GroupID);
             _LoadItemsTable();
         }
-
         private void dgvAllStockList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.ColumnIndex != 0)
@@ -520,7 +601,6 @@ namespace Check_Point_Manager
                 e.Cancel = true;
             }
         }
-
         private void dgvAllStockList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(!chbFastMode.Checked)
@@ -574,7 +654,6 @@ namespace Check_Point_Manager
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void dgvGroupItems_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!chbFastMode.Checked)
@@ -593,7 +672,6 @@ namespace Check_Point_Manager
             _LoadSelectedGroupItems(GroupID);
             _LoadItemsTable();
         }
-
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             foreach(DataGridViewRow Row in dgvAllStockList.Rows)
@@ -606,6 +684,30 @@ namespace Check_Point_Manager
             _IsAllRowsSelected = !_IsAllRowsSelected;
 
             btnSelectAll.Text = _IsAllRowsSelected ? "DeSelect All" : "Select All";
+        }
+        private void dgvAllStockList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvAllStockList.Columns[e.ColumnIndex].Name == "GroupName" && e.Value != null)
+            {
+                string GroupName = e.Value.ToString();
+
+                if (GroupName == "Not Assigned")
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Blue;
+                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                }
+            }
+        }
+
+        private void txbGroupsFilterValue_TextChanged(object sender, EventArgs e)
+        {
+            if(dgvGroupItems.DataSource is DataTable dt)
+                _ApplyFilter(dt, cmbGroupsFilterBy, txbGroupsFilterValue);
         }
     }
 }
