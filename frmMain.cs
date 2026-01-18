@@ -195,9 +195,6 @@ namespace Check_Point_Manager
                 case "Item Code":
                     ColumnName = "ItemCode";
                     break;
-                case "Not Assigned Items":
-                    ColumnName = "GroupName";
-                    break;
                 case "Group Name":
                     ColumnName = "GroupName";
                     break;
@@ -242,7 +239,6 @@ namespace Check_Point_Manager
             else
                 table.DefaultView.RowFilter = $"{columnName} = {searchValue}";
         }
-
         private void pcbGroupsBackground_Paint(object sender, PaintEventArgs e)
         {
             if (pcbGroupsBackground.Image != null)
@@ -265,6 +261,8 @@ namespace Check_Point_Manager
             cmbGroupsFilterBy.SelectedIndex = 2;
 
             ctrlButtonCardUpdate.Enabled = false;
+
+            gbxFilterGroups.Enabled = false;
 
         }
         private void dgvAllStockList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -330,10 +328,21 @@ namespace Check_Point_Manager
         private void cmbGroupsFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             txbGroupsFilterValue.Visible = cmbGroupsFilterBy.Text != "None";
+            txbGroupsFilterValue.Text = "";
+
+            clsGroup ChoosenGroup = clsGroup.FindByName(cmbGroups.Text.Trim());
+
+            if (ChoosenGroup != null)
+                _LoadSelectedGroupItems(ChoosenGroup.GroupID);
         }
         private void txbFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cmbItemsFilterBy.Text == "Item Code")
+                e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
+        }
+        private void txbGroupsFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cmbGroupsFilterBy.Text == "Item Code")
                 e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
         }
         private void cmbGroups_SelectedIndexChanged(object sender, EventArgs e)
@@ -702,11 +711,12 @@ namespace Check_Point_Manager
                 }
             }
         }
-
         private void txbGroupsFilterValue_TextChanged(object sender, EventArgs e)
         {
             if(dgvGroupItems.DataSource is DataTable dt)
                 _ApplyFilter(dt, cmbGroupsFilterBy, txbGroupsFilterValue);
         }
+
+       
     }
 }
