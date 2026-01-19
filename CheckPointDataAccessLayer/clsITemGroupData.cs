@@ -29,6 +29,8 @@ namespace CheckPointDataAccessLayer
                 {
                     if (Reader.HasRows)
                     {
+                        dt.Columns.Add("Selected", typeof(bool));
+                        dt.Columns["Selected"].DefaultValue = false;
                         dt.Load(Reader);
                     }
                 }

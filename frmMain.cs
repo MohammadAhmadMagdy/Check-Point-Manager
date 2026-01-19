@@ -22,7 +22,8 @@ namespace Check_Point_Manager
         private DataTable _dtAllStockList;
         private DataTable _dtNewlyAddedItems;
         private DataTable _dtSelectedGroupItems;
-        private bool _IsAllRowsSelected = false;
+        private bool _IsAllItemsRowsSelected = false;
+        private bool _IsAllGroupRowSelect = false;
         private int _NewlyAddedItemsCount = 0;
         public frmListItems()
         {
@@ -78,7 +79,7 @@ namespace Check_Point_Manager
 
             _AddVisualStyleToTable(dgvAllStockList);
 
-            _IsAllRowsSelected = false;
+            _IsAllItemsRowsSelected = false;
             btnSelectAll.Text = "Select All";
             
             txbFilterValue.Focus();
@@ -123,8 +124,8 @@ namespace Check_Point_Manager
 
             if (dgvGroupItems.Rows.Count > 0)
             {
-                //dgvGroupItems.Columns["Selected"].HeaderText = "Sel";
-                //dgvGroupItems.Columns["Selected"].Width = 35;
+                dgvGroupItems.Columns["Selected"].HeaderText = "Sel";
+                dgvGroupItems.Columns["Selected"].Width = 35;
 
                 dgvGroupItems.Columns["ItemCode"].HeaderText = "Code";
                 dgvGroupItems.Columns["ItemCode"].Width = 60;
@@ -172,7 +173,7 @@ namespace Check_Point_Manager
 
             return FilePath;
         }
-        private void _dgvSelectAllRowByRightClick(object sender, MouseEventArgs e)
+        private void _dgvSelectEntireRowByRightClick(object sender, MouseEventArgs e)
         {
             var DGV = (DataGridView)sender;
 
@@ -186,32 +187,25 @@ namespace Check_Point_Manager
                 }
             }
         }
-        private string _GetColumnName()
+        private string _GetColumnName(ComboBox cmb)
         {
-            string ColumnName = "";
-
-            switch (cmbItemsFilterBy.Text)
+            switch (cmb.Text)
             {
                 case "Item Code":
-                    ColumnName = "ItemCode";
-                    break;
+                    return "ItemCode";
                 case "Group Name":
-                    ColumnName = "GroupName";
-                    break;
+                    return "GroupName";
                 default:
-                    ColumnName = cmbItemsFilterBy.Text;
-                    break;
+                    return cmb.Text;
 
             }
-
-            return ColumnName;
         }
         private void _ApplyFilter(DataTable table, ComboBox cmb, TextBox txb)
         {
             if (table == null)
                 return;
 
-            string columnName = _GetColumnName();
+            string columnName = _GetColumnName(cmb);
 
           
             if (cmb.Text == "None" || string.IsNullOrEmpty(columnName))
@@ -262,8 +256,6 @@ namespace Check_Point_Manager
 
             ctrlButtonCardUpdate.Enabled = false;
 
-            gbxFilterGroups.Enabled = false;
-
         }
         private void dgvAllStockList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -275,35 +267,12 @@ namespace Check_Point_Manager
             if (dgvAllStockList.DataSource is DataTable dt)
                 _ApplyFilter(dt, cmbItemsFilterBy, txbFilterValue);
 
-            //string ColumnName = _GetColumnName();
-
-            //if(cmbFilterBy.Text == "Not Assigned Items")
-            //{
-            //    txbFilterValue.Text = "Not Assigned";
-            //}
-
-            //string SearchValue = txbFilterValue.Text.Trim();
-
-            //string Filter = "";
-
-            //if (!string.IsNullOrEmpty(SearchValue) && ColumnName != "None")
-            //{
-            //    if (_dtAllStockList.Columns[ColumnName].DataType == typeof(string))
-            //    {
-            //        SearchValue = SearchValue.Replace("'", "''");
-            //        Filter = $"{ColumnName} Like '%{SearchValue}%'";
-            //    }
-            //    else
-            //        Filter = $"{ColumnName} = {SearchValue}";
-
-            //    _dtAllStockList.DefaultView.RowFilter = Filter;
-            //}
-            //else
-            //{
-            //    _dtAllStockList.DefaultView.RowFilter = string.Empty;
-            //}
-
             lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
+        }
+        private void txbGroupsFilterValue_TextChanged(object sender, EventArgs e)
+        {
+            if (dgvGroupItems.DataSource is DataTable dt)
+                _ApplyFilter(dt, cmbGroupsFilterBy, txbGroupsFilterValue);
         }
         private void cmbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -509,18 +478,26 @@ namespace Check_Point_Manager
                     return;
                 }
 
-                DataTable dtFilteredData = _dtSelectedGroupItems.Clone();
+                DataView dv = new DataView(_dtSelectedGroupItems);
+                dv.RowFilter = "Qty > 0 OR LzQty > 0";
+                dv.Sort = "Description ASC";
 
-                foreach (DataRow Row in _dtSelectedGroupItems.Rows)
-                {
-                    int Qty = Convert.ToInt32(Row["Qty"]);
-                    int LzQty = Convert.ToInt32(Row["LzQty"]);
+                DataTable dtFilteredData = dv.ToTable(false, "ItemCode", "Description", "Qty", "LzQty", "RetailPrice");
 
-                    if (Qty > 0 || LzQty > 0)
-                    {
-                        dtFilteredData.ImportRow(Row);
-                    }
-                }
+                //DataColumn ChkColumn = new DataColumn("Chk");
+                //dtFilteredData.Columns.Add(ChkColumn);
+                //ChkColumn.SetOrdinal(0);
+
+                //foreach (DataRow Row in _dtSelectedGroupItems.Rows)
+                //{
+                //    int Qty = Convert.ToInt32(Row["Qty"]);
+                //    int LzQty = Convert.ToInt32(Row["LzQty"]);
+
+                //    if (Qty > 0 || LzQty > 0)
+                //    {
+                //        dtFilteredData.ImportRow(Row);
+                //    }
+                //}
 
                 if (dtFilteredData.Rows.Count == 0)
                 {
@@ -532,7 +509,14 @@ namespace Check_Point_Manager
                 {
                     var ws = wb.Worksheets.Add("Group Items");
 
-                    // إدخال العناوين يدويًا بدون فلتر أو ألوان
+                    //Add Headers automatically :
+
+                    //ws.Cell(1, 1).InsertTable(dtFilteredData, "GroupItems", true);
+                    //ws.Columns().AdjustToContents();
+
+
+                    //Add headers without filters or colors :
+
                     for (int col = 0; col < dtFilteredData.Columns.Count; col++)
                     {
                         ws.Cell(1, col + 1).Value = dtFilteredData.Columns[col].ColumnName;
@@ -561,10 +545,19 @@ namespace Check_Point_Manager
                         }
                     }
 
+                    // Add broders 
+                    var range = ws.Range(1, 1, dtFilteredData.Rows.Count + 1, dtFilteredData.Columns.Count);
+
+                    range.Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                    range.Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    range.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                    range.Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+
                     // تنسيق الخطوط وضبط الأعمدة
                     ws.Columns().AdjustToContents();
                     ws.Style.Font.FontName = "Segoe UI";
-                    ws.Style.Font.FontSize = 11;
+                    ws.Style.Font.FontSize = 10;
 
                     // حفظ الملف
                     SaveFileDialog sfd = new SaveFileDialog
@@ -686,12 +679,25 @@ namespace Check_Point_Manager
             {
                 if (Row.IsNewRow) continue;
 
-                Row.Cells["Selected"].Value = !_IsAllRowsSelected;
+                Row.Cells["Selected"].Value = !_IsAllItemsRowsSelected;
             }
 
-            _IsAllRowsSelected = !_IsAllRowsSelected;
+            _IsAllItemsRowsSelected = !_IsAllItemsRowsSelected;
 
-            btnSelectAll.Text = _IsAllRowsSelected ? "DeSelect All" : "Select All";
+            btnSelectAll.Text = _IsAllItemsRowsSelected ? "DeSelect All" : "Select All";
+        }
+        private void btnGroupsSelectAll_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow Row in dgvGroupItems.Rows)
+            {
+                if (Row.IsNewRow) continue;
+
+                Row.Cells["Selected"].Value = !_IsAllGroupRowSelect;
+            }
+
+            _IsAllGroupRowSelect = !_IsAllGroupRowSelect;
+
+            btnGroupsSelectAll.Text = _IsAllGroupRowSelect ? "Deselect All" : "Select All";
         }
         private void dgvAllStockList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -710,11 +716,6 @@ namespace Check_Point_Manager
                     e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
                 }
             }
-        }
-        private void txbGroupsFilterValue_TextChanged(object sender, EventArgs e)
-        {
-            if(dgvGroupItems.DataSource is DataTable dt)
-                _ApplyFilter(dt, cmbGroupsFilterBy, txbGroupsFilterValue);
         }
 
        
