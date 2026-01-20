@@ -167,8 +167,6 @@
     <Resource Include="Resources\Clipboard1.jpg" />
     <Resource Include="Resources\Logo %282%29.jpg" />
     <Content Include="Icon.ico" />
-    <Resource Include="Resources\add_blue_32.png" />
-    <Resource Include="Resources\remove_red_32.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

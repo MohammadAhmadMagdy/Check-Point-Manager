@@ -83,16 +83,6 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_blue_32 {
-            get {
-                object obj = ResourceManager.GetObject("add_blue_32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap add_insert_document_13988 {
             get {
                 object obj = ResourceManager.GetObject("add_insert_document_13988", resourceCulture);
@@ -386,16 +376,6 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap remove_delete_document_13987 {
             get {
                 object obj = ResourceManager.GetObject("remove_delete_document_13987", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap remove_red_32 {
-            get {
-                object obj = ResourceManager.GetObject("remove_red_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
