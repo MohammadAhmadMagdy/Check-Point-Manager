@@ -64,16 +64,16 @@
             this.chbFastMode = new System.Windows.Forms.CheckBox();
             this.gbxFilter = new System.Windows.Forms.GroupBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
             this.gbxUpdateData = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblChooseFile = new System.Windows.Forms.Label();
-            this.lblUpdateStatus = new System.Windows.Forms.Label();
-            this.txbFilePath = new System.Windows.Forms.TextBox();
             this.btnExportFile = new Check_Point_Manager.ctrlButtonCard();
             this.btnBrowseFile = new Check_Point_Manager.ctrlButtonCard();
             this.btnManageGroups = new Check_Point_Manager.ctrlButtonCard();
+            this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.ctrlButtonCardUpdate = new Check_Point_Manager.ctrlButtonCard();
-            this.btnAddToGroup = new Check_Point_Manager.ctrlButtonCard();
+            this.txbFilePath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).BeginInit();
             this.cmsGroupOption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
@@ -140,7 +140,6 @@
             this.dgvGroupItems.Size = new System.Drawing.Size(521, 438);
             this.dgvGroupItems.TabIndex = 9;
             this.dgvGroupItems.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroupItems_CellDoubleClick);
-            this.dgvGroupItems.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectAllRowByRightClick);
             // 
             // cmsGroupOption
             // 
@@ -182,7 +181,6 @@
             this.dgvAllStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellContentClick);
             this.dgvAllStockList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellDoubleClick);
             this.dgvAllStockList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllStockList_CellFormatting);
-            this.dgvAllStockList.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectAllRowByRightClick);
             // 
             // cmbItemsFilterBy
             // 
@@ -249,6 +247,7 @@
             this.btnGroupsSelectAll.TabIndex = 20;
             this.btnGroupsSelectAll.Text = "Select All";
             this.btnGroupsSelectAll.UseVisualStyleBackColor = true;
+            this.btnGroupsSelectAll.Click += new System.EventHandler(this.btnGroupsSelectAll_Click);
             // 
             // cmbGroupsFilterBy
             // 
@@ -368,6 +367,22 @@
             this.btnSelectAll.UseVisualStyleBackColor = true;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
+            // btnAddToGroup
+            // 
+            this.btnAddToGroup.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Primary;
+            this.btnAddToGroup.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(240)))));
+            this.btnAddToGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddToGroup.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(210)))), ((int)(((byte)(250)))));
+            this.btnAddToGroup.Icon = global::Check_Point_Manager.Properties.Resources.right;
+            this.btnAddToGroup.Location = new System.Drawing.Point(518, 17);
+            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddToGroup.Name = "btnAddToGroup";
+            this.btnAddToGroup.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.btnAddToGroup.Size = new System.Drawing.Size(118, 50);
+            this.btnAddToGroup.TabIndex = 16;
+            this.btnAddToGroup.Title = "Add To Group";
+            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
+            // 
             // gbxUpdateData
             // 
             this.gbxUpdateData.Controls.Add(this.panel1);
@@ -403,25 +418,6 @@
             this.lblChooseFile.Size = new System.Drawing.Size(83, 14);
             this.lblChooseFile.TabIndex = 17;
             this.lblChooseFile.Text = "Choose File :";
-            // 
-            // lblUpdateStatus
-            // 
-            this.lblUpdateStatus.AutoSize = true;
-            this.lblUpdateStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateStatus.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblUpdateStatus.Location = new System.Drawing.Point(631, 39);
-            this.lblUpdateStatus.Name = "lblUpdateStatus";
-            this.lblUpdateStatus.Size = new System.Drawing.Size(56, 16);
-            this.lblUpdateStatus.TabIndex = 3;
-            this.lblUpdateStatus.Text = "???????";
-            // 
-            // txbFilePath
-            // 
-            this.txbFilePath.Location = new System.Drawing.Point(95, 24);
-            this.txbFilePath.Multiline = true;
-            this.txbFilePath.Name = "txbFilePath";
-            this.txbFilePath.Size = new System.Drawing.Size(246, 47);
-            this.txbFilePath.TabIndex = 1;
             // 
             // btnExportFile
             // 
@@ -471,6 +467,17 @@
             this.btnManageGroups.Title = "Manage Groups";
             this.btnManageGroups.Click += new System.EventHandler(this.btnManageGroups_Click);
             // 
+            // lblUpdateStatus
+            // 
+            this.lblUpdateStatus.AutoSize = true;
+            this.lblUpdateStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateStatus.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblUpdateStatus.Location = new System.Drawing.Point(631, 39);
+            this.lblUpdateStatus.Name = "lblUpdateStatus";
+            this.lblUpdateStatus.Size = new System.Drawing.Size(56, 16);
+            this.lblUpdateStatus.TabIndex = 3;
+            this.lblUpdateStatus.Text = "???????";
+            // 
             // ctrlButtonCardUpdate
             // 
             this.ctrlButtonCardUpdate.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Secondary;
@@ -487,21 +494,13 @@
             this.ctrlButtonCardUpdate.Title = "Update Stock";
             this.ctrlButtonCardUpdate.Click += new System.EventHandler(this.ctrlButtonCardUpdate_Click);
             // 
-            // btnAddToGroup
+            // txbFilePath
             // 
-            this.btnAddToGroup.ButtonType = Check_Point_Manager.ctrlButtonCard.enButtonCardType.Primary;
-            this.btnAddToGroup.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(240)))));
-            this.btnAddToGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddToGroup.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(210)))), ((int)(((byte)(250)))));
-            this.btnAddToGroup.Icon = global::Check_Point_Manager.Properties.Resources.right;
-            this.btnAddToGroup.Location = new System.Drawing.Point(518, 17);
-            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddToGroup.Name = "btnAddToGroup";
-            this.btnAddToGroup.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
-            this.btnAddToGroup.Size = new System.Drawing.Size(118, 50);
-            this.btnAddToGroup.TabIndex = 16;
-            this.btnAddToGroup.Title = "Add To Group";
-            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
+            this.txbFilePath.Location = new System.Drawing.Point(95, 24);
+            this.txbFilePath.Multiline = true;
+            this.txbFilePath.Name = "txbFilePath";
+            this.txbFilePath.Size = new System.Drawing.Size(246, 47);
+            this.txbFilePath.TabIndex = 1;
             // 
             // frmListItems
             // 
