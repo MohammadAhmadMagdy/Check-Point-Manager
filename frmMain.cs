@@ -119,6 +119,8 @@ namespace Check_Point_Manager
 
             pcbGroupsBackground.Visible = GroupID == -1;
 
+            _IsAllGroupRowSelect = false;
+
             _AddVisualStyleToTable(dgvGroupItems);
 
 
@@ -253,6 +255,8 @@ namespace Check_Point_Manager
 
             cmbItemsFilterBy.SelectedIndex = 2;
             cmbGroupsFilterBy.SelectedIndex = 2;
+
+            chbFastMode.Checked = true;
 
             ctrlButtonCardUpdate.Enabled = false;
 
@@ -433,12 +437,12 @@ namespace Check_Point_Manager
 
                 if (SelectedItems.Count == 0)
                 {
-                    MessageBox.Show("Please Select at Least One Item to Add", "No Items", MessageBoxButtons.OK,
+                    MessageBox.Show("Please Select at Least One Item to Remove", "No Items", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
                     return;
                 }
 
-                if (MessageBox.Show("Are you sure you want to add these items to\n" + cmbGroups.Text + " Group ?",
+                if (MessageBox.Show("Are you sure you want to Remove these items to\n" + cmbGroups.Text + " Group ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
                     return;
@@ -458,6 +462,65 @@ namespace Check_Point_Manager
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
+        }
+        private void btnRemoveItems_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbGroups.SelectedValue == null)
+                    return;
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+                if (GroupID == -1)
+                {
+                    MessageBox.Show("You Should Select A Group First", "Not Allowed", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    cmbGroups.Focus();
+                    return;
+                }
+
+                List<int> SelectedItems = new List<int>();
+
+                foreach (DataGridViewRow DR in dgvGroupItems.Rows)
+                {
+                    bool IsSelected = DR.Cells["Selected"].Value != null
+                        && Convert.ToBoolean(DR.Cells["Selected"].Value);
+
+                    if(IsSelected)
+                    {
+                        int ItemCode = Convert.ToInt32(DR.Cells["ItemCode"].Value);
+                        SelectedItems.Add(ItemCode);
+                    }
+                }
+
+                if (SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Please Select at Least One Item to Remove", "No Items", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if (MessageBox.Show("Are you sure you want to Remove these items to\n" + cmbGroups.Text + " Group ?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                {
+                    return;
+                }
+
+                int NumberOfItemsRemoved = clsItemGroup.RemoveItemsListFromGroup(SelectedItems, GroupID);
+
+                MessageBox.Show(NumberOfItemsRemoved + " Items Added Successfully To Group", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _LoadSelectedGroupItems(GroupID);
+                _LoadItemsTable();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message, "Error",
+                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void btnManageGroups_Click(object sender, EventArgs e)
         {
@@ -696,7 +759,6 @@ namespace Check_Point_Manager
                 }
             }
         }
-       
 
        
     }

@@ -156,6 +156,33 @@ namespace CheckPointDataAccessLayer
 
             return TotalInserted;
         }
+        public static int RemoveItemsListFromGroup(List<int> ItemCodes, int GroupID)
+        {
+            int TotalRemoved = 0;
+
+            if (ItemCodes == null || ItemCodes.Count == 0)
+                return 0;
+
+            string Query = @"DELETE FROM ItemsGroups WHERE ItemCode = @ItemCode AND GroupID = GroupID";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Transaction = Connection.BeginTransaction())
+            using (var Command = new SQLiteCommand(Query, Connection, Transaction))
+            {
+                Command.Parameters.Add("@GroupID", DbType.Int32).Value = GroupID;
+                Command.Parameters.Add("@ItemCode", DbType.Int32);
+
+                foreach (var IC in ItemCodes)
+                {
+                    Command.Parameters["@ItemCode"].Value = IC;
+                    TotalRemoved += Command.ExecuteNonQuery();
+                }
+
+                Transaction.Commit();
+            }
+
+            return TotalRemoved;
+        }
         public static bool Update(int ItemCode, int GroupID)
         {
             string Query = @"UPDATE ItemsGroups

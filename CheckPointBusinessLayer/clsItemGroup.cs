@@ -37,6 +37,10 @@ namespace CheckPointBusinessLayer
         {
             return clsItemGroupData.AddItemsListToGroup(ItemCodes, GroupID);
         }
+        public static int RemoveItemsListFromGroup(List<int> ItemCodes, int GroupID)
+        {
+            return clsItemGroupData.RemoveItemsListFromGroup(ItemCodes, GroupID);
+        }
         public static DataTable GetGroupItemsByGroupID(int GroupID)
         {
             return clsItemGroupData.GetGroupItemsByGroupID(GroupID);
