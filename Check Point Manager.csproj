@@ -110,6 +110,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMainScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainScreen.Designer.cs">
+      <DependentUpon>frmMainScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManageListGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMainScreen.resx">
+      <DependentUpon>frmMainScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageListGroup.resx">
       <DependentUpon>frmManageListGroup.cs</DependentUpon>
@@ -168,6 +177,24 @@
     <Resource Include="Resources\Logo %282%29.jpg" />
     <Content Include="Icon.ico" />
     <Resource Include="Resources\remove_red_32.png" />
+    <None Include="Resources\minimize.png" />
+    <Resource Include="Resources\icons8-minimize-90.png" />
+    <Resource Include="Resources\icons8-minimize-30.png" />
+    <Resource Include="Resources\icons8-minimize-48.png" />
+    <Resource Include="Resources\icons8-minimize-96.png" />
+    <Resource Include="Resources\icons8-exit-30.png" />
+    <Resource Include="Resources\icons8-exit-60.png" />
+    <Resource Include="Resources\icons8-exit-90.png" />
+    <Resource Include="Resources\double_right.png" />
+    <Resource Include="Resources\Double_Right_25.png" />
+    <Resource Include="Resources\Hand_Right.png" />
+    <Resource Include="Resources\hand-right-20.png" />
+    <Resource Include="Resources\hand-left-20.png" />
+    <Resource Include="Resources\browse_stock.png" />
+    <Resource Include="Resources\cloud-update-20.png" />
+    <Resource Include="Resources\data-update-25.png" />
+    <Resource Include="Resources\downloading-updates-25.png" />
+    <Resource Include="Resources\manage-25.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

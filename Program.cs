@@ -16,8 +16,9 @@ namespace Check_Point_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmListItems());
+            //Application.Run(new frmListItems());
             //Application.Run(new frmManageListGroup());
+            Application.Run(new frmMainScreen());
         }
     }
 }
