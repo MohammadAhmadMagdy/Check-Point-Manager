@@ -118,7 +118,7 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns["Selected"].Width = 30;
 
                 dgvAllStockList.Columns["ItemCode"].HeaderText = "Code";
-                dgvAllStockList.Columns["ItemCode"].Width = 55;
+                dgvAllStockList.Columns["ItemCode"].Width = 53;
 
                 dgvAllStockList.Columns["Description"].HeaderText = "Description";
                 dgvAllStockList.Columns["Description"].Width = 290;
@@ -133,7 +133,7 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns["RetailPrice"].Width = 50;
 
                 dgvAllStockList.Columns["GroupName"].HeaderText = "Group";
-                dgvAllStockList.Columns["GroupName"].Width = 105;
+                dgvAllStockList.Columns["GroupName"].Width = 90;
             }
 
             txbFilterValue_TextChanged(null, null);
@@ -155,13 +155,13 @@ namespace Check_Point_Manager
             if (dgvGroupItems.Rows.Count > 0)
             {
                 dgvGroupItems.Columns["Selected"].HeaderText = "Sel";
-                dgvGroupItems.Columns["Selected"].Width = 35;
+                dgvGroupItems.Columns["Selected"].Width = 30;
 
                 dgvGroupItems.Columns["ItemCode"].HeaderText = "Code";
-                dgvGroupItems.Columns["ItemCode"].Width = 60;
+                dgvGroupItems.Columns["ItemCode"].Width = 53;
 
                 dgvGroupItems.Columns["Description"].HeaderText = "Description";
-                dgvGroupItems.Columns["Description"].Width = 300;
+                dgvGroupItems.Columns["Description"].Width = 380;
 
                 dgvGroupItems.Columns["Qty"].HeaderText = "Qty";
                 dgvGroupItems.Columns["Qty"].Width = 40;

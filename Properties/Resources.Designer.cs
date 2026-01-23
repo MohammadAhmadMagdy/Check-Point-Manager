@@ -393,6 +393,76 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_25_1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_25_1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_writing_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_writing_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_writing_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_writing_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_exit_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8_exit_30", resourceCulture);
@@ -456,6 +526,26 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap icons8_minimize_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8_minimize_96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_open_folder_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_open_folder_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_open_folder_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_open_folder_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

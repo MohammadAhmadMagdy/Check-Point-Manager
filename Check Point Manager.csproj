@@ -92,23 +92,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ctrlButtonCard.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctrlButtonCard.Designer.cs">
-      <DependentUpon>ctrlButtonCard.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAddEditGroup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAddEditGroup.Designer.cs">
       <DependentUpon>frmAddEditGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainScreen.cs">
       <SubType>Form</SubType>
@@ -124,14 +112,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ctrlButtonCard.resx">
-      <DependentUpon>ctrlButtonCard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditGroup.resx">
       <DependentUpon>frmAddEditGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainScreen.resx">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
@@ -195,6 +177,15 @@
     <Resource Include="Resources\data-update-25.png" />
     <Resource Include="Resources\downloading-updates-25.png" />
     <Resource Include="Resources\manage-25.png" />
+    <Resource Include="Resources\icons8-clipboard-25%281%29.png" />
+    <Resource Include="Resources\icons8-clipboard-25.png" />
+    <Resource Include="Resources\icons8-clipboard-32.png" />
+    <Resource Include="Resources\icons8-clipboard-48.png" />
+    <Resource Include="Resources\icons8-clipboard-64.png" />
+    <Resource Include="Resources\icons8-clipboard-writing-25.png" />
+    <Resource Include="Resources\icons8-clipboard-writing-48.png" />
+    <None Include="Resources\icons8-open-folder-25.png" />
+    <None Include="Resources\icons8-open-folder-32.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
