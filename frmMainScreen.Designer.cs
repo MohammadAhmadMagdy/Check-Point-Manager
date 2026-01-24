@@ -32,66 +32,66 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainScreen));
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pnlItemsList = new System.Windows.Forms.Panel();
+            this.btnAddToGroup = new System.Windows.Forms.Button();
             this.chbFastMode = new System.Windows.Forms.CheckBox();
             this.lblItemRecordsTitle = new System.Windows.Forms.Label();
             this.lblItemRecords = new System.Windows.Forms.Label();
             this.dgvAllStockList = new System.Windows.Forms.DataGridView();
+            this.pcbSelectAll = new System.Windows.Forms.PictureBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.lblSearchItems = new System.Windows.Forms.Label();
             this.cmbItemsFilterBy = new System.Windows.Forms.ComboBox();
             this.txbFilterValue = new System.Windows.Forms.TextBox();
+            this.pcbItemsList = new System.Windows.Forms.PictureBox();
             this.lblItemsListTitle = new System.Windows.Forms.Label();
             this.pnlAllItemsSep = new System.Windows.Forms.Panel();
             this.pnlGroupsList = new System.Windows.Forms.Panel();
+            this.btnRemoveItems = new System.Windows.Forms.Button();
             this.lblGroupRecordTitle = new System.Windows.Forms.Label();
             this.lblGroupRecord = new System.Windows.Forms.Label();
+            this.pcbGroupsBackground = new System.Windows.Forms.PictureBox();
             this.dgvGroupItems = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnGroupsSelectAll = new System.Windows.Forms.Button();
             this.lblSelectGroup = new System.Windows.Forms.Label();
             this.cmbGroups = new System.Windows.Forms.ComboBox();
             this.lblSearchGroup = new System.Windows.Forms.Label();
             this.cmbGroupsFilterBy = new System.Windows.Forms.ComboBox();
             this.txbGroupsFilterValue = new System.Windows.Forms.TextBox();
+            this.pcbGroupsList = new System.Windows.Forms.PictureBox();
             this.pnlGroupsListSep = new System.Windows.Forms.Panel();
             this.lblGroupsListTitle = new System.Windows.Forms.Label();
             this.pnlAction = new System.Windows.Forms.Panel();
-            this.pnlActionSep2 = new System.Windows.Forms.Panel();
-            this.lblUpdateStatus = new System.Windows.Forms.Label();
-            this.txbFilePath = new System.Windows.Forms.TextBox();
-            this.lblChooseFile = new System.Windows.Forms.Label();
-            this.lblUpdateStock = new System.Windows.Forms.Label();
-            this.pnlActionSep1 = new System.Windows.Forms.Panel();
             this.pnlUpdateInfo = new System.Windows.Forms.Panel();
+            this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.btnManageGroups = new System.Windows.Forms.Button();
             this.btnExportFile = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnBrowseFile = new System.Windows.Forms.Button();
+            this.pnlActionSep2 = new System.Windows.Forms.Panel();
+            this.txbFilePath = new System.Windows.Forms.TextBox();
+            this.lblChooseFile = new System.Windows.Forms.Label();
             this.pcbUpdateStock = new System.Windows.Forms.PictureBox();
-            this.btnRemoveItems = new System.Windows.Forms.Button();
-            this.pcbGroupsBackground = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pcbGroupsList = new System.Windows.Forms.PictureBox();
-            this.btnAddToGroup = new System.Windows.Forms.Button();
-            this.pcbSelectAll = new System.Windows.Forms.PictureBox();
-            this.pcbItemsList = new System.Windows.Forms.PictureBox();
+            this.lblUpdateStock = new System.Windows.Forms.Label();
+            this.pnlActionSep1 = new System.Windows.Forms.Panel();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnMinimize = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSelectAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbItemsList)).BeginInit();
             this.pnlGroupsList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).BeginInit();
             this.pnlAction.SuspendLayout();
             this.pnlUpdateInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbSelectAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbItemsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,6 +107,30 @@
             this.pnlTop.Size = new System.Drawing.Size(1305, 35);
             this.pnlTop.TabIndex = 0;
             this.pnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTop_MouseDown);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_exit_60;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Location = new System.Drawing.Point(1277, 5);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(25, 24);
+            this.btnExit.TabIndex = 3;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_minimize_90;
+            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Location = new System.Drawing.Point(1246, 5);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(25, 24);
+            this.btnMinimize.TabIndex = 2;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // lblHeader
             // 
@@ -137,8 +161,27 @@
             this.pnlItemsList.Controls.Add(this.pnlAllItemsSep);
             this.pnlItemsList.Location = new System.Drawing.Point(7, 41);
             this.pnlItemsList.Name = "pnlItemsList";
-            this.pnlItemsList.Size = new System.Drawing.Size(644, 527);
+            this.pnlItemsList.Size = new System.Drawing.Size(644, 543);
             this.pnlItemsList.TabIndex = 2;
+            // 
+            // btnAddToGroup
+            // 
+            this.btnAddToGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
+            this.btnAddToGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddToGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddToGroup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddToGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
+            this.btnAddToGroup.Image = global::Check_Point_Manager.Properties.Resources.hand_right_20;
+            this.btnAddToGroup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddToGroup.Location = new System.Drawing.Point(512, 9);
+            this.btnAddToGroup.Name = "btnAddToGroup";
+            this.btnAddToGroup.Size = new System.Drawing.Size(124, 31);
+            this.btnAddToGroup.TabIndex = 26;
+            this.btnAddToGroup.Text = "Add To Group";
+            this.btnAddToGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddToGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnAddToGroup.UseVisualStyleBackColor = false;
+            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
             // 
             // chbFastMode
             // 
@@ -155,24 +198,24 @@
             // 
             this.lblItemRecordsTitle.AutoSize = true;
             this.lblItemRecordsTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblItemRecordsTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblItemRecordsTitle.Location = new System.Drawing.Point(18, 503);
+            this.lblItemRecordsTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblItemRecordsTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblItemRecordsTitle.Location = new System.Drawing.Point(15, 517);
             this.lblItemRecordsTitle.Name = "lblItemRecordsTitle";
-            this.lblItemRecordsTitle.Size = new System.Drawing.Size(77, 14);
+            this.lblItemRecordsTitle.Size = new System.Drawing.Size(90, 15);
             this.lblItemRecordsTitle.TabIndex = 23;
-            this.lblItemRecordsTitle.Text = "# Records :";
+            this.lblItemRecordsTitle.Text = "Total Records :";
             // 
             // lblItemRecords
             // 
             this.lblItemRecords.AutoSize = true;
             this.lblItemRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblItemRecords.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblItemRecords.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblItemRecords.Location = new System.Drawing.Point(94, 503);
+            this.lblItemRecords.Location = new System.Drawing.Point(111, 517);
             this.lblItemRecords.Name = "lblItemRecords";
-            this.lblItemRecords.Size = new System.Drawing.Size(21, 14);
+            this.lblItemRecords.Size = new System.Drawing.Size(0, 15);
             this.lblItemRecords.TabIndex = 24;
-            this.lblItemRecords.Text = "??";
             // 
             // dgvAllStockList
             // 
@@ -180,13 +223,14 @@
             this.dgvAllStockList.AllowUserToDeleteRows = false;
             this.dgvAllStockList.AllowUserToOrderColumns = true;
             this.dgvAllStockList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAllStockList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAllStockList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvAllStockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSalmon;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvAllStockList.DefaultCellStyle = dataGridViewCellStyle1;
@@ -200,6 +244,16 @@
             this.dgvAllStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellContentClick);
             this.dgvAllStockList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellDoubleClick);
             this.dgvAllStockList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllStockList_CellFormatting);
+            // 
+            // pcbSelectAll
+            // 
+            this.pcbSelectAll.Image = global::Check_Point_Manager.Properties.Resources.add1;
+            this.pcbSelectAll.Location = new System.Drawing.Point(18, 79);
+            this.pcbSelectAll.Name = "pcbSelectAll";
+            this.pcbSelectAll.Size = new System.Drawing.Size(25, 21);
+            this.pcbSelectAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbSelectAll.TabIndex = 21;
+            this.pcbSelectAll.TabStop = false;
             // 
             // btnSelectAll
             // 
@@ -250,6 +304,16 @@
             this.txbFilterValue.TabIndex = 8;
             this.txbFilterValue.TextChanged += new System.EventHandler(this.txbFilterValue_TextChanged);
             // 
+            // pcbItemsList
+            // 
+            this.pcbItemsList.Image = global::Check_Point_Manager.Properties.Resources.touch;
+            this.pcbItemsList.Location = new System.Drawing.Point(18, 18);
+            this.pcbItemsList.Name = "pcbItemsList";
+            this.pcbItemsList.Size = new System.Drawing.Size(29, 21);
+            this.pcbItemsList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbItemsList.TabIndex = 2;
+            this.pcbItemsList.TabStop = false;
+            // 
             // lblItemsListTitle
             // 
             this.lblItemsListTitle.AutoSize = true;
@@ -288,31 +352,62 @@
             this.pnlGroupsList.Controls.Add(this.lblGroupsListTitle);
             this.pnlGroupsList.Location = new System.Drawing.Point(658, 41);
             this.pnlGroupsList.Name = "pnlGroupsList";
-            this.pnlGroupsList.Size = new System.Drawing.Size(640, 527);
+            this.pnlGroupsList.Size = new System.Drawing.Size(640, 543);
             this.pnlGroupsList.TabIndex = 3;
+            // 
+            // btnRemoveItems
+            // 
+            this.btnRemoveItems.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.btnRemoveItems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRemoveItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveItems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveItems.ForeColor = System.Drawing.Color.Maroon;
+            this.btnRemoveItems.Image = global::Check_Point_Manager.Properties.Resources.hand_left_20;
+            this.btnRemoveItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveItems.Location = new System.Drawing.Point(467, 9);
+            this.btnRemoveItems.Name = "btnRemoveItems";
+            this.btnRemoveItems.Size = new System.Drawing.Size(167, 31);
+            this.btnRemoveItems.TabIndex = 27;
+            this.btnRemoveItems.Text = "Remove From Group";
+            this.btnRemoveItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemoveItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveItems.UseVisualStyleBackColor = false;
+            this.btnRemoveItems.Click += new System.EventHandler(this.btnRemoveItems_Click);
             // 
             // lblGroupRecordTitle
             // 
             this.lblGroupRecordTitle.AutoSize = true;
             this.lblGroupRecordTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblGroupRecordTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroupRecordTitle.Location = new System.Drawing.Point(16, 503);
+            this.lblGroupRecordTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupRecordTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblGroupRecordTitle.Location = new System.Drawing.Point(10, 517);
             this.lblGroupRecordTitle.Name = "lblGroupRecordTitle";
-            this.lblGroupRecordTitle.Size = new System.Drawing.Size(77, 14);
+            this.lblGroupRecordTitle.Size = new System.Drawing.Size(90, 15);
             this.lblGroupRecordTitle.TabIndex = 28;
-            this.lblGroupRecordTitle.Text = "# Records :";
+            this.lblGroupRecordTitle.Text = "Total Records :";
             // 
             // lblGroupRecord
             // 
             this.lblGroupRecord.AutoSize = true;
             this.lblGroupRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblGroupRecord.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupRecord.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblGroupRecord.Location = new System.Drawing.Point(92, 503);
+            this.lblGroupRecord.Location = new System.Drawing.Point(106, 517);
             this.lblGroupRecord.Name = "lblGroupRecord";
-            this.lblGroupRecord.Size = new System.Drawing.Size(21, 14);
+            this.lblGroupRecord.Size = new System.Drawing.Size(0, 15);
             this.lblGroupRecord.TabIndex = 29;
-            this.lblGroupRecord.Text = "??";
+            // 
+            // pcbGroupsBackground
+            // 
+            this.pcbGroupsBackground.Enabled = false;
+            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.Logo__2_;
+            this.pcbGroupsBackground.Location = new System.Drawing.Point(16, 116);
+            this.pcbGroupsBackground.Name = "pcbGroupsBackground";
+            this.pcbGroupsBackground.Size = new System.Drawing.Size(604, 373);
+            this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbGroupsBackground.TabIndex = 27;
+            this.pcbGroupsBackground.TabStop = false;
+            this.pcbGroupsBackground.Paint += new System.Windows.Forms.PaintEventHandler(this.pcbGroupsBackground_Paint);
             // 
             // dgvGroupItems
             // 
@@ -320,13 +415,14 @@
             this.dgvGroupItems.AllowUserToDeleteRows = false;
             this.dgvGroupItems.AllowUserToOrderColumns = true;
             this.dgvGroupItems.BackgroundColor = System.Drawing.Color.White;
+            this.dgvGroupItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvGroupItems.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvGroupItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSalmon;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvGroupItems.DefaultCellStyle = dataGridViewCellStyle2;
@@ -338,6 +434,16 @@
             this.dgvGroupItems.Size = new System.Drawing.Size(615, 393);
             this.dgvGroupItems.TabIndex = 26;
             this.dgvGroupItems.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroupItems_CellDoubleClick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Check_Point_Manager.Properties.Resources.add1;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 79);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 21);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
             // 
             // btnGroupsSelectAll
             // 
@@ -366,10 +472,12 @@
             // cmbGroups
             // 
             this.cmbGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroups.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGroups.ForeColor = System.Drawing.Color.DarkBlue;
             this.cmbGroups.FormattingEnabled = true;
             this.cmbGroups.Location = new System.Drawing.Point(126, 52);
             this.cmbGroups.Name = "cmbGroups";
-            this.cmbGroups.Size = new System.Drawing.Size(505, 21);
+            this.cmbGroups.Size = new System.Drawing.Size(505, 23);
             this.cmbGroups.TabIndex = 23;
             this.cmbGroups.SelectedIndexChanged += new System.EventHandler(this.cmbGroups_SelectedIndexChanged);
             // 
@@ -405,6 +513,16 @@
             this.txbGroupsFilterValue.TabIndex = 8;
             this.txbGroupsFilterValue.TextChanged += new System.EventHandler(this.txbGroupsFilterValue_TextChanged);
             // 
+            // pcbGroupsList
+            // 
+            this.pcbGroupsList.Image = global::Check_Point_Manager.Properties.Resources.article;
+            this.pcbGroupsList.Location = new System.Drawing.Point(16, 18);
+            this.pcbGroupsList.Name = "pcbGroupsList";
+            this.pcbGroupsList.Size = new System.Drawing.Size(29, 21);
+            this.pcbGroupsList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbGroupsList.TabIndex = 4;
+            this.pcbGroupsList.TabStop = false;
+            // 
             // pnlGroupsListSep
             // 
             this.pnlGroupsListSep.BackColor = System.Drawing.Color.LightGray;
@@ -437,18 +555,20 @@
             this.pnlAction.Controls.Add(this.pcbUpdateStock);
             this.pnlAction.Controls.Add(this.lblUpdateStock);
             this.pnlAction.Controls.Add(this.pnlActionSep1);
-            this.pnlAction.Location = new System.Drawing.Point(7, 574);
+            this.pnlAction.Location = new System.Drawing.Point(7, 590);
             this.pnlAction.Name = "pnlAction";
-            this.pnlAction.Size = new System.Drawing.Size(1291, 143);
+            this.pnlAction.Size = new System.Drawing.Size(1291, 148);
             this.pnlAction.TabIndex = 4;
             // 
-            // pnlActionSep2
+            // pnlUpdateInfo
             // 
-            this.pnlActionSep2.BackColor = System.Drawing.Color.LightGray;
-            this.pnlActionSep2.Location = new System.Drawing.Point(13, 88);
-            this.pnlActionSep2.Name = "pnlActionSep2";
-            this.pnlActionSep2.Size = new System.Drawing.Size(1255, 2);
-            this.pnlActionSep2.TabIndex = 2;
+            this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.pnlUpdateInfo.Controls.Add(this.lblUpdateStatus);
+            this.pnlUpdateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
+            this.pnlUpdateInfo.Location = new System.Drawing.Point(584, 47);
+            this.pnlUpdateInfo.Name = "pnlUpdateInfo";
+            this.pnlUpdateInfo.Size = new System.Drawing.Size(479, 35);
+            this.pnlUpdateInfo.TabIndex = 27;
             // 
             // lblUpdateStatus
             // 
@@ -461,51 +581,6 @@
             this.lblUpdateStatus.TabIndex = 20;
             this.lblUpdateStatus.Text = "Please Update Stock Before Exporting File";
             // 
-            // txbFilePath
-            // 
-            this.txbFilePath.Location = new System.Drawing.Point(96, 54);
-            this.txbFilePath.Name = "txbFilePath";
-            this.txbFilePath.Size = new System.Drawing.Size(246, 20);
-            this.txbFilePath.TabIndex = 19;
-            // 
-            // lblChooseFile
-            // 
-            this.lblChooseFile.AutoSize = true;
-            this.lblChooseFile.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChooseFile.Location = new System.Drawing.Point(10, 58);
-            this.lblChooseFile.Name = "lblChooseFile";
-            this.lblChooseFile.Size = new System.Drawing.Size(83, 14);
-            this.lblChooseFile.TabIndex = 18;
-            this.lblChooseFile.Text = "Choose File :";
-            // 
-            // lblUpdateStock
-            // 
-            this.lblUpdateStock.AutoSize = true;
-            this.lblUpdateStock.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateStock.Location = new System.Drawing.Point(44, 11);
-            this.lblUpdateStock.Name = "lblUpdateStock";
-            this.lblUpdateStock.Size = new System.Drawing.Size(102, 20);
-            this.lblUpdateStock.TabIndex = 3;
-            this.lblUpdateStock.Text = "Update Stock";
-            // 
-            // pnlActionSep1
-            // 
-            this.pnlActionSep1.BackColor = System.Drawing.Color.LightGray;
-            this.pnlActionSep1.Location = new System.Drawing.Point(13, 39);
-            this.pnlActionSep1.Name = "pnlActionSep1";
-            this.pnlActionSep1.Size = new System.Drawing.Size(1255, 2);
-            this.pnlActionSep1.TabIndex = 1;
-            // 
-            // pnlUpdateInfo
-            // 
-            this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.pnlUpdateInfo.Controls.Add(this.lblUpdateStatus);
-            this.pnlUpdateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
-            this.pnlUpdateInfo.Location = new System.Drawing.Point(584, 47);
-            this.pnlUpdateInfo.Name = "pnlUpdateInfo";
-            this.pnlUpdateInfo.Size = new System.Drawing.Size(479, 35);
-            this.pnlUpdateInfo.TabIndex = 27;
-            // 
             // btnManageGroups
             // 
             this.btnManageGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
@@ -515,7 +590,7 @@
             this.btnManageGroups.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
             this.btnManageGroups.Image = global::Check_Point_Manager.Properties.Resources.manage_25;
             this.btnManageGroups.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnManageGroups.Location = new System.Drawing.Point(623, 96);
+            this.btnManageGroups.Location = new System.Drawing.Point(623, 100);
             this.btnManageGroups.Name = "btnManageGroups";
             this.btnManageGroups.Size = new System.Drawing.Size(172, 37);
             this.btnManageGroups.TabIndex = 29;
@@ -527,14 +602,14 @@
             // 
             // btnExportFile
             // 
-            this.btnExportFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(126)))), ((int)(((byte)(201)))));
+            this.btnExportFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(220)))));
             this.btnExportFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExportFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportFile.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportFile.ForeColor = System.Drawing.Color.White;
             this.btnExportFile.Image = global::Check_Point_Manager.Properties.Resources.downloading_updates_25;
             this.btnExportFile.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExportFile.Location = new System.Drawing.Point(486, 96);
+            this.btnExportFile.Location = new System.Drawing.Point(486, 100);
             this.btnExportFile.Name = "btnExportFile";
             this.btnExportFile.Size = new System.Drawing.Size(123, 38);
             this.btnExportFile.TabIndex = 27;
@@ -546,7 +621,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(170)))), ((int)(((byte)(118)))));
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(199)))), ((int)(((byte)(69)))));
             this.btnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -581,6 +656,31 @@
             this.btnBrowseFile.UseVisualStyleBackColor = false;
             this.btnBrowseFile.Click += new System.EventHandler(this.btnBrowseFile_Click);
             // 
+            // pnlActionSep2
+            // 
+            this.pnlActionSep2.BackColor = System.Drawing.Color.LightGray;
+            this.pnlActionSep2.Location = new System.Drawing.Point(13, 88);
+            this.pnlActionSep2.Name = "pnlActionSep2";
+            this.pnlActionSep2.Size = new System.Drawing.Size(1255, 2);
+            this.pnlActionSep2.TabIndex = 2;
+            // 
+            // txbFilePath
+            // 
+            this.txbFilePath.Location = new System.Drawing.Point(96, 54);
+            this.txbFilePath.Name = "txbFilePath";
+            this.txbFilePath.Size = new System.Drawing.Size(246, 20);
+            this.txbFilePath.TabIndex = 19;
+            // 
+            // lblChooseFile
+            // 
+            this.lblChooseFile.AutoSize = true;
+            this.lblChooseFile.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChooseFile.Location = new System.Drawing.Point(10, 58);
+            this.lblChooseFile.Name = "lblChooseFile";
+            this.lblChooseFile.Size = new System.Drawing.Size(83, 14);
+            this.lblChooseFile.TabIndex = 18;
+            this.lblChooseFile.Text = "Choose File :";
+            // 
             // pcbUpdateStock
             // 
             this.pcbUpdateStock.Image = global::Check_Point_Manager.Properties.Resources.data_processing1;
@@ -591,95 +691,23 @@
             this.pcbUpdateStock.TabIndex = 4;
             this.pcbUpdateStock.TabStop = false;
             // 
-            // btnRemoveItems
+            // lblUpdateStock
             // 
-            this.btnRemoveItems.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.btnRemoveItems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRemoveItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveItems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveItems.ForeColor = System.Drawing.Color.Maroon;
-            this.btnRemoveItems.Image = global::Check_Point_Manager.Properties.Resources.hand_left_20;
-            this.btnRemoveItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveItems.Location = new System.Drawing.Point(467, 9);
-            this.btnRemoveItems.Name = "btnRemoveItems";
-            this.btnRemoveItems.Size = new System.Drawing.Size(167, 31);
-            this.btnRemoveItems.TabIndex = 27;
-            this.btnRemoveItems.Text = "Remove From Group";
-            this.btnRemoveItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemoveItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRemoveItems.UseVisualStyleBackColor = false;
-            this.btnRemoveItems.Click += new System.EventHandler(this.btnRemoveItems_Click);
+            this.lblUpdateStock.AutoSize = true;
+            this.lblUpdateStock.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateStock.Location = new System.Drawing.Point(44, 11);
+            this.lblUpdateStock.Name = "lblUpdateStock";
+            this.lblUpdateStock.Size = new System.Drawing.Size(102, 20);
+            this.lblUpdateStock.TabIndex = 3;
+            this.lblUpdateStock.Text = "Update Stock";
             // 
-            // pcbGroupsBackground
+            // pnlActionSep1
             // 
-            this.pcbGroupsBackground.Enabled = false;
-            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.Logo__2_;
-            this.pcbGroupsBackground.Location = new System.Drawing.Point(16, 116);
-            this.pcbGroupsBackground.Name = "pcbGroupsBackground";
-            this.pcbGroupsBackground.Size = new System.Drawing.Size(604, 373);
-            this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbGroupsBackground.TabIndex = 27;
-            this.pcbGroupsBackground.TabStop = false;
-            this.pcbGroupsBackground.Paint += new System.Windows.Forms.PaintEventHandler(this.pcbGroupsBackground_Paint);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Check_Point_Manager.Properties.Resources.add1;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 79);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 21);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 22;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pcbGroupsList
-            // 
-            this.pcbGroupsList.Image = global::Check_Point_Manager.Properties.Resources.article;
-            this.pcbGroupsList.Location = new System.Drawing.Point(16, 18);
-            this.pcbGroupsList.Name = "pcbGroupsList";
-            this.pcbGroupsList.Size = new System.Drawing.Size(29, 21);
-            this.pcbGroupsList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbGroupsList.TabIndex = 4;
-            this.pcbGroupsList.TabStop = false;
-            // 
-            // btnAddToGroup
-            // 
-            this.btnAddToGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
-            this.btnAddToGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddToGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddToGroup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
-            this.btnAddToGroup.Image = global::Check_Point_Manager.Properties.Resources.hand_right_20;
-            this.btnAddToGroup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddToGroup.Location = new System.Drawing.Point(512, 9);
-            this.btnAddToGroup.Name = "btnAddToGroup";
-            this.btnAddToGroup.Size = new System.Drawing.Size(124, 31);
-            this.btnAddToGroup.TabIndex = 26;
-            this.btnAddToGroup.Text = "Add To Group";
-            this.btnAddToGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddToGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnAddToGroup.UseVisualStyleBackColor = false;
-            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
-            // 
-            // pcbSelectAll
-            // 
-            this.pcbSelectAll.Image = global::Check_Point_Manager.Properties.Resources.add1;
-            this.pcbSelectAll.Location = new System.Drawing.Point(18, 79);
-            this.pcbSelectAll.Name = "pcbSelectAll";
-            this.pcbSelectAll.Size = new System.Drawing.Size(25, 21);
-            this.pcbSelectAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbSelectAll.TabIndex = 21;
-            this.pcbSelectAll.TabStop = false;
-            // 
-            // pcbItemsList
-            // 
-            this.pcbItemsList.Image = global::Check_Point_Manager.Properties.Resources.touch;
-            this.pcbItemsList.Location = new System.Drawing.Point(18, 18);
-            this.pcbItemsList.Name = "pcbItemsList";
-            this.pcbItemsList.Size = new System.Drawing.Size(29, 21);
-            this.pcbItemsList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcbItemsList.TabIndex = 2;
-            this.pcbItemsList.TabStop = false;
+            this.pnlActionSep1.BackColor = System.Drawing.Color.LightGray;
+            this.pnlActionSep1.Location = new System.Drawing.Point(13, 39);
+            this.pnlActionSep1.Name = "pnlActionSep1";
+            this.pnlActionSep1.Size = new System.Drawing.Size(1255, 2);
+            this.pnlActionSep1.TabIndex = 1;
             // 
             // pcbIcon
             // 
@@ -692,36 +720,12 @@
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
             // 
-            // btnExit
-            // 
-            this.btnExit.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_exit_60;
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Location = new System.Drawing.Point(1277, 5);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(25, 24);
-            this.btnExit.TabIndex = 3;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_minimize_90;
-            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Location = new System.Drawing.Point(1246, 5);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(25, 24);
-            this.btnMinimize.TabIndex = 2;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
             // frmMainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.ClientSize = new System.Drawing.Size(1305, 725);
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.ClientSize = new System.Drawing.Size(1305, 745);
             this.Controls.Add(this.pnlAction);
             this.Controls.Add(this.pnlGroupsList);
             this.Controls.Add(this.pnlItemsList);
@@ -739,19 +743,19 @@
             this.pnlItemsList.ResumeLayout(false);
             this.pnlItemsList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSelectAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbItemsList)).EndInit();
             this.pnlGroupsList.ResumeLayout(false);
             this.pnlGroupsList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroupItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).EndInit();
             this.pnlAction.ResumeLayout(false);
             this.pnlAction.PerformLayout();
             this.pnlUpdateInfo.ResumeLayout(false);
             this.pnlUpdateInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsBackground)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbSelectAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbItemsList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.ResumeLayout(false);
 

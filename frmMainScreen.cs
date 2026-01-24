@@ -626,6 +626,10 @@ namespace Check_Point_Manager
                     ws.Style.Font.FontName = "Segoe UI";
                     ws.Style.Font.FontSize = 10;
 
+                    ws.Column(3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    ws.Column(4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    ws.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
                     // حفظ الملف
                     SaveFileDialog sfd = new SaveFileDialog
                     {
