@@ -186,6 +186,7 @@
     <Resource Include="Resources\icons8-clipboard-writing-48.png" />
     <None Include="Resources\icons8-open-folder-25.png" />
     <None Include="Resources\icons8-open-folder-32.png" />
+    <Resource Include="Resources\SelectAllIcon.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -34,6 +34,8 @@ namespace Check_Point_Manager
         private DataTable _dtSelectedGroupItems;
         private bool _IsAllItemsRowsSelected = false;
         private bool _IsAllGroupRowSelect = false;
+        private bool _IsItemsTableHeaderChecked = false;
+        private bool _IsGroupTableHeaderChecked = false;
         private int _NewlyAddedItemsCount = 0;
 
         public frmMainScreen()
@@ -114,7 +116,7 @@ namespace Check_Point_Manager
 
             if (dgvAllStockList.Rows.Count > 0)
             {
-                dgvAllStockList.Columns["Selected"].HeaderText = "Sel";
+                dgvAllStockList.Columns["Selected"].HeaderText = "";
                 dgvAllStockList.Columns["Selected"].Width = 30;
 
                 dgvAllStockList.Columns["ItemCode"].HeaderText = "Code";
@@ -154,7 +156,7 @@ namespace Check_Point_Manager
 
             if (dgvGroupItems.Rows.Count > 0)
             {
-                dgvGroupItems.Columns["Selected"].HeaderText = "Sel";
+                dgvGroupItems.Columns["Selected"].HeaderText = "";
                 dgvGroupItems.Columns["Selected"].Width = 30;
 
                 dgvGroupItems.Columns["ItemCode"].HeaderText = "Code";
@@ -305,6 +307,16 @@ namespace Check_Point_Manager
             if (dgvGroupItems.DataSource is DataTable dt)
                 _ApplyFilter(dt, cmbGroupsFilterBy, txbGroupsFilterValue);
         }
+        private void txbFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cmbItemsFilterBy.Text == "Item Code")
+                e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
+        }
+        private void txbGroupsFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cmbGroupsFilterBy.Text == "Item Code")
+                e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
+        }
         private void cmbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool needsText =
@@ -334,17 +346,7 @@ namespace Check_Point_Manager
 
             if (ChoosenGroup != null)
                 _LoadSelectedGroupItems(ChoosenGroup.GroupID);
-        }
-        private void txbFilterValue_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (cmbItemsFilterBy.Text == "Item Code")
-                e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
-        }
-        private void txbGroupsFilterValue_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (cmbGroupsFilterBy.Text == "Item Code")
-                e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
-        }
+        } 
         private void cmbGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_IsLoadingGrous)
@@ -744,6 +746,73 @@ namespace Check_Point_Manager
             _LoadSelectedGroupItems(GroupID);
             _LoadItemsTable();
         }
+        private void dgvAllStockList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvAllStockList.Columns[e.ColumnIndex].Name == "GroupName" && e.Value != null)
+            {
+                string GroupName = e.Value.ToString();
+
+                if (GroupName == "Not Assigned")
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Blue;
+                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                }
+            }
+        }
+        private void dgv_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var DGV = (DataGridView)sender;
+
+            if (DGV.Columns[e.ColumnIndex].Name == "Selected")
+            {
+                bool IsChecked = DGV.Columns[e.ColumnIndex].Tag == null ? false :
+                    (bool)DGV.Columns[e.ColumnIndex].Tag;
+
+                IsChecked = !IsChecked;
+                DGV.Columns[e.ColumnIndex].Tag = IsChecked;
+
+                foreach (DataGridViewRow Row in DGV.Rows)
+                {
+                    Row.Cells["SElected"].Value = IsChecked;
+                }
+
+                DGV.EndEdit();
+
+                DGV.Invalidate();
+            }
+        }
+        private void dgv_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+
+           
+            if (e.RowIndex == -1 && dgv.Columns[e.ColumnIndex].Name == "Selected")
+            {
+                
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+             
+                Bitmap icon = Properties.Resources.SelectAllIcon;
+
+                if (icon != null)
+                {
+               
+                    int iconSize = 18;
+                    int x = e.CellBounds.X + (e.CellBounds.Width - iconSize) / 2;
+                    int y = e.CellBounds.Y + (e.CellBounds.Height - iconSize) / 2;
+
+                    
+                    e.Graphics.DrawImage(icon, new Rectangle(x, y, iconSize, iconSize));
+                }
+
+                e.Handled = true;
+            }
+        }
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow Row in dgvAllStockList.Rows)
@@ -769,24 +838,6 @@ namespace Check_Point_Manager
             _IsAllGroupRowSelect = !_IsAllGroupRowSelect;
 
             btnGroupsSelectAll.Text = _IsAllGroupRowSelect ? "Deselect All" : "Select All";
-        }
-        private void dgvAllStockList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgvAllStockList.Columns[e.ColumnIndex].Name == "GroupName" && e.Value != null)
-            {
-                string GroupName = e.Value.ToString();
-
-                if (GroupName == "Not Assigned")
-                {
-                    e.CellStyle.ForeColor = Color.Red;
-                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
-                }
-                else
-                {
-                    e.CellStyle.ForeColor = Color.Blue;
-                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-                }
-            }
         }
     }
 }
