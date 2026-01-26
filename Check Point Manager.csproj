@@ -186,7 +186,16 @@
     <Resource Include="Resources\icons8-clipboard-writing-48.png" />
     <None Include="Resources\icons8-open-folder-25.png" />
     <None Include="Resources\icons8-open-folder-32.png" />
+    <Resource Include="Resources\left-arrow-60.png" />
+    <Resource Include="Resources\right-arrow-60.png" />
     <Resource Include="Resources\SelectAllIcon.png" />
+    <Resource Include="Resources\Left-Arrow-40.png" />
+    <Resource Include="Resources\Right-Arrow-40.png" />
+    <Resource Include="Resources\update-40.png" />
+    <Resource Include="Resources\update-30.png" />
+    <Resource Include="Resources\update-25.png" />
+    <Resource Include="Resources\arrow-Left-25.png" />
+    <Resource Include="Resources\arrow-Right-25.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -62,13 +62,16 @@ namespace Check_Point_Manager
         private void _AddVisualStyleToTable(DataGridView dgv)
         {
             dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(219, 220, 218);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             dgv.ColumnHeadersDefaultCellStyle.Font =
                 new Font("Segoe UI", 10, FontStyle.Bold);
 
+
             dgv.RowsDefaultCellStyle.BackColor = Color.White;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(241,240,241);
+
+
         }
         private void _FillGroupsComboBox()
         {
@@ -177,6 +180,7 @@ namespace Check_Point_Manager
 
             }
 
+            txbGroupsFilterValue_TextChanged(null, null);
             lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
         }
         private string _SelectExcelFile()
@@ -464,7 +468,7 @@ namespace Check_Point_Manager
 
                 if (SelectedItems.Count == 0)
                 {
-                    MessageBox.Show("Please Select at Least One Item to Remove", "No Items", MessageBoxButtons.OK,
+                    MessageBox.Show("Please Select at Least One Item to Add", "No Items", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
                     return;
                 }
@@ -536,7 +540,7 @@ namespace Check_Point_Manager
 
                 int NumberOfItemsRemoved = clsItemGroup.RemoveItemsListFromGroup(SelectedItems, GroupID);
 
-                MessageBox.Show(NumberOfItemsRemoved + " Items Added Successfully To Group", "Success",
+                MessageBox.Show(NumberOfItemsRemoved + " Items Removed Successfully From Group", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 _LoadSelectedGroupItems(GroupID);
@@ -778,7 +782,7 @@ namespace Check_Point_Manager
 
                 foreach (DataGridViewRow Row in DGV.Rows)
                 {
-                    Row.Cells["SElected"].Value = IsChecked;
+                    Row.Cells["Selected"].Value = IsChecked;
                 }
 
                 DGV.EndEdit();
@@ -793,10 +797,14 @@ namespace Check_Point_Manager
            
             if (e.RowIndex == -1 && dgv.Columns[e.ColumnIndex].Name == "Selected")
             {
-                
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-             
+                using (Brush b = new SolidBrush(dgv.ColumnHeadersDefaultCellStyle.BackColor))
+                {
+                    e.Graphics.FillRectangle(b, e.CellBounds);
+                }
+
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
+
                 Bitmap icon = Properties.Resources.SelectAllIcon;
 
                 if (icon != null)
