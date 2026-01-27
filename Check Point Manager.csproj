@@ -196,6 +196,7 @@
     <Resource Include="Resources\update-25.png" />
     <Resource Include="Resources\arrow-Left-25.png" />
     <Resource Include="Resources\arrow-Right-25.png" />
+    <Resource Include="Resources\search_icon.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

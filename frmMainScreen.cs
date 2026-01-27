@@ -847,5 +847,15 @@ namespace Check_Point_Manager
 
             btnGroupsSelectAll.Text = _IsAllGroupRowSelect ? "Deselect All" : "Select All";
         }
+        private void frmMainScreen_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+                btnAddToGroup.PerformClick();
+            else if (e.KeyCode == Keys.F3)
+                btnRemoveItems.PerformClick();
+        }
+       
+
+
     }
 }
