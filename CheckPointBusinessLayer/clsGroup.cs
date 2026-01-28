@@ -16,20 +16,23 @@ namespace CheckPointBusinessLayer
         public int GroupID {  get; set; }
         public int GroupNumber {  get; set; }
         public string GroupName { get; set; }
+        public int CkeckCounter { get; set; }
 
         public clsGroup()
         {
             this.GroupID = -1;
             this.GroupNumber = -1;
             this.GroupName = "";
+            this.CkeckCounter = 0;
 
             Mode = enMode.AddNew;
         }
-        private clsGroup(int GroupID, int GroupNumber, string GroupName)
+        private clsGroup(int GroupID, int GroupNumber, string GroupName, int CheckCounter)
         {
             this.GroupID = GroupID;
             this.GroupNumber = GroupNumber;
             this.GroupName = GroupName;
+            this.CkeckCounter = CheckCounter;
 
             Mode = enMode.Update;
         }
@@ -41,9 +44,10 @@ namespace CheckPointBusinessLayer
         {
             int GroupNumber = -1;
             string GroupName = "";
+            int CheckCounter = 0;
 
-            if (clsGroupData.GetGroupByID(GroupID, ref GroupNumber, ref GroupName))
-                return new clsGroup(GroupID, GroupNumber, GroupName);
+            if (clsGroupData.GetGroupByID(GroupID, ref GroupNumber, ref GroupName, ref CheckCounter))
+                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter);
             else
                 return null;
         }
@@ -51,9 +55,10 @@ namespace CheckPointBusinessLayer
         {
             int GroupID = -1;
             string GroupName = "";
+            int CheckCounter = 0;
 
-            if (clsGroupData.GetGroupByNumber(GroupNumber, ref GroupID, ref GroupName))
-                return new clsGroup(GroupID, GroupNumber, GroupName);
+            if (clsGroupData.GetGroupByNumber(GroupNumber, ref GroupID, ref GroupName, ref CheckCounter))
+                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter);
             else
                 return null;
         }
@@ -61,21 +66,22 @@ namespace CheckPointBusinessLayer
         {
             int GroupID = -1;
             int GroupNumber = -1;
+            int CheckCounter = 0;
 
-            if (clsGroupData.GetGroupByName(GroupName, ref GroupID, ref GroupNumber))
-                return new clsGroup(GroupID, GroupNumber, GroupName);
+            if (clsGroupData.GetGroupByName(GroupName, ref GroupID, ref GroupNumber, ref CheckCounter))
+                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter);
             else
                 return null;
         }
         private bool _AddNew()
         {
-            this.GroupID = clsGroupData.AddNewGroup(this.GroupNumber, this.GroupName);
+            this.GroupID = clsGroupData.AddNewGroup(this.GroupNumber, this.GroupName, this.CkeckCounter);
 
             return this.GroupID != -1;
         }
         private bool _Update()
         {
-            return clsGroupData.UpdateGroup(this.GroupID, this.GroupNumber, this.GroupName);
+            return clsGroupData.UpdateGroup(this.GroupID, this.GroupNumber, this.GroupName, this.CkeckCounter);
         }
         public bool Save()
         {
@@ -114,6 +120,18 @@ namespace CheckPointBusinessLayer
         {
             int LastGroupNumber = clsGroupData.GetLastGroupNumber();
             return (LastGroupNumber > 0) ? LastGroupNumber +1 : 1;
+        }
+        public bool CounterPlus()
+        {
+            return clsGroupData.CounterPlus(this.GroupID);
+        }
+        public bool CounterMinus()
+        {
+            return clsGroupData.CounterMinus(this.GroupID);
+        }
+        public bool CounterReset()
+        {
+            return clsGroupData.CounterReset(this.GroupID);
         }
     }
 }

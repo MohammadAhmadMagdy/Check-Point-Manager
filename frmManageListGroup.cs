@@ -48,7 +48,10 @@ namespace Check_Point_Manager
                 dgvListGroups.Columns[1].Width = 100;
 
                 dgvListGroups.Columns[2].HeaderText = "Group Name";
-                dgvListGroups.Columns[2].Width = 630;
+                dgvListGroups.Columns[2].Width = 570;
+
+                dgvListGroups.Columns[3].HeaderText = "Check Counter";
+                dgvListGroups.Columns[3].Width = 130;
             }
 
             lblNumberOfGroups.Text = dgvListGroups.RowCount.ToString();
@@ -113,6 +116,87 @@ namespace Check_Point_Manager
             }
 
             frmManageListGroup_Load(null, null);
+        }
+
+        private void btnCounterPlus_Click(object sender, EventArgs e)
+        {
+            int GroupID = Convert.ToInt32(dgvListGroups.CurrentRow.Cells[0].Value);
+
+            clsGroup Group = clsGroup.FindByID(GroupID);
+
+            if(Group == null)
+            {
+                MessageBox.Show("Error , Group Not Found !", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if(Group.CounterPlus())
+            {
+                MessageBox.Show("Counter Updated", "Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                frmManageListGroup_Load(null, null);
+            }
+            else
+            {
+                MessageBox.Show("Error While Updating Counter!", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCounterMinus_Click(object sender, EventArgs e)
+        {
+            int GroupID = Convert.ToInt32(dgvListGroups.CurrentRow.Cells[0].Value);
+
+            clsGroup Group = clsGroup.FindByID(GroupID);
+
+            if (Group == null)
+            {
+                MessageBox.Show("Error , Group Not Found !", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (Group.CounterMinus())
+            {
+                MessageBox.Show("Counter Updated", "Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                frmManageListGroup_Load(null, null);
+            }
+            else
+            {
+                MessageBox.Show("Error While Updating Counter!", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int GroupID = Convert.ToInt32(dgvListGroups.CurrentRow.Cells[0].Value);
+
+            clsGroup Group = clsGroup.FindByID(GroupID);
+
+            if (Group == null)
+            {
+                MessageBox.Show("Error , Group Not Found !", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (Group.CounterReset())
+            {
+                MessageBox.Show("Counter Reset Successfully", "Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                frmManageListGroup_Load(null, null);
+            }
+            else
+            {
+                MessageBox.Show("Error While Updating Counter!", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

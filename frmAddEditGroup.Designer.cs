@@ -48,10 +48,16 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblCancel = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblCounterTitle = new System.Windows.Forms.Label();
+            this.pcbCounter = new System.Windows.Forms.PictureBox();
+            this.txbCounter = new System.Windows.Forms.TextBox();
+            this.lblNewCounter = new System.Windows.Forms.Label();
+            this.lblNewCounterTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGpNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCounter)).BeginInit();
             this.SuspendLayout();
             // 
             // txbGroupNumber
@@ -78,7 +84,7 @@
             // 
             this.lblEnterGroupName.AutoSize = true;
             this.lblEnterGroupName.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnterGroupName.Location = new System.Drawing.Point(15, 150);
+            this.lblEnterGroupName.Location = new System.Drawing.Point(32, 155);
             this.lblEnterGroupName.Name = "lblEnterGroupName";
             this.lblEnterGroupName.Size = new System.Drawing.Size(115, 21);
             this.lblEnterGroupName.TabIndex = 3;
@@ -87,7 +93,7 @@
             // txbGroupName
             // 
             this.txbGroupName.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold);
-            this.txbGroupName.Location = new System.Drawing.Point(196, 147);
+            this.txbGroupName.Location = new System.Drawing.Point(196, 152);
             this.txbGroupName.Name = "txbGroupName";
             this.txbGroupName.Size = new System.Drawing.Size(746, 28);
             this.txbGroupName.TabIndex = 2;
@@ -163,7 +169,7 @@
             // 
             this.lblSave.AutoSize = true;
             this.lblSave.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSave.Location = new System.Drawing.Point(914, 388);
+            this.lblSave.Location = new System.Drawing.Point(914, 444);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(50, 21);
             this.lblSave.TabIndex = 14;
@@ -171,6 +177,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblNewCounter);
+            this.groupBox1.Controls.Add(this.lblNewCounterTitle);
             this.groupBox1.Controls.Add(this.lblNewGpName);
             this.groupBox1.Controls.Add(this.lblNewGroupIDTitle);
             this.groupBox1.Controls.Add(this.lblNewGroupNumberTitle);
@@ -178,9 +186,9 @@
             this.groupBox1.Controls.Add(this.lblNewGpID);
             this.groupBox1.Controls.Add(this.lblNewGpNumber);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(20, 201);
+            this.groupBox1.Location = new System.Drawing.Point(20, 247);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(944, 138);
+            this.groupBox1.Size = new System.Drawing.Size(944, 176);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Group Info";
@@ -188,7 +196,7 @@
             // pcbGroupName
             // 
             this.pcbGroupName.Image = global::Check_Point_Manager.Properties.Resources.article;
-            this.pcbGroupName.Location = new System.Drawing.Point(158, 147);
+            this.pcbGroupName.Location = new System.Drawing.Point(158, 152);
             this.pcbGroupName.Name = "pcbGroupName";
             this.pcbGroupName.Size = new System.Drawing.Size(32, 28);
             this.pcbGroupName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -197,7 +205,7 @@
             // 
             // pcbGpNumber
             // 
-            this.pcbGpNumber.Image = global::Check_Point_Manager.Properties.Resources.counter;
+            this.pcbGpNumber.Image = global::Check_Point_Manager.Properties.Resources.items_32;
             this.pcbGpNumber.Location = new System.Drawing.Point(158, 116);
             this.pcbGpNumber.Name = "pcbGpNumber";
             this.pcbGpNumber.Size = new System.Drawing.Size(32, 28);
@@ -210,12 +218,13 @@
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
             this.btnCancel.BackgroundImage = global::Check_Point_Manager.Properties.Resources.remove;
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(835, 345);
+            this.btnCancel.Location = new System.Drawing.Point(835, 471);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(57, 40);
             this.btnCancel.TabIndex = 18;
@@ -232,7 +241,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSave.Location = new System.Drawing.Point(918, 345);
+            this.btnSave.Location = new System.Drawing.Point(918, 471);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(46, 40);
             this.btnSave.TabIndex = 17;
@@ -243,7 +252,7 @@
             // 
             this.lblCancel.AutoSize = true;
             this.lblCancel.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancel.Location = new System.Drawing.Point(831, 388);
+            this.lblCancel.Location = new System.Drawing.Point(831, 444);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(61, 21);
             this.lblCancel.TabIndex = 19;
@@ -253,6 +262,54 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // lblCounterTitle
+            // 
+            this.lblCounterTitle.AutoSize = true;
+            this.lblCounterTitle.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCounterTitle.Location = new System.Drawing.Point(40, 191);
+            this.lblCounterTitle.Name = "lblCounterTitle";
+            this.lblCounterTitle.Size = new System.Drawing.Size(107, 21);
+            this.lblCounterTitle.TabIndex = 20;
+            this.lblCounterTitle.Text = "Set Counter :";
+            // 
+            // pcbCounter
+            // 
+            this.pcbCounter.Image = global::Check_Point_Manager.Properties.Resources.counter;
+            this.pcbCounter.Location = new System.Drawing.Point(158, 188);
+            this.pcbCounter.Name = "pcbCounter";
+            this.pcbCounter.Size = new System.Drawing.Size(32, 28);
+            this.pcbCounter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbCounter.TabIndex = 21;
+            this.pcbCounter.TabStop = false;
+            // 
+            // txbCounter
+            // 
+            this.txbCounter.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold);
+            this.txbCounter.Location = new System.Drawing.Point(196, 188);
+            this.txbCounter.Name = "txbCounter";
+            this.txbCounter.Size = new System.Drawing.Size(170, 28);
+            this.txbCounter.TabIndex = 22;
+            this.txbCounter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCounter_KeyPress);
+            this.txbCounter.Validating += new System.ComponentModel.CancelEventHandler(this.txbCounter_Validating);
+            // 
+            // lblNewCounter
+            // 
+            this.lblNewCounter.AutoSize = true;
+            this.lblNewCounter.Location = new System.Drawing.Point(187, 136);
+            this.lblNewCounter.Name = "lblNewCounter";
+            this.lblNewCounter.Size = new System.Drawing.Size(43, 21);
+            this.lblNewCounter.TabIndex = 11;
+            this.lblNewCounter.Text = "[???]";
+            // 
+            // lblNewCounterTitle
+            // 
+            this.lblNewCounterTitle.AutoSize = true;
+            this.lblNewCounterTitle.Location = new System.Drawing.Point(6, 136);
+            this.lblNewCounterTitle.Name = "lblNewCounterTitle";
+            this.lblNewCounterTitle.Size = new System.Drawing.Size(130, 21);
+            this.lblNewCounterTitle.TabIndex = 10;
+            this.lblNewCounterTitle.Text = "Group Counter :";
+            // 
             // frmAddEditGroup
             // 
             this.AcceptButton = this.btnSave;
@@ -261,7 +318,10 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(976, 415);
+            this.ClientSize = new System.Drawing.Size(976, 523);
+            this.Controls.Add(this.txbCounter);
+            this.Controls.Add(this.pcbCounter);
+            this.Controls.Add(this.lblCounterTitle);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -284,6 +344,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGpNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCounter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,5 +371,10 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblCancel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.PictureBox pcbCounter;
+        private System.Windows.Forms.Label lblCounterTitle;
+        private System.Windows.Forms.Label lblNewCounter;
+        private System.Windows.Forms.Label lblNewCounterTitle;
+        private System.Windows.Forms.TextBox txbCounter;
     }
 }

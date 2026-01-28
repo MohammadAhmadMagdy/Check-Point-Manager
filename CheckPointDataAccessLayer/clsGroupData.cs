@@ -29,7 +29,7 @@ namespace CheckPointDataAccessLayer
 
             return dt;
         }
-        public static bool GetGroupByID(int GroupID, ref int GroupNumber, ref string GroupName)
+        public static bool GetGroupByID(int GroupID, ref int GroupNumber, ref string GroupName, ref int CheckCounter)
         {
             bool IsFound = false;
 
@@ -48,13 +48,14 @@ namespace CheckPointDataAccessLayer
 
                         GroupName = Reader["GroupName"].ToString();
                         GroupNumber = Convert.ToInt32(Reader["GroupNumber"]);
+                        CheckCounter = Convert.ToInt32(Reader["CheckCounter"]);
                     }
                 }
             }
 
             return IsFound;
         }
-        public static bool GetGroupByNumber(int GroupNumber, ref int GroupID, ref string GroupName)
+        public static bool GetGroupByNumber(int GroupNumber, ref int GroupID, ref string GroupName, ref int CheckCounter)
         {
             bool IsFound = false;
 
@@ -73,13 +74,14 @@ namespace CheckPointDataAccessLayer
 
                         GroupName = Reader["GroupName"].ToString();
                         GroupID = Convert.ToInt32(Reader["GroupID"]);
+                        CheckCounter = Convert.ToInt32(Reader["CheckCounter"]);
                     }
                 }
             }
 
             return IsFound;
         }
-        public static bool GetGroupByName(string GroupName, ref int GroupID, ref int GroupNumber)
+        public static bool GetGroupByName(string GroupName, ref int GroupID, ref int GroupNumber, ref int CheckCounter)
         {
             bool IsFound = false;
 
@@ -98,20 +100,21 @@ namespace CheckPointDataAccessLayer
 
                         GroupID = Convert.ToInt32(Reader["GroupID"]);
                         GroupNumber = Convert.ToInt32(Reader["GroupNumber"]);
+                        CheckCounter = Convert.ToInt32(Reader["CheckCounter"]);
                     }
                 }
             }
 
             return IsFound;
         }
-        public static int AddNewGroup(int GroupNumber, string GroupName)
+        public static int AddNewGroup(int GroupNumber, string GroupName, int CheckCounter)
         {
             try
             {
                 int GroupID = -1;
 
-                string Query = @"INSERT INTO Groups (GroupNumber, GroupName)
-                             VALUES (@GroupNumber, @GroupName);
+                string Query = @"INSERT INTO Groups (GroupNumber, GroupName, CkeckCounter)
+                             VALUES (@GroupNumber, @GroupName, @CheckCounter);
                              SELECT last_insert_rowid();";
 
                 using (var Connection = clsDataAccessSettings.GetConnection())
@@ -119,6 +122,7 @@ namespace CheckPointDataAccessLayer
                 {
                     Command.Parameters.AddWithValue("@GroupNumber", GroupNumber);
                     Command.Parameters.AddWithValue("@GroupName", GroupName);
+                    Command.Parameters.AddWithValue("@CheckCounter", CheckCounter);
 
                     var Result = Command.ExecuteScalar();
 
@@ -135,13 +139,14 @@ namespace CheckPointDataAccessLayer
                 return -1;
             }
         }
-        public static bool UpdateGroup(int GroupID, int GroupNumber, string GroupName)
+        public static bool UpdateGroup(int GroupID, int GroupNumber, string GroupName, int CheckCounter)
         {
             try
             {
                 int AffectedRows = 0;
 
-                string Query = @"UPDATE Groups SET GroupNumber = @GroupNumber , GroupName = @GroupName 
+                string Query = @"UPDATE Groups SET GroupNumber = @GroupNumber , GroupName = @GroupName ,
+                                                   CheckCounter = @CheckCounter 
                              WHERE GroupID = @GroupID";
 
                 using (var Connection = clsDataAccessSettings.GetConnection())
@@ -150,6 +155,7 @@ namespace CheckPointDataAccessLayer
                     Command.Parameters.AddWithValue("@GroupID", GroupID);
                     Command.Parameters.AddWithValue("@GroupNumber", GroupNumber);
                     Command.Parameters.AddWithValue("@GroupName", GroupName);
+                    Command.Parameters.AddWithValue("@CheckCounter", CheckCounter);
 
                     AffectedRows = Command.ExecuteNonQuery();
                 }
@@ -222,7 +228,7 @@ namespace CheckPointDataAccessLayer
             string Query = @"SELECT GroupNumber
                              FROM Groups
                              ORDER by GroupNumber DESC
-                             LIMIT 1;";
+                             LIMIT 1 OFFSET 1;";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query,Connection))
@@ -240,6 +246,87 @@ namespace CheckPointDataAccessLayer
             }
 
             return GroupNumber;
+        }
+        public static bool CounterPlus(int GroupID)
+        {
+            try
+            {
+                int RowsAffected = 0;
+
+                string Query = @"UPDATE Groups
+                                   SET CheckCounter = CheckCounter + 1 
+                                   WHERE GroupID = @GroupID;";
+
+                using (var Connection = clsDataAccessSettings.GetConnection())
+                {
+                    using (var Command = new SQLiteCommand(Query, Connection))
+                    {
+                        Command.Parameters.AddWithValue("@GroupID", GroupID);
+
+                        RowsAffected = Command.ExecuteNonQuery();
+                    }
+                }
+
+                return RowsAffected > 0;
+            }
+            catch (SQLiteException ex) when (ex.ResultCode == SQLiteErrorCode.Constraint)
+            {
+                return false;
+            }
+        }
+        public static bool CounterMinus(int GroupID)
+        {
+            try
+            {
+                int RowsAffected = 0;
+
+                string Query = @"UPDATE Groups
+                                   SET CheckCounter = CheckCounter - 1 
+                                   WHERE GroupID = @GroupID;";
+
+                using (var Connection = clsDataAccessSettings.GetConnection())
+                {
+                    using (var Command = new SQLiteCommand(Query, Connection))
+                    {
+                        Command.Parameters.AddWithValue("@GroupID", GroupID);
+
+                        RowsAffected = Command.ExecuteNonQuery();
+                    }
+                }
+
+                return RowsAffected > 0;
+            }
+            catch (SQLiteException ex) when (ex.ResultCode == SQLiteErrorCode.Constraint)
+            {
+                return false;
+            }
+        }
+        public static bool CounterReset(int GroupID)
+        {
+            try
+            {
+                int RowsAffected = 0;
+
+                string Query = @"UPDATE Groups
+                                   SET CheckCounter = 0  
+                                   WHERE GroupID = @GroupID;";
+
+                using (var Connection = clsDataAccessSettings.GetConnection())
+                {
+                    using (var Command = new SQLiteCommand(Query, Connection))
+                    {
+                        Command.Parameters.AddWithValue("@GroupID", GroupID);
+
+                        RowsAffected = Command.ExecuteNonQuery();
+                    }
+                }
+
+                return RowsAffected > 0;
+            }
+            catch (SQLiteException ex) when (ex.ResultCode == SQLiteErrorCode.Constraint)
+            {
+                return false;
+            }
         }
 
     }

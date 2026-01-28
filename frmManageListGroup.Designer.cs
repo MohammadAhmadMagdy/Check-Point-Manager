@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvListGroups = new System.Windows.Forms.DataGridView();
             this.lblAddNew = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
@@ -39,7 +39,12 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblNumberOfGroupsTitle = new System.Windows.Forms.Label();
             this.lblNumberOfGroups = new System.Windows.Forms.Label();
+            this.gbxCounter = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCounterMinus = new System.Windows.Forms.Button();
+            this.btnCounterPlus = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListGroups)).BeginInit();
+            this.gbxCounter.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvListGroups
@@ -49,20 +54,20 @@
             this.dgvListGroups.AllowUserToOrderColumns = true;
             this.dgvListGroups.BackgroundColor = System.Drawing.Color.White;
             this.dgvListGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSalmon;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListGroups.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSalmon;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListGroups.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvListGroups.Location = new System.Drawing.Point(12, 81);
             this.dgvListGroups.Name = "dgvListGroups";
             this.dgvListGroups.ReadOnly = true;
             this.dgvListGroups.RowHeadersVisible = false;
             this.dgvListGroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListGroups.Size = new System.Drawing.Size(733, 560);
+            this.dgvListGroups.Size = new System.Drawing.Size(822, 605);
             this.dgvListGroups.TabIndex = 10;
             this.dgvListGroups.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvListGroups_MouseDown);
             // 
@@ -70,7 +75,7 @@
             // 
             this.lblAddNew.AutoSize = true;
             this.lblAddNew.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddNew.Location = new System.Drawing.Point(778, 158);
+            this.lblAddNew.Location = new System.Drawing.Point(863, 157);
             this.lblAddNew.Name = "lblAddNew";
             this.lblAddNew.Size = new System.Drawing.Size(64, 16);
             this.lblAddNew.TabIndex = 15;
@@ -80,7 +85,7 @@
             // 
             this.lblEdit.AutoSize = true;
             this.lblEdit.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEdit.Location = new System.Drawing.Point(787, 270);
+            this.lblEdit.Location = new System.Drawing.Point(876, 269);
             this.lblEdit.Name = "lblEdit";
             this.lblEdit.Size = new System.Drawing.Size(31, 16);
             this.lblEdit.TabIndex = 16;
@@ -90,7 +95,7 @@
             // 
             this.lblDelete.AutoSize = true;
             this.lblDelete.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDelete.Location = new System.Drawing.Point(778, 383);
+            this.lblDelete.Location = new System.Drawing.Point(871, 382);
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(49, 16);
             this.lblDelete.TabIndex = 17;
@@ -106,7 +111,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDelete.Location = new System.Drawing.Point(772, 307);
+            this.btnDelete.Location = new System.Drawing.Point(866, 307);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(73, 72);
             this.btnDelete.TabIndex = 14;
@@ -125,7 +130,7 @@
             this.btnEdit.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEdit.Location = new System.Drawing.Point(772, 195);
+            this.btnEdit.Location = new System.Drawing.Point(866, 194);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(73, 72);
             this.btnEdit.TabIndex = 13;
@@ -144,7 +149,7 @@
             this.btnAddNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNew.ForeColor = System.Drawing.Color.Black;
             this.btnAddNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAddNew.Location = new System.Drawing.Point(772, 83);
+            this.btnAddNew.Location = new System.Drawing.Point(866, 82);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(73, 72);
             this.btnAddNew.TabIndex = 12;
@@ -160,7 +165,7 @@
             this.lblTitle.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblTitle.Location = new System.Drawing.Point(10, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(753, 49);
+            this.lblTitle.Size = new System.Drawing.Size(940, 49);
             this.lblTitle.TabIndex = 18;
             this.lblTitle.Text = "Manage Check Point Groups";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -169,7 +174,7 @@
             // 
             this.lblNumberOfGroupsTitle.AutoSize = true;
             this.lblNumberOfGroupsTitle.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfGroupsTitle.Location = new System.Drawing.Point(9, 644);
+            this.lblNumberOfGroupsTitle.Location = new System.Drawing.Point(9, 689);
             this.lblNumberOfGroupsTitle.Name = "lblNumberOfGroupsTitle";
             this.lblNumberOfGroupsTitle.Size = new System.Drawing.Size(131, 16);
             this.lblNumberOfGroupsTitle.TabIndex = 19;
@@ -179,18 +184,89 @@
             // 
             this.lblNumberOfGroups.AutoSize = true;
             this.lblNumberOfGroups.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfGroups.Location = new System.Drawing.Point(146, 644);
+            this.lblNumberOfGroups.Location = new System.Drawing.Point(146, 689);
             this.lblNumberOfGroups.Name = "lblNumberOfGroups";
             this.lblNumberOfGroups.Size = new System.Drawing.Size(28, 16);
             this.lblNumberOfGroups.TabIndex = 20;
             this.lblNumberOfGroups.Text = "???";
+            // 
+            // gbxCounter
+            // 
+            this.gbxCounter.Controls.Add(this.button1);
+            this.gbxCounter.Controls.Add(this.btnCounterMinus);
+            this.gbxCounter.Controls.Add(this.btnCounterPlus);
+            this.gbxCounter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxCounter.Location = new System.Drawing.Point(845, 413);
+            this.gbxCounter.Name = "gbxCounter";
+            this.gbxCounter.Size = new System.Drawing.Size(105, 273);
+            this.gbxCounter.TabIndex = 21;
+            this.gbxCounter.TabStop = false;
+            this.gbxCounter.Text = "Counters";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = global::Check_Point_Manager.Properties.Resources.reset_20;
+            this.button1.Location = new System.Drawing.Point(16, 188);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(73, 72);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "Counter Rest";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnCounterMinus
+            // 
+            this.btnCounterMinus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnCounterMinus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCounterMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCounterMinus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCounterMinus.ForeColor = System.Drawing.Color.White;
+            this.btnCounterMinus.Image = global::Check_Point_Manager.Properties.Resources.minus_20;
+            this.btnCounterMinus.Location = new System.Drawing.Point(16, 109);
+            this.btnCounterMinus.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCounterMinus.Name = "btnCounterMinus";
+            this.btnCounterMinus.Size = new System.Drawing.Size(73, 72);
+            this.btnCounterMinus.TabIndex = 29;
+            this.btnCounterMinus.Text = "Counter Minus";
+            this.btnCounterMinus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCounterMinus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCounterMinus.UseVisualStyleBackColor = false;
+            this.btnCounterMinus.Click += new System.EventHandler(this.btnCounterMinus_Click);
+            // 
+            // btnCounterPlus
+            // 
+            this.btnCounterPlus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnCounterPlus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCounterPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCounterPlus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCounterPlus.ForeColor = System.Drawing.Color.White;
+            this.btnCounterPlus.Image = global::Check_Point_Manager.Properties.Resources.plus_20;
+            this.btnCounterPlus.Location = new System.Drawing.Point(16, 30);
+            this.btnCounterPlus.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCounterPlus.Name = "btnCounterPlus";
+            this.btnCounterPlus.Size = new System.Drawing.Size(73, 72);
+            this.btnCounterPlus.TabIndex = 28;
+            this.btnCounterPlus.Text = "Counter Plus";
+            this.btnCounterPlus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCounterPlus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCounterPlus.UseVisualStyleBackColor = false;
+            this.btnCounterPlus.Click += new System.EventHandler(this.btnCounterPlus_Click);
             // 
             // frmManageListGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(866, 679);
+            this.ClientSize = new System.Drawing.Size(962, 714);
+            this.Controls.Add(this.gbxCounter);
             this.Controls.Add(this.lblNumberOfGroups);
             this.Controls.Add(this.lblNumberOfGroupsTitle);
             this.Controls.Add(this.lblTitle);
@@ -207,6 +283,7 @@
             this.Text = "Manage Groups";
             this.Load += new System.EventHandler(this.frmManageListGroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListGroups)).EndInit();
+            this.gbxCounter.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +300,9 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblNumberOfGroupsTitle;
         private System.Windows.Forms.Label lblNumberOfGroups;
+        private System.Windows.Forms.GroupBox gbxCounter;
+        private System.Windows.Forms.Button btnCounterPlus;
+        private System.Windows.Forms.Button btnCounterMinus;
+        private System.Windows.Forms.Button button1;
     }
 }

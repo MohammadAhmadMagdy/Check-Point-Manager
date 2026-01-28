@@ -411,6 +411,16 @@ namespace Check_Point_Manager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Icon {
+            get {
+                object obj = ResourceManager.GetObject("Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icons8_clipboard_25 {
@@ -593,6 +603,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap items_32 {
+            get {
+                object obj = ResourceManager.GetObject("items_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap left_arrow_40 {
             get {
                 object obj = ResourceManager.GetObject("left_arrow_40", resourceCulture);
@@ -653,6 +673,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap minus_20 {
+            get {
+                object obj = ResourceManager.GetObject("minus_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap numbers_11072538 {
             get {
                 object obj = ResourceManager.GetObject("numbers_11072538", resourceCulture);
@@ -666,6 +696,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap office {
             get {
                 object obj = ResourceManager.GetObject("office", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus_20 {
+            get {
+                object obj = ResourceManager.GetObject("plus_20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -706,6 +746,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap remove_red_32 {
             get {
                 object obj = ResourceManager.GetObject("remove_red_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reset_20 {
+            get {
+                object obj = ResourceManager.GetObject("reset_20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

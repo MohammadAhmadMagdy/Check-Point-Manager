@@ -44,9 +44,11 @@ namespace Check_Point_Manager
 
             txbGroupNumber.Text = "";
             txbGroupNumber.Text = clsGroup.GenerateNextGroupNumber().ToString();
+            txbCounter.Text = "0";
             lblNewGpID.Text = "[???]";
             lblNewGpNumber.Text = "[???]";
             lblNewGpName.Text = "[???]";
+            lblNewCounter.Text = "[???];";
         }
         private void _LoadData()
         {
@@ -62,16 +64,13 @@ namespace Check_Point_Manager
 
             txbGroupNumber.Text = _Group.GroupNumber.ToString();
             txbGroupName.Text = _Group.GroupName;
+            txbCounter.Text = _Group.CkeckCounter.ToString();
             lblNewGpID.Text = _Group.GroupID.ToString();
             lblNewGpNumber.Text = _Group.GroupNumber.ToString();
             lblNewGpName.Text = _Group.GroupName;
+            lblNewCounter.Text = _Group.CkeckCounter.ToString();
         }
        
-        private void txbGroupNumber_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
-        }
-
         private void frmAddEditGroup_Load(object sender, EventArgs e)
         {
             _ResetDefaultValues();
@@ -93,10 +92,23 @@ namespace Check_Point_Manager
             }
 
             int GroupNumber = Convert.ToInt32(txbGroupNumber.Text.Trim());
+            
+            if(_Mode == enMode.AddNew || _Group.GroupNumber != GroupNumber)
+            {
+                if (clsGroup.DoesGroupNumberExist(GroupNumber))
+                {
+                    MessageBox.Show("Group Number Already Exists, Choose Another Number", "Not Allowed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+            }
+
             string GroupName = txbGroupName.Text.Trim();
+            int CheckCounter = Convert.ToInt32(txbCounter.Text.Trim());
 
             _Group.GroupName = GroupName;
             _Group.GroupNumber = GroupNumber;
+            _Group.CkeckCounter = CheckCounter;
 
             if (_Group.Save())
             {
@@ -108,6 +120,7 @@ namespace Check_Point_Manager
                     lblNewGpID.Text = _Group.GroupID.ToString();
                     lblNewGpName.Text = _Group.GroupName;
                     lblNewGpNumber.Text = _Group.GroupNumber.ToString();
+                    lblNewCounter.Text = _Group.CkeckCounter.ToString();
 
                     MessageBox.Show("Group Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -117,6 +130,7 @@ namespace Check_Point_Manager
                     lblNewGpID.Text = _Group.GroupID.ToString();
                     lblNewGpName.Text = _Group.GroupName;
                     lblNewGpNumber.Text = _Group.GroupNumber.ToString();
+                    lblNewCounter.Text = _Group.CkeckCounter.ToString();
 
                     MessageBox.Show("Group Info Updated Successfully", "Success", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -148,15 +162,19 @@ namespace Check_Point_Manager
                 errorProvider1.SetError(txbGroupNumber,null);
             }
 
-            if(clsGroup.DoesGroupNumberExist(Convert.ToInt32(txbGroupNumber.Text.Trim())))
+            if(_Mode == enMode.AddNew)
             {
-                e.Cancel = true;
-                errorProvider1.SetError(txbGroupNumber, "Group Number Already Exists, Choose Another Number");
+                if (clsGroup.DoesGroupNumberExist(Convert.ToInt32(txbGroupNumber.Text.Trim())))
+                {
+                    e.Cancel = true;
+                    errorProvider1.SetError(txbGroupNumber, "Group Number Already Exists, Choose Another Number");
+                }
+                else
+                {
+                    errorProvider1.SetError(txbGroupNumber, null);
+                }
             }
-            else
-            {
-                errorProvider1.SetError(txbGroupNumber, null);
-            }
+            
         }
 
         private void txbGroupName_Validating(object sender, CancelEventArgs e)
@@ -170,6 +188,28 @@ namespace Check_Point_Manager
             {
                 errorProvider1.SetError(txbGroupName, null);
             }
+        }
+
+        private void txbCounter_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbCounter.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txbCounter, "Counter Cann't Be Empty");
+            }
+            else
+            {
+                errorProvider1.SetError(txbCounter, null);
+            }
+        }
+
+        private void txbCounter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
+        }
+        private void txbGroupNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar);
         }
     }
 }

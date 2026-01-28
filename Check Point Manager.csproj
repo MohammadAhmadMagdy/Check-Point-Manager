@@ -197,6 +197,12 @@
     <Resource Include="Resources\arrow-Left-25.png" />
     <Resource Include="Resources\arrow-Right-25.png" />
     <Resource Include="Resources\search_icon.png" />
+    <Resource Include="Resources\Icon.ico" />
+    <Resource Include="Resources\items-32.png" />
+    <Resource Include="Resources\Counter_50.png" />
+    <Resource Include="Resources\plus-20.png" />
+    <Resource Include="Resources\minus-20.png" />
+    <Resource Include="Resources\reset-20.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

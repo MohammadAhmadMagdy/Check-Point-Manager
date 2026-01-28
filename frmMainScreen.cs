@@ -23,8 +23,19 @@ namespace Check_Point_Manager
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, string lParam);
+
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HTCAPTION = 0x2;
+
+        private const int EM_SETCUEBANNER = 0x1501;
+
+        private void _SetCueBanner(TextBox textBox, string cueText, bool showIcon)
+        {
+            SendMessage(textBox.Handle, EM_SETCUEBANNER, showIcon ? 1 : 0, cueText);
+        }
 
 
         private bool _IsLoadingGrous = false;
@@ -71,7 +82,7 @@ namespace Check_Point_Manager
             dgv.RowsDefaultCellStyle.BackColor = Color.White;
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(241,240,241);
 
-
+            dgv.Columns["Selected"].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
         private void _FillGroupsComboBox()
         {
@@ -84,6 +95,7 @@ namespace Check_Point_Manager
             Row["GroupName"] = "None";
             Row["GroupID"] = -1;
             Row["GroupNumber"] = -1;
+            Row["CheckCounter"] = 0;
 
             GroupsDT.Rows.InsertAt(Row, 0);
 
@@ -92,6 +104,7 @@ namespace Check_Point_Manager
             cmbGroups.ValueMember = "GroupID";
 
             cmbGroups.SelectedIndex = 0;
+            lblGroupChecked.Visible = false;
 
             _IsLoadingGrous = false;
         }
@@ -141,6 +154,7 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns["GroupName"].Width = 90;
             }
 
+
             txbFilterValue_TextChanged(null, null);
             lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
         }
@@ -156,6 +170,7 @@ namespace Check_Point_Manager
 
             _AddVisualStyleToTable(dgvGroupItems);
 
+            txbGroupsFilterValue.Focus();
 
             if (dgvGroupItems.Rows.Count > 0)
             {
@@ -182,6 +197,7 @@ namespace Check_Point_Manager
 
             txbGroupsFilterValue_TextChanged(null, null);
             lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
+            lblGroupChecked.Text = clsGroup.FindByID(GroupID).CkeckCounter.ToString() + " Time(s)";
         }
         private string _SelectExcelFile()
         {
@@ -293,6 +309,10 @@ namespace Check_Point_Manager
             chbFastMode.Checked = true;
 
             btnUpdate.Enabled = false;
+
+            _SetCueBanner(txbFilterValue, "Search", true);
+
+            _SetCueBanner(txbGroupsFilterValue, "Search", true);
         }
         private void dgvAllStockList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -310,6 +330,7 @@ namespace Check_Point_Manager
         {
             if (dgvGroupItems.DataSource is DataTable dt)
                 _ApplyFilter(dt, cmbGroupsFilterBy, txbGroupsFilterValue);
+
         }
         private void txbFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -329,6 +350,7 @@ namespace Check_Point_Manager
                  cmbItemsFilterBy.Text != "Not Assigned Items";
 
             txbFilterValue.Visible = needsText;
+            pcbItemsSearchIcon.Visible = txbFilterValue.Visible;
             txbFilterValue.Text = "";
 
             _LoadItemsTable();
@@ -344,6 +366,7 @@ namespace Check_Point_Manager
         private void cmbGroupsFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             txbGroupsFilterValue.Visible = cmbGroupsFilterBy.Text != "None";
+            pcbGroupSearchIcon.Visible = txbGroupsFilterValue.Visible;
             txbGroupsFilterValue.Text = "";
 
             clsGroup ChoosenGroup = clsGroup.FindByName(cmbGroups.Text.Trim());
@@ -366,8 +389,11 @@ namespace Check_Point_Manager
                 dgvGroupItems.DataSource = null;
                 pcbGroupsBackground.Visible = true;
                 lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
+                lblGroupChecked.Visible = false;
                 return;
             }
+
+            lblGroupChecked.Visible = true;
 
             _LoadSelectedGroupItems(GroupID);
         }
@@ -574,6 +600,31 @@ namespace Check_Point_Manager
                     return;
                 }
 
+                // Confirming count this check or not :
+                DialogResult Result = MessageBox.Show("Do you want to count this group check ?", "Confirmation",
+                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (Result == DialogResult.Cancel)
+                {
+                    return;
+                }
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+
+                if (Result == DialogResult.Yes)
+                {
+                    
+                    clsGroup SelectedGroup = clsGroup.FindByID(GroupID);
+
+                    if(SelectedGroup == null || !SelectedGroup.CounterPlus())
+                    {
+                        MessageBox.Show("Error in counting check !", "Error", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                
+
                 DataView dv = new DataView(_dtSelectedGroupItems);
                 dv.RowFilter = "Qty > 0 OR LzQty > 0";
                 dv.Sort = "Description ASC";
@@ -648,6 +699,8 @@ namespace Check_Point_Manager
                         wb.SaveAs(sfd.FileName);
                         MessageBox.Show("File Exported Successfully");
                     }
+
+                    lblGroupChecked.Text = clsGroup.FindByID(GroupID).CkeckCounter.ToString() + " Time(s)";
                 }
             }
             catch (Exception ex)
@@ -854,8 +907,37 @@ namespace Check_Point_Manager
             else if (e.KeyCode == Keys.F3)
                 btnRemoveItems.PerformClick();
         }
-       
 
+        private void txbFilterValue_Enter(object sender, EventArgs e)
+        {
+            pcbItemsSearchIcon.Visible = false;
+        }
 
+        private void txbFilterValue_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbFilterValue.Text))
+                pcbItemsSearchIcon.Visible = true;
+        }
+
+        private void pcbItemsSearchIcon_Click(object sender, EventArgs e)
+        {
+            txbFilterValue.Focus();
+        }
+
+        private void pcbGroupSearchIcon_Click(object sender, EventArgs e)
+        {
+            txbGroupsFilterValue.Focus();
+        }
+
+        private void txbGroupsFilterValue_Enter(object sender, EventArgs e)
+        {
+            pcbGroupSearchIcon.Visible = false;
+        }
+
+        private void txbGroupsFilterValue_Leave(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txbGroupsFilterValue.Text))
+                pcbGroupSearchIcon.Visible = true;
+        }
     }
 }
