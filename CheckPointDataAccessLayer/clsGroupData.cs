@@ -113,7 +113,7 @@ namespace CheckPointDataAccessLayer
             {
                 int GroupID = -1;
 
-                string Query = @"INSERT INTO Groups (GroupNumber, GroupName, CkeckCounter)
+                string Query = @"INSERT INTO Groups (GroupNumber, GroupName, CheckCounter)
                              VALUES (@GroupNumber, @GroupName, @CheckCounter);
                              SELECT last_insert_rowid();";
 
