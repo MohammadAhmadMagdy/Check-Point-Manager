@@ -157,7 +157,9 @@
     <Resource Include="Resources\416-4163635_transparent-background-clipboard-icon.png" />
     <Resource Include="Resources\Clipboard1.jpg" />
     <Resource Include="Resources\Logo %282%29.jpg" />
-    <Content Include="Icon.ico" />
+    <Content Include="Icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\remove_red_32.png" />
     <None Include="Resources\minimize.png" />
     <Resource Include="Resources\icons8-minimize-90.png" />
@@ -197,12 +199,12 @@
     <Resource Include="Resources\arrow-Left-25.png" />
     <Resource Include="Resources\arrow-Right-25.png" />
     <Resource Include="Resources\search_icon.png" />
-    <Resource Include="Resources\Icon.ico" />
     <Resource Include="Resources\items-32.png" />
     <Resource Include="Resources\Counter_50.png" />
     <Resource Include="Resources\plus-20.png" />
     <Resource Include="Resources\minus-20.png" />
     <Resource Include="Resources\reset-20.png" />
+    <Resource Include="Resources\Icon.ico" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
