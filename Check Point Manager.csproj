@@ -110,6 +110,12 @@
     <Compile Include="frmManageListGroup.Designer.cs">
       <DependentUpon>frmManageListGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRecordItemVariation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecordItemVariation.Designer.cs">
+      <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddEditGroup.resx">
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageListGroup.resx">
       <DependentUpon>frmManageListGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecordItemVariation.resx">
+      <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -205,6 +214,8 @@
     <Resource Include="Resources\minus-20.png" />
     <Resource Include="Resources\reset-20.png" />
     <Resource Include="Resources\Icon.ico" />
+    <Resource Include="Resources\Variation-24.png" />
+    <Resource Include="Resources\Variation-48.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

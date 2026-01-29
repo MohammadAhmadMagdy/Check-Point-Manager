@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -44,6 +45,8 @@
             this.lblItemRecordsTitle = new System.Windows.Forms.Label();
             this.lblItemRecords = new System.Windows.Forms.Label();
             this.dgvAllStockList = new System.Windows.Forms.DataGridView();
+            this.cmsItemOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.recordItemVariationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.cmbItemsFilterBy = new System.Windows.Forms.ComboBox();
             this.txbFilterValue = new System.Windows.Forms.TextBox();
@@ -51,6 +54,9 @@
             this.lblItemsListTitle = new System.Windows.Forms.Label();
             this.pnlAllItemsSep = new System.Windows.Forms.Panel();
             this.pnlGroupsList = new System.Windows.Forms.Panel();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.lblGroupCheckedTitle = new System.Windows.Forms.Label();
+            this.lblGroupChecked = new System.Windows.Forms.Label();
             this.pcbGroupSearchIcon = new System.Windows.Forms.PictureBox();
             this.lblGroupRecordTitle = new System.Windows.Forms.Label();
             this.btnManageGroups = new System.Windows.Forms.Button();
@@ -77,13 +83,11 @@
             this.btnAddToGroup = new System.Windows.Forms.Button();
             this.btnRemoveItems = new System.Windows.Forms.Button();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
-            this.lblGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.lblGroupChecked = new System.Windows.Forms.Label();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
+            this.cmsItemOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsList)).BeginInit();
             this.pnlGroupsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupSearchIcon)).BeginInit();
@@ -246,6 +250,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAllStockList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAllStockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAllStockList.ContextMenuStrip = this.cmsItemOptions;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -260,12 +265,28 @@
             this.dgvAllStockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAllStockList.Size = new System.Drawing.Size(615, 487);
             this.dgvAllStockList.TabIndex = 22;
-            this.dgvAllStockList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvAllStockList_CellBeginEdit);
-            this.dgvAllStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellContentClick);
+            this.dgvAllStockList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this._dgv_CellBeginEdit);
+            this.dgvAllStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgv_CellContentClick);
             this.dgvAllStockList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellDoubleClick);
             this.dgvAllStockList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllStockList_CellFormatting);
             this.dgvAllStockList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_CellPainting);
             this.dgvAllStockList.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
+            this.dgvAllStockList.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectEntireRowByRightClick);
+            // 
+            // cmsItemOptions
+            // 
+            this.cmsItemOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recordItemVariationToolStripMenuItem});
+            this.cmsItemOptions.Name = "cmsItemOptions";
+            this.cmsItemOptions.Size = new System.Drawing.Size(188, 26);
+            // 
+            // recordItemVariationToolStripMenuItem
+            // 
+            this.recordItemVariationToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.Variation_48;
+            this.recordItemVariationToolStripMenuItem.Name = "recordItemVariationToolStripMenuItem";
+            this.recordItemVariationToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.recordItemVariationToolStripMenuItem.Text = "Record Item Variation";
+            this.recordItemVariationToolStripMenuItem.Click += new System.EventHandler(this.recordItemVariationToolStripMenuItem_Click);
             // 
             // btnSelectAll
             // 
@@ -361,6 +382,49 @@
             this.pnlGroupsList.Name = "pnlGroupsList";
             this.pnlGroupsList.Size = new System.Drawing.Size(640, 625);
             this.pnlGroupsList.TabIndex = 3;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.ForeColor = System.Drawing.Color.White;
+            this.btnRemove.Image = global::Check_Point_Manager.Properties.Resources.arrow_Left_25;
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemove.Location = new System.Drawing.Point(456, 7);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(172, 32);
+            this.btnRemove.TabIndex = 33;
+            this.btnRemove.Text = "Remove From Group";
+            this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemoveItems_Click);
+            // 
+            // lblGroupCheckedTitle
+            // 
+            this.lblGroupCheckedTitle.AutoSize = true;
+            this.lblGroupCheckedTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblGroupCheckedTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupCheckedTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblGroupCheckedTitle.Location = new System.Drawing.Point(375, 82);
+            this.lblGroupCheckedTitle.Name = "lblGroupCheckedTitle";
+            this.lblGroupCheckedTitle.Size = new System.Drawing.Size(98, 15);
+            this.lblGroupCheckedTitle.TabIndex = 31;
+            this.lblGroupCheckedTitle.Text = "Group Counted :";
+            // 
+            // lblGroupChecked
+            // 
+            this.lblGroupChecked.AutoSize = true;
+            this.lblGroupChecked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblGroupChecked.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupChecked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblGroupChecked.Location = new System.Drawing.Point(479, 82);
+            this.lblGroupChecked.Name = "lblGroupChecked";
+            this.lblGroupChecked.Size = new System.Drawing.Size(17, 15);
+            this.lblGroupChecked.TabIndex = 32;
+            this.lblGroupChecked.Text = "??";
             // 
             // pcbGroupSearchIcon
             // 
@@ -492,9 +556,12 @@
             this.dgvGroupItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGroupItems.Size = new System.Drawing.Size(615, 470);
             this.dgvGroupItems.TabIndex = 26;
+            this.dgvGroupItems.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this._dgv_CellBeginEdit);
+            this.dgvGroupItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgv_CellContentClick);
             this.dgvGroupItems.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroupItems_CellDoubleClick);
             this.dgvGroupItems.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_CellPainting);
             this.dgvGroupItems.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
+            this.dgvGroupItems.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectEntireRowByRightClick);
             // 
             // lblSelectGroup
             // 
@@ -721,49 +788,6 @@
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
             // 
-            // lblGroupCheckedTitle
-            // 
-            this.lblGroupCheckedTitle.AutoSize = true;
-            this.lblGroupCheckedTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblGroupCheckedTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroupCheckedTitle.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblGroupCheckedTitle.Location = new System.Drawing.Point(375, 82);
-            this.lblGroupCheckedTitle.Name = "lblGroupCheckedTitle";
-            this.lblGroupCheckedTitle.Size = new System.Drawing.Size(98, 15);
-            this.lblGroupCheckedTitle.TabIndex = 31;
-            this.lblGroupCheckedTitle.Text = "Group Counted :";
-            // 
-            // lblGroupChecked
-            // 
-            this.lblGroupChecked.AutoSize = true;
-            this.lblGroupChecked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblGroupChecked.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroupChecked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblGroupChecked.Location = new System.Drawing.Point(479, 82);
-            this.lblGroupChecked.Name = "lblGroupChecked";
-            this.lblGroupChecked.Size = new System.Drawing.Size(17, 15);
-            this.lblGroupChecked.TabIndex = 32;
-            this.lblGroupChecked.Text = "??";
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
-            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemove.ForeColor = System.Drawing.Color.White;
-            this.btnRemove.Image = global::Check_Point_Manager.Properties.Resources.arrow_Left_25;
-            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemove.Location = new System.Drawing.Point(456, 7);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(172, 32);
-            this.btnRemove.TabIndex = 33;
-            this.btnRemove.Text = "Remove From Group";
-            this.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRemove.UseVisualStyleBackColor = false;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemoveItems_Click);
-            // 
             // frmMainScreen
             // 
             this.AcceptButton = this.btnAddToGroup;
@@ -793,6 +817,7 @@
             this.pnlItemsList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).EndInit();
+            this.cmsItemOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsList)).EndInit();
             this.pnlGroupsList.ResumeLayout(false);
             this.pnlGroupsList.PerformLayout();
@@ -859,5 +884,7 @@
         private System.Windows.Forms.Label lblGroupCheckedTitle;
         private System.Windows.Forms.Label lblGroupChecked;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ContextMenuStrip cmsItemOptions;
+        private System.Windows.Forms.ToolStripMenuItem recordItemVariationToolStripMenuItem;
     }
 }

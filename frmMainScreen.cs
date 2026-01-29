@@ -121,6 +121,9 @@ namespace Check_Point_Manager
             else
             {
                 dgvAllStockList.DataSource = _dtAllStockList;
+                dgvAllStockList.Columns["VariationQty"].Visible = false;
+                dgvAllStockList.Columns["VariationLzQty"].Visible = false;
+
             }
 
             _AddVisualStyleToTable(dgvAllStockList);
@@ -247,6 +250,22 @@ namespace Check_Point_Manager
                 }
             }
         }
+        private void _dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var DGV = (DataGridView)sender;
+
+            if (e.ColumnIndex == DGV.Columns["Selected"].Index && e.RowIndex >= 0)
+                DGV.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+        private void _dgv_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            var DGV = (DataGridView)sender;
+
+            if (e.ColumnIndex != 0)
+            {
+                e.Cancel = true;
+            }
+        }
         private string _GetColumnName(ComboBox cmb)
         {
             switch (cmb.Text)
@@ -321,12 +340,7 @@ namespace Check_Point_Manager
             _SetCueBanner(txbFilterValue, "Search", true);
 
             _SetCueBanner(txbGroupsFilterValue, "Search", true);
-        }
-        private void dgvAllStockList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == dgvAllStockList.Columns["Selected"].Index && e.RowIndex >= 0)
-                dgvAllStockList.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        }
+        }   
         private void txbFilterValue_TextChanged(object sender, EventArgs e)
         {
             if (dgvAllStockList.DataSource is DataTable dt)
@@ -734,13 +748,6 @@ namespace Check_Point_Manager
             _LoadSelectedGroupItems(GroupID);
             _LoadItemsTable();
         }
-        private void dgvAllStockList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (e.ColumnIndex != 0)
-            {
-                e.Cancel = true;
-            }
-        }
         private void dgvAllStockList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!chbFastMode.Checked)
@@ -941,6 +948,16 @@ namespace Check_Point_Manager
         {
             if(string.IsNullOrEmpty(txbGroupsFilterValue.Text))
                 pcbGroupSearchIcon.Visible = true;
+        }
+
+        private void recordItemVariationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ItemCode = Convert.ToInt32(dgvAllStockList.CurrentRow.Cells["ItemCode"].Value);
+
+            frmRecordItemVariation frm = new frmRecordItemVariation(ItemCode);
+
+            frm.ShowDialog();
+
         }
     }
 }

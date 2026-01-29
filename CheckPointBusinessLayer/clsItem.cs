@@ -19,6 +19,9 @@ namespace CheckPointBusinessLayer
         public int LzQty {  get; set; }
         public decimal RetailPrice {  get; set; }
 
+        public int VariationQty {  get; set; }
+        public int VariationLzQty {  get; set; }
+
         public clsItem()
         {
             this.ItemCode = -1;
@@ -26,16 +29,21 @@ namespace CheckPointBusinessLayer
             this.Qty = 0;
             this.LzQty = 0;
             this.RetailPrice = 0;
+            this.VariationQty = 0;
+            this.VariationLzQty = 0;
 
             Mode = enMode.AddNew;
         }
-        private clsItem(int ItemCode, string Description, int Qty, int LzQty, decimal RetailPrice)
+        private clsItem(int ItemCode, string Description, int Qty, int LzQty, decimal RetailPrice,
+                        int VariationQty, int VariationLzQty)
         {
             this.ItemCode = ItemCode;
             this.Description = Description;
             this.Qty = Qty;
             this.LzQty = LzQty;
             this.RetailPrice = RetailPrice;
+            this.VariationQty = VariationQty;
+            this.VariationLzQty = VariationLzQty;
 
             Mode = enMode.Update;
         }
@@ -54,13 +62,14 @@ namespace CheckPointBusinessLayer
         }
         public static clsItem Find(int ItemCode)
         {
-            int Qty = 0, LzQty = 0;
+            int Qty = 0, LzQty = 0, VariationQty = 0, VariationLzQty = 0;
             string Description = "";
             decimal RetailPrice = 0;
 
-            if (clsItemDataAccess.GetByItemCode(ItemCode, ref Description, ref Qty, ref LzQty, ref RetailPrice))
+            if (clsItemDataAccess.GetByItemCode(ItemCode, ref Description, ref Qty, ref LzQty, ref RetailPrice,
+                ref VariationQty, ref VariationLzQty))
             {
-                return new clsItem(ItemCode, Description, Qty, LzQty, RetailPrice);
+                return new clsItem(ItemCode, Description, Qty, LzQty, RetailPrice, VariationQty, VariationLzQty);
             }
             else
                 return null;

@@ -143,7 +143,8 @@ namespace CheckPointDataAccessLayer
             }
         }
 
-        public static bool GetByItemCode(int ItemCode, ref string Description, ref int Qty, ref int LzQty, ref decimal RetailPrice)
+        public static bool GetByItemCode(int ItemCode, ref string Description, ref int Qty, ref int LzQty, ref decimal RetailPrice,
+            ref int VariationQty, ref int VariationLzQty)
         {
             bool IsFound = false;
 
@@ -165,7 +166,11 @@ namespace CheckPointDataAccessLayer
                         Qty = Convert.ToInt32(reader["Qty"]);
                         LzQty = Convert.ToInt32(reader["LzQty"]);
                         RetailPrice = Convert.ToDecimal(reader["RetailPrice"]);
-                     
+                        VariationQty = (reader["VariationQty"] != DBNull.Value) ? 
+                            Convert.ToInt32(reader["VariationQty"]) : 0;
+                        VariationLzQty = (reader["VariationLzQty"] != DBNull.Value) ? 
+                            Convert.ToInt32(reader["VariationLzQty"]) : 0;
+
                     }
                 }
             }
@@ -180,7 +185,8 @@ namespace CheckPointDataAccessLayer
             string query = @"SELECT 
                                   Items.ItemCode,
                                   Items.Description, Items.Qty, Items.LzQty, Items.RetailPrice, 
-                                  IFNULL(GROUP_CONCAT(Groups.GroupName, ', '), 'Not Assigned') AS GroupName
+                                  IFNULL(GROUP_CONCAT(Groups.GroupName, ', '), 'Not Assigned') AS GroupName, 
+                                  Items.VariationQty, Items.VariationLzQty
                               FROM Items
                               LEFT JOIN ItemsGroups ON Items.ItemCode = ItemsGroups.ItemCode
                               LEFT JOIN Groups ON Groups.GroupID = ItemsGroups.GroupID
@@ -271,6 +277,25 @@ namespace CheckPointDataAccessLayer
                 command.Parameters.AddWithValue("@ItemCode", itemCode);
 
                 return command.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public static bool UpdateItemVariation(int ItemCode, int VariationQty, int VariationLzQty)
+        {
+            string query = @"UPDATE Items
+                             SET VariationQty = @VariationQty,
+                                 VariationLzQty = @VariationLzQty
+                             WHERE ItemCode = @ItemCode";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            {
+                using (var Command = new SQLiteCommand(query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@ItemCode", ItemCode);
+                    Command.Parameters.AddWithValue("@VariationQty", VariationQty);
+                    Command.Parameters.AddWithValue("@VariationLzQty", VariationLzQty);
+                    return Command.ExecuteNonQuery() > 0;
+                }
             }
         }
     }
