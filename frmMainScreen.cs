@@ -916,33 +916,27 @@ namespace Check_Point_Manager
             else if (e.KeyCode == Keys.F3)
                 btnRemoveItems.PerformClick();
         }
-
         private void txbFilterValue_Enter(object sender, EventArgs e)
         {
             pcbItemsSearchIcon.Visible = false;
         }
-
         private void txbFilterValue_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txbFilterValue.Text))
                 pcbItemsSearchIcon.Visible = true;
         }
-
         private void pcbItemsSearchIcon_Click(object sender, EventArgs e)
         {
             txbFilterValue.Focus();
         }
-
         private void pcbGroupSearchIcon_Click(object sender, EventArgs e)
         {
             txbGroupsFilterValue.Focus();
         }
-
         private void txbGroupsFilterValue_Enter(object sender, EventArgs e)
         {
             pcbGroupSearchIcon.Visible = false;
         }
-
         private void txbGroupsFilterValue_Leave(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(txbGroupsFilterValue.Text))
