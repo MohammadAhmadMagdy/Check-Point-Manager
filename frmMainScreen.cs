@@ -143,12 +143,16 @@ namespace Check_Point_Manager
 
                 dgvAllStockList.Columns["Qty"].HeaderText = "Qty";
                 dgvAllStockList.Columns["Qty"].Width = 40;
+                dgvAllStockList.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvAllStockList.Columns["LzQty"].HeaderText = "LzQty";
                 dgvAllStockList.Columns["LzQty"].Width = 40;
+                dgvAllStockList.Columns["LzQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvAllStockList.Columns["RetailPrice"].HeaderText = "Price";
                 dgvAllStockList.Columns["RetailPrice"].Width = 50;
+                dgvAllStockList.Columns["RetailPrice"].DefaultCellStyle.Format = "N3";
+                dgvAllStockList.Columns["RetailPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvAllStockList.Columns["GroupName"].HeaderText = "Group";
                 dgvAllStockList.Columns["GroupName"].Width = 90;
@@ -185,12 +189,16 @@ namespace Check_Point_Manager
 
                 dgvGroupItems.Columns["Qty"].HeaderText = "Qty";
                 dgvGroupItems.Columns["Qty"].Width = 40;
+                dgvGroupItems.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvGroupItems.Columns["LzQty"].HeaderText = "LzQty";
                 dgvGroupItems.Columns["LzQty"].Width = 40;
+                dgvGroupItems.Columns["LzQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvGroupItems.Columns["RetailPrice"].HeaderText = "Price";
                 dgvGroupItems.Columns["RetailPrice"].Width = 50;
+                dgvGroupItems.Columns["RetailPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvGroupItems.Columns["RetailPrice"].DefaultCellStyle.Format = "N3";
 
 
             }
@@ -685,7 +693,8 @@ namespace Check_Point_Manager
 
                     ws.Column(3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                     ws.Column(4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    ws.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                    ws.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                    ws.Column(5).Style.NumberFormat.Format = "0.000";
 
                     // حفظ الملف
                     SaveFileDialog sfd = new SaveFileDialog
