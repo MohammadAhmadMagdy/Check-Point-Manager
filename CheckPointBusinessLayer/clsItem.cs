@@ -74,6 +74,18 @@ namespace CheckPointBusinessLayer
             else
                 return null;
         }
+        public bool UpdateVariationRecord(int VariationQty, int VariationLzQty)
+        {
+            return clsItemDataAccess.UpdateItemVariation(this.ItemCode, VariationQty, VariationLzQty);
+        }
+        public static DataTable GetAllVariations()
+        {
+            return clsItemDataAccess.GetAllVariations();
+        }
+        public static bool SettleItemVariation(int ItemCode)
+        {
+            return clsItemDataAccess.SettleItemVariation(ItemCode);
+        }
 
 
     }

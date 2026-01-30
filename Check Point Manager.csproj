@@ -116,6 +116,12 @@
     <Compile Include="frmRecordItemVariation.Designer.cs">
       <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVariationsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVariationsList.Designer.cs">
+      <DependentUpon>frmVariationsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddEditGroup.resx">
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecordItemVariation.resx">
       <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVariationsList.resx">
+      <DependentUpon>frmVariationsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

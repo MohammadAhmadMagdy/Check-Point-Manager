@@ -959,5 +959,28 @@ namespace Check_Point_Manager
             frm.ShowDialog();
 
         }
+
+        private void btnVariationList_Click(object sender, EventArgs e)
+        {
+            frmVariationsList frm = new frmVariationsList();
+            frm.ShowDialog();
+
+
+        }
+
+        private void _dgvSelectEntireRowByRightClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var DGV = (DataGridView)sender;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                var HitTestInfo = DGV.HitTest(e.X, e.Y);
+                if (HitTestInfo.RowIndex >= 0)
+                {
+                    DGV.ClearSelection();
+                    DGV.Rows[HitTestInfo.RowIndex].Selected = true;
+                }
+            }
+        }
     }
 }

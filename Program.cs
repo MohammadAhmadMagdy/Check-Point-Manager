@@ -18,6 +18,7 @@ namespace Check_Point_Manager
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmListItems());
             //Application.Run(new frmManageListGroup());
+            //Application.Run(new frmVariationsList());
             Application.Run(new frmMainScreen());
         }
     }

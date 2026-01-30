@@ -298,6 +298,57 @@ namespace CheckPointDataAccessLayer
                 }
             }
         }
+        public static DataTable GetAllVariations()
+        {
+            DataTable dt = new DataTable();
+
+            string query = @"SELECT 
+                                  Items.ItemCode,
+                                  Items.Description, Items.Qty, Items.LzQty, Items.RetailPrice, 
+                                  Items.VariationQty, Items.VariationLzQty, 
+                                  IFNULL(GROUP_CONCAT(Groups.GroupName, ', '), 'Not Assigned') AS GroupName 
+                                  
+                              FROM Items
+                              LEFT JOIN ItemsGroups ON Items.ItemCode = ItemsGroups.ItemCode
+                              LEFT JOIN Groups ON Groups.GroupID = ItemsGroups.GroupID
+                              WHERE Items.VariationQty <> 0 OR Items.VariationLzQty <> 0
+                              GROUP BY Items.ItemCode
+                              ORDER BY Items.ItemCode;
+                              ;";
+
+            using (var connection = clsDataAccessSettings.GetConnection())
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        //dt.Columns.Add("Selected", typeof(bool));
+                        //dt.Columns["Selected"].DefaultValue = false;
+                        dt.Load(reader);
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+        public static bool SettleItemVariation(int ItemCode)
+        {
+            string query = @"UPDATE Items
+                             SET VariationQty = 0,
+                                 VariationLzQty = 0
+                             WHERE ItemCode = @ItemCode";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            {
+                using (var Command = new SQLiteCommand(query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@ItemCode", ItemCode);
+                    return Command.ExecuteNonQuery() > 0;
+                }
+            }
+        }
     }
 
 }

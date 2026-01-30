@@ -83,6 +83,7 @@
             this.btnAddToGroup = new System.Windows.Forms.Button();
             this.btnRemoveItems = new System.Windows.Forms.Button();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
+            this.btnVariationList = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -151,6 +152,7 @@
             // pnlItemsList
             // 
             this.pnlItemsList.BackColor = System.Drawing.Color.White;
+            this.pnlItemsList.Controls.Add(this.btnVariationList);
             this.pnlItemsList.Controls.Add(this.pcbItemsSearchIcon);
             this.pnlItemsList.Controls.Add(this.btnAdd);
             this.pnlItemsList.Controls.Add(this.chbFastMode);
@@ -269,6 +271,7 @@
             this.dgvAllStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgv_CellContentClick);
             this.dgvAllStockList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllStockList_CellDoubleClick);
             this.dgvAllStockList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllStockList_CellFormatting);
+            this.dgvAllStockList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this._dgvSelectEntireRowByRightClick);
             this.dgvAllStockList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_CellPainting);
             this.dgvAllStockList.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
             this.dgvAllStockList.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectEntireRowByRightClick);
@@ -788,6 +791,25 @@
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
             // 
+            // btnVariationList
+            // 
+            this.btnVariationList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
+            this.btnVariationList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnVariationList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVariationList.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVariationList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
+            this.btnVariationList.Image = global::Check_Point_Manager.Properties.Resources.Variation_24;
+            this.btnVariationList.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVariationList.Location = new System.Drawing.Point(461, 581);
+            this.btnVariationList.Name = "btnVariationList";
+            this.btnVariationList.Size = new System.Drawing.Size(172, 37);
+            this.btnVariationList.TabIndex = 30;
+            this.btnVariationList.Text = "Variations List";
+            this.btnVariationList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVariationList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVariationList.UseVisualStyleBackColor = false;
+            this.btnVariationList.Click += new System.EventHandler(this.btnVariationList_Click);
+            // 
             // frmMainScreen
             // 
             this.AcceptButton = this.btnAddToGroup;
@@ -886,5 +908,6 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ContextMenuStrip cmsItemOptions;
         private System.Windows.Forms.ToolStripMenuItem recordItemVariationToolStripMenuItem;
+        private System.Windows.Forms.Button btnVariationList;
     }
 }
