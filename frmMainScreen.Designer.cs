@@ -39,6 +39,7 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pnlItemsList = new System.Windows.Forms.Panel();
+            this.btnVariationList = new System.Windows.Forms.Button();
             this.pcbItemsSearchIcon = new System.Windows.Forms.PictureBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.chbFastMode = new System.Windows.Forms.CheckBox();
@@ -83,7 +84,6 @@
             this.btnAddToGroup = new System.Windows.Forms.Button();
             this.btnRemoveItems = new System.Windows.Forms.Button();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
-            this.btnVariationList = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -169,6 +169,25 @@
             this.pnlItemsList.Name = "pnlItemsList";
             this.pnlItemsList.Size = new System.Drawing.Size(644, 625);
             this.pnlItemsList.TabIndex = 2;
+            // 
+            // btnVariationList
+            // 
+            this.btnVariationList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
+            this.btnVariationList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnVariationList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVariationList.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVariationList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
+            this.btnVariationList.Image = global::Check_Point_Manager.Properties.Resources.Variation_24;
+            this.btnVariationList.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVariationList.Location = new System.Drawing.Point(461, 581);
+            this.btnVariationList.Name = "btnVariationList";
+            this.btnVariationList.Size = new System.Drawing.Size(172, 37);
+            this.btnVariationList.TabIndex = 30;
+            this.btnVariationList.Text = "Variations List";
+            this.btnVariationList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVariationList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVariationList.UseVisualStyleBackColor = false;
+            this.btnVariationList.Click += new System.EventHandler(this.btnVariationList_Click);
             // 
             // pcbItemsSearchIcon
             // 
@@ -274,7 +293,6 @@
             this.dgvAllStockList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this._dgvSelectEntireRowByRightClick);
             this.dgvAllStockList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_CellPainting);
             this.dgvAllStockList.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
-            this.dgvAllStockList.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectEntireRowByRightClick);
             // 
             // cmsItemOptions
             // 
@@ -562,9 +580,9 @@
             this.dgvGroupItems.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this._dgv_CellBeginEdit);
             this.dgvGroupItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgv_CellContentClick);
             this.dgvGroupItems.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroupItems_CellDoubleClick);
+            this.dgvGroupItems.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this._dgvSelectEntireRowByRightClick);
             this.dgvGroupItems.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_CellPainting);
             this.dgvGroupItems.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
-            this.dgvGroupItems.MouseDown += new System.Windows.Forms.MouseEventHandler(this._dgvSelectEntireRowByRightClick);
             // 
             // lblSelectGroup
             // 
@@ -790,25 +808,6 @@
             this.pcbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
-            // 
-            // btnVariationList
-            // 
-            this.btnVariationList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
-            this.btnVariationList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVariationList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVariationList.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVariationList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
-            this.btnVariationList.Image = global::Check_Point_Manager.Properties.Resources.Variation_24;
-            this.btnVariationList.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVariationList.Location = new System.Drawing.Point(461, 581);
-            this.btnVariationList.Name = "btnVariationList";
-            this.btnVariationList.Size = new System.Drawing.Size(172, 37);
-            this.btnVariationList.TabIndex = 30;
-            this.btnVariationList.Text = "Variations List";
-            this.btnVariationList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVariationList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVariationList.UseVisualStyleBackColor = false;
-            this.btnVariationList.Click += new System.EventHandler(this.btnVariationList_Click);
             // 
             // frmMainScreen
             // 

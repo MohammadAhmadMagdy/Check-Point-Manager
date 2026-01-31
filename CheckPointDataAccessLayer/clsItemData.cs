@@ -244,6 +244,10 @@ namespace CheckPointDataAccessLayer
 
             return dt;
         }
+        //public static DataTable GetNotAssignedWithPositiveStockItems()
+        //{
+
+        //}
 
         public static bool UpdateItem(int itemCode, string description, int qty, int lzQty, decimal retailPrice)
         {

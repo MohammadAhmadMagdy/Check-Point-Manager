@@ -5,13 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckPointBusinessLayer;
 using ClosedXML.Excel;
-using System.Runtime.InteropServices;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Check_Point_Manager
 {
@@ -73,16 +74,14 @@ namespace Check_Point_Manager
         private void _AddVisualStyleToTable(DataGridView dgv)
         {
             dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(219, 220, 218);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(219, 220, 218);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             dgv.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 10, FontStyle.Bold);
+                new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
 
 
-            dgv.RowsDefaultCellStyle.BackColor = Color.White;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(241,240,241);
-
-            dgv.Columns["Selected"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(241,240,241);
         }
         private void _FillGroupsComboBox()
         {
@@ -135,6 +134,7 @@ namespace Check_Point_Manager
 
             if (dgvAllStockList.Rows.Count > 0)
             {
+                dgvAllStockList.Columns["Selected"].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dgvAllStockList.Columns["Selected"].HeaderText = "";
                 dgvAllStockList.Columns["Selected"].Width = 30;
 
@@ -181,6 +181,7 @@ namespace Check_Point_Manager
 
             if (dgvGroupItems.Rows.Count > 0)
             {
+                dgvGroupItems.Columns["Selected"].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dgvGroupItems.Columns["Selected"].HeaderText = "";
                 dgvGroupItems.Columns["Selected"].Width = 30;
 
@@ -236,18 +237,14 @@ namespace Check_Point_Manager
 
             return FilePath;
         }
-        private void _dgvSelectEntireRowByRightClick(object sender, MouseEventArgs e)
+        private void _dgvSelectEntireRowByRightClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             var DGV = (DataGridView)sender;
 
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0  && e.ColumnIndex >= 0)
             {
-                var HitTestInfo = DGV.HitTest(e.X, e.Y);
-                if (HitTestInfo.RowIndex >= 0)
-                {
-                    DGV.ClearSelection();
-                    DGV.Rows[HitTestInfo.RowIndex].Selected = true;
-                }
+                DGV.ClearSelection();
+                DGV.CurrentCell = DGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
             }
         }
         private void _dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -296,6 +293,7 @@ namespace Check_Point_Manager
             if (cmb.Text == "Not Assigned Items")
             {
                 table.DefaultView.RowFilter = "GroupName = 'Not Assigned'";
+                table.DefaultView.Sort = "Qty DESC, LzQty DESC";
                 return;
             }
 
@@ -318,7 +316,8 @@ namespace Check_Point_Manager
             {
                 e.Graphics.DrawImage(pcbGroupsBackground.Image, new Rectangle(0, 0, pcbGroupsBackground.Width,
                     pcbGroupsBackground.Height));
-                using (Brush semiTransparentBrush = new SolidBrush(Color.FromArgb(200, Color.Transparent)))
+                using (Brush semiTransparentBrush = new SolidBrush
+                    (System.Drawing.Color.FromArgb(200, System.Drawing.Color.Transparent)))
                 {
                     e.Graphics.FillRectangle(semiTransparentBrush, pcbGroupsBackground.ClientRectangle);
                 }
@@ -827,13 +826,13 @@ namespace Check_Point_Manager
 
                 if (GroupName == "Not Assigned")
                 {
-                    e.CellStyle.ForeColor = Color.Red;
-                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+                    e.CellStyle.ForeColor = System.Drawing.Color.Red;
+                    e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Regular);
                 }
                 else
                 {
-                    e.CellStyle.ForeColor = Color.Blue;
-                    e.CellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+                    e.CellStyle.ForeColor = System.Drawing.Color.Blue;
+                    e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Bold);
                 }
             }
         }
@@ -968,19 +967,5 @@ namespace Check_Point_Manager
 
         }
 
-        private void _dgvSelectEntireRowByRightClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            var DGV = (DataGridView)sender;
-
-            if (e.Button == MouseButtons.Right)
-            {
-                var HitTestInfo = DGV.HitTest(e.X, e.Y);
-                if (HitTestInfo.RowIndex >= 0)
-                {
-                    DGV.ClearSelection();
-                    DGV.Rows[HitTestInfo.RowIndex].Selected = true;
-                }
-            }
-        }
     }
 }
