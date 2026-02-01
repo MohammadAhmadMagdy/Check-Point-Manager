@@ -87,6 +87,10 @@ namespace Check_Point_Manager
 
         private void btnSettle_Click(object sender, EventArgs e)
         {
+            if( MessageBox.Show("Are you sure you want to settle this variation ?","Confirmation",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
             int ItemCode = Convert.ToInt32(dgvVariationList.CurrentRow.Cells[0].Value);
 
             if(!clsItem.SettleItemVariation(ItemCode))
