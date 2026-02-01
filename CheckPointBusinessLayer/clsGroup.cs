@@ -36,9 +36,9 @@ namespace CheckPointBusinessLayer
 
             Mode = enMode.Update;
         }
-        public static DataTable LoadAllGroupsInfo()
+        public static DataTable LoadAllGroupsInfo(bool Alphabetical = false)
         {
-            return clsGroupData.GetAllGroups();
+            return clsGroupData.GetAllGroups(Alphabetical);
         }
         public static clsGroup FindByID(int GroupID)
         {

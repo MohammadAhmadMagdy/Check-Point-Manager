@@ -11,15 +11,18 @@ namespace CheckPointDataAccessLayer
 {
     public class clsGroupData
     {
-        public static DataTable GetAllGroups()
+        public static DataTable GetAllGroups(bool Alphabetical = false)
         {
             DataTable dt = new DataTable();
 
-            string Query = "SELECT * FROM Groups";
+            string Order = Alphabetical ? "GroupName" : "GroupNumber";
+
+            string Query = $"SELECT * FROM Groups ORDER BY {Order}";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))
             {
+
                 using (var Reader = Command.ExecuteReader())
                 {
                     if (Reader.HasRows)

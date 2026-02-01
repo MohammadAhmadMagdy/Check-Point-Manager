@@ -14,12 +14,26 @@ namespace CheckPointDataAccessLayer
 {
     public class clsItemDataAccess
     {
+        private struct ItemData
+        {
+            public int ItemCode;
+            public string Description;
+            public int Qty;
+            public int LzQty;
+            public decimal RetailPrice;
+
+            public ItemData(int code, string desc, int q, int lz, decimal price)
+            {
+                ItemCode = code; Description = desc; Qty = q; LzQty = lz; RetailPrice = price;
+            }
+        }
+
         public static int UpdateItemsFromExcel(string ExcelPath)
         {
             var WorkBook = new XLWorkbook(ExcelPath);
             var WorkSheet = WorkBook.Worksheet(1);
 
-            int newItemsCount = 0;
+            int addedToNewlyAddedCount = 0;
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             {
@@ -29,6 +43,9 @@ namespace CheckPointDataAccessLayer
                     {
                         int StartRow = 7;
                         int LastRow = WorkSheet.LastRowUsed().RowNumber();
+
+                     
+                        var itemsToAddToNewlyAdded = new List<ItemData>();
 
                         for (int RowIndex = StartRow; RowIndex <= LastRow; RowIndex++)
                         {
@@ -40,74 +57,76 @@ namespace CheckPointDataAccessLayer
                             int LzQty = Row.Cell(6).GetValue<int>();
                             decimal RetailPrice = Row.Cell(7).GetValue<decimal>();
 
-                            string CheckQuery = "SELECT COUNT(*) FROM Items WHERE ItemCode = @ItemCode";
+                            string CheckQuery = "SELECT Qty, LzQty FROM Items WHERE ItemCode = @ItemCode";
+                            bool isNewItem = false;
+                            bool wasZeroQty = false;
 
                             using (var CheckCommand = new SQLiteCommand(CheckQuery, Connection, Transaction))
                             {
                                 CheckCommand.Parameters.AddWithValue("@ItemCode", ItemCode);
-                                long Count = (long)CheckCommand.ExecuteScalar();
-
-                                if (Count > 0)
+                                using (var reader = CheckCommand.ExecuteReader())
                                 {
-                                    // تحديث الأصناف الموجودة
-                                    string UpdateQuery = @"UPDATE Items 
-                                           SET Description = @Description,
-                                               Qty = @Qty,
-                                               LzQty = @LzQty,
-                                               RetailPrice = @RetailPrice
-                                           WHERE ItemCode = @ItemCode";
-                                    using (var UpdateCommand = new SQLiteCommand(UpdateQuery, Connection, Transaction))
+                                    if (reader.Read())
                                     {
-                                        UpdateCommand.Parameters.AddWithValue("@Description", Description);
-                                        UpdateCommand.Parameters.AddWithValue("@Qty", Qty);
-                                        UpdateCommand.Parameters.AddWithValue("@LzQty", LzQty);
-                                        UpdateCommand.Parameters.AddWithValue("@RetailPrice", RetailPrice);
-                                        UpdateCommand.Parameters.AddWithValue("@ItemCode", ItemCode);
-                                        UpdateCommand.ExecuteNonQuery();
+                                        int currentQty = Convert.ToInt32(reader["Qty"]);
+                                        int currentLzQty = Convert.ToInt32(reader["LzQty"]);
+                                        if (currentQty == 0 && currentLzQty == 0) wasZeroQty = true;
+                                    }
+                                    else
+                                    {
+                                        isNewItem = true;
                                     }
                                 }
-                                else
-                                {
-                                    // إدخال صنف جديد في Items
-                                    string InsertQuery = @"INSERT INTO Items 
-                                           (ItemCode, Description, Qty, LzQty, RetailPrice) 
-                                           VALUES (@ItemCode, @Description, @Qty, @LzQty, @RetailPrice)";
-                                    using (var InsertCommand = new SQLiteCommand(InsertQuery, Connection, Transaction))
-                                    {
-                                        InsertCommand.Parameters.AddWithValue("@ItemCode", ItemCode);
-                                        InsertCommand.Parameters.AddWithValue("@Description", Description);
-                                        InsertCommand.Parameters.AddWithValue("@Qty", Qty);
-                                        InsertCommand.Parameters.AddWithValue("@LzQty", LzQty);
-                                        InsertCommand.Parameters.AddWithValue("@RetailPrice", RetailPrice);
-                                        InsertCommand.ExecuteNonQuery();
-                                    }
+                            }
 
-                                    // إذا كان أول صنف جديد → امسح جدول NewlyAddedItems
-                                    if (newItemsCount == 0)
+                            if (isNewItem)
+                            {
+                                
+                                InsertItemIntoDatabase(Connection, Transaction, ItemCode, Description, Qty, LzQty, 
+                                    RetailPrice);
+
+                                itemsToAddToNewlyAdded.Add(new ItemData(ItemCode, Description, Qty, LzQty, RetailPrice));
+                            }
+                            else
+                            {
+                                
+                                UpdateItemInDatabase(Connection, Transaction, ItemCode, Description, Qty, LzQty, 
+                                    RetailPrice);
+
+                                
+                                if (wasZeroQty && (Qty > 0 || LzQty > 0))
+                                {
+                                    string GroupCheckQuery = "SELECT COUNT(*) FROM ItemsGroups WHERE ItemCode = " +
+                                        "@ItemCode";
+                                    using (var GroupCheckCmd = new SQLiteCommand(GroupCheckQuery, Connection, Transaction))
                                     {
-                                        string DeleteLastNewQuery = "DELETE FROM NewlyAddedItems";
-                                        using (var DeleteCommand = new SQLiteCommand(DeleteLastNewQuery, Connection, Transaction))
+                                        GroupCheckCmd.Parameters.AddWithValue("@ItemCode", ItemCode);
+                                        if ((long)GroupCheckCmd.ExecuteScalar() == 0)
                                         {
-                                            DeleteCommand.ExecuteNonQuery();
+                                            itemsToAddToNewlyAdded.Add(new ItemData(ItemCode, Description, Qty, LzQty, 
+                                                RetailPrice));
                                         }
                                     }
-
-                                    // إدخال نفس الصنف في NewlyAddedItems
-                                    string CopyQuery = @"INSERT INTO NewlyAddedItems 
-                                                 (ItemCode, Description, Qty, LzQty, RetailPrice)
-                                                 VALUES (@ItemCode, @Description, @Qty, @LzQty, @RetailPrice)";
-                                    using (var CopyCommand = new SQLiteCommand(CopyQuery, Connection, Transaction))
-                                    {
-                                        CopyCommand.Parameters.AddWithValue("@ItemCode", ItemCode);
-                                        CopyCommand.Parameters.AddWithValue("@Description", Description);
-                                        CopyCommand.Parameters.AddWithValue("@Qty", Qty);
-                                        CopyCommand.Parameters.AddWithValue("@LzQty", LzQty);
-                                        CopyCommand.Parameters.AddWithValue("@RetailPrice", RetailPrice);
-                                        CopyCommand.ExecuteNonQuery();
-                                    }
-
-                                    newItemsCount++;
                                 }
+                            }
+                        }
+
+                        
+                        if (itemsToAddToNewlyAdded.Count > 0)
+                        {
+                           
+                            string DeleteQuery = "DELETE FROM NewlyAddedItems";
+                            using (var DeleteCmd = new SQLiteCommand(DeleteQuery, Connection, Transaction))
+                            {
+                                DeleteCmd.ExecuteNonQuery();
+                            }
+
+                            
+                            foreach (var item in itemsToAddToNewlyAdded)
+                            {
+                                AddToNewlyAddedItems(Connection, Transaction, item.ItemCode, item.Description, 
+                                    item.Qty, item.LzQty, item.RetailPrice);
+                                addedToNewlyAddedCount++;
                             }
                         }
 
@@ -121,7 +140,54 @@ namespace CheckPointDataAccessLayer
                 }
             }
 
-            return newItemsCount; // صفر يعني لا أصناف جديدة
+            return addedToNewlyAddedCount;
+        }
+
+        private static void InsertItemIntoDatabase(SQLiteConnection conn, SQLiteTransaction trans,
+            int code, string desc, int q, int lz, decimal price)
+        {
+            string query = "INSERT INTO Items (ItemCode, Description, Qty, LzQty, RetailPrice) VALUES " +
+                "(@ItemCode, @Description, @Qty, @LzQty, @RetailPrice)";
+            using (var cmd = new SQLiteCommand(query, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@ItemCode", code);
+                cmd.Parameters.AddWithValue("@Description", desc);
+                cmd.Parameters.AddWithValue("@Qty", q);
+                cmd.Parameters.AddWithValue("@LzQty", lz);
+                cmd.Parameters.AddWithValue("@RetailPrice", price);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private static void UpdateItemInDatabase(SQLiteConnection conn, SQLiteTransaction trans, int code, string desc,
+            int q, int lz, decimal price)
+        {
+            string query = "UPDATE Items SET Description = @Description, Qty = @Qty, LzQty = @LzQty, RetailPrice = " +
+                "@RetailPrice WHERE ItemCode = @ItemCode";
+            using (var cmd = new SQLiteCommand(query, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@Description", desc);
+                cmd.Parameters.AddWithValue("@Qty", q);
+                cmd.Parameters.AddWithValue("@LzQty", lz);
+                cmd.Parameters.AddWithValue("@RetailPrice", price);
+                cmd.Parameters.AddWithValue("@ItemCode", code);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        private static void AddToNewlyAddedItems(SQLiteConnection conn, SQLiteTransaction trans, int code, 
+            string desc, int q, int lz, decimal price)
+        {
+            string query = "INSERT INTO NewlyAddedItems (ItemCode, Description, Qty, LzQty, RetailPrice) " +
+                "VALUES (@ItemCode, @Description, @Qty, @LzQty, @RetailPrice)";
+            using (var cmd = new SQLiteCommand(query, conn, trans))
+            {
+                cmd.Parameters.AddWithValue("@ItemCode", code);
+                cmd.Parameters.AddWithValue("@Description", desc);
+                cmd.Parameters.AddWithValue("@Qty", q);
+                cmd.Parameters.AddWithValue("@LzQty", lz);
+                cmd.Parameters.AddWithValue("@RetailPrice", price);
+                cmd.ExecuteNonQuery();
+            }
         }
 
 

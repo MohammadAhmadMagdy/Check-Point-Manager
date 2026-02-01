@@ -43,6 +43,7 @@ namespace Check_Point_Manager
         private string _ExcelFile = "";
         private DataTable _dtAllStockList;
         private DataTable _dtNewlyAddedItems;
+        private DataTable _dtGroupsList;
         private DataTable _dtSelectedGroupItems;
         private bool _IsAllItemsRowsSelected = false;
         private bool _IsAllGroupRowSelect = false;
@@ -83,22 +84,37 @@ namespace Check_Point_Manager
             dgv.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
             dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(241,240,241);
         }
+        private void _PrepareAutoCompleteForGroupsComboBox()
+        {
+            AutoCompleteStringCollection AC = new AutoCompleteStringCollection();
+
+            foreach(DataRow Row in _dtGroupsList.Rows)
+            {
+                string GroupName = Row["GroupName"].ToString();
+                string GroupNumber = Row["GroupNumber"].ToString();
+
+                AC.Add(GroupName);
+                AC.Add(GroupNumber);
+            }
+
+            cmbGroups.AutoCompleteCustomSource = AC;
+        }
         private void _FillGroupsComboBox()
         {
             _IsLoadingGrous = true;
 
-            DataTable GroupsDT = clsGroup.LoadAllGroupsInfo();
+            _dtGroupsList = clsGroup.LoadAllGroupsInfo();
 
-            DataRow Row = GroupsDT.NewRow();
+            DataRow Row = _dtGroupsList.NewRow();
 
             Row["GroupName"] = "None";
             Row["GroupID"] = -1;
             Row["GroupNumber"] = -1;
             Row["CheckCounter"] = 0;
 
-            GroupsDT.Rows.InsertAt(Row, 0);
+            _dtGroupsList.Rows.InsertAt(Row, 0);
 
-            cmbGroups.DataSource = GroupsDT;
+            cmbGroups.DataSource = _dtGroupsList;
             cmbGroups.DisplayMember = "GroupName";
             cmbGroups.ValueMember = "GroupID";
 
@@ -106,6 +122,8 @@ namespace Check_Point_Manager
             lblGroupChecked.Visible = false;
 
             _IsLoadingGrous = false;
+
+            _PrepareAutoCompleteForGroupsComboBox();
         }
         private void _LoadItemsTable()
         {
@@ -142,14 +160,14 @@ namespace Check_Point_Manager
                 dgvAllStockList.Columns["ItemCode"].Width = 53;
 
                 dgvAllStockList.Columns["Description"].HeaderText = "Description";
-                dgvAllStockList.Columns["Description"].Width = 290;
+                dgvAllStockList.Columns["Description"].Width = 301;
 
                 dgvAllStockList.Columns["Qty"].HeaderText = "Qty";
-                dgvAllStockList.Columns["Qty"].Width = 40;
+                dgvAllStockList.Columns["Qty"].Width = 50;
                 dgvAllStockList.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvAllStockList.Columns["LzQty"].HeaderText = "LzQty";
-                dgvAllStockList.Columns["LzQty"].Width = 40;
+                dgvAllStockList.Columns["LzQty"].Width = 50;
                 dgvAllStockList.Columns["LzQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvAllStockList.Columns["RetailPrice"].HeaderText = "Price";
@@ -189,14 +207,14 @@ namespace Check_Point_Manager
                 dgvGroupItems.Columns["ItemCode"].Width = 53;
 
                 dgvGroupItems.Columns["Description"].HeaderText = "Description";
-                dgvGroupItems.Columns["Description"].Width = 380;
+                dgvGroupItems.Columns["Description"].Width = 392;
 
                 dgvGroupItems.Columns["Qty"].HeaderText = "Qty";
-                dgvGroupItems.Columns["Qty"].Width = 40;
+                dgvGroupItems.Columns["Qty"].Width = 50;
                 dgvGroupItems.Columns["Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvGroupItems.Columns["LzQty"].HeaderText = "LzQty";
-                dgvGroupItems.Columns["LzQty"].Width = 40;
+                dgvGroupItems.Columns["LzQty"].Width = 50;
                 dgvGroupItems.Columns["LzQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvGroupItems.Columns["RetailPrice"].HeaderText = "Price";
@@ -325,6 +343,8 @@ namespace Check_Point_Manager
         }
         private void frmMainScreen_Load(object sender, EventArgs e)
         {
+
+
             _FillGroupsComboBox();
 
             _LoadItemsTable();
@@ -415,7 +435,7 @@ namespace Check_Point_Manager
             }
 
             lblGroupChecked.Visible = true;
-
+            txbGroupsFilterValue.Text = string.Empty;
             _LoadSelectedGroupItems(GroupID);
         }
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -967,5 +987,6 @@ namespace Check_Point_Manager
 
         }
 
+       
     }
 }
