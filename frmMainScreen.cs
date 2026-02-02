@@ -39,7 +39,7 @@ namespace Check_Point_Manager
         }
 
 
-        private bool _IsLoadingGrous = false;
+        private bool _IsLoadingGroup = false;
         private string _ExcelFile = "";
         private DataTable _dtAllStockList;
         private DataTable _dtNewlyAddedItems;
@@ -101,7 +101,7 @@ namespace Check_Point_Manager
         }
         private void _FillGroupsComboBox()
         {
-            _IsLoadingGrous = true;
+            _IsLoadingGroup = true;
 
             _dtGroupsList = clsGroup.LoadAllGroupsInfo();
 
@@ -121,7 +121,7 @@ namespace Check_Point_Manager
             cmbGroups.SelectedIndex = 0;
             lblGroupChecked.Visible = false;
 
-            _IsLoadingGrous = false;
+            _IsLoadingGroup = false;
 
             _PrepareAutoCompleteForGroupsComboBox();
         }
@@ -227,7 +227,7 @@ namespace Check_Point_Manager
 
             txbGroupsFilterValue_TextChanged(null, null);
             lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
-            lblGroupChecked.Text = clsGroup.FindByID(GroupID).CkeckCounter.ToString() + " Time(s)";
+            lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
         }
         private string _SelectExcelFile()
         {
@@ -417,7 +417,7 @@ namespace Check_Point_Manager
         } 
         private void cmbGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_IsLoadingGrous)
+            if (_IsLoadingGroup)
                 return;
 
             if (cmbGroups.SelectedValue == null)
@@ -730,24 +730,22 @@ namespace Check_Point_Manager
                     ws.Column(5).Style.NumberFormat.Format = "0.000";
 
                     // حفظ الملف
-                    SaveFileDialog sfd = new SaveFileDialog
+                    using (SaveFileDialog sfd = new SaveFileDialog 
+                    { Filter = "Excel Files|*.xlsx", FileName = "GroupItems.xlsx" })
                     {
-                        Filter = "Excel Files|*.xlsx",
-                        FileName = "GroupItems.xlsx"
-                    };
-
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        wb.SaveAs(sfd.FileName);
-                        MessageBox.Show("File Exported Successfully");
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            wb.SaveAs(sfd.FileName);
+                            MessageBox.Show("File Exported Successfully");
+                        }
                     }
 
-                    lblGroupChecked.Text = clsGroup.FindByID(GroupID).CkeckCounter.ToString() + " Time(s)";
+                    lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex.Message);
+                MessageBox.Show("Error " + ex.Message);
             }
             finally
             {
@@ -968,7 +966,6 @@ namespace Check_Point_Manager
             if(string.IsNullOrEmpty(txbGroupsFilterValue.Text))
                 pcbGroupSearchIcon.Visible = true;
         }
-
         private void recordItemVariationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int ItemCode = Convert.ToInt32(dgvAllStockList.CurrentRow.Cells["ItemCode"].Value);
@@ -978,7 +975,6 @@ namespace Check_Point_Manager
             frm.ShowDialog();
 
         }
-
         private void btnVariationList_Click(object sender, EventArgs e)
         {
             frmVariationsList frm = new frmVariationsList();

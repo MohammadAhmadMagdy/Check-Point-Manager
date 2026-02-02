@@ -16,14 +16,14 @@ namespace CheckPointBusinessLayer
         public int GroupID {  get; set; }
         public int GroupNumber {  get; set; }
         public string GroupName { get; set; }
-        public int CkeckCounter { get; set; }
+        public int CheckCounter { get; set; }
 
         public clsGroup()
         {
             this.GroupID = -1;
             this.GroupNumber = -1;
             this.GroupName = "";
-            this.CkeckCounter = 0;
+            this.CheckCounter = 0;
 
             Mode = enMode.AddNew;
         }
@@ -32,7 +32,7 @@ namespace CheckPointBusinessLayer
             this.GroupID = GroupID;
             this.GroupNumber = GroupNumber;
             this.GroupName = GroupName;
-            this.CkeckCounter = CheckCounter;
+            this.CheckCounter = CheckCounter;
 
             Mode = enMode.Update;
         }
@@ -75,13 +75,13 @@ namespace CheckPointBusinessLayer
         }
         private bool _AddNew()
         {
-            this.GroupID = clsGroupData.AddNewGroup(this.GroupNumber, this.GroupName, this.CkeckCounter);
+            this.GroupID = clsGroupData.AddNewGroup(this.GroupNumber, this.GroupName, this.CheckCounter);
 
             return this.GroupID != -1;
         }
         private bool _Update()
         {
-            return clsGroupData.UpdateGroup(this.GroupID, this.GroupNumber, this.GroupName, this.CkeckCounter);
+            return clsGroupData.UpdateGroup(this.GroupID, this.GroupNumber, this.GroupName, this.CheckCounter);
         }
         public bool Save()
         {

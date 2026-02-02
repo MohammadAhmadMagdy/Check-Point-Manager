@@ -64,11 +64,11 @@ namespace Check_Point_Manager
 
             txbGroupNumber.Text = _Group.GroupNumber.ToString();
             txbGroupName.Text = _Group.GroupName;
-            txbCounter.Text = _Group.CkeckCounter.ToString();
+            txbCounter.Text = _Group.CheckCounter.ToString();
             lblNewGpID.Text = _Group.GroupID.ToString();
             lblNewGpNumber.Text = _Group.GroupNumber.ToString();
             lblNewGpName.Text = _Group.GroupName;
-            lblNewCounter.Text = _Group.CkeckCounter.ToString();
+            lblNewCounter.Text = _Group.CheckCounter.ToString();
         }
        
         private void frmAddEditGroup_Load(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace Check_Point_Manager
 
             _Group.GroupName = GroupName;
             _Group.GroupNumber = GroupNumber;
-            _Group.CkeckCounter = CheckCounter;
+            _Group.CheckCounter = CheckCounter;
 
             if (_Group.Save())
             {
@@ -120,7 +120,7 @@ namespace Check_Point_Manager
                     lblNewGpID.Text = _Group.GroupID.ToString();
                     lblNewGpName.Text = _Group.GroupName;
                     lblNewGpNumber.Text = _Group.GroupNumber.ToString();
-                    lblNewCounter.Text = _Group.CkeckCounter.ToString();
+                    lblNewCounter.Text = _Group.CheckCounter.ToString();
 
                     MessageBox.Show("Group Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -130,7 +130,7 @@ namespace Check_Point_Manager
                     lblNewGpID.Text = _Group.GroupID.ToString();
                     lblNewGpName.Text = _Group.GroupName;
                     lblNewGpNumber.Text = _Group.GroupNumber.ToString();
-                    lblNewCounter.Text = _Group.CkeckCounter.ToString();
+                    lblNewCounter.Text = _Group.CheckCounter.ToString();
 
                     MessageBox.Show("Group Info Updated Successfully", "Success", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
