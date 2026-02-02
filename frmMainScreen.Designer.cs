@@ -43,6 +43,7 @@
             this.pcbItemsSearchIcon = new System.Windows.Forms.PictureBox();
             this.chbFastMode = new System.Windows.Forms.CheckBox();
             this.lblItemRecordsTitle = new System.Windows.Forms.Label();
+            this.btnAddToGroup = new System.Windows.Forms.Button();
             this.lblItemRecords = new System.Windows.Forms.Label();
             this.dgvAllStockList = new System.Windows.Forms.DataGridView();
             this.cmsItemOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -54,6 +55,7 @@
             this.lblItemsListTitle = new System.Windows.Forms.Label();
             this.pnlAllItemsSep = new System.Windows.Forms.Panel();
             this.pnlGroupsList = new System.Windows.Forms.Panel();
+            this.btnRemoveItems = new System.Windows.Forms.Button();
             this.lblGroupCheckedTitle = new System.Windows.Forms.Label();
             this.lblGroupChecked = new System.Windows.Forms.Label();
             this.pcbGroupSearchIcon = new System.Windows.Forms.PictureBox();
@@ -79,8 +81,6 @@
             this.txbFilePath = new System.Windows.Forms.TextBox();
             this.pcbUpdateStock = new System.Windows.Forms.PictureBox();
             this.lblUpdateStock = new System.Windows.Forms.Label();
-            this.btnAddToGroup = new System.Windows.Forms.Button();
-            this.btnRemoveItems = new System.Windows.Forms.Button();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
@@ -222,6 +222,26 @@
             this.lblItemRecordsTitle.Size = new System.Drawing.Size(90, 15);
             this.lblItemRecordsTitle.TabIndex = 23;
             this.lblItemRecordsTitle.Text = "Total Records :";
+            // 
+            // btnAddToGroup
+            // 
+            this.btnAddToGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnAddToGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddToGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddToGroup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddToGroup.ForeColor = System.Drawing.Color.Black;
+            this.btnAddToGroup.Image = global::Check_Point_Manager.Properties.Resources.arrow_Right_25;
+            this.btnAddToGroup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddToGroup.Location = new System.Drawing.Point(482, 7);
+            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddToGroup.Name = "btnAddToGroup";
+            this.btnAddToGroup.Size = new System.Drawing.Size(172, 32);
+            this.btnAddToGroup.TabIndex = 26;
+            this.btnAddToGroup.Text = "F2 - Add To Group";
+            this.btnAddToGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddToGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnAddToGroup.UseVisualStyleBackColor = false;
+            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
             // 
             // lblItemRecords
             // 
@@ -382,6 +402,26 @@
             this.pnlGroupsList.Name = "pnlGroupsList";
             this.pnlGroupsList.Size = new System.Drawing.Size(664, 625);
             this.pnlGroupsList.TabIndex = 3;
+            // 
+            // btnRemoveItems
+            // 
+            this.btnRemoveItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnRemoveItems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRemoveItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveItems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveItems.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveItems.Image = global::Check_Point_Manager.Properties.Resources.arrow_Left_25;
+            this.btnRemoveItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveItems.Location = new System.Drawing.Point(447, 7);
+            this.btnRemoveItems.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRemoveItems.Name = "btnRemoveItems";
+            this.btnRemoveItems.Size = new System.Drawing.Size(207, 32);
+            this.btnRemoveItems.TabIndex = 27;
+            this.btnRemoveItems.Text = "F3 - Remove From Group";
+            this.btnRemoveItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemoveItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveItems.UseVisualStyleBackColor = false;
+            this.btnRemoveItems.Click += new System.EventHandler(this.btnRemoveItems_Click);
             // 
             // lblGroupCheckedTitle
             // 
@@ -558,13 +598,14 @@
             // 
             this.cmbGroups.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbGroups.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.cmbGroups.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGroups.ForeColor = System.Drawing.Color.DarkBlue;
+            this.cmbGroups.BackColor = System.Drawing.Color.White;
+            this.cmbGroups.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGroups.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.cmbGroups.FormattingEnabled = true;
-            this.cmbGroups.ItemHeight = 15;
+            this.cmbGroups.ItemHeight = 17;
             this.cmbGroups.Location = new System.Drawing.Point(126, 50);
             this.cmbGroups.Name = "cmbGroups";
-            this.cmbGroups.Size = new System.Drawing.Size(528, 23);
+            this.cmbGroups.Size = new System.Drawing.Size(528, 25);
             this.cmbGroups.TabIndex = 23;
             this.cmbGroups.SelectedIndexChanged += new System.EventHandler(this.cmbGroups_SelectedIndexChanged);
             // 
@@ -719,46 +760,6 @@
             this.lblUpdateStock.Size = new System.Drawing.Size(102, 20);
             this.lblUpdateStock.TabIndex = 3;
             this.lblUpdateStock.Text = "Update Stock";
-            // 
-            // btnAddToGroup
-            // 
-            this.btnAddToGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
-            this.btnAddToGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddToGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddToGroup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToGroup.ForeColor = System.Drawing.Color.Black;
-            this.btnAddToGroup.Image = global::Check_Point_Manager.Properties.Resources.arrow_Right_25;
-            this.btnAddToGroup.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddToGroup.Location = new System.Drawing.Point(482, 7);
-            this.btnAddToGroup.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddToGroup.Name = "btnAddToGroup";
-            this.btnAddToGroup.Size = new System.Drawing.Size(172, 32);
-            this.btnAddToGroup.TabIndex = 26;
-            this.btnAddToGroup.Text = "F2 - Add To Group";
-            this.btnAddToGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddToGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnAddToGroup.UseVisualStyleBackColor = false;
-            this.btnAddToGroup.Click += new System.EventHandler(this.btnAddToGroup_Click);
-            // 
-            // btnRemoveItems
-            // 
-            this.btnRemoveItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
-            this.btnRemoveItems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRemoveItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveItems.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveItems.ForeColor = System.Drawing.Color.Black;
-            this.btnRemoveItems.Image = global::Check_Point_Manager.Properties.Resources.arrow_Left_25;
-            this.btnRemoveItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveItems.Location = new System.Drawing.Point(447, 7);
-            this.btnRemoveItems.Margin = new System.Windows.Forms.Padding(0);
-            this.btnRemoveItems.Name = "btnRemoveItems";
-            this.btnRemoveItems.Size = new System.Drawing.Size(207, 32);
-            this.btnRemoveItems.TabIndex = 27;
-            this.btnRemoveItems.Text = "F3 - Remove From Group";
-            this.btnRemoveItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemoveItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRemoveItems.UseVisualStyleBackColor = false;
-            this.btnRemoveItems.Click += new System.EventHandler(this.btnRemoveItems_Click);
             // 
             // pcbIcon
             // 
