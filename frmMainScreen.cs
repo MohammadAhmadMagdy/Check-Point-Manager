@@ -356,6 +356,14 @@ namespace Check_Point_Manager
 
             btnUpdate.Enabled = false;
 
+            clsGroup LastCheckedGroup = clsGroup.GetLastCheckedGroup();
+
+            if(LastCheckedGroup != null)
+            {
+                lblLastGroupChecked.Text = lblLastGroupChecked.Text = LastCheckedGroup.GroupName +
+                            LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
+            }
+
             _SetCueBanner(txbFilterValue, "Search", true);
 
             _SetCueBanner(txbGroupsFilterValue, "Search", true);
@@ -663,9 +671,18 @@ namespace Check_Point_Manager
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                }
-                
+                    if (!clsGroup.RecordCheckDate(GroupID))
+                    {
+                        MessageBox.Show("Error Recording Check Date in DataBase !", "Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
 
+                    lblLastGroupChecked.Text = SelectedGroup.GroupName +
+                            " At " + SelectedGroup.LastCheckDate.ToLongDateString();
+                }
+
+            
                 DataView dv = new DataView(_dtSelectedGroupItems);
                 dv.RowFilter = "Qty > 0 OR LzQty > 0";
                 dv.Sort = "Description ASC";
@@ -740,7 +757,7 @@ namespace Check_Point_Manager
                         }
                     }
 
-                    lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
+                        lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
                 }
             }
             catch (Exception ex)

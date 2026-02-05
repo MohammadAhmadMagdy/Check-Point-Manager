@@ -52,6 +52,12 @@ namespace Check_Point_Manager
 
                 dgvListGroups.Columns[3].HeaderText = "Check Counter";
                 dgvListGroups.Columns[3].Width = 130;
+
+                dgvListGroups.Columns[4].HeaderText = "Last Check Date";
+                dgvListGroups.Columns[4].DefaultCellStyle.Format = "ddd, dd MMM yyyy hh:mm tt";
+                dgvListGroups.Columns[4].Width = 150;
+
+
             }
 
             lblNumberOfGroups.Text = dgvListGroups.RowCount.ToString();

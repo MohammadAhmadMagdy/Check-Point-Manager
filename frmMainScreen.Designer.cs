@@ -82,6 +82,8 @@
             this.pcbUpdateStock = new System.Windows.Forms.PictureBox();
             this.lblUpdateStock = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
+            this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
+            this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -664,6 +666,8 @@
             // pnlAction
             // 
             this.pnlAction.BackColor = System.Drawing.Color.White;
+            this.pnlAction.Controls.Add(this.lblLastGroupChecked);
+            this.pnlAction.Controls.Add(this.lblLastGroupCheckedTitle);
             this.pnlAction.Controls.Add(this.pnlUpdateInfo);
             this.pnlAction.Controls.Add(this.btnUpdate);
             this.pnlAction.Controls.Add(this.btnBrowseFile);
@@ -680,9 +684,9 @@
             this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.pnlUpdateInfo.Controls.Add(this.lblUpdateStatus);
             this.pnlUpdateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
-            this.pnlUpdateInfo.Location = new System.Drawing.Point(621, 4);
+            this.pnlUpdateInfo.Location = new System.Drawing.Point(589, 5);
             this.pnlUpdateInfo.Name = "pnlUpdateInfo";
-            this.pnlUpdateInfo.Size = new System.Drawing.Size(479, 34);
+            this.pnlUpdateInfo.Size = new System.Drawing.Size(387, 34);
             this.pnlUpdateInfo.TabIndex = 27;
             // 
             // lblUpdateStatus
@@ -690,7 +694,7 @@
             this.lblUpdateStatus.AutoSize = true;
             this.lblUpdateStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUpdateStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
-            this.lblUpdateStatus.Location = new System.Drawing.Point(82, 9);
+            this.lblUpdateStatus.Location = new System.Drawing.Point(60, 9);
             this.lblUpdateStatus.Name = "lblUpdateStatus";
             this.lblUpdateStatus.Size = new System.Drawing.Size(266, 17);
             this.lblUpdateStatus.TabIndex = 20;
@@ -771,6 +775,30 @@
             this.pcbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
+            // 
+            // lblLastGroupCheckedTitle
+            // 
+            this.lblLastGroupCheckedTitle.AutoSize = true;
+            this.lblLastGroupCheckedTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastGroupCheckedTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastGroupCheckedTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblLastGroupCheckedTitle.Location = new System.Drawing.Point(982, 5);
+            this.lblLastGroupCheckedTitle.Name = "lblLastGroupCheckedTitle";
+            this.lblLastGroupCheckedTitle.Size = new System.Drawing.Size(124, 15);
+            this.lblLastGroupCheckedTitle.TabIndex = 32;
+            this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
+            // 
+            // lblLastGroupChecked
+            // 
+            this.lblLastGroupChecked.AutoSize = true;
+            this.lblLastGroupChecked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastGroupChecked.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastGroupChecked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblLastGroupChecked.Location = new System.Drawing.Point(982, 20);
+            this.lblLastGroupChecked.Name = "lblLastGroupChecked";
+            this.lblLastGroupChecked.Size = new System.Drawing.Size(17, 15);
+            this.lblLastGroupChecked.TabIndex = 33;
+            this.lblLastGroupChecked.Text = "??";
             // 
             // frmMainScreen
             // 
@@ -867,5 +895,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsItemOptions;
         private System.Windows.Forms.ToolStripMenuItem recordItemVariationToolStripMenuItem;
         private System.Windows.Forms.Button btnVariationList;
+        private System.Windows.Forms.Label lblLastGroupChecked;
+        private System.Windows.Forms.Label lblLastGroupCheckedTitle;
     }
 }

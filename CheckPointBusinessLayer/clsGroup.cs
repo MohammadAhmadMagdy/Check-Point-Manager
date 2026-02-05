@@ -17,6 +17,7 @@ namespace CheckPointBusinessLayer
         public int GroupNumber {  get; set; }
         public string GroupName { get; set; }
         public int CheckCounter { get; set; }
+        public DateTime LastCheckDate {  get; set; }
 
         public clsGroup()
         {
@@ -24,15 +25,17 @@ namespace CheckPointBusinessLayer
             this.GroupNumber = -1;
             this.GroupName = "";
             this.CheckCounter = 0;
+            this.LastCheckDate = DateTime.MinValue;
 
             Mode = enMode.AddNew;
         }
-        private clsGroup(int GroupID, int GroupNumber, string GroupName, int CheckCounter)
+        private clsGroup(int GroupID, int GroupNumber, string GroupName, int CheckCounter, DateTime LastCheckDate)
         {
             this.GroupID = GroupID;
             this.GroupNumber = GroupNumber;
             this.GroupName = GroupName;
             this.CheckCounter = CheckCounter;
+            this.LastCheckDate = LastCheckDate;
 
             Mode = enMode.Update;
         }
@@ -45,9 +48,10 @@ namespace CheckPointBusinessLayer
             int GroupNumber = -1;
             string GroupName = "";
             int CheckCounter = 0;
+            DateTime LastCheckDate = DateTime.MinValue;
 
-            if (clsGroupData.GetGroupByID(GroupID, ref GroupNumber, ref GroupName, ref CheckCounter))
-                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter);
+            if (clsGroupData.GetGroupByID(GroupID, ref GroupNumber, ref GroupName, ref CheckCounter, ref LastCheckDate))
+                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter, LastCheckDate);
             else
                 return null;
         }
@@ -56,9 +60,10 @@ namespace CheckPointBusinessLayer
             int GroupID = -1;
             string GroupName = "";
             int CheckCounter = 0;
+            DateTime LastCheckDate = DateTime.MinValue;
 
-            if (clsGroupData.GetGroupByNumber(GroupNumber, ref GroupID, ref GroupName, ref CheckCounter))
-                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter);
+            if (clsGroupData.GetGroupByNumber(GroupNumber, ref GroupID, ref GroupName, ref CheckCounter, ref LastCheckDate))
+                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter, LastCheckDate);
             else
                 return null;
         }
@@ -67,9 +72,10 @@ namespace CheckPointBusinessLayer
             int GroupID = -1;
             int GroupNumber = -1;
             int CheckCounter = 0;
+            DateTime LastCheckDate = DateTime.MinValue;
 
-            if (clsGroupData.GetGroupByName(GroupName, ref GroupID, ref GroupNumber, ref CheckCounter))
-                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter);
+            if (clsGroupData.GetGroupByName(GroupName, ref GroupID, ref GroupNumber, ref CheckCounter, ref LastCheckDate))
+                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter, LastCheckDate);
             else
                 return null;
         }
@@ -132,6 +138,28 @@ namespace CheckPointBusinessLayer
         public bool CounterReset()
         {
             return clsGroupData.CounterReset(this.GroupID);
+        }
+        public static clsGroup GetLastCheckedGroup()
+        {
+            int GroupID = -1;
+            int GroupNumber = -1;
+            string GroupName = "";
+            int CheckCounter = 0;
+            DateTime LastCheckDate = DateTime.MinValue;
+
+            if (clsGroupData.GetLastCheckedGroup(ref GroupID, ref GroupNumber, ref GroupName, 
+                ref CheckCounter, ref LastCheckDate))
+                return new clsGroup(GroupID, GroupNumber, GroupName, CheckCounter, LastCheckDate);
+            else
+                return null;
+        }
+        public bool RecordCheckDate()
+        {
+            return clsGroupData.RecordGroupCheckDate(this.GroupID);
+        }
+        public static bool RecordCheckDate(int GroupID)
+        {
+            return clsGroupData.RecordGroupCheckDate(GroupID);
         }
     }
 }

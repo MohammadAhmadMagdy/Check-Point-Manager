@@ -32,7 +32,8 @@ namespace CheckPointDataAccessLayer
 
             return dt;
         }
-        public static bool GetGroupByID(int GroupID, ref int GroupNumber, ref string GroupName, ref int CheckCounter)
+        public static bool GetGroupByID(int GroupID, ref int GroupNumber, ref string GroupName, 
+            ref int CheckCounter, ref DateTime LastCheckDate)
         {
             bool IsFound = false;
 
@@ -52,13 +53,16 @@ namespace CheckPointDataAccessLayer
                         GroupName = Reader["GroupName"].ToString();
                         GroupNumber = Convert.ToInt32(Reader["GroupNumber"]);
                         CheckCounter = Convert.ToInt32(Reader["CheckCounter"]);
+                        LastCheckDate = Reader["LastCheckDate"] == DBNull.Value ? DateTime.MinValue :
+                            Convert.ToDateTime(Reader["LastCheckDate"]);
                     }
                 }
             }
 
             return IsFound;
         }
-        public static bool GetGroupByNumber(int GroupNumber, ref int GroupID, ref string GroupName, ref int CheckCounter)
+        public static bool GetGroupByNumber(int GroupNumber, ref int GroupID, ref string GroupName, 
+            ref int CheckCounter, ref DateTime LastCheckDate)
         {
             bool IsFound = false;
 
@@ -78,13 +82,16 @@ namespace CheckPointDataAccessLayer
                         GroupName = Reader["GroupName"].ToString();
                         GroupID = Convert.ToInt32(Reader["GroupID"]);
                         CheckCounter = Convert.ToInt32(Reader["CheckCounter"]);
+                        LastCheckDate = Reader["LastCheckDate"] == DBNull.Value ? DateTime.MinValue :
+                            Convert.ToDateTime(Reader["LastCheckDate"]);
                     }
                 }
             }
 
             return IsFound;
         }
-        public static bool GetGroupByName(string GroupName, ref int GroupID, ref int GroupNumber, ref int CheckCounter)
+        public static bool GetGroupByName(string GroupName, ref int GroupID, ref int GroupNumber, 
+            ref int CheckCounter, ref DateTime LastCheckDate)
         {
             bool IsFound = false;
 
@@ -104,6 +111,8 @@ namespace CheckPointDataAccessLayer
                         GroupID = Convert.ToInt32(Reader["GroupID"]);
                         GroupNumber = Convert.ToInt32(Reader["GroupNumber"]);
                         CheckCounter = Convert.ToInt32(Reader["CheckCounter"]);
+                        LastCheckDate = Reader["LastCheckDate"] == DBNull.Value ? DateTime.MinValue :
+                            Convert.ToDateTime(Reader["LastCheckDate"]);
                     }
                 }
             }
@@ -329,6 +338,53 @@ namespace CheckPointDataAccessLayer
             catch (SQLiteException ex) when (ex.ResultCode == SQLiteErrorCode.Constraint)
             {
                 return false;
+            }
+        }
+        public static bool GetLastCheckedGroup(ref int GroupID, ref int GroupNumber, ref string GroupName,
+            ref int CheckCounter, ref DateTime LastCheckDate)
+        {
+            bool IsFound = false;
+
+            string Query = "SELECT * FROM Groups ORDER BY LastCheckDate DESC LIMIT 1;";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            {
+                using (var Command = new SQLiteCommand(Query,Connection))
+                {
+                    using (var Reader = Command.ExecuteReader())
+                    {
+                        if(Reader.Read())
+                        {
+                            IsFound = true;
+
+                            GroupID = Convert.ToInt32(Reader["GroupID"]);
+                            GroupName = Reader["GroupName"].ToString();
+                            GroupNumber = Convert.ToInt32(Reader["GroupNumber"]);
+                            CheckCounter = Convert.ToInt32(Reader["CheckCounter"]);
+                            LastCheckDate = Reader["LastCheckDate"] == DBNull.Value ? DateTime.MinValue :
+                                Convert.ToDateTime(Reader["LastCheckDate"]);
+
+                        }
+                    }
+                }
+            }
+
+            return IsFound;
+        }
+        public static bool RecordGroupCheckDate(int GroupID)
+        {
+            DateTime LastCheckDate = DateTime.Now;
+
+            string Query = "UPDATE Groups SET LastCheckDate = @LastCheckDate WHERE GroupID = @GroupID";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            {
+                using (var Command = new SQLiteCommand(Query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@GroupID", GroupID);
+                    Command.Parameters.AddWithValue("@LastCheckDate", LastCheckDate);
+                    return Command.ExecuteNonQuery() > 0;
+                }
             }
         }
 
