@@ -45,6 +45,7 @@ namespace Check_Point_Manager
         private DataTable _dtNewlyAddedItems;
         private DataTable _dtGroupsList;
         private DataTable _dtSelectedGroupItems;
+        private clsGroup _LastCheckedGroup;
         private bool _IsAllItemsRowsSelected = false;
         private bool _IsAllGroupRowSelect = false;
         private bool _IsItemsTableHeaderChecked = false;
@@ -356,12 +357,12 @@ namespace Check_Point_Manager
 
             btnUpdate.Enabled = false;
 
-            clsGroup LastCheckedGroup = clsGroup.GetLastCheckedGroup();
+             _LastCheckedGroup = clsGroup.GetLastCheckedGroup();
 
-            if(LastCheckedGroup != null)
+            if (_LastCheckedGroup != null)
             {
-                lblLastGroupChecked.Text = lblLastGroupChecked.Text = LastCheckedGroup.GroupName +
-                            LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
+                lblLastGroupChecked.Text = lblLastGroupChecked.Text = _LastCheckedGroup.GroupName +
+                           _LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
             }
 
             _SetCueBanner(txbFilterValue, "Search", true);
@@ -659,13 +660,17 @@ namespace Check_Point_Manager
                 }
 
                 int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+                if(GroupID == -1)
+                {
+                    MessageBox.Show("No GroupID Found !", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (Result == DialogResult.Yes)
                 {
                     
-                    clsGroup SelectedGroup = clsGroup.FindByID(GroupID);
-
-                    if(SelectedGroup == null || !SelectedGroup.CounterPlus())
+                    if (!clsGroup.CounterPlus(GroupID))
                     {
                         MessageBox.Show("Error in counting check !", "Error", 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -677,12 +682,17 @@ namespace Check_Point_Manager
                             MessageBoxIcon.Error);
                         return;
                     }
-
-                    lblLastGroupChecked.Text = SelectedGroup.GroupName +
-                            " At " + SelectedGroup.LastCheckDate.ToLongDateString();
                 }
 
-            
+                _LastCheckedGroup = clsGroup.GetLastCheckedGroup();
+
+                if (_LastCheckedGroup != null)
+                {
+                    lblLastGroupChecked.Text = lblLastGroupChecked.Text = _LastCheckedGroup.GroupName +
+                                _LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
+                }
+
+
                 DataView dv = new DataView(_dtSelectedGroupItems);
                 dv.RowFilter = "Qty > 0 OR LzQty > 0";
                 dv.Sort = "Description ASC";

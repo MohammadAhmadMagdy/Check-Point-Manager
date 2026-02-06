@@ -131,6 +131,10 @@ namespace CheckPointBusinessLayer
         {
             return clsGroupData.CounterPlus(this.GroupID);
         }
+        public static bool CounterPlus(int GroupID)
+        {
+            return clsGroupData.CounterPlus(GroupID);
+        }
         public bool CounterMinus()
         {
             return clsGroupData.CounterMinus(this.GroupID);
