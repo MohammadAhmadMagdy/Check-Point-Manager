@@ -82,8 +82,9 @@
             this.pcbUpdateStock = new System.Windows.Forms.PictureBox();
             this.lblUpdateStock = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
-            this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
+            this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -99,6 +100,7 @@
             this.pnlUpdateInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -666,8 +668,6 @@
             // pnlAction
             // 
             this.pnlAction.BackColor = System.Drawing.Color.White;
-            this.pnlAction.Controls.Add(this.lblLastGroupChecked);
-            this.pnlAction.Controls.Add(this.lblLastGroupCheckedTitle);
             this.pnlAction.Controls.Add(this.pnlUpdateInfo);
             this.pnlAction.Controls.Add(this.btnUpdate);
             this.pnlAction.Controls.Add(this.btnBrowseFile);
@@ -776,17 +776,15 @@
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
             // 
-            // lblLastGroupCheckedTitle
+            // panel1
             // 
-            this.lblLastGroupCheckedTitle.AutoSize = true;
-            this.lblLastGroupCheckedTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblLastGroupCheckedTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastGroupCheckedTitle.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblLastGroupCheckedTitle.Location = new System.Drawing.Point(982, 5);
-            this.lblLastGroupCheckedTitle.Name = "lblLastGroupCheckedTitle";
-            this.lblLastGroupCheckedTitle.Size = new System.Drawing.Size(124, 15);
-            this.lblLastGroupCheckedTitle.TabIndex = 32;
-            this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblLastGroupChecked);
+            this.panel1.Controls.Add(this.lblLastGroupCheckedTitle);
+            this.panel1.Location = new System.Drawing.Point(6, 720);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1334, 30);
+            this.panel1.TabIndex = 5;
             // 
             // lblLastGroupChecked
             // 
@@ -794,11 +792,23 @@
             this.lblLastGroupChecked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLastGroupChecked.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastGroupChecked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblLastGroupChecked.Location = new System.Drawing.Point(982, 20);
+            this.lblLastGroupChecked.Location = new System.Drawing.Point(140, 8);
             this.lblLastGroupChecked.Name = "lblLastGroupChecked";
             this.lblLastGroupChecked.Size = new System.Drawing.Size(17, 15);
             this.lblLastGroupChecked.TabIndex = 33;
             this.lblLastGroupChecked.Text = "??";
+            // 
+            // lblLastGroupCheckedTitle
+            // 
+            this.lblLastGroupCheckedTitle.AutoSize = true;
+            this.lblLastGroupCheckedTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastGroupCheckedTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastGroupCheckedTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblLastGroupCheckedTitle.Location = new System.Drawing.Point(7, 8);
+            this.lblLastGroupCheckedTitle.Name = "lblLastGroupCheckedTitle";
+            this.lblLastGroupCheckedTitle.Size = new System.Drawing.Size(124, 15);
+            this.lblLastGroupCheckedTitle.TabIndex = 32;
+            this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
             // frmMainScreen
             // 
@@ -806,7 +816,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
-            this.ClientSize = new System.Drawing.Size(1347, 722);
+            this.ClientSize = new System.Drawing.Size(1347, 759);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlAction);
             this.Controls.Add(this.pnlGroupsList);
             this.Controls.Add(this.pnlItemsList);
@@ -841,6 +852,8 @@
             this.pnlUpdateInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -895,6 +908,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsItemOptions;
         private System.Windows.Forms.ToolStripMenuItem recordItemVariationToolStripMenuItem;
         private System.Windows.Forms.Button btnVariationList;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLastGroupChecked;
         private System.Windows.Forms.Label lblLastGroupCheckedTitle;
     }
