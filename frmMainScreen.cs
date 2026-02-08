@@ -756,18 +756,34 @@ namespace Check_Point_Manager
                     ws.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                     ws.Column(5).Style.NumberFormat.Format = "0.000";
 
-                    // حفظ الملف
-                    using (SaveFileDialog sfd = new SaveFileDialog 
-                    { Filter = "Excel Files|*.xlsx", FileName = "GroupItems.xlsx" })
-                    {
-                        if (sfd.ShowDialog() == DialogResult.OK)
-                        {
-                            wb.SaveAs(sfd.FileName);
-                            MessageBox.Show("File Exported Successfully");
-                        }
-                    }
+                    ws.PageSetup.PagesWide = 1;
+                    //ws.PageSetup.PagesTall = false;
+                    //ws.PageSetup.PrintGridlines = true;
+                    ws.PageSetup.SetRowsToRepeatAtTop(1, 1);
 
-                        lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
+                    // حفظ الملف
+                    //using (SaveFileDialog sfd = new SaveFileDialog 
+                    //{ Filter = "Excel Files|*.xlsx", FileName = "GroupItems.xlsx" })
+                    //{
+                    //    if (sfd.ShowDialog() == DialogResult.OK)
+                    //    {
+                    //        wb.SaveAs(sfd.FileName);
+                    //        MessageBox.Show("File Exported Successfully");
+                    //    }
+                    //}
+
+                    string tempPath = 
+                        Path.Combine(Path.GetTempPath(),$"GroupItems_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx");
+
+                    wb.SaveAs(tempPath);
+
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = tempPath,
+                        UseShellExecute = true
+                    });
+
+                    lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
                 }
             }
             catch (Exception ex)
