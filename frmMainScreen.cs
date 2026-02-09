@@ -256,6 +256,90 @@ namespace Check_Point_Manager
 
             return FilePath;
         }
+        private void _FilterDataAndExportToExcel()
+        {
+            DataView dv = new DataView(_dtSelectedGroupItems);
+            dv.RowFilter = "Qty > 0 OR LzQty > 0";
+            dv.Sort = "Description ASC";
+
+            DataTable dtFilteredData = dv.ToTable(false, "ItemCode", "Description", "Qty", "LzQty", "RetailPrice");
+
+            if (dtFilteredData.Rows.Count == 0)
+            {
+                MessageBox.Show("No Items With Quantity", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            using (var wb = new XLWorkbook())
+            {
+                var ws = wb.Worksheets.Add("Group Items");
+
+                // Adding Columns Heads
+                for (int col = 0; col < dtFilteredData.Columns.Count; col++)
+                {
+                    ws.Cell(1, col + 1).Value = dtFilteredData.Columns[col].ColumnName;
+                    ws.Cell(1, col + 1).Style.Font.Bold = true;
+                    ws.Cell(1, col + 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                }
+
+                // Adding Data with columns type
+                for (int row = 0; row < dtFilteredData.Rows.Count; row++)
+                {
+                    for (int col = 0; col < dtFilteredData.Columns.Count; col++)
+                    {
+                        object value = dtFilteredData.Rows[row][col];
+                        Type columnType = dtFilteredData.Columns[col].DataType;
+
+                        if (columnType == typeof(int))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToInt32(value);
+                        else if (columnType == typeof(decimal))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToDecimal(value);
+                        else if (columnType == typeof(double))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToDouble(value);
+                        else if (columnType == typeof(DateTime))
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToDateTime(value);
+                        else
+                            ws.Cell(row + 2, col + 1).Value = Convert.ToString(value);
+                    }
+                }
+
+                // Add broders 
+                var range = ws.Range(1, 1, dtFilteredData.Rows.Count + 1, dtFilteredData.Columns.Count);
+
+                range.Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                range.Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                range.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                range.Style.Border.RightBorder = XLBorderStyleValues.Thin;
+
+                // Fonts and columns formatting
+                ws.Columns().AdjustToContents();
+                ws.Style.Font.FontName = "Segoe UI";
+                ws.Style.Font.FontSize = 10;
+
+                ws.Column(3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Column(4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                ws.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                ws.Column(5).Style.NumberFormat.Format = "0.000";
+
+                // printing options
+                ws.PageSetup.PagesWide = 1;
+                ws.PageSetup.SetRowsToRepeatAtTop(1, 1);
+
+
+                // Saving in Temp path and open file
+                string tempPath =
+                    Path.Combine(Path.GetTempPath(), $"GroupItems_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx");
+
+                wb.SaveAs(tempPath);
+
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = tempPath,
+                    UseShellExecute = true
+                });
+
+            }
+        }
         private void _dgvSelectEntireRowByRightClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             var DGV = (DataGridView)sender;
@@ -684,6 +768,9 @@ namespace Check_Point_Manager
                     }
                 }
 
+
+                _FilterDataAndExportToExcel();
+
                 _LastCheckedGroup = clsGroup.GetLastCheckedGroup();
 
                 if (_LastCheckedGroup != null)
@@ -692,99 +779,8 @@ namespace Check_Point_Manager
                                 _LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
                 }
 
-
-                DataView dv = new DataView(_dtSelectedGroupItems);
-                dv.RowFilter = "Qty > 0 OR LzQty > 0";
-                dv.Sort = "Description ASC";
-
-                DataTable dtFilteredData = dv.ToTable(false, "ItemCode", "Description", "Qty", "LzQty", "RetailPrice");
-
-                if (dtFilteredData.Rows.Count == 0)
-                {
-                    MessageBox.Show("No Items With Quantity", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                using (var wb = new XLWorkbook())
-                {
-                    var ws = wb.Worksheets.Add("Group Items");
-
-                    // إدخال العناوين يدويًا بدون فلتر أو ألوان
-                    for (int col = 0; col < dtFilteredData.Columns.Count; col++)
-                    {
-                        ws.Cell(1, col + 1).Value = dtFilteredData.Columns[col].ColumnName;
-                        ws.Cell(1, col + 1).Style.Font.Bold = true;
-                        ws.Cell(1, col + 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    }
-
-                    // إدخال البيانات مع تحويل آمن حسب نوع العمود
-                    for (int row = 0; row < dtFilteredData.Rows.Count; row++)
-                    {
-                        for (int col = 0; col < dtFilteredData.Columns.Count; col++)
-                        {
-                            object value = dtFilteredData.Rows[row][col];
-                            Type columnType = dtFilteredData.Columns[col].DataType;
-
-                            if (columnType == typeof(int))
-                                ws.Cell(row + 2, col + 1).Value = Convert.ToInt32(value);
-                            else if (columnType == typeof(decimal))
-                                ws.Cell(row + 2, col + 1).Value = Convert.ToDecimal(value);
-                            else if (columnType == typeof(double))
-                                ws.Cell(row + 2, col + 1).Value = Convert.ToDouble(value);
-                            else if (columnType == typeof(DateTime))
-                                ws.Cell(row + 2, col + 1).Value = Convert.ToDateTime(value);
-                            else
-                                ws.Cell(row + 2, col + 1).Value = Convert.ToString(value);
-                        }
-                    }
-
-                    // Add broders 
-                    var range = ws.Range(1, 1, dtFilteredData.Rows.Count + 1, dtFilteredData.Columns.Count);
-
-                    range.Style.Border.TopBorder = XLBorderStyleValues.Thin;
-                    range.Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                    range.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
-                    range.Style.Border.RightBorder = XLBorderStyleValues.Thin;
-
-                    // تنسيق الخطوط وضبط الأعمدة
-                    ws.Columns().AdjustToContents();
-                    ws.Style.Font.FontName = "Segoe UI";
-                    ws.Style.Font.FontSize = 10;
-
-                    ws.Column(3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    ws.Column(4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                    ws.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                    ws.Column(5).Style.NumberFormat.Format = "0.000";
-
-                    ws.PageSetup.PagesWide = 1;
-                    //ws.PageSetup.PagesTall = false;
-                    //ws.PageSetup.PrintGridlines = true;
-                    ws.PageSetup.SetRowsToRepeatAtTop(1, 1);
-
-                    // حفظ الملف
-                    //using (SaveFileDialog sfd = new SaveFileDialog 
-                    //{ Filter = "Excel Files|*.xlsx", FileName = "GroupItems.xlsx" })
-                    //{
-                    //    if (sfd.ShowDialog() == DialogResult.OK)
-                    //    {
-                    //        wb.SaveAs(sfd.FileName);
-                    //        MessageBox.Show("File Exported Successfully");
-                    //    }
-                    //}
-
-                    string tempPath = 
-                        Path.Combine(Path.GetTempPath(),$"GroupItems_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx");
-
-                    wb.SaveAs(tempPath);
-
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                    {
-                        FileName = tempPath,
-                        UseShellExecute = true
-                    });
-
-                    lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
-                }
+                lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
+                
             }
             catch (Exception ex)
             {
