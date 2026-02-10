@@ -23,7 +23,13 @@ namespace Check_Point_Manager
         private void frmManageListGroup_Load(object sender, EventArgs e)
         {
             _AllGroups = clsGroup.LoadAllGroupsInfo();
-           // _GroupsView = _AllGroups.DefaultView.ToTable(false, "GroupNumber", "GroupName");
+           //converting LastCheckDate column to DateTime format :
+
+            foreach(DataRow Row in  _AllGroups.Rows)
+            {
+                if (DateTime.TryParse(Row["LastCheckDate"].ToString(), out DateTime result))
+                    Row["LastCheckDate"] = result.ToString("ddd d/M/yyyy h:mm:ss tt"); ;
+            }
 
             dgvListGroups.DataSource = _AllGroups;
 
@@ -54,7 +60,7 @@ namespace Check_Point_Manager
                 dgvListGroups.Columns[3].Width = 130;
 
                 dgvListGroups.Columns[4].HeaderText = "Last Check Date";
-                dgvListGroups.Columns[4].DefaultCellStyle.Format = "ddd, dd MMM yyyy hh:mm tt";
+                //dgvListGroups.Columns[4].DefaultCellStyle.Format = "ddd M/d/yyyy h:mm:ss tt";
                 dgvListGroups.Columns[4].Width = 150;
 
 

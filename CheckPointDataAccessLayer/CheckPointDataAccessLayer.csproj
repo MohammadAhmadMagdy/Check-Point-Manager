@@ -84,6 +84,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsCheckData.cs" />
     <Compile Include="clsGroupData.cs" />
     <Compile Include="clsItemData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
