@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvListGroups = new System.Windows.Forms.DataGridView();
             this.lblAddNew = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
@@ -43,8 +44,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnCounterMinus = new System.Windows.Forms.Button();
             this.btnCounterPlus = new System.Windows.Forms.Button();
+            this.cmsGroupOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addCheckPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editCheckPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListGroups)).BeginInit();
             this.gbxCounter.SuspendLayout();
+            this.cmsGroupOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvListGroups
@@ -54,14 +59,15 @@
             this.dgvListGroups.AllowUserToOrderColumns = true;
             this.dgvListGroups.BackgroundColor = System.Drawing.Color.White;
             this.dgvListGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSalmon;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListGroups.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvListGroups.ContextMenuStrip = this.cmsGroupOptions;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSalmon;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListGroups.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListGroups.Location = new System.Drawing.Point(12, 81);
             this.dgvListGroups.Name = "dgvListGroups";
             this.dgvListGroups.ReadOnly = true;
@@ -260,6 +266,27 @@
             this.btnCounterPlus.UseVisualStyleBackColor = false;
             this.btnCounterPlus.Click += new System.EventHandler(this.btnCounterPlus_Click);
             // 
+            // cmsGroupOptions
+            // 
+            this.cmsGroupOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addCheckPointToolStripMenuItem,
+            this.editCheckPointToolStripMenuItem});
+            this.cmsGroupOptions.Name = "cmsGroupOptions";
+            this.cmsGroupOptions.Size = new System.Drawing.Size(181, 70);
+            // 
+            // addCheckPointToolStripMenuItem
+            // 
+            this.addCheckPointToolStripMenuItem.Name = "addCheckPointToolStripMenuItem";
+            this.addCheckPointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addCheckPointToolStripMenuItem.Text = "Add Check Point";
+            this.addCheckPointToolStripMenuItem.Click += new System.EventHandler(this.addCheckPointToolStripMenuItem_Click);
+            // 
+            // editCheckPointToolStripMenuItem
+            // 
+            this.editCheckPointToolStripMenuItem.Name = "editCheckPointToolStripMenuItem";
+            this.editCheckPointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editCheckPointToolStripMenuItem.Text = "Edit Check Point";
+            // 
             // frmManageListGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,6 +311,7 @@
             this.Load += new System.EventHandler(this.frmManageListGroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListGroups)).EndInit();
             this.gbxCounter.ResumeLayout(false);
+            this.cmsGroupOptions.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,5 +332,8 @@
         private System.Windows.Forms.Button btnCounterPlus;
         private System.Windows.Forms.Button btnCounterMinus;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ContextMenuStrip cmsGroupOptions;
+        private System.Windows.Forms.ToolStripMenuItem addCheckPointToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editCheckPointToolStripMenuItem;
     }
 }

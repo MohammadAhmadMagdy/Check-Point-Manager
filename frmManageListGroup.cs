@@ -210,5 +210,14 @@ namespace Check_Point_Manager
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void addCheckPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int GroupID = Convert.ToInt32(dgvListGroups.CurrentRow.Cells[0].Value);
+
+            frmAddEditGroupCheck frm = new frmAddEditGroupCheck(GroupID);
+
+            frm.ShowDialog();
+        }
     }
 }

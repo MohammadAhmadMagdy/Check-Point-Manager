@@ -98,6 +98,12 @@
     <Compile Include="frmAddEditGroup.Designer.cs">
       <DependentUpon>frmAddEditGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddEditGroupCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditGroupCheck.Designer.cs">
+      <DependentUpon>frmAddEditGroupCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddEditGroup.resx">
       <DependentUpon>frmAddEditGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditGroupCheck.resx">
+      <DependentUpon>frmAddEditGroupCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainScreen.resx">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
