@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckPointBusinessLayer;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Check_Point_Manager
 {
@@ -36,13 +37,13 @@ namespace Check_Point_Manager
            
 
            dgvListGroups.EnableHeadersVisualStyles = false;
-           dgvListGroups.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-           dgvListGroups.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+           dgvListGroups.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.SteelBlue;
+           dgvListGroups.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
            dgvListGroups.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 10, FontStyle.Regular);
+                new System.Drawing.Font("Segoe UI", 10, FontStyle.Regular);
 
-            dgvListGroups.RowsDefaultCellStyle.BackColor = Color.White;
-            dgvListGroups.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dgvListGroups.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dgvListGroups.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
 
             if (dgvListGroups.Rows.Count > 0)
             {
@@ -211,13 +212,27 @@ namespace Check_Point_Manager
             }
         }
 
-        private void addCheckPointToolStripMenuItem_Click(object sender, EventArgs e)
+        private void lklShowCheckingHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmCheckHistory frm = new frmCheckHistory();
+            frm.ShowDialog();
+        }
+
+        private void showGroupCheckHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int GroupID = Convert.ToInt32(dgvListGroups.CurrentRow.Cells[0].Value);
 
-            frmAddEditGroupCheck frm = new frmAddEditGroupCheck(GroupID);
-
+            frmCheckHistory frm = new frmCheckHistory(GroupID);
             frm.ShowDialog();
+        }
+
+        private void dgvListGroups_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dgvListGroups.ClearSelection();
+                dgvListGroups.CurrentCell = dgvListGroups.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            }
         }
     }
 }

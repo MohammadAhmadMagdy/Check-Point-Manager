@@ -23,9 +23,13 @@ namespace Check_Point_Manager
 
         private void frmAddEditGroupCheck_Load(object sender, EventArgs e)
         {
+            dtpCheckDate.Format = DateTimePickerFormat.Custom;
+            dtpCheckDate.CustomFormat = "dddd, dd/MM/yyyy - HH:mm tt";
+
             if (_GroupID == -1)
             {
                 MessageBox.Show("No Group Found For This ID !","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                this.Close();
                 return;
             }
 
@@ -34,6 +38,7 @@ namespace Check_Point_Manager
             if (_Group == null)
             {
                 MessageBox.Show("Error loading selected group !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
                 return;
             }
 

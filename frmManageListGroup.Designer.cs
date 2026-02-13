@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvListGroups = new System.Windows.Forms.DataGridView();
+            this.cmsGroupOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showGroupCheckHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblAddNew = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.lblDelete = new System.Windows.Forms.Label();
@@ -44,12 +46,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnCounterMinus = new System.Windows.Forms.Button();
             this.btnCounterPlus = new System.Windows.Forms.Button();
-            this.cmsGroupOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addCheckPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editCheckPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListGroups)).BeginInit();
-            this.gbxCounter.SuspendLayout();
             this.cmsGroupOptions.SuspendLayout();
+            this.gbxCounter.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvListGroups
@@ -60,28 +60,44 @@
             this.dgvListGroups.BackgroundColor = System.Drawing.Color.White;
             this.dgvListGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListGroups.ContextMenuStrip = this.cmsGroupOptions;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSalmon;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListGroups.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvListGroups.Location = new System.Drawing.Point(12, 81);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSalmon;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListGroups.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvListGroups.Location = new System.Drawing.Point(12, 46);
             this.dgvListGroups.Name = "dgvListGroups";
             this.dgvListGroups.ReadOnly = true;
             this.dgvListGroups.RowHeadersVisible = false;
             this.dgvListGroups.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListGroups.Size = new System.Drawing.Size(822, 605);
             this.dgvListGroups.TabIndex = 10;
+            this.dgvListGroups.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListGroups_CellMouseDown);
             this.dgvListGroups.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvListGroups_MouseDown);
+            // 
+            // cmsGroupOptions
+            // 
+            this.cmsGroupOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showGroupCheckHistoryToolStripMenuItem});
+            this.cmsGroupOptions.Name = "cmsGroupOptions";
+            this.cmsGroupOptions.Size = new System.Drawing.Size(217, 26);
+            // 
+            // showGroupCheckHistoryToolStripMenuItem
+            // 
+            this.showGroupCheckHistoryToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.History2;
+            this.showGroupCheckHistoryToolStripMenuItem.Name = "showGroupCheckHistoryToolStripMenuItem";
+            this.showGroupCheckHistoryToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.showGroupCheckHistoryToolStripMenuItem.Text = "Show Group Check History";
+            this.showGroupCheckHistoryToolStripMenuItem.Click += new System.EventHandler(this.showGroupCheckHistoryToolStripMenuItem_Click);
             // 
             // lblAddNew
             // 
             this.lblAddNew.AutoSize = true;
             this.lblAddNew.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddNew.Location = new System.Drawing.Point(863, 157);
+            this.lblAddNew.Location = new System.Drawing.Point(863, 122);
             this.lblAddNew.Name = "lblAddNew";
             this.lblAddNew.Size = new System.Drawing.Size(64, 16);
             this.lblAddNew.TabIndex = 15;
@@ -91,7 +107,7 @@
             // 
             this.lblEdit.AutoSize = true;
             this.lblEdit.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEdit.Location = new System.Drawing.Point(876, 269);
+            this.lblEdit.Location = new System.Drawing.Point(876, 234);
             this.lblEdit.Name = "lblEdit";
             this.lblEdit.Size = new System.Drawing.Size(31, 16);
             this.lblEdit.TabIndex = 16;
@@ -101,7 +117,7 @@
             // 
             this.lblDelete.AutoSize = true;
             this.lblDelete.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDelete.Location = new System.Drawing.Point(871, 382);
+            this.lblDelete.Location = new System.Drawing.Point(871, 347);
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(49, 16);
             this.lblDelete.TabIndex = 17;
@@ -117,7 +133,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDelete.Location = new System.Drawing.Point(866, 307);
+            this.btnDelete.Location = new System.Drawing.Point(866, 272);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(73, 72);
             this.btnDelete.TabIndex = 14;
@@ -136,7 +152,7 @@
             this.btnEdit.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEdit.Location = new System.Drawing.Point(866, 194);
+            this.btnEdit.Location = new System.Drawing.Point(866, 159);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(73, 72);
             this.btnEdit.TabIndex = 13;
@@ -155,7 +171,7 @@
             this.btnAddNew.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNew.ForeColor = System.Drawing.Color.Black;
             this.btnAddNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAddNew.Location = new System.Drawing.Point(866, 82);
+            this.btnAddNew.Location = new System.Drawing.Point(866, 47);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(73, 72);
             this.btnAddNew.TabIndex = 12;
@@ -167,11 +183,11 @@
             // lblTitle
             // 
             this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTitle.Font = new System.Drawing.Font("Eras Medium ITC", 27.75F);
+            this.lblTitle.Font = new System.Drawing.Font("Eras Medium ITC", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblTitle.Location = new System.Drawing.Point(10, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(940, 49);
+            this.lblTitle.Size = new System.Drawing.Size(940, 34);
             this.lblTitle.TabIndex = 18;
             this.lblTitle.Text = "Manage Check Point Groups";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -180,7 +196,7 @@
             // 
             this.lblNumberOfGroupsTitle.AutoSize = true;
             this.lblNumberOfGroupsTitle.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfGroupsTitle.Location = new System.Drawing.Point(9, 689);
+            this.lblNumberOfGroupsTitle.Location = new System.Drawing.Point(12, 663);
             this.lblNumberOfGroupsTitle.Name = "lblNumberOfGroupsTitle";
             this.lblNumberOfGroupsTitle.Size = new System.Drawing.Size(131, 16);
             this.lblNumberOfGroupsTitle.TabIndex = 19;
@@ -190,7 +206,7 @@
             // 
             this.lblNumberOfGroups.AutoSize = true;
             this.lblNumberOfGroups.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfGroups.Location = new System.Drawing.Point(146, 689);
+            this.lblNumberOfGroups.Location = new System.Drawing.Point(149, 663);
             this.lblNumberOfGroups.Name = "lblNumberOfGroups";
             this.lblNumberOfGroups.Size = new System.Drawing.Size(28, 16);
             this.lblNumberOfGroups.TabIndex = 20;
@@ -202,7 +218,7 @@
             this.gbxCounter.Controls.Add(this.btnCounterMinus);
             this.gbxCounter.Controls.Add(this.btnCounterPlus);
             this.gbxCounter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxCounter.Location = new System.Drawing.Point(845, 413);
+            this.gbxCounter.Location = new System.Drawing.Point(845, 378);
             this.gbxCounter.Name = "gbxCounter";
             this.gbxCounter.Size = new System.Drawing.Size(105, 273);
             this.gbxCounter.TabIndex = 21;
@@ -266,33 +282,25 @@
             this.btnCounterPlus.UseVisualStyleBackColor = false;
             this.btnCounterPlus.Click += new System.EventHandler(this.btnCounterPlus_Click);
             // 
-            // cmsGroupOptions
+            // lklShowCheckingHistory
             // 
-            this.cmsGroupOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addCheckPointToolStripMenuItem,
-            this.editCheckPointToolStripMenuItem});
-            this.cmsGroupOptions.Name = "cmsGroupOptions";
-            this.cmsGroupOptions.Size = new System.Drawing.Size(181, 70);
-            // 
-            // addCheckPointToolStripMenuItem
-            // 
-            this.addCheckPointToolStripMenuItem.Name = "addCheckPointToolStripMenuItem";
-            this.addCheckPointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addCheckPointToolStripMenuItem.Text = "Add Check Point";
-            this.addCheckPointToolStripMenuItem.Click += new System.EventHandler(this.addCheckPointToolStripMenuItem_Click);
-            // 
-            // editCheckPointToolStripMenuItem
-            // 
-            this.editCheckPointToolStripMenuItem.Name = "editCheckPointToolStripMenuItem";
-            this.editCheckPointToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editCheckPointToolStripMenuItem.Text = "Edit Check Point";
+            this.lklShowCheckingHistory.AutoSize = true;
+            this.lklShowCheckingHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lklShowCheckingHistory.Location = new System.Drawing.Point(688, 662);
+            this.lklShowCheckingHistory.Name = "lklShowCheckingHistory";
+            this.lklShowCheckingHistory.Size = new System.Drawing.Size(146, 17);
+            this.lklShowCheckingHistory.TabIndex = 22;
+            this.lklShowCheckingHistory.TabStop = true;
+            this.lklShowCheckingHistory.Text = "Show Checking History";
+            this.lklShowCheckingHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklShowCheckingHistory_LinkClicked);
             // 
             // frmManageListGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(962, 714);
+            this.ClientSize = new System.Drawing.Size(962, 689);
+            this.Controls.Add(this.lklShowCheckingHistory);
             this.Controls.Add(this.gbxCounter);
             this.Controls.Add(this.lblNumberOfGroups);
             this.Controls.Add(this.lblNumberOfGroupsTitle);
@@ -310,8 +318,8 @@
             this.Text = "Manage Groups";
             this.Load += new System.EventHandler(this.frmManageListGroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListGroups)).EndInit();
-            this.gbxCounter.ResumeLayout(false);
             this.cmsGroupOptions.ResumeLayout(false);
+            this.gbxCounter.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,7 +341,7 @@
         private System.Windows.Forms.Button btnCounterMinus;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ContextMenuStrip cmsGroupOptions;
-        private System.Windows.Forms.ToolStripMenuItem addCheckPointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editCheckPointToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showGroupCheckHistoryToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel lklShowCheckingHistory;
     }
 }

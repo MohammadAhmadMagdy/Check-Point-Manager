@@ -48,12 +48,17 @@
             // 
             // dtpCheckDate
             // 
-            this.dtpCheckDate.CustomFormat = "dddd, dd/MMMM/yyyy";
+            this.dtpCheckDate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dtpCheckDate.CustomFormat = "dddd,dd/MM/yyyy - HH:MM tt";
             this.dtpCheckDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpCheckDate.Location = new System.Drawing.Point(125, 219);
+            this.dtpCheckDate.MaxDate = new System.DateTime(2026, 2, 13, 6, 49, 44, 0);
             this.dtpCheckDate.Name = "dtpCheckDate";
+            this.dtpCheckDate.ShowUpDown = true;
             this.dtpCheckDate.Size = new System.Drawing.Size(234, 23);
             this.dtpCheckDate.TabIndex = 0;
+            this.dtpCheckDate.Value = new System.DateTime(2026, 2, 13, 0, 0, 0, 0);
             // 
             // gbxGroupInfo
             // 
@@ -159,7 +164,7 @@
             // 
             this.lblCancel.AutoSize = true;
             this.lblCancel.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancel.Location = new System.Drawing.Point(690, 371);
+            this.lblCancel.Location = new System.Drawing.Point(691, 255);
             this.lblCancel.Name = "lblCancel";
             this.lblCancel.Size = new System.Drawing.Size(61, 21);
             this.lblCancel.TabIndex = 23;
@@ -176,9 +181,9 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(694, 398);
+            this.btnCancel.Location = new System.Drawing.Point(695, 282);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(57, 40);
+            this.btnCancel.Size = new System.Drawing.Size(57, 48);
             this.btnCancel.TabIndex = 22;
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
@@ -192,9 +197,9 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSave.Location = new System.Drawing.Point(777, 398);
+            this.btnSave.Location = new System.Drawing.Point(770, 282);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(46, 40);
+            this.btnSave.Size = new System.Drawing.Size(54, 48);
             this.btnSave.TabIndex = 21;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -203,7 +208,7 @@
             // 
             this.lblSave.AutoSize = true;
             this.lblSave.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSave.Location = new System.Drawing.Point(773, 371);
+            this.lblSave.Location = new System.Drawing.Point(766, 255);
             this.lblSave.Name = "lblSave";
             this.lblSave.Size = new System.Drawing.Size(50, 21);
             this.lblSave.TabIndex = 20;
@@ -211,10 +216,11 @@
             // 
             // frmAddEditGroupCheck
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(835, 450);
+            this.ClientSize = new System.Drawing.Size(835, 342);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);

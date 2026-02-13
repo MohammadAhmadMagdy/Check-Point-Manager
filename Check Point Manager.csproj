@@ -104,6 +104,12 @@
     <Compile Include="frmAddEditGroupCheck.Designer.cs">
       <DependentUpon>frmAddEditGroupCheck.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCheckHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCheckHistory.Designer.cs">
+      <DependentUpon>frmCheckHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditGroupCheck.resx">
       <DependentUpon>frmAddEditGroupCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCheckHistory.resx">
+      <DependentUpon>frmCheckHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainScreen.resx">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
@@ -234,6 +243,8 @@
     <Resource Include="Resources\Icon.ico" />
     <Resource Include="Resources\Variation-24.png" />
     <Resource Include="Resources\Variation-48.png" />
+    <Resource Include="Resources\History1.png" />
+    <Resource Include="Resources\History2.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -16,7 +16,7 @@ namespace CheckPointDataAccessLayer
 
             string Order = OrderByDate ? "CheckedDate DESC" : "CheckID";
 
-            string Query = $@"SELECT Checks.*, Groups.GroupName, Groups.GroupNumber 
+            string Query = $@"SELECT Checks.CheckID, Checks.GroupID, Groups.GroupNumber, Groups.GroupName, Checks.CheckedDate
                              FROM Checks 
                              INNER JOIN Groups ON Checks.GroupID = Groups.GroupID 
                              ORDER BY {Order}";
@@ -65,8 +65,10 @@ namespace CheckPointDataAccessLayer
         {
             DataTable dt = new DataTable();
 
-            string Query = @"SELECT * FROM Checks 
-                            WHERE GroupID = @GroupID 
+            string Query = @"SELECT Checks.CheckID, Checks.GroupID, Groups.GroupNumber, Groups.GroupName, Checks.CheckedDate
+                            FROM Checks 
+                            INNER JOIN Groups ON Checks.GroupID = Groups.GroupID
+                            WHERE Checks.GroupID = @GroupID 
                             ORDER BY CheckedDate DESC";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
