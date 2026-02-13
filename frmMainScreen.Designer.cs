@@ -57,7 +57,7 @@
             this.pnlGroupsList = new System.Windows.Forms.Panel();
             this.btnRemoveItems = new System.Windows.Forms.Button();
             this.lblGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.lblGroupChecked = new System.Windows.Forms.Label();
+            this.lblGroupCheckedCounter = new System.Windows.Forms.Label();
             this.pcbGroupSearchIcon = new System.Windows.Forms.PictureBox();
             this.lblGroupRecordTitle = new System.Windows.Forms.Label();
             this.btnManageGroups = new System.Windows.Forms.Button();
@@ -386,7 +386,7 @@
             this.pnlGroupsList.BackColor = System.Drawing.Color.White;
             this.pnlGroupsList.Controls.Add(this.btnRemoveItems);
             this.pnlGroupsList.Controls.Add(this.lblGroupCheckedTitle);
-            this.pnlGroupsList.Controls.Add(this.lblGroupChecked);
+            this.pnlGroupsList.Controls.Add(this.lblGroupCheckedCounter);
             this.pnlGroupsList.Controls.Add(this.pcbGroupSearchIcon);
             this.pnlGroupsList.Controls.Add(this.lblGroupRecordTitle);
             this.pnlGroupsList.Controls.Add(this.btnManageGroups);
@@ -439,17 +439,17 @@
             this.lblGroupCheckedTitle.TabIndex = 31;
             this.lblGroupCheckedTitle.Text = "Group Counted :";
             // 
-            // lblGroupChecked
+            // lblGroupCheckedCounter
             // 
-            this.lblGroupChecked.AutoSize = true;
-            this.lblGroupChecked.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblGroupChecked.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroupChecked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblGroupChecked.Location = new System.Drawing.Point(554, 82);
-            this.lblGroupChecked.Name = "lblGroupChecked";
-            this.lblGroupChecked.Size = new System.Drawing.Size(17, 15);
-            this.lblGroupChecked.TabIndex = 32;
-            this.lblGroupChecked.Text = "??";
+            this.lblGroupCheckedCounter.AutoSize = true;
+            this.lblGroupCheckedCounter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblGroupCheckedCounter.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroupCheckedCounter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblGroupCheckedCounter.Location = new System.Drawing.Point(554, 82);
+            this.lblGroupCheckedCounter.Name = "lblGroupCheckedCounter";
+            this.lblGroupCheckedCounter.Size = new System.Drawing.Size(17, 15);
+            this.lblGroupCheckedCounter.TabIndex = 32;
+            this.lblGroupCheckedCounter.Text = "??";
             // 
             // pcbGroupSearchIcon
             // 
@@ -904,7 +904,7 @@
         private System.Windows.Forms.PictureBox pcbItemsSearchIcon;
         private System.Windows.Forms.PictureBox pcbGroupSearchIcon;
         private System.Windows.Forms.Label lblGroupCheckedTitle;
-        private System.Windows.Forms.Label lblGroupChecked;
+        private System.Windows.Forms.Label lblGroupCheckedCounter;
         private System.Windows.Forms.ContextMenuStrip cmsItemOptions;
         private System.Windows.Forms.ToolStripMenuItem recordItemVariationToolStripMenuItem;
         private System.Windows.Forms.Button btnVariationList;

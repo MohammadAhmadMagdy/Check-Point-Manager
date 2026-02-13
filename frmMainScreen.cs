@@ -120,7 +120,7 @@ namespace Check_Point_Manager
             cmbGroups.ValueMember = "GroupID";
 
             cmbGroups.SelectedIndex = 0;
-            lblGroupChecked.Visible = false;
+            lblGroupCheckedCounter.Visible = false;
 
             _IsLoadingGroup = false;
 
@@ -228,7 +228,7 @@ namespace Check_Point_Manager
 
             txbGroupsFilterValue_TextChanged(null, null);
             lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
-            lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
+            lblGroupCheckedCounter.Text = clsCheck.GetCheckCountByGroupID(GroupID) + " Time(s)";
         }
         private string _SelectExcelFile()
         {
@@ -441,7 +441,7 @@ namespace Check_Point_Manager
 
             btnUpdate.Enabled = false;
 
-             _LastCheckedGroup = clsGroup.GetLastCheckedGroup();
+            _LastCheckedGroup = clsCheck.GetLastCheck().GroupInfo;
 
             if (_LastCheckedGroup != null)
             {
@@ -523,11 +523,11 @@ namespace Check_Point_Manager
                 dgvGroupItems.DataSource = null;
                 pcbGroupsBackground.Visible = true;
                 lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
-                lblGroupChecked.Visible = false;
+                lblGroupCheckedCounter.Visible = false;
                 return;
             }
 
-            lblGroupChecked.Visible = true;
+            lblGroupCheckedCounter.Visible = true;
             txbGroupsFilterValue.Text = string.Empty;
             _LoadSelectedGroupItems(GroupID);
         }
@@ -751,35 +751,53 @@ namespace Check_Point_Manager
                     return;
                 }
 
+                clsCheck NewCheck = clsCheck.CreateNewCheckForGroup(GroupID);
+
                 if (Result == DialogResult.Yes)
                 {
-                    
-                    if (!clsGroup.CounterPlus(GroupID))
+                    if (!NewCheck.Save())
                     {
-                        MessageBox.Show("Error in counting check !", "Error", 
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    if (!clsGroup.RecordCheckDate(GroupID))
-                    {
-                        MessageBox.Show("Error Recording Check Date in DataBase !", "Error", MessageBoxButtons.OK,
+                        MessageBox.Show("Error Recording Check Count in DataBase !", "Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         return;
                     }
+
+                    NewCheck = clsCheck.GetLastCheck();
+
+                    if (NewCheck != null)
+                    {
+                        lblLastGroupChecked.Text = NewCheck.GroupInfo.GroupName +
+                                    NewCheck.CheckedDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
+                    }
+
+                    lblGroupCheckedCounter.Text = clsCheck.GetCheckCountByGroupID(GroupID) + " Time(s)";
+
+                    //if (!clsGroup.CounterPlus(GroupID))
+                    //{
+                    //    MessageBox.Show("Error in counting check !", "Error", 
+                    //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    return;
+                    //}
+                    //if (!clsGroup.RecordCheckDate(GroupID))
+                    //{
+                    //    MessageBox.Show("Error Recording Check Date in DataBase !", "Error", MessageBoxButtons.OK,
+                    //        MessageBoxIcon.Error);
+                    //    return;
+                    //}
                 }
 
 
                 _FilterDataAndExportToExcel();
 
-                _LastCheckedGroup = clsGroup.GetLastCheckedGroup();
+                //_LastCheckedGroup = clsGroup.GetLastCheckedGroup();
 
-                if (_LastCheckedGroup != null)
-                {
-                    lblLastGroupChecked.Text = lblLastGroupChecked.Text = _LastCheckedGroup.GroupName +
-                                _LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
-                }
+                //if (_LastCheckedGroup != null)
+                //{
+                //    lblLastGroupChecked.Text = lblLastGroupChecked.Text = _LastCheckedGroup.GroupName +
+                //                _LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
+                //}
 
-                lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
+                //lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
                 
             }
             catch (Exception ex)

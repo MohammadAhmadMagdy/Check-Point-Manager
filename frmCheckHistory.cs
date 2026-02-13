@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckPointBusinessLayer;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Check_Point_Manager
 {
@@ -159,6 +160,34 @@ namespace Check_Point_Manager
             frmAddEditGroupCheck frm = new frmAddEditGroupCheck(_GroupID);
 
             frm.ShowDialog();
+        }
+
+        private void btnDeleteRecord_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are You sure you want to delete this check record ?","Confirmation",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
+            int CheckID = Convert.ToInt32(dgvCheckHistory.CurrentRow.Cells[0].Value);
+
+            if(!clsCheck.Delete(CheckID))
+            {
+                MessageBox.Show("Error while trying to delete !","Erroe",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show($"Check Record {CheckID} deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dgvCheckHistory_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dgvCheckHistory.ClearSelection();
+                dgvCheckHistory.CurrentCell = dgvCheckHistory.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            }
         }
     }
 }

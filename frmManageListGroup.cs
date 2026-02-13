@@ -29,7 +29,7 @@ namespace Check_Point_Manager
             foreach(DataRow Row in  _AllGroups.Rows)
             {
                 if (DateTime.TryParse(Row["LastCheckDate"].ToString(), out DateTime result))
-                    Row["LastCheckDate"] = result.ToString("ddd d/M/yyyy h:mm:ss tt"); ;
+                    Row["LastCheckDate"] = result;//.ToString("dd/M/yyyy h:mm:ss tt");
             }
 
             dgvListGroups.DataSource = _AllGroups;
@@ -61,7 +61,7 @@ namespace Check_Point_Manager
                 dgvListGroups.Columns[3].Width = 130;
 
                 dgvListGroups.Columns[4].HeaderText = "Last Check Date";
-                //dgvListGroups.Columns[4].DefaultCellStyle.Format = "ddd M/d/yyyy h:mm:ss tt";
+                dgvListGroups.Columns[4].DefaultCellStyle.Format = "dd/M/yyyy h:mm tt";
                 dgvListGroups.Columns[4].Width = 150;
 
 

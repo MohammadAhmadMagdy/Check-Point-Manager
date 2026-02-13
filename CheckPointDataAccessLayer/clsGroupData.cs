@@ -17,7 +17,16 @@ namespace CheckPointDataAccessLayer
 
             string Order = Alphabetical ? "GroupName" : "GroupNumber";
 
-            string Query = $"SELECT * FROM Groups ORDER BY {Order}";
+            //string Query = $"SELECT * FROM Groups ORDER BY {Order}";
+            string Query = @"SELECT 
+                                   g.GroupID,
+                                   g.GroupNumber,
+                                   g.GroupName,
+                                   COUNT(c.CheckID) AS CheckCounter,
+                                   MAX(c.CheckedDate) AS LastCheckDate
+                               FROM Groups g
+                               LEFT JOIN Checks c ON g.GroupID = c.GroupID
+                               GROUP BY g.GroupID, g.GroupNumber, g.GroupName;";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))
@@ -32,6 +41,7 @@ namespace CheckPointDataAccessLayer
 
             return dt;
         }
+        
         public static bool GetGroupByID(int GroupID, ref int GroupNumber, ref string GroupName, 
             ref int CheckCounter, ref DateTime LastCheckDate)
         {
