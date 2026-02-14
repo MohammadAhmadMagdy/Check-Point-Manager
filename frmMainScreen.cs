@@ -441,12 +441,13 @@ namespace Check_Point_Manager
 
             btnUpdate.Enabled = false;
 
-            _LastCheckedGroup = clsCheck.GetLastCheck().GroupInfo;
+            
+            clsCheck LastCheck = clsCheck.GetLastCheck();
 
-            if (_LastCheckedGroup != null)
+            if (LastCheck != null)
             {
-                lblLastGroupChecked.Text = lblLastGroupChecked.Text = _LastCheckedGroup.GroupName +
-                           _LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
+                lblLastGroupChecked.Text = LastCheck.GroupInfo.GroupName +
+                           LastCheck.CheckedDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
             }
 
             _SetCueBanner(txbFilterValue, "Search", true);

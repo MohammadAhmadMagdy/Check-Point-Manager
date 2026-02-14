@@ -35,6 +35,8 @@ namespace Check_Point_Manager
         {
             dtpCheckDate.Format = DateTimePickerFormat.Custom;
             dtpCheckDate.CustomFormat = "dddd, dd/MM/yyyy - HH:mm tt";
+            dtpCheckDate.MaxDate = DateTime.Now;
+            dtpCheckDate.Value = DateTime.Now;
 
             if(_Mode == enMode.AddNew)
             {
