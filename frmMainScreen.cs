@@ -441,6 +441,8 @@ namespace Check_Point_Manager
 
             btnUpdate.Enabled = false;
 
+            pcbWarning.Visible = true;
+
             
             clsCheck LastCheck = clsCheck.GetLastCheck();
 
@@ -593,6 +595,7 @@ namespace Check_Point_Manager
                 txbFilePath.Text = _ExcelFile;
                 btnUpdate.Enabled = true;
                 lblUpdateStatus.Text = "";
+                pcbWarning.Visible = false;
             }
         }
         private void btnAddToGroup_Click(object sender, EventArgs e)

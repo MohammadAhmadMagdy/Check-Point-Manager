@@ -36,7 +36,7 @@ namespace Check_Point_Manager
             dtpCheckDate.Format = DateTimePickerFormat.Custom;
             dtpCheckDate.CustomFormat = "dddd, dd/MM/yyyy - HH:mm tt";
             dtpCheckDate.MaxDate = DateTime.Now;
-            dtpCheckDate.Value = DateTime.Now;
+            
 
             if(_Mode == enMode.AddNew)
             {
@@ -62,6 +62,7 @@ namespace Check_Point_Manager
                 lblGpName.Text = _Group.GroupName;
                 lblGpNumber.Text = _Group.GroupNumber.ToString();
                 lblCounter.Text = _Group.CheckCounter.ToString();
+                dtpCheckDate.Value = dtpCheckDate.MaxDate;
 
                 _Check = clsCheck.CreateNewCheckForGroup(_GroupID);
 
@@ -84,15 +85,14 @@ namespace Check_Point_Manager
                     this.Close();
                     return;
                 }
-
+                _GroupID = _Check.GroupID;
                 lblTitle.Text = "Edit Checkpoint Time";
                 lblGpID.Text = _Check.GroupID.ToString();
                 lblGpName.Text = _Check.GroupInfo.GroupName;
                 lblGpNumber.Text = _Check.GroupInfo.GroupNumber.ToString();
                 lblCounter.Text = _Check.GroupInfo.CheckCounter.ToString();
-            }
-
-            
+                dtpCheckDate.Value = Convert.ToDateTime(_Check.CheckedDate);
+            } 
 
         }
 
@@ -100,18 +100,19 @@ namespace Check_Point_Manager
         {
             DateTime CheckDate = dtpCheckDate.Value;
 
-            clsCheck NewCheckRecord = clsCheck.CreateNewCheckForGroup(_GroupID);
+            _Check.CheckedDate = CheckDate;
 
-            NewCheckRecord.CheckedDate = CheckDate;
-
-            if(!NewCheckRecord.Save())
+            if(!_Check.Save())
             {
                 MessageBox.Show("Error Saving Check Record !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            MessageBox.Show($"Group : {_Group.GroupName} Checked Successfully\n" +
+            MessageBox.Show($"Group : {clsGroup.FindByID(_GroupID).GroupName} Checked Successfully\n" +
                 $"at Date {CheckDate}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            _Mode = enMode.Update;
+            lblTitle.Text = "Edit Checkpoint Time";
         }
     }
 }

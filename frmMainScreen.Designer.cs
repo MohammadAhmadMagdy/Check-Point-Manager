@@ -85,6 +85,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
+            this.pcbWarning = new System.Windows.Forms.PictureBox();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -101,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -121,7 +123,7 @@
             this.btnExit.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_exit_60;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Location = new System.Drawing.Point(1308, 5);
+            this.btnExit.Location = new System.Drawing.Point(1315, 5);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(25, 24);
             this.btnExit.TabIndex = 3;
@@ -133,7 +135,7 @@
             this.btnMinimize.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_minimize_90;
             this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Location = new System.Drawing.Point(1277, 5);
+            this.btnMinimize.Location = new System.Drawing.Point(1284, 5);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(25, 24);
             this.btnMinimize.TabIndex = 2;
@@ -682,6 +684,7 @@
             // pnlUpdateInfo
             // 
             this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.pnlUpdateInfo.Controls.Add(this.pcbWarning);
             this.pnlUpdateInfo.Controls.Add(this.lblUpdateStatus);
             this.pnlUpdateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
             this.pnlUpdateInfo.Location = new System.Drawing.Point(589, 5);
@@ -810,6 +813,16 @@
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
+            // pcbWarning
+            // 
+            this.pcbWarning.Image = global::Check_Point_Manager.Properties.Resources.Warning_25;
+            this.pcbWarning.Location = new System.Drawing.Point(13, 3);
+            this.pcbWarning.Name = "pcbWarning";
+            this.pcbWarning.Size = new System.Drawing.Size(27, 28);
+            this.pcbWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pcbWarning.TabIndex = 31;
+            this.pcbWarning.TabStop = false;
+            // 
             // frmMainScreen
             // 
             this.AcceptButton = this.btnAddToGroup;
@@ -854,6 +867,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -911,5 +925,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLastGroupChecked;
         private System.Windows.Forms.Label lblLastGroupCheckedTitle;
+        private System.Windows.Forms.PictureBox pcbWarning;
     }
 }

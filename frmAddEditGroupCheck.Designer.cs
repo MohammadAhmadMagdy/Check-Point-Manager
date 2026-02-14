@@ -54,7 +54,7 @@
             this.dtpCheckDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpCheckDate.Location = new System.Drawing.Point(119, 254);
-            this.dtpCheckDate.MaxDate = new System.DateTime(2026, 2, 13, 6, 49, 44, 0);
+            this.dtpCheckDate.MaxDate = new System.DateTime(2026, 2, 15, 0, 0, 0, 0);
             this.dtpCheckDate.Name = "dtpCheckDate";
             this.dtpCheckDate.ShowUpDown = true;
             this.dtpCheckDate.Size = new System.Drawing.Size(234, 23);

@@ -127,17 +127,25 @@ namespace Check_Point_Manager
                 _AdjustDataGridColumns();
             }
         }
-        private void frmCheckHistory_Load(object sender, EventArgs e)
+        private void _RefreshDataGridViewData()
         {
-            _FillGroupsComboBox();
-
             if (_GroupID == -1)
                 _LoadAllGroupsHistory();
             else
             {
                 cmbGroups.SelectedValue = _GroupID;
-                _LoadSelectedGroupHistory(_GroupID); 
+                _LoadSelectedGroupHistory(_GroupID);
             }
+        }
+        private void frmCheckHistory_Load(object sender, EventArgs e)
+        {
+            _FillGroupsComboBox();
+
+            _RefreshDataGridViewData();
+
+            btnAddCheckRecord.Enabled = false;
+            btnEditCheckRecord.Enabled = false;
+            btnDeleteRecord.Enabled = false;
         }
         private void cmbGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -153,6 +161,8 @@ namespace Check_Point_Manager
                 _LoadAllGroupsHistory();
             else
                 _LoadSelectedGroupHistory(_GroupID);
+
+            btnAddCheckRecord.Enabled = (_GroupID != -1);
         }
 
         private void btnAddCheckRecord_Click(object sender, EventArgs e)
@@ -160,6 +170,8 @@ namespace Check_Point_Manager
             frmAddEditGroupCheck frm = new frmAddEditGroupCheck(_GroupID,frmAddEditGroupCheck.enMode.AddNew);
 
             frm.ShowDialog();
+
+            _RefreshDataGridViewData();
         }
         private void btnEditCheckRecord_Click(object sender, EventArgs e)
         {
@@ -174,6 +186,8 @@ namespace Check_Point_Manager
             frmAddEditGroupCheck frm = new frmAddEditGroupCheck(CheckID,frmAddEditGroupCheck.enMode.Update);
 
             frm.ShowDialog();
+
+            _RefreshDataGridViewData();
         }
 
         private void btnDeleteRecord_Click(object sender, EventArgs e)
@@ -199,10 +213,15 @@ namespace Check_Point_Manager
             }
 
             MessageBox.Show($"Check Record {CheckID} deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            _RefreshDataGridViewData();
         }
 
         private void dgvCheckHistory_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
+            btnEditCheckRecord.Enabled = true;
+            btnDeleteRecord.Enabled = true;
+
             if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 dgvCheckHistory.ClearSelection();

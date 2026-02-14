@@ -245,6 +245,7 @@
     <Resource Include="Resources\Variation-48.png" />
     <Resource Include="Resources\History1.png" />
     <Resource Include="Resources\History2.png" />
+    <Resource Include="Resources\Warning-25.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
