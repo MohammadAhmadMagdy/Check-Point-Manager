@@ -43,7 +43,7 @@
             this.lblNumberOfGroupsTitle = new System.Windows.Forms.Label();
             this.lblNumberOfGroups = new System.Windows.Forms.Label();
             this.gbxCounter = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCounterReset = new System.Windows.Forms.Button();
             this.btnCounterMinus = new System.Windows.Forms.Button();
             this.btnCounterPlus = new System.Windows.Forms.Button();
             this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
@@ -214,7 +214,7 @@
             // 
             // gbxCounter
             // 
-            this.gbxCounter.Controls.Add(this.button1);
+            this.gbxCounter.Controls.Add(this.btnCounterReset);
             this.gbxCounter.Controls.Add(this.btnCounterMinus);
             this.gbxCounter.Controls.Add(this.btnCounterPlus);
             this.gbxCounter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,24 +225,24 @@
             this.gbxCounter.TabStop = false;
             this.gbxCounter.Text = "Counters";
             // 
-            // button1
+            // btnCounterReset
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = global::Check_Point_Manager.Properties.Resources.reset_20;
-            this.button1.Location = new System.Drawing.Point(16, 188);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 72);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Counter Rest";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnCounterReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnCounterReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCounterReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCounterReset.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCounterReset.ForeColor = System.Drawing.Color.White;
+            this.btnCounterReset.Image = global::Check_Point_Manager.Properties.Resources.reset_20;
+            this.btnCounterReset.Location = new System.Drawing.Point(16, 188);
+            this.btnCounterReset.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCounterReset.Name = "btnCounterReset";
+            this.btnCounterReset.Size = new System.Drawing.Size(73, 72);
+            this.btnCounterReset.TabIndex = 30;
+            this.btnCounterReset.Text = "Counter Rest";
+            this.btnCounterReset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCounterReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCounterReset.UseVisualStyleBackColor = false;
+            this.btnCounterReset.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnCounterMinus
             // 
@@ -339,7 +339,7 @@
         private System.Windows.Forms.GroupBox gbxCounter;
         private System.Windows.Forms.Button btnCounterPlus;
         private System.Windows.Forms.Button btnCounterMinus;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCounterReset;
         private System.Windows.Forms.ContextMenuStrip cmsGroupOptions;
         private System.Windows.Forms.ToolStripMenuItem showGroupCheckHistoryToolStripMenuItem;
         private System.Windows.Forms.LinkLabel lklShowCheckingHistory;

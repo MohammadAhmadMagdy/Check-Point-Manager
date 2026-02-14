@@ -24,17 +24,20 @@ namespace Check_Point_Manager
         private void frmManageListGroup_Load(object sender, EventArgs e)
         {
             _AllGroups = clsGroup.LoadAllGroupsInfo();
-           //converting LastCheckDate column to DateTime format :
+
+            //converting LastCheckDate column to DateTime format :
+            _AllGroups.Columns.Add("TempDate", typeof(DateTime));
 
             foreach(DataRow Row in  _AllGroups.Rows)
             {
                 if (DateTime.TryParse(Row["LastCheckDate"].ToString(), out DateTime result))
-                    Row["LastCheckDate"] = result;//.ToString("dd/M/yyyy h:mm:ss tt");
+                    Row["TempDate"] = result;
             }
 
-            dgvListGroups.DataSource = _AllGroups;
+            _AllGroups.Columns.Remove("LastCheckDate");
+            _AllGroups.Columns["TempDate"].ColumnName = "LastCheckDate";
 
-           
+           dgvListGroups.DataSource = _AllGroups;
 
            dgvListGroups.EnableHeadersVisualStyles = false;
            dgvListGroups.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.SteelBlue;

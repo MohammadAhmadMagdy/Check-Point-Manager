@@ -43,6 +43,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblSave = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.gbxGroupInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             this.dtpCheckDate.CustomFormat = "dddd,dd/MM/yyyy - HH:MM tt";
             this.dtpCheckDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCheckDate.Location = new System.Drawing.Point(125, 219);
+            this.dtpCheckDate.Location = new System.Drawing.Point(119, 254);
             this.dtpCheckDate.MaxDate = new System.DateTime(2026, 2, 13, 6, 49, 44, 0);
             this.dtpCheckDate.Name = "dtpCheckDate";
             this.dtpCheckDate.ShowUpDown = true;
@@ -71,9 +72,9 @@
             this.gbxGroupInfo.Controls.Add(this.lblGpID);
             this.gbxGroupInfo.Controls.Add(this.lblGpNumber);
             this.gbxGroupInfo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxGroupInfo.Location = new System.Drawing.Point(5, 12);
+            this.gbxGroupInfo.Location = new System.Drawing.Point(12, 60);
             this.gbxGroupInfo.Name = "gbxGroupInfo";
-            this.gbxGroupInfo.Size = new System.Drawing.Size(823, 176);
+            this.gbxGroupInfo.Size = new System.Drawing.Size(812, 176);
             this.gbxGroupInfo.TabIndex = 16;
             this.gbxGroupInfo.TabStop = false;
             this.gbxGroupInfo.Text = "Group Info";
@@ -154,7 +155,7 @@
             // 
             this.lblCheckDateTitle.AutoSize = true;
             this.lblCheckDateTitle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCheckDateTitle.Location = new System.Drawing.Point(14, 221);
+            this.lblCheckDateTitle.Location = new System.Drawing.Point(8, 256);
             this.lblCheckDateTitle.Name = "lblCheckDateTitle";
             this.lblCheckDateTitle.Size = new System.Drawing.Size(105, 20);
             this.lblCheckDateTitle.TabIndex = 17;
@@ -214,6 +215,18 @@
             this.lblSave.TabIndex = 20;
             this.lblSave.Text = " Save";
             // 
+            // lblTitle
+            // 
+            this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTitle.Font = new System.Drawing.Font("Eras Medium ITC", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblTitle.Location = new System.Drawing.Point(12, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(812, 34);
+            this.lblTitle.TabIndex = 24;
+            this.lblTitle.Text = "Add New Checking Point Time";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmAddEditGroupCheck
             // 
             this.AcceptButton = this.btnSave;
@@ -221,6 +234,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(835, 342);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -257,5 +271,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblSave;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

@@ -157,14 +157,34 @@ namespace Check_Point_Manager
 
         private void btnAddCheckRecord_Click(object sender, EventArgs e)
         {
-            frmAddEditGroupCheck frm = new frmAddEditGroupCheck(_GroupID);
+            frmAddEditGroupCheck frm = new frmAddEditGroupCheck(_GroupID,frmAddEditGroupCheck.enMode.AddNew);
+
+            frm.ShowDialog();
+        }
+        private void btnEditCheckRecord_Click(object sender, EventArgs e)
+        {
+            if(dgvCheckHistory.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a record to edit !", "Erroe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int CheckID = Convert.ToInt32(dgvCheckHistory.CurrentRow.Cells[0].Value);
+
+            frmAddEditGroupCheck frm = new frmAddEditGroupCheck(CheckID,frmAddEditGroupCheck.enMode.Update);
 
             frm.ShowDialog();
         }
 
         private void btnDeleteRecord_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Are You sure you want to delete this check record ?","Confirmation",
+            if (dgvCheckHistory.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a record to edit !", "Erroe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (MessageBox.Show("Are You sure you want to delete this check record ?","Confirmation",
                 MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -189,5 +209,7 @@ namespace Check_Point_Manager
                 dgvCheckHistory.CurrentCell = dgvCheckHistory.Rows[e.RowIndex].Cells[e.ColumnIndex];
             }
         }
+
+        
     }
 }
