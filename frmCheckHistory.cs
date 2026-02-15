@@ -143,7 +143,7 @@ namespace Check_Point_Manager
 
             _RefreshDataGridViewData();
 
-            btnAddCheckRecord.Enabled = false;
+            btnAddCheckRecord.Enabled = cmbGroups.SelectedIndex != 0;
             btnEditCheckRecord.Enabled = false;
             btnDeleteRecord.Enabled = false;
         }
