@@ -84,10 +84,10 @@ namespace Check_Point_Manager
             dgvCheckHistory.Columns[2].Visible = false;
 
             dgvCheckHistory.Columns[3].HeaderText = "Group Name";
-            dgvCheckHistory.Columns[3].Width = 500;
+            dgvCheckHistory.Columns[3].Width = 490;
 
             dgvCheckHistory.Columns[4].HeaderText = "Check Date";
-            dgvCheckHistory.Columns[4].Width = 152;
+            dgvCheckHistory.Columns[4].Width = 145;
         }
         private void _AddVisualStyleToTable(DataGridView dgv)
         {
