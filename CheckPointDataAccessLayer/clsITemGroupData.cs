@@ -163,7 +163,7 @@ namespace CheckPointDataAccessLayer
             if (ItemCodes == null || ItemCodes.Count == 0)
                 return 0;
 
-            string Query = @"DELETE FROM ItemsGroups WHERE ItemCode = @ItemCode AND GroupID = GroupID";
+            string Query = @"DELETE FROM ItemsGroups WHERE ItemCode = @ItemCode AND GroupID = @GroupID";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Transaction = Connection.BeginTransaction())
