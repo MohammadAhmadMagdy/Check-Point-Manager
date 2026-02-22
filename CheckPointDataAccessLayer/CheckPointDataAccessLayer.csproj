@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsCheckData.cs" />
+    <Compile Include="clSettingsData.cs" />
     <Compile Include="clsGroupData.cs" />
     <Compile Include="clsItemData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />

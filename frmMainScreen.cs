@@ -443,7 +443,9 @@ namespace Check_Point_Manager
 
             pcbWarning.Visible = true;
 
-            
+            lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
+            lblAppVersion.Text = "(Ver " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + ")";
+
             clsCheck LastCheck = clsCheck.GetLastCheck();
 
             if (LastCheck != null)
@@ -546,6 +548,14 @@ namespace Check_Point_Manager
                 if (!String.IsNullOrEmpty(_ExcelFile))
                 {
                     _NewlyAddedItemsCount = clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile);
+
+                    if(!clsSettings.RecordStockUpdate())
+                    {
+                        MessageBox.Show("Warning : Couldn't save Update date !","Warning",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                    lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
 
                     if (_NewlyAddedItemsCount > 0)
                     {

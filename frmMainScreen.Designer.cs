@@ -75,6 +75,7 @@
             this.lblGroupsListTitle = new System.Windows.Forms.Label();
             this.pnlAction = new System.Windows.Forms.Panel();
             this.pnlUpdateInfo = new System.Windows.Forms.Panel();
+            this.pcbWarning = new System.Windows.Forms.PictureBox();
             this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnBrowseFile = new System.Windows.Forms.Button();
@@ -85,7 +86,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.pcbWarning = new System.Windows.Forms.PictureBox();
+            this.lblLastStockUpdate = new System.Windows.Forms.Label();
+            this.lblLastStockUpdateTitle = new System.Windows.Forms.Label();
+            this.lblAppVersion = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -99,15 +102,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).BeginInit();
             this.pnlAction.SuspendLayout();
             this.pnlUpdateInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.White;
+            this.pnlTop.Controls.Add(this.lblAppVersion);
             this.pnlTop.Controls.Add(this.btnExit);
             this.pnlTop.Controls.Add(this.btnMinimize);
             this.pnlTop.Controls.Add(this.lblHeader);
@@ -147,7 +151,7 @@
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(86)))), ((int)(((byte)(146)))));
-            this.lblHeader.Location = new System.Drawing.Point(35, 0);
+            this.lblHeader.Location = new System.Drawing.Point(35, 2);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(218, 30);
             this.lblHeader.TabIndex = 2;
@@ -670,6 +674,8 @@
             // pnlAction
             // 
             this.pnlAction.BackColor = System.Drawing.Color.White;
+            this.pnlAction.Controls.Add(this.lblLastStockUpdateTitle);
+            this.pnlAction.Controls.Add(this.lblLastStockUpdate);
             this.pnlAction.Controls.Add(this.pnlUpdateInfo);
             this.pnlAction.Controls.Add(this.btnUpdate);
             this.pnlAction.Controls.Add(this.btnBrowseFile);
@@ -692,12 +698,22 @@
             this.pnlUpdateInfo.Size = new System.Drawing.Size(387, 34);
             this.pnlUpdateInfo.TabIndex = 27;
             // 
+            // pcbWarning
+            // 
+            this.pcbWarning.Image = global::Check_Point_Manager.Properties.Resources.Warning_25;
+            this.pcbWarning.Location = new System.Drawing.Point(3, 3);
+            this.pcbWarning.Name = "pcbWarning";
+            this.pcbWarning.Size = new System.Drawing.Size(27, 28);
+            this.pcbWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pcbWarning.TabIndex = 31;
+            this.pcbWarning.TabStop = false;
+            // 
             // lblUpdateStatus
             // 
             this.lblUpdateStatus.AutoSize = true;
             this.lblUpdateStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUpdateStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
-            this.lblUpdateStatus.Location = new System.Drawing.Point(60, 9);
+            this.lblUpdateStatus.Location = new System.Drawing.Point(36, 9);
             this.lblUpdateStatus.Name = "lblUpdateStatus";
             this.lblUpdateStatus.Size = new System.Drawing.Size(266, 17);
             this.lblUpdateStatus.TabIndex = 20;
@@ -813,15 +829,41 @@
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
-            // pcbWarning
+            // lblLastStockUpdate
             // 
-            this.pcbWarning.Image = global::Check_Point_Manager.Properties.Resources.Warning_25;
-            this.pcbWarning.Location = new System.Drawing.Point(13, 3);
-            this.pcbWarning.Name = "pcbWarning";
-            this.pcbWarning.Size = new System.Drawing.Size(27, 28);
-            this.pcbWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pcbWarning.TabIndex = 31;
-            this.pcbWarning.TabStop = false;
+            this.lblLastStockUpdate.AutoSize = true;
+            this.lblLastStockUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastStockUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblLastStockUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblLastStockUpdate.Location = new System.Drawing.Point(1129, 14);
+            this.lblLastStockUpdate.Name = "lblLastStockUpdate";
+            this.lblLastStockUpdate.Size = new System.Drawing.Size(17, 15);
+            this.lblLastStockUpdate.TabIndex = 32;
+            this.lblLastStockUpdate.Text = "??";
+            // 
+            // lblLastStockUpdateTitle
+            // 
+            this.lblLastStockUpdateTitle.AutoSize = true;
+            this.lblLastStockUpdateTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastStockUpdateTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastStockUpdateTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblLastStockUpdateTitle.Location = new System.Drawing.Point(1006, 14);
+            this.lblLastStockUpdateTitle.Name = "lblLastStockUpdateTitle";
+            this.lblLastStockUpdateTitle.Size = new System.Drawing.Size(114, 15);
+            this.lblLastStockUpdateTitle.TabIndex = 33;
+            this.lblLastStockUpdateTitle.Text = "Last Stock Update :";
+            // 
+            // lblAppVersion
+            // 
+            this.lblAppVersion.AutoSize = true;
+            this.lblAppVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblAppVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(86)))), ((int)(((byte)(146)))));
+            this.lblAppVersion.Location = new System.Drawing.Point(249, 14);
+            this.lblAppVersion.Name = "lblAppVersion";
+            this.lblAppVersion.Size = new System.Drawing.Size(25, 13);
+            this.lblAppVersion.TabIndex = 34;
+            this.lblAppVersion.Text = "Ver.";
             // 
             // frmMainScreen
             // 
@@ -863,11 +905,11 @@
             this.pnlAction.PerformLayout();
             this.pnlUpdateInfo.ResumeLayout(false);
             this.pnlUpdateInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -926,5 +968,8 @@
         private System.Windows.Forms.Label lblLastGroupChecked;
         private System.Windows.Forms.Label lblLastGroupCheckedTitle;
         private System.Windows.Forms.PictureBox pcbWarning;
+        private System.Windows.Forms.Label lblLastStockUpdate;
+        private System.Windows.Forms.Label lblLastStockUpdateTitle;
+        private System.Windows.Forms.Label lblAppVersion;
     }
 }
