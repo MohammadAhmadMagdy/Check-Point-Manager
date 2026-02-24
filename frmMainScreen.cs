@@ -446,7 +446,7 @@ namespace Check_Point_Manager
             pcbWarning.Visible = true;
 
             lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
-            lblAppVersion.Text = "(Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + ")";
+            lblAppVersion.Text = "[Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + "]";
 
             clsCheck LastCheck = clsCheck.GetLastCheck();
 
