@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using CheckPointBusinessLayer;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
+using Coloring = System.Drawing.Color;
+
 
 namespace Check_Point_Manager
 {
@@ -76,14 +78,14 @@ namespace Check_Point_Manager
         private void _AddVisualStyleToTable(DataGridView dgv)
         {
             dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(219, 220, 218);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Coloring.FromArgb(219, 220, 218);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Coloring.Black;
             dgv.ColumnHeadersDefaultCellStyle.Font =
                 new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
 
 
-            dgv.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(241,240,241);
+            dgv.RowsDefaultCellStyle.BackColor = Coloring.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Coloring.FromArgb(241,240,241);
         }
         private void _PrepareAutoCompleteForGroupsComboBox()
         {
@@ -420,7 +422,7 @@ namespace Check_Point_Manager
                 e.Graphics.DrawImage(pcbGroupsBackground.Image, new Rectangle(0, 0, pcbGroupsBackground.Width,
                     pcbGroupsBackground.Height));
                 using (Brush semiTransparentBrush = new SolidBrush
-                    (System.Drawing.Color.FromArgb(200, System.Drawing.Color.Transparent)))
+                    (Coloring.FromArgb(200, Coloring.Transparent)))
                 {
                     e.Graphics.FillRectangle(semiTransparentBrush, pcbGroupsBackground.ClientRectangle);
                 }
@@ -444,7 +446,7 @@ namespace Check_Point_Manager
             pcbWarning.Visible = true;
 
             lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
-            lblAppVersion.Text = "(Ver " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + ")";
+            lblAppVersion.Text = "(Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + ")";
 
             clsCheck LastCheck = clsCheck.GetLastCheck();
 
@@ -915,12 +917,12 @@ namespace Check_Point_Manager
 
                 if (GroupName == "Not Assigned")
                 {
-                    e.CellStyle.ForeColor = System.Drawing.Color.Red;
+                    e.CellStyle.ForeColor = Coloring.Red;
                     e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Regular);
                 }
                 else
                 {
-                    e.CellStyle.ForeColor = System.Drawing.Color.Blue;
+                    e.CellStyle.ForeColor = Coloring.Blue;
                     e.CellStyle.Font = new System.Drawing.Font("Segoe UI", 9, FontStyle.Bold);
                 }
             }

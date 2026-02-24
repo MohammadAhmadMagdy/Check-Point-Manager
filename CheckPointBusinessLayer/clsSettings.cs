@@ -62,10 +62,10 @@ namespace CheckPointBusinessLayer
         {
             DateTime? LastUpdate = GetLastStockUpdate();
 
-            if (!LastUpdate.HasValue)
-                return "Not Updated Yet";
-            return LastUpdate.Value.ToString("ddd, dd MMM yyyy - hh:mm tt");
-            
+            string LastUpdateString = LastUpdate?.ToString("ddd, dd MMM yyyy - hh:mm tt");
+
+            return LastUpdateString ?? "Not Updated Yet";
+
         }
 
     }
