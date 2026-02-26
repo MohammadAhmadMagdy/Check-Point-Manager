@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -446,7 +447,7 @@ namespace Check_Point_Manager
             pcbWarning.Visible = true;
 
             lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
-            lblAppVersion.Text = "[Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + "]";
+            lblAppVersion.Text = "[ Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + " ]";
 
             clsCheck LastCheck = clsCheck.GetLastCheck();
 
@@ -1056,6 +1057,23 @@ namespace Check_Point_Manager
 
         }
 
-       
+        [Conditional("DEBUG")]
+        private void _AdjustAppVersion()
+        {
+            frmAppVersion frm = new frmAppVersion();
+            frm.ShowDialog();
+
+            lblAppVersion.Text = "[ Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + " ]";
+        }
+        private void lblAppVersion_DoubleClick(object sender, EventArgs e)
+        {
+            _AdjustAppVersion();
+        }
+
+        private void lklShowCheckingHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmCheckHistory frm = new frmCheckHistory();
+            frm.ShowDialog();
+        }
     }
 }

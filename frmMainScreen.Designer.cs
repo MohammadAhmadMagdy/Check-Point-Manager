@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainScreen));
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.lblAppVersion = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
@@ -74,6 +75,8 @@
             this.pnlGroupsListSep = new System.Windows.Forms.Panel();
             this.lblGroupsListTitle = new System.Windows.Forms.Label();
             this.pnlAction = new System.Windows.Forms.Panel();
+            this.lblLastStockUpdateTitle = new System.Windows.Forms.Label();
+            this.lblLastStockUpdate = new System.Windows.Forms.Label();
             this.pnlUpdateInfo = new System.Windows.Forms.Panel();
             this.pcbWarning = new System.Windows.Forms.PictureBox();
             this.lblUpdateStatus = new System.Windows.Forms.Label();
@@ -86,9 +89,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.lblLastStockUpdate = new System.Windows.Forms.Label();
-            this.lblLastStockUpdateTitle = new System.Windows.Forms.Label();
-            this.lblAppVersion = new System.Windows.Forms.Label();
+            this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -121,6 +122,19 @@
             this.pnlTop.Size = new System.Drawing.Size(1347, 35);
             this.pnlTop.TabIndex = 0;
             this.pnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTop_MouseDown);
+            // 
+            // lblAppVersion
+            // 
+            this.lblAppVersion.AutoSize = true;
+            this.lblAppVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblAppVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(86)))), ((int)(((byte)(146)))));
+            this.lblAppVersion.Location = new System.Drawing.Point(250, 14);
+            this.lblAppVersion.Name = "lblAppVersion";
+            this.lblAppVersion.Size = new System.Drawing.Size(26, 15);
+            this.lblAppVersion.TabIndex = 34;
+            this.lblAppVersion.Text = "Ver.";
+            this.lblAppVersion.DoubleClick += new System.EventHandler(this.lblAppVersion_DoubleClick);
             // 
             // btnExit
             // 
@@ -687,6 +701,30 @@
             this.pnlAction.Size = new System.Drawing.Size(1334, 42);
             this.pnlAction.TabIndex = 4;
             // 
+            // lblLastStockUpdateTitle
+            // 
+            this.lblLastStockUpdateTitle.AutoSize = true;
+            this.lblLastStockUpdateTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastStockUpdateTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastStockUpdateTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblLastStockUpdateTitle.Location = new System.Drawing.Point(1006, 14);
+            this.lblLastStockUpdateTitle.Name = "lblLastStockUpdateTitle";
+            this.lblLastStockUpdateTitle.Size = new System.Drawing.Size(114, 15);
+            this.lblLastStockUpdateTitle.TabIndex = 33;
+            this.lblLastStockUpdateTitle.Text = "Last Stock Update :";
+            // 
+            // lblLastStockUpdate
+            // 
+            this.lblLastStockUpdate.AutoSize = true;
+            this.lblLastStockUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLastStockUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblLastStockUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblLastStockUpdate.Location = new System.Drawing.Point(1129, 14);
+            this.lblLastStockUpdate.Name = "lblLastStockUpdate";
+            this.lblLastStockUpdate.Size = new System.Drawing.Size(17, 15);
+            this.lblLastStockUpdate.TabIndex = 32;
+            this.lblLastStockUpdate.Text = "??";
+            // 
             // pnlUpdateInfo
             // 
             this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
@@ -798,6 +836,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lklShowCheckingHistory);
             this.panel1.Controls.Add(this.lblLastGroupChecked);
             this.panel1.Controls.Add(this.lblLastGroupCheckedTitle);
             this.panel1.Location = new System.Drawing.Point(6, 720);
@@ -829,41 +868,17 @@
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
-            // lblLastStockUpdate
+            // lklShowCheckingHistory
             // 
-            this.lblLastStockUpdate.AutoSize = true;
-            this.lblLastStockUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblLastStockUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.lblLastStockUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblLastStockUpdate.Location = new System.Drawing.Point(1129, 14);
-            this.lblLastStockUpdate.Name = "lblLastStockUpdate";
-            this.lblLastStockUpdate.Size = new System.Drawing.Size(17, 15);
-            this.lblLastStockUpdate.TabIndex = 32;
-            this.lblLastStockUpdate.Text = "??";
-            // 
-            // lblLastStockUpdateTitle
-            // 
-            this.lblLastStockUpdateTitle.AutoSize = true;
-            this.lblLastStockUpdateTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblLastStockUpdateTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastStockUpdateTitle.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblLastStockUpdateTitle.Location = new System.Drawing.Point(1006, 14);
-            this.lblLastStockUpdateTitle.Name = "lblLastStockUpdateTitle";
-            this.lblLastStockUpdateTitle.Size = new System.Drawing.Size(114, 15);
-            this.lblLastStockUpdateTitle.TabIndex = 33;
-            this.lblLastStockUpdateTitle.Text = "Last Stock Update :";
-            // 
-            // lblAppVersion
-            // 
-            this.lblAppVersion.AutoSize = true;
-            this.lblAppVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblAppVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(86)))), ((int)(((byte)(146)))));
-            this.lblAppVersion.Location = new System.Drawing.Point(249, 14);
-            this.lblAppVersion.Name = "lblAppVersion";
-            this.lblAppVersion.Size = new System.Drawing.Size(25, 13);
-            this.lblAppVersion.TabIndex = 34;
-            this.lblAppVersion.Text = "Ver.";
+            this.lklShowCheckingHistory.AutoSize = true;
+            this.lklShowCheckingHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lklShowCheckingHistory.Location = new System.Drawing.Point(1214, 6);
+            this.lklShowCheckingHistory.Name = "lklShowCheckingHistory";
+            this.lklShowCheckingHistory.Size = new System.Drawing.Size(110, 17);
+            this.lklShowCheckingHistory.TabIndex = 34;
+            this.lklShowCheckingHistory.TabStop = true;
+            this.lklShowCheckingHistory.Text = "Checking History";
+            this.lklShowCheckingHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklShowCheckingHistory_LinkClicked);
             // 
             // frmMainScreen
             // 
@@ -971,5 +986,6 @@
         private System.Windows.Forms.Label lblLastStockUpdate;
         private System.Windows.Forms.Label lblLastStockUpdateTitle;
         private System.Windows.Forms.Label lblAppVersion;
+        private System.Windows.Forms.LinkLabel lklShowCheckingHistory;
     }
 }
