@@ -581,6 +581,13 @@ namespace Check_Point_Manager
                     txbFilePath.Text = "";
 
                     _LoadItemsTable();
+
+                    int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+                    if(GroupID != -1)
+                    {
+                        _LoadSelectedGroupItems(GroupID);
+                    }
+
                     btnUpdate.Enabled = false;
                 }
                 else
