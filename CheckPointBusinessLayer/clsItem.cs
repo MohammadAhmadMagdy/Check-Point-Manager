@@ -60,6 +60,10 @@ namespace CheckPointBusinessLayer
         {
             return clsItemDataAccess.GetNewlyAddedItems();
         }
+        public static bool ClearNewlyAddedItemsTable()
+        {
+            return clsItemDataAccess.DeleteNewlyAddedItems();
+        }
         public static clsItem Find(int ItemCode)
         {
             int Qty = 0, LzQty = 0, VariationQty = 0, VariationLzQty = 0;

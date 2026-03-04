@@ -115,11 +115,11 @@ namespace CheckPointDataAccessLayer
                         if (itemsToAddToNewlyAdded.Count > 0)
                         {
                            
-                            string DeleteQuery = "DELETE FROM NewlyAddedItems";
-                            using (var DeleteCmd = new SQLiteCommand(DeleteQuery, Connection, Transaction))
-                            {
-                                DeleteCmd.ExecuteNonQuery();
-                            }
+                            //string DeleteQuery = "DELETE FROM NewlyAddedItems";
+                            //using (var DeleteCmd = new SQLiteCommand(DeleteQuery, Connection, Transaction))
+                            //{
+                            //    DeleteCmd.ExecuteNonQuery();
+                            //}
 
                             
                             foreach (var item in itemsToAddToNewlyAdded)
@@ -190,7 +190,18 @@ namespace CheckPointDataAccessLayer
             }
         }
 
+        public static bool DeleteNewlyAddedItems()
+        {
+            string Query = "DELETE FROM NewlyAddedItems";
 
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            {
+                using (var Command =  new SQLiteCommand(Query, Connection))
+                {
+                    return Command.ExecuteNonQuery() > 0;
+                }
+            }
+        }
         public static bool AddNewItem(int itemCode, string description, int qty, int lzQty, decimal retailPrice)
         {
             string query = @"INSERT INTO Items (ItemCode, Description, Qty, LzQty, RetailPrice)

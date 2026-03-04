@@ -138,6 +138,7 @@ namespace Check_Point_Manager
             if (cmbItemsFilterBy.Text == "Newly Added Items")
             {
                 dgvAllStockList.DataSource = _dtNewlyAddedItems;
+                btnClearNewItems.Visible = _dtNewlyAddedItems.Rows.Count > 0;
             }
             else
             {
@@ -493,17 +494,11 @@ namespace Check_Point_Manager
 
             txbFilterValue.Visible = needsText;
             pcbItemsSearchIcon.Visible = txbFilterValue.Visible;
+            btnClearNewItems.Visible = (cmbItemsFilterBy.Text == "Newly Added Items") && _dtNewlyAddedItems.Rows.Count > 0;
             txbFilterValue.Text = "";
 
             _LoadItemsTable();
 
-            //txbFilterValue.Visible = (cmbFilterBy.Text != "None" && cmbFilterBy.Text != "Newly Added Items");
-            //txbFilterValue.Text = "";
-
-            //if (txbFilterValue.Visible)
-            //    txbFilterValue.Focus();
-
-            //_LoadItemsTable();
         }
         private void cmbGroupsFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1081,6 +1076,28 @@ namespace Check_Point_Manager
         {
             frmCheckHistory frm = new frmCheckHistory();
             frm.ShowDialog();
+        }
+
+        private void btnClearNewItems_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are you sure you want to delete Newly Added Items Table ?","Confirmation",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
+            if(!clsItem.ClearNewlyAddedItemsTable())
+            {
+                MessageBox.Show("Error while trying to delete new items !", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show("Newly Added Items Deleted Successfully", "Success", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            btnClearNewItems.Visible = false;
+            _LoadItemsTable();
         }
     }
 }

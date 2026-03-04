@@ -87,9 +87,10 @@
             this.lblUpdateStock = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
+            this.btnClearNewItems = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -174,6 +175,7 @@
             // pnlItemsList
             // 
             this.pnlItemsList.BackColor = System.Drawing.Color.White;
+            this.pnlItemsList.Controls.Add(this.btnClearNewItems);
             this.pnlItemsList.Controls.Add(this.btnVariationList);
             this.pnlItemsList.Controls.Add(this.pcbItemsSearchIcon);
             this.pnlItemsList.Controls.Add(this.chbFastMode);
@@ -844,6 +846,18 @@
             this.panel1.Size = new System.Drawing.Size(1334, 30);
             this.panel1.TabIndex = 5;
             // 
+            // lklShowCheckingHistory
+            // 
+            this.lklShowCheckingHistory.AutoSize = true;
+            this.lklShowCheckingHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lklShowCheckingHistory.Location = new System.Drawing.Point(1214, 6);
+            this.lklShowCheckingHistory.Name = "lklShowCheckingHistory";
+            this.lklShowCheckingHistory.Size = new System.Drawing.Size(110, 17);
+            this.lklShowCheckingHistory.TabIndex = 34;
+            this.lklShowCheckingHistory.TabStop = true;
+            this.lklShowCheckingHistory.Text = "Checking History";
+            this.lklShowCheckingHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklShowCheckingHistory_LinkClicked);
+            // 
             // lblLastGroupChecked
             // 
             this.lblLastGroupChecked.AutoSize = true;
@@ -868,17 +882,19 @@
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
-            // lklShowCheckingHistory
+            // btnClearNewItems
             // 
-            this.lklShowCheckingHistory.AutoSize = true;
-            this.lklShowCheckingHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lklShowCheckingHistory.Location = new System.Drawing.Point(1214, 6);
-            this.lklShowCheckingHistory.Name = "lklShowCheckingHistory";
-            this.lklShowCheckingHistory.Size = new System.Drawing.Size(110, 17);
-            this.lklShowCheckingHistory.TabIndex = 34;
-            this.lklShowCheckingHistory.TabStop = true;
-            this.lklShowCheckingHistory.Text = "Checking History";
-            this.lklShowCheckingHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklShowCheckingHistory_LinkClicked);
+            this.btnClearNewItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnClearNewItems.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClearNewItems.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearNewItems.ForeColor = System.Drawing.Color.White;
+            this.btnClearNewItems.Location = new System.Drawing.Point(178, 61);
+            this.btnClearNewItems.Name = "btnClearNewItems";
+            this.btnClearNewItems.Size = new System.Drawing.Size(125, 21);
+            this.btnClearNewItems.TabIndex = 31;
+            this.btnClearNewItems.Text = "Clear New Items";
+            this.btnClearNewItems.UseVisualStyleBackColor = false;
+            this.btnClearNewItems.Click += new System.EventHandler(this.btnClearNewItems_Click);
             // 
             // frmMainScreen
             // 
@@ -987,5 +1003,6 @@
         private System.Windows.Forms.Label lblLastStockUpdateTitle;
         private System.Windows.Forms.Label lblAppVersion;
         private System.Windows.Forms.LinkLabel lklShowCheckingHistory;
+        private System.Windows.Forms.Button btnClearNewItems;
     }
 }
