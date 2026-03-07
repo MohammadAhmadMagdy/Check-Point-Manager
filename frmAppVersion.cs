@@ -32,6 +32,13 @@ namespace Check_Point_Manager
         {
             string NewVersion = txbUpdateAppVersion.Text.Trim();
 
+            if(string.IsNullOrWhiteSpace(NewVersion))
+            {
+                MessageBox.Show("New App Version Can't be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txbUpdateAppVersion.Focus();
+                return;
+            }
+
             if (!clsSettings.SetValue(clsSettings.Keys.AppVersion, NewVersion))
             {
                 MessageBox.Show("Error Saving App New Version !","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);

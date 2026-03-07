@@ -1,4 +1,5 @@
-﻿using System;
+﻿//#define AppVersionSet
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ using CheckPointBusinessLayer;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Coloring = System.Drawing.Color;
+
 
 
 namespace Check_Point_Manager
@@ -652,7 +654,7 @@ namespace Check_Point_Manager
                     return;
                 }
 
-                if (MessageBox.Show("Are you sure you want to Remove these items to\n" + cmbGroups.Text + " Group ?",
+                if (MessageBox.Show("Are you sure you want to Add these items to\n" + cmbGroups.Text + " Group ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
                     return;
@@ -1059,7 +1061,7 @@ namespace Check_Point_Manager
 
         }
 
-        [Conditional("DEBUG")]
+        [Conditional("AppVersionSet")]
         private void _AdjustAppVersion()
         {
             frmAppVersion frm = new frmAppVersion();
