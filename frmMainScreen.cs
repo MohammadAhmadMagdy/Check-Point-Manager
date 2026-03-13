@@ -713,7 +713,7 @@ namespace Check_Point_Manager
                     return;
                 }
 
-                if (MessageBox.Show("Are you sure you want to Remove these items to\n" + cmbGroups.Text + " Group ?",
+                if (MessageBox.Show("Are you sure you want to Remove these items From\n" + cmbGroups.Text + " Group ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
                     return;
