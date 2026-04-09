@@ -177,7 +177,7 @@ namespace CheckPointDataAccessLayer
         private static void AddToNewlyAddedItems(SQLiteConnection conn, SQLiteTransaction trans, int code, 
             string desc, int q, int lz, decimal price)
         {
-            string query = "INSERT INTO NewlyAddedItems (ItemCode, Description, Qty, LzQty, RetailPrice) " +
+            string query = "INSERT OR IGNORE INTO NewlyAddedItems (ItemCode, Description, Qty, LzQty, RetailPrice) " +
                 "VALUES (@ItemCode, @Description, @Qty, @LzQty, @RetailPrice)";
             using (var cmd = new SQLiteCommand(query, conn, trans))
             {
@@ -300,8 +300,7 @@ namespace CheckPointDataAccessLayer
                               LEFT JOIN ItemsGroups ON NewlyAddedItems.ItemCode = ItemsGroups.ItemCode
                               LEFT JOIN Groups ON Groups.GroupID = ItemsGroups.GroupID
                               GROUP BY NewlyAddedItems.ItemCode
-                              ORDER BY NewlyAddedItems.ItemCode;
-                              ;";
+                              ORDER BY NewlyAddedItems.rowid DESC;";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             {
