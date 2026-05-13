@@ -236,6 +236,23 @@ namespace Check_Point_Manager
             lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
             lblGroupCheckedCounter.Text = clsCheck.GetCheckCountByGroupID(GroupID) + " Time(s)";
         }
+        private string _GetDefaultStockFile()
+        {
+            string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string TargetFolder = Path.Combine(DesktopPath, "Check Point Update");
+
+            string XlsxFile = Path.Combine(TargetFolder, "Stock.xlsx");
+            string XlsFile = Path.Combine(TargetFolder, "Stock.xls");
+
+            if (File.Exists(XlsxFile))
+                return XlsxFile;
+
+            if (File.Exists(XlsFile))
+                return XlsFile;
+
+            return null;
+        }
         private string _SelectExcelFile()
         {
             string FilePath = null;
@@ -445,9 +462,9 @@ namespace Check_Point_Manager
 
             chbFastMode.Checked = true;
 
-            btnUpdate.Enabled = false;
+            //btnUpdate.Enabled = false;
 
-            pcbWarning.Visible = true;
+            pcbWarning.Visible = lblUpdateStatus.Text == "Please Update Stock Before Exporting File";
 
             lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
             lblAppVersion.Text = "[ Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + " ]";
@@ -542,8 +559,14 @@ namespace Check_Point_Manager
             {
                 lblUpdateStatus.Text = "Update in Progress .. Please Wait";
                 lblUpdateStatus.Visible = true;
+                pcbWarning.Visible = false;
                 Application.DoEvents();
                 Cursor = Cursors.WaitCursor;
+
+                if (string.IsNullOrEmpty(_ExcelFile))
+                {
+                    _ExcelFile = _GetDefaultStockFile();
+                }
 
                 if (!String.IsNullOrEmpty(_ExcelFile))
                 {
@@ -553,6 +576,7 @@ namespace Check_Point_Manager
                     {
                         MessageBox.Show("Warning : Couldn't save Update date !","Warning",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        pcbWarning.Visible = true;
                     }
 
                     lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
@@ -585,12 +609,26 @@ namespace Check_Point_Manager
                         _LoadSelectedGroupItems(GroupID);
                     }
 
-                    btnUpdate.Enabled = false;
+                    
+                    //btnUpdate.Enabled = false;
                 }
                 else
                 {
-                    MessageBox.Show("No File Choosen !!", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (MessageBox.Show("Stock file was not found in:\n\nDesktop/Check Point Update/\n\n" +
+                                        "Please place the file there or choose it manually.\n\n" +
+                                        "Do you want to browse for the file now?",
+                                        "File Not Found",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        _ExcelFile = _SelectExcelFile();
+
+                        if (!string.IsNullOrEmpty(_ExcelFile))
+                        {
+                            txbFilePath.Text = _ExcelFile;
+                            btnUpdate_Click(sender, e);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
