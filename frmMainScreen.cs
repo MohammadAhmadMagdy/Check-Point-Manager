@@ -279,6 +279,66 @@ namespace Check_Point_Manager
 
             return FilePath;
         }
+        private bool _IsValidExcelFileName(string FilePath)
+        {
+            string FileName = Path.GetFileNameWithoutExtension(FilePath);
+            string FileExtension = Path.GetExtension(FilePath).ToLower();
+
+            bool ValidFileName = FileName.Equals("Stock", StringComparison.OrdinalIgnoreCase);
+            bool ValidExtension = (FileExtension == ".xlsx" || FileExtension == ".xls");
+
+            return ValidFileName && ValidExtension;
+        }
+        private bool _IsValidExcelFileStructure(string FilePath)
+        {
+            try
+            {
+                using (var WorkBook = new XLWorkbook(FilePath))
+                {
+                    var Sheet = WorkBook.Worksheets.FirstOrDefault();
+
+                    if (Sheet == null) return false;
+
+                    string CellA4 = Sheet.Cell("A4").GetString().Trim();
+
+                    return CellA4.StartsWith("Stock Position Report - as On :", 
+                        StringComparison.OrdinalIgnoreCase);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private bool _IsValidStockFile(string filePath, bool showMessages = true)
+        {
+           
+            if (!_IsValidExcelFileName(filePath))
+            {
+                if (showMessages)
+                    MessageBox.Show(
+                        "Wrong file name !\nFile name must be (Stock.xlsx) Or (Stock.xls)",
+                        "Incorrect File",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                return false;
+            }
+
+        
+            if (!_IsValidExcelFileStructure(filePath))
+            {
+                if (showMessages)
+                    MessageBox.Show(
+                        "File contents is not correct !\n" +
+                        "Make sure the file is a valid Stock Position Report",
+                        "Incorrect File",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
         private void _FilterDataAndExportToExcel()
         {
             DataView dv = new DataView(_dtSelectedGroupItems);
