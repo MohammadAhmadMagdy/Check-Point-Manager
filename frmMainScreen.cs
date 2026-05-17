@@ -253,7 +253,7 @@ namespace Check_Point_Manager
 
             return null;
         }
-        private string _SelectExcelFile()
+        private string _ManualSelectStockFile()
         {
             string FilePath = null;
 
@@ -279,7 +279,7 @@ namespace Check_Point_Manager
 
             return FilePath;
         }
-        private bool _IsValidExcelFileName(string FilePath)
+        private bool _IsValidExcelStockFileName(string FilePath)
         {
             string FileName = Path.GetFileNameWithoutExtension(FilePath);
             string FileExtension = Path.GetExtension(FilePath).ToLower();
@@ -289,7 +289,7 @@ namespace Check_Point_Manager
 
             return ValidFileName && ValidExtension;
         }
-        private bool _IsValidExcelFileStructure(string FilePath)
+        private bool _IsValidExcelStockFileStructure(string FilePath)
         {
             try
             {
@@ -313,7 +313,7 @@ namespace Check_Point_Manager
         private bool _IsValidStockFile(string filePath, bool showMessages = true)
         {
            
-            if (!_IsValidExcelFileName(filePath))
+            if (!_IsValidExcelStockFileName(filePath))
             {
                 if (showMessages)
                     MessageBox.Show(
@@ -325,7 +325,7 @@ namespace Check_Point_Manager
             }
 
         
-            if (!_IsValidExcelFileStructure(filePath))
+            if (!_IsValidExcelStockFileStructure(filePath))
             {
                 if (showMessages)
                     MessageBox.Show(
@@ -334,6 +334,53 @@ namespace Check_Point_Manager
                         "Incorrect File",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+        private bool _GetValidUpdateStockExcelFile()
+        {
+            if (string.IsNullOrEmpty(_ExcelFile))
+            {
+                string DefaultStockFile = _GetDefaultStockFile();
+
+                if (DefaultStockFile != null)
+                {
+                    _ExcelFile = DefaultStockFile;
+                }
+                else
+                {
+                    DialogResult Choice = MessageBox.Show
+                       ("Stock file was not found in the expected folder.\n\n" +
+                        "Expected path :\n" +
+                        Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                        "Check Point Update", "Stock.xlsx") + "\n\n" +
+                        "Would you like to browse for the file manually ?",
+                        "File Not Found",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Question);
+
+                    if (Choice == DialogResult.Yes)
+                    {
+                        string ManualBrowseFile = _ManualSelectStockFile();
+
+                        if (string.IsNullOrEmpty(ManualBrowseFile))
+                            return false;
+
+                        _ExcelFile = ManualBrowseFile;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            if (!_IsValidStockFile(_ExcelFile))
+            {
+                _ExcelFile = null;
                 return false;
             }
 
@@ -617,79 +664,58 @@ namespace Check_Point_Manager
         {
             try
             {
+                Cursor = Cursors.WaitCursor;
+
+                if (!_GetValidUpdateStockExcelFile())
+                    return;
+
                 lblUpdateStatus.Text = "Update in Progress .. Please Wait";
                 lblUpdateStatus.Visible = true;
                 pcbWarning.Visible = false;
                 Application.DoEvents();
-                Cursor = Cursors.WaitCursor;
+                
 
-                if (string.IsNullOrEmpty(_ExcelFile))
+
+                _NewlyAddedItemsCount = clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile);
+
+                if (!clsSettings.RecordStockUpdate())
                 {
-                    _ExcelFile = _GetDefaultStockFile();
+                    MessageBox.Show("Warning : Couldn't save Update date !", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    pcbWarning.Visible = true;
                 }
 
-                if (!String.IsNullOrEmpty(_ExcelFile))
+                lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
+
+                if (_NewlyAddedItemsCount > 0)
                 {
-                    _NewlyAddedItemsCount = clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile);
+                    lblUpdateStatus.Text = "Stock Updated Successfully, " + _NewlyAddedItemsCount + " New Items Added";
 
-                    if(!clsSettings.RecordStockUpdate())
+                    if (MessageBox.Show("Stock Updated Successfully\n" + _NewlyAddedItemsCount + " New Items Added\n" +
+                        "Do you want to explore Newly Added Items ?", "Success",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Warning : Couldn't save Update date !","Warning",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        pcbWarning.Visible = true;
+                        cmbItemsFilterBy.SelectedIndex = 5;
                     }
-
-                    lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
-
-                    if (_NewlyAddedItemsCount > 0)
-                    {
-                        lblUpdateStatus.Text = "Stock Updated Successfully, " + _NewlyAddedItemsCount + " New Items Added";
-
-                        if (MessageBox.Show("Stock Updated Successfully\n" + _NewlyAddedItemsCount + " New Items Added\n" +
-                            "Do you want to explore Newly Added Items ?", "Success",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            cmbItemsFilterBy.SelectedIndex = 5;
-                        }
-                    }
-                    else
-                    {
-                        lblUpdateStatus.Text = "Stock Updated Successfully, No New Items Added";
-                        MessageBox.Show("Stock Updated Successfully\nNo New Items Added", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
-                    txbFilePath.Text = "";
-
-                    _LoadItemsTable();
-
-                    int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
-                    if(GroupID != -1)
-                    {
-                        _LoadSelectedGroupItems(GroupID);
-                    }
-
-                    
-                    //btnUpdate.Enabled = false;
                 }
                 else
                 {
-                    if (MessageBox.Show("Stock file was not found in:\n\nDesktop/Check Point Update/\n\n" +
-                                        "Please place the file there or choose it manually.\n\n" +
-                                        "Do you want to browse for the file now?",
-                                        "File Not Found",
-                                        MessageBoxButtons.YesNo,
-                                        MessageBoxIcon.Warning) == DialogResult.Yes)
-                    {
-                        _ExcelFile = _SelectExcelFile();
-
-                        if (!string.IsNullOrEmpty(_ExcelFile))
-                        {
-                            txbFilePath.Text = _ExcelFile;
-                            btnUpdate_Click(sender, e);
-                        }
-                    }
+                    lblUpdateStatus.Text = "Stock Updated Successfully, No New Items Added";
+                    MessageBox.Show("Stock Updated Successfully\nNo New Items Added", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                txbFilePath.Text = "";
+                _ExcelFile = null;
+
+                _LoadItemsTable();
+
+                int GroupID = Convert.ToInt32(cmbGroups.SelectedValue);
+                if (GroupID != -1)
+                {
+                    _LoadSelectedGroupItems(GroupID);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -703,7 +729,7 @@ namespace Check_Point_Manager
         }
         private void btnBrowseFile_Click(object sender, EventArgs e)
         {
-            _ExcelFile = _SelectExcelFile();
+            _ExcelFile = _ManualSelectStockFile();
 
             if (!string.IsNullOrEmpty(_ExcelFile))
             {
