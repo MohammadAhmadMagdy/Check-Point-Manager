@@ -571,8 +571,8 @@ namespace Check_Point_Manager
 
             //btnUpdate.Enabled = false;
 
-            pcbUpdateInfo.Visible = 
-                lblUpdateStatus.Text == "Put the Stock.xls file in update folder then press Update Stock button";
+            //pcbUpdateInfo.Visible = 
+            //    lblUpdateStatus.Text == "Put the Stock.xls file in update folder then press Update Stock button";
 
             lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
             lblAppVersion.Text = "[ Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + " ]";
@@ -670,9 +670,9 @@ namespace Check_Point_Manager
                 if (!_GetValidUpdateStockExcelFile())
                     return;
 
-                lblUpdateStatus.Text = "Update in Progress .. Please Wait";
+                lblUpdateStatus.Text = "Stock Update in Progress .. Please Wait";
                 lblUpdateStatus.Visible = true;
-                pcbUpdateInfo.Visible = false;
+                //pcbUpdateInfo.Visible = false;
                 Application.DoEvents();
                 
 

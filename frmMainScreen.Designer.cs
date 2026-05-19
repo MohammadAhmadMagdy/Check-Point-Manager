@@ -743,7 +743,7 @@
             this.pnlUpdateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
             this.pnlUpdateInfo.Location = new System.Drawing.Point(198, 4);
             this.pnlUpdateInfo.Name = "pnlUpdateInfo";
-            this.pnlUpdateInfo.Size = new System.Drawing.Size(486, 34);
+            this.pnlUpdateInfo.Size = new System.Drawing.Size(591, 34);
             this.pnlUpdateInfo.TabIndex = 27;
             // 
             // pcbUpdateInfo
@@ -763,9 +763,10 @@
             this.lblUpdateStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
             this.lblUpdateStatus.Location = new System.Drawing.Point(36, 9);
             this.lblUpdateStatus.Name = "lblUpdateStatus";
-            this.lblUpdateStatus.Size = new System.Drawing.Size(439, 17);
+            this.lblUpdateStatus.Size = new System.Drawing.Size(543, 17);
             this.lblUpdateStatus.TabIndex = 20;
-            this.lblUpdateStatus.Text = "Put the Stock.xls file in update folder then press Update Stock button";
+            this.lblUpdateStatus.Text = "Put the \"Stock\" file inside \"Check Point Update\" folder then press Update Stock b" +
+    "utton";
             // 
             // btnUpdate
             // 
