@@ -571,7 +571,8 @@ namespace Check_Point_Manager
 
             //btnUpdate.Enabled = false;
 
-            pcbWarning.Visible = lblUpdateStatus.Text == "Please Update Stock Before Exporting File";
+            pcbUpdateInfo.Visible = 
+                lblUpdateStatus.Text == "Put the Stock.xls file in update folder then press Update Stock button";
 
             lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
             lblAppVersion.Text = "[ Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + " ]";
@@ -671,7 +672,7 @@ namespace Check_Point_Manager
 
                 lblUpdateStatus.Text = "Update in Progress .. Please Wait";
                 lblUpdateStatus.Visible = true;
-                pcbWarning.Visible = false;
+                pcbUpdateInfo.Visible = false;
                 Application.DoEvents();
                 
 
@@ -682,7 +683,7 @@ namespace Check_Point_Manager
                 {
                     MessageBox.Show("Warning : Couldn't save Update date !", "Warning",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    pcbWarning.Visible = true;
+                    pcbUpdateInfo.Visible = true;
                 }
 
                 lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
@@ -705,7 +706,6 @@ namespace Check_Point_Manager
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                txbFilePath.Text = "";
                 _ExcelFile = null;
 
                 _LoadItemsTable();
@@ -733,10 +733,9 @@ namespace Check_Point_Manager
 
             if (!string.IsNullOrEmpty(_ExcelFile))
             {
-                txbFilePath.Text = _ExcelFile;
                 btnUpdate.Enabled = true;
                 lblUpdateStatus.Text = "";
-                pcbWarning.Visible = false;
+                pcbUpdateInfo.Visible = false;
             }
         }
         private void btnAddToGroup_Click(object sender, EventArgs e)

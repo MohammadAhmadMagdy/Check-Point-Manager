@@ -623,6 +623,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap InfoIco_25 {
+            get {
+                object obj = ResourceManager.GetObject("InfoIco_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap items_32 {
             get {
                 object obj = ResourceManager.GetObject("items_32", resourceCulture);

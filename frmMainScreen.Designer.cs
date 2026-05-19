@@ -40,6 +40,7 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pnlItemsList = new System.Windows.Forms.Panel();
+            this.btnClearNewItems = new System.Windows.Forms.Button();
             this.btnVariationList = new System.Windows.Forms.Button();
             this.pcbItemsSearchIcon = new System.Windows.Forms.PictureBox();
             this.chbFastMode = new System.Windows.Forms.CheckBox();
@@ -78,19 +79,15 @@
             this.lblLastStockUpdateTitle = new System.Windows.Forms.Label();
             this.lblLastStockUpdate = new System.Windows.Forms.Label();
             this.pnlUpdateInfo = new System.Windows.Forms.Panel();
-            this.pcbWarning = new System.Windows.Forms.PictureBox();
+            this.pcbUpdateInfo = new System.Windows.Forms.PictureBox();
             this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnBrowseFile = new System.Windows.Forms.Button();
-            this.txbFilePath = new System.Windows.Forms.TextBox();
             this.pcbUpdateStock = new System.Windows.Forms.PictureBox();
-            this.lblUpdateStock = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.btnClearNewItems = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -104,7 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).BeginInit();
             this.pnlAction.SuspendLayout();
             this.pnlUpdateInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.panel1.SuspendLayout();
@@ -193,6 +190,20 @@
             this.pnlItemsList.Name = "pnlItemsList";
             this.pnlItemsList.Size = new System.Drawing.Size(664, 625);
             this.pnlItemsList.TabIndex = 2;
+            // 
+            // btnClearNewItems
+            // 
+            this.btnClearNewItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnClearNewItems.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClearNewItems.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearNewItems.ForeColor = System.Drawing.Color.White;
+            this.btnClearNewItems.Location = new System.Drawing.Point(178, 61);
+            this.btnClearNewItems.Name = "btnClearNewItems";
+            this.btnClearNewItems.Size = new System.Drawing.Size(125, 21);
+            this.btnClearNewItems.TabIndex = 31;
+            this.btnClearNewItems.Text = "Clear New Items";
+            this.btnClearNewItems.UseVisualStyleBackColor = false;
+            this.btnClearNewItems.Click += new System.EventHandler(this.btnClearNewItems_Click);
             // 
             // btnVariationList
             // 
@@ -694,10 +705,7 @@
             this.pnlAction.Controls.Add(this.lblLastStockUpdate);
             this.pnlAction.Controls.Add(this.pnlUpdateInfo);
             this.pnlAction.Controls.Add(this.btnUpdate);
-            this.pnlAction.Controls.Add(this.btnBrowseFile);
-            this.pnlAction.Controls.Add(this.txbFilePath);
             this.pnlAction.Controls.Add(this.pcbUpdateStock);
-            this.pnlAction.Controls.Add(this.lblUpdateStock);
             this.pnlAction.Location = new System.Drawing.Point(6, 41);
             this.pnlAction.Name = "pnlAction";
             this.pnlAction.Size = new System.Drawing.Size(1334, 42);
@@ -730,23 +738,23 @@
             // pnlUpdateInfo
             // 
             this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.pnlUpdateInfo.Controls.Add(this.pcbWarning);
+            this.pnlUpdateInfo.Controls.Add(this.pcbUpdateInfo);
             this.pnlUpdateInfo.Controls.Add(this.lblUpdateStatus);
             this.pnlUpdateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
-            this.pnlUpdateInfo.Location = new System.Drawing.Point(589, 5);
+            this.pnlUpdateInfo.Location = new System.Drawing.Point(198, 4);
             this.pnlUpdateInfo.Name = "pnlUpdateInfo";
-            this.pnlUpdateInfo.Size = new System.Drawing.Size(387, 34);
+            this.pnlUpdateInfo.Size = new System.Drawing.Size(486, 34);
             this.pnlUpdateInfo.TabIndex = 27;
             // 
-            // pcbWarning
+            // pcbUpdateInfo
             // 
-            this.pcbWarning.Image = global::Check_Point_Manager.Properties.Resources.Warning_25;
-            this.pcbWarning.Location = new System.Drawing.Point(3, 3);
-            this.pcbWarning.Name = "pcbWarning";
-            this.pcbWarning.Size = new System.Drawing.Size(27, 28);
-            this.pcbWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pcbWarning.TabIndex = 31;
-            this.pcbWarning.TabStop = false;
+            this.pcbUpdateInfo.Image = global::Check_Point_Manager.Properties.Resources.InfoIco_25;
+            this.pcbUpdateInfo.Location = new System.Drawing.Point(3, 3);
+            this.pcbUpdateInfo.Name = "pcbUpdateInfo";
+            this.pcbUpdateInfo.Size = new System.Drawing.Size(27, 28);
+            this.pcbUpdateInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pcbUpdateInfo.TabIndex = 31;
+            this.pcbUpdateInfo.TabStop = false;
             // 
             // lblUpdateStatus
             // 
@@ -755,9 +763,9 @@
             this.lblUpdateStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
             this.lblUpdateStatus.Location = new System.Drawing.Point(36, 9);
             this.lblUpdateStatus.Name = "lblUpdateStatus";
-            this.lblUpdateStatus.Size = new System.Drawing.Size(266, 17);
+            this.lblUpdateStatus.Size = new System.Drawing.Size(439, 17);
             this.lblUpdateStatus.TabIndex = 20;
-            this.lblUpdateStatus.Text = "Please Update Stock Before Exporting File";
+            this.lblUpdateStatus.Text = "Put the Stock.xls file in update folder then press Update Stock button";
             // 
             // btnUpdate
             // 
@@ -768,61 +776,25 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::Check_Point_Manager.Properties.Resources.update_25;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(448, 4);
+            this.btnUpdate.Location = new System.Drawing.Point(37, 3);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(135, 35);
+            this.btnUpdate.Size = new System.Drawing.Size(155, 35);
             this.btnUpdate.TabIndex = 28;
-            this.btnUpdate.Text = "Update Stock";
+            this.btnUpdate.Text = "  Update Stock";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // btnBrowseFile
-            // 
-            this.btnBrowseFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
-            this.btnBrowseFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBrowseFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBrowseFile.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowseFile.ForeColor = System.Drawing.Color.White;
-            this.btnBrowseFile.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBrowseFile.Location = new System.Drawing.Point(143, 4);
-            this.btnBrowseFile.Name = "btnBrowseFile";
-            this.btnBrowseFile.Size = new System.Drawing.Size(116, 35);
-            this.btnBrowseFile.TabIndex = 27;
-            this.btnBrowseFile.Text = "Browse File ...";
-            this.btnBrowseFile.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnBrowseFile.UseVisualStyleBackColor = false;
-            this.btnBrowseFile.Click += new System.EventHandler(this.btnBrowseFile_Click);
-            // 
-            // txbFilePath
-            // 
-            this.txbFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbFilePath.Location = new System.Drawing.Point(265, 4);
-            this.txbFilePath.Multiline = true;
-            this.txbFilePath.Name = "txbFilePath";
-            this.txbFilePath.Size = new System.Drawing.Size(177, 35);
-            this.txbFilePath.TabIndex = 19;
-            // 
             // pcbUpdateStock
             // 
             this.pcbUpdateStock.Image = global::Check_Point_Manager.Properties.Resources.data_processing1;
-            this.pcbUpdateStock.Location = new System.Drawing.Point(6, 10);
+            this.pcbUpdateStock.Location = new System.Drawing.Point(6, 7);
             this.pcbUpdateStock.Name = "pcbUpdateStock";
-            this.pcbUpdateStock.Size = new System.Drawing.Size(29, 21);
+            this.pcbUpdateStock.Size = new System.Drawing.Size(29, 28);
             this.pcbUpdateStock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbUpdateStock.TabIndex = 4;
             this.pcbUpdateStock.TabStop = false;
-            // 
-            // lblUpdateStock
-            // 
-            this.lblUpdateStock.AutoSize = true;
-            this.lblUpdateStock.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateStock.Location = new System.Drawing.Point(35, 11);
-            this.lblUpdateStock.Name = "lblUpdateStock";
-            this.lblUpdateStock.Size = new System.Drawing.Size(102, 20);
-            this.lblUpdateStock.TabIndex = 3;
-            this.lblUpdateStock.Text = "Update Stock";
             // 
             // pcbIcon
             // 
@@ -882,20 +854,6 @@
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
-            // btnClearNewItems
-            // 
-            this.btnClearNewItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
-            this.btnClearNewItems.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClearNewItems.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearNewItems.ForeColor = System.Drawing.Color.White;
-            this.btnClearNewItems.Location = new System.Drawing.Point(178, 61);
-            this.btnClearNewItems.Name = "btnClearNewItems";
-            this.btnClearNewItems.Size = new System.Drawing.Size(125, 21);
-            this.btnClearNewItems.TabIndex = 31;
-            this.btnClearNewItems.Text = "Clear New Items";
-            this.btnClearNewItems.UseVisualStyleBackColor = false;
-            this.btnClearNewItems.Click += new System.EventHandler(this.btnClearNewItems_Click);
-            // 
             // frmMainScreen
             // 
             this.AcceptButton = this.btnAddToGroup;
@@ -936,7 +894,7 @@
             this.pnlAction.PerformLayout();
             this.pnlUpdateInfo.ResumeLayout(false);
             this.pnlUpdateInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbWarning)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -978,11 +936,8 @@
         private System.Windows.Forms.CheckBox chbFastMode;
         private System.Windows.Forms.Panel pnlAction;
         private System.Windows.Forms.PictureBox pcbUpdateStock;
-        private System.Windows.Forms.Label lblUpdateStock;
-        private System.Windows.Forms.TextBox txbFilePath;
         private System.Windows.Forms.Label lblUpdateStatus;
         private System.Windows.Forms.Button btnAddToGroup;
-        private System.Windows.Forms.Button btnBrowseFile;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnExportFile;
         private System.Windows.Forms.Button btnManageGroups;
@@ -998,7 +953,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLastGroupChecked;
         private System.Windows.Forms.Label lblLastGroupCheckedTitle;
-        private System.Windows.Forms.PictureBox pcbWarning;
+        private System.Windows.Forms.PictureBox pcbUpdateInfo;
         private System.Windows.Forms.Label lblLastStockUpdate;
         private System.Windows.Forms.Label lblLastStockUpdateTitle;
         private System.Windows.Forms.Label lblAppVersion;
