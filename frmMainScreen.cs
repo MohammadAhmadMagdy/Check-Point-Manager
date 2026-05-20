@@ -287,12 +287,15 @@ namespace Check_Point_Manager
             bool ValidFileName = FileName.Equals("Stock", StringComparison.OrdinalIgnoreCase);
             bool ValidExtension = (FileExtension == ".xlsx" || FileExtension == ".xls");
 
+            Application.DoEvents();
+
             return ValidFileName && ValidExtension;
         }
         private bool _IsValidExcelStockFileStructure(string FilePath)
         {
             try
             {
+
                 using (var WorkBook = new XLWorkbook(FilePath))
                 {
                     var Sheet = WorkBook.Worksheets.FirstOrDefault();
@@ -365,6 +368,8 @@ namespace Check_Point_Manager
                     if (Choice == DialogResult.Yes)
                     {
                         string ManualBrowseFile = _ManualSelectStockFile();
+
+                        Application.DoEvents();
 
                         if (string.IsNullOrEmpty(ManualBrowseFile))
                             return false;
@@ -661,23 +666,31 @@ namespace Check_Point_Manager
             txbGroupsFilterValue.Text = string.Empty;
             _LoadSelectedGroupItems(GroupID);
         }
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private async void btnUpdate_Click(object sender, EventArgs e)
         {
+            frmProgressBox ProgressBox = new frmProgressBox();
+
             try
             {
                 Cursor = Cursors.WaitCursor;
 
+                ProgressBox.SetMessage("Validating Stock File ...");
+                ProgressBox.Show(this);
+                //Application.DoEvents();
+
                 if (!_GetValidUpdateStockExcelFile())
                     return;
+
+                ProgressBox.SetMessage("Updating Stock .. Please Wait");
 
                 lblUpdateStatus.Text = "Stock Update in Progress .. Please Wait";
                 lblUpdateStatus.Visible = true;
                 //pcbUpdateInfo.Visible = false;
-                Application.DoEvents();
+                //Application.DoEvents();
                 
 
 
-                _NewlyAddedItemsCount = clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile);
+                _NewlyAddedItemsCount = await Task.Run(() => clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile));
 
                 if (!clsSettings.RecordStockUpdate())
                 {
@@ -724,6 +737,8 @@ namespace Check_Point_Manager
             }
             finally
             {
+                ProgressBox.Close();
+                ProgressBox.Dispose();
                 Cursor = Cursors.Default;
             }
         }

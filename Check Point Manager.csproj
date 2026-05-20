@@ -128,6 +128,12 @@
     <Compile Include="frmManageListGroup.Designer.cs">
       <DependentUpon>frmManageListGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProgressBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProgressBox.Designer.cs">
+      <DependentUpon>frmProgressBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRecordItemVariation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageListGroup.resx">
       <DependentUpon>frmManageListGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProgressBox.resx">
+      <DependentUpon>frmProgressBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecordItemVariation.resx">
       <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
