@@ -22,6 +22,16 @@ namespace Check_Point_Manager
 
             Application.DoEvents();
         }
+        public void Pause()
+        {
+            this.Hide();
+        }
+        public void Resume(string message)
+        {
+            this.SetMessage(message);
+            this.Show();
+            Application.DoEvents();
+        }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)

@@ -313,11 +313,13 @@ namespace Check_Point_Manager
                 return false;
             }
         }
-        private bool _IsValidStockFile(string filePath, bool showMessages = true)
+        private bool _IsValidStockFile(string filePath, frmProgressBox ProgressBox, bool showMessages = true)
         {
            
             if (!_IsValidExcelStockFileName(filePath))
             {
+                ProgressBox.Hide();
+
                 if (showMessages)
                     MessageBox.Show(
                         "Wrong file name !\nFile name must be (Stock.xlsx) Or (Stock.xls)",
@@ -330,6 +332,8 @@ namespace Check_Point_Manager
         
             if (!_IsValidExcelStockFileStructure(filePath))
             {
+                ProgressBox.Hide();
+
                 if (showMessages)
                     MessageBox.Show(
                         "File contents is not correct !\n" +
@@ -342,7 +346,7 @@ namespace Check_Point_Manager
 
             return true;
         }
-        private bool _GetValidUpdateStockExcelFile()
+        private bool _GetValidUpdateStockExcelFile(frmProgressBox ProgressBox)
         {
             if (string.IsNullOrEmpty(_ExcelFile))
             {
@@ -354,6 +358,8 @@ namespace Check_Point_Manager
                 }
                 else
                 {
+                    ProgressBox.Hide();
+
                     DialogResult Choice = MessageBox.Show
                        ("Stock file was not found in the expected folder.\n\n" +
                         "Expected path :\n" +
@@ -383,7 +389,9 @@ namespace Check_Point_Manager
                 }
             }
 
-            if (!_IsValidStockFile(_ExcelFile))
+            ProgressBox.Resume("Validating Stock File ...");
+
+            if (!_IsValidStockFile(_ExcelFile, ProgressBox))
             {
                 _ExcelFile = null;
                 return false;
@@ -678,7 +686,7 @@ namespace Check_Point_Manager
                 ProgressBox.Show(this);
                 //Application.DoEvents();
 
-                if (!_GetValidUpdateStockExcelFile())
+                if (!_GetValidUpdateStockExcelFile(ProgressBox))
                     return;
 
                 ProgressBox.SetMessage("Updating Stock .. Please Wait");
@@ -703,6 +711,9 @@ namespace Check_Point_Manager
 
                 if (_NewlyAddedItemsCount > 0)
                 {
+                    ProgressBox.Close();
+                    ProgressBox.Dispose();
+
                     lblUpdateStatus.Text = "Stock Updated Successfully, " + _NewlyAddedItemsCount + " New Items Added";
 
                     if (MessageBox.Show("Stock Updated Successfully\n" + _NewlyAddedItemsCount + " New Items Added\n" +
@@ -714,6 +725,9 @@ namespace Check_Point_Manager
                 }
                 else
                 {
+                    ProgressBox.Close();
+                    ProgressBox.Dispose();
+
                     lblUpdateStatus.Text = "Stock Updated Successfully, No New Items Added";
                     MessageBox.Show("Stock Updated Successfully\nNo New Items Added", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
