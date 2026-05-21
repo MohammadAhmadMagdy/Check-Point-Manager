@@ -682,21 +682,19 @@ namespace Check_Point_Manager
             {
                 Cursor = Cursors.WaitCursor;
 
+                lblUpdateStatus.Text = "Validating Stock File ...";
                 ProgressBox.SetMessage("Validating Stock File ...");
                 ProgressBox.Show(this);
-                //Application.DoEvents();
+               
 
                 if (!_GetValidUpdateStockExcelFile(ProgressBox))
                     return;
 
                 ProgressBox.SetMessage("Updating Stock .. Please Wait");
 
-                lblUpdateStatus.Text = "Stock Update in Progress .. Please Wait";
+                lblUpdateStatus.Text = "Updating Stock .. Please Wait";
                 lblUpdateStatus.Visible = true;
-                //pcbUpdateInfo.Visible = false;
-                //Application.DoEvents();
                 
-
 
                 _NewlyAddedItemsCount = await Task.Run(() => clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile));
 
@@ -709,10 +707,11 @@ namespace Check_Point_Manager
 
                 lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
 
+                ProgressBox.Close();
+                ProgressBox.Dispose();
+
                 if (_NewlyAddedItemsCount > 0)
                 {
-                    ProgressBox.Close();
-                    ProgressBox.Dispose();
 
                     lblUpdateStatus.Text = "Stock Updated Successfully, " + _NewlyAddedItemsCount + " New Items Added";
 
@@ -725,8 +724,6 @@ namespace Check_Point_Manager
                 }
                 else
                 {
-                    ProgressBox.Close();
-                    ProgressBox.Dispose();
 
                     lblUpdateStatus.Text = "Stock Updated Successfully, No New Items Added";
                     MessageBox.Show("Stock Updated Successfully\nNo New Items Added", "Success",
@@ -751,20 +748,12 @@ namespace Check_Point_Manager
             }
             finally
             {
-                ProgressBox.Close();
-                ProgressBox.Dispose();
+                if (!ProgressBox.IsDisposed)
+                {
+                    ProgressBox.Close();
+                    ProgressBox.Dispose();
+                }
                 Cursor = Cursors.Default;
-            }
-        }
-        private void btnBrowseFile_Click(object sender, EventArgs e)
-        {
-            _ExcelFile = _ManualSelectStockFile();
-
-            if (!string.IsNullOrEmpty(_ExcelFile))
-            {
-                btnUpdate.Enabled = true;
-                lblUpdateStatus.Text = "";
-                pcbUpdateInfo.Visible = false;
             }
         }
         private void btnAddToGroup_Click(object sender, EventArgs e)
