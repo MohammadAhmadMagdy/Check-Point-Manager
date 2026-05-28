@@ -1,4 +1,4 @@
-﻿//#define AppVersionSet
+﻿#define AppVersionSet
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

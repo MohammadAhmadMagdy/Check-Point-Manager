@@ -55,6 +55,7 @@
     <Compile Include="clsItem.cs" />
     <Compile Include="clsItemGroup.cs" />
     <Compile Include="clsSettings.cs" />
+    <Compile Include="clsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -90,6 +90,7 @@
     <Compile Include="clsItemData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsItemGroupData.cs" />
+    <Compile Include="clsUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
