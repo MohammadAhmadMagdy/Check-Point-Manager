@@ -582,11 +582,8 @@ namespace Check_Point_Manager
 
             chbFastMode.Checked = true;
 
-            //btnUpdate.Enabled = false;
-
-            //pcbUpdateInfo.Visible = 
-            //    lblUpdateStatus.Text == "Put the Stock.xls file in update folder then press Update Stock button";
-
+            lblUserName.Text = clsUser.Current.UserName;
+            
             lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
             lblAppVersion.Text = "[ Ver. " + clsSettings.GetValue(clsSettings.Keys.AppVersion) + " ]";
 

@@ -49,7 +49,7 @@
             // 
             this.pgbLoading.BackColor = System.Drawing.SystemColors.Highlight;
             this.pgbLoading.Location = new System.Drawing.Point(108, 63);
-            this.pgbLoading.MarqueeAnimationSpeed = 50;
+            this.pgbLoading.MarqueeAnimationSpeed = 30;
             this.pgbLoading.Minimum = 50;
             this.pgbLoading.Name = "pgbLoading";
             this.pgbLoading.Size = new System.Drawing.Size(79, 10);

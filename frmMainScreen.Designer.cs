@@ -88,6 +88,8 @@
             this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
+            this.lblCurrentUser = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -110,6 +112,8 @@
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.White;
+            this.pnlTop.Controls.Add(this.lblCurrentUser);
+            this.pnlTop.Controls.Add(this.lblUserName);
             this.pnlTop.Controls.Add(this.lblAppVersion);
             this.pnlTop.Controls.Add(this.btnExit);
             this.pnlTop.Controls.Add(this.btnMinimize);
@@ -855,6 +859,30 @@
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
+            // lblCurrentUser
+            // 
+            this.lblCurrentUser.AutoSize = true;
+            this.lblCurrentUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCurrentUser.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(86)))), ((int)(((byte)(146)))));
+            this.lblCurrentUser.Location = new System.Drawing.Point(335, 12);
+            this.lblCurrentUser.Name = "lblCurrentUser";
+            this.lblCurrentUser.Size = new System.Drawing.Size(93, 17);
+            this.lblCurrentUser.TabIndex = 35;
+            this.lblCurrentUser.Text = "Current User :";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblUserName.Location = new System.Drawing.Point(434, 12);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(20, 17);
+            this.lblUserName.TabIndex = 36;
+            this.lblUserName.Text = "??";
+            // 
             // frmMainScreen
             // 
             this.AcceptButton = this.btnAddToGroup;
@@ -960,5 +988,7 @@
         private System.Windows.Forms.Label lblAppVersion;
         private System.Windows.Forms.LinkLabel lklShowCheckingHistory;
         private System.Windows.Forms.Button btnClearNewItems;
+        private System.Windows.Forms.Label lblCurrentUser;
+        private System.Windows.Forms.Label lblUserName;
     }
 }

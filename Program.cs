@@ -20,7 +20,8 @@ namespace Check_Point_Manager
             //Application.Run(new frmManageListGroup());
             //Application.Run(new frmVariationsList());
             //Application.Run(new frmCheckHistory());
-            Application.Run(new frmMainScreen());
+            Application.Run(new frmLogin());
+            //Application.Run(new frmMainScreen());
         }
     }
 }
