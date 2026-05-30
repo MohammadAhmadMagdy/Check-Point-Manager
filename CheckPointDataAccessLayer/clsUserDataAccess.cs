@@ -28,6 +28,32 @@ namespace CheckPointDataAccessLayer
 
             return dt;
         }
+        public static DataTable GetAllUsers()
+        {
+            DataTable dt = new DataTable();
+
+            string Query = @"SELECT 
+                    UserID, 
+                    UserName, 
+                    CASE 
+                        WHEN IsActive = 1 THEN 'Yes' 
+                        ELSE 'No' 
+                    END AS ActiveStatus 
+                 FROM Users 
+                 ORDER BY UserID;";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                using (var Reader = Command.ExecuteReader())
+                {
+                    if (Reader.HasRows)
+                        dt.Load(Reader);
+                }
+            }
+
+            return dt;
+        }
 
         public static bool GetUserByID(int UserID, ref string UserName, ref string Password, ref bool IsActive)
         {

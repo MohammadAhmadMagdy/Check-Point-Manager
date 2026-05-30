@@ -123,6 +123,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddNewUser_25 {
+            get {
+                object obj = ResourceManager.GetObject("AddNewUser_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_Left_25 {
             get {
                 object obj = ResourceManager.GetObject("arrow_Left_25", resourceCulture);
@@ -756,6 +766,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap password_25 {
             get {
                 object obj = ResourceManager.GetObject("password_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap password_30 {
+            get {
+                object obj = ResourceManager.GetObject("password_30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

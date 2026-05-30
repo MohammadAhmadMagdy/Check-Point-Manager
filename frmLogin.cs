@@ -32,7 +32,7 @@ namespace Check_Point_Manager
             _FillComboBoxUsers();
 
             btnLogin.Enabled = false;
-            txbPassword.Enabled = false;
+            pnlPassword.Enabled = false;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -61,5 +61,7 @@ namespace Check_Point_Manager
             frm.ShowDialog();
             this.Close();
         }
+
+       
     }
 }

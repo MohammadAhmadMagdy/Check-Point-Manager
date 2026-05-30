@@ -146,6 +146,12 @@
     <Compile Include="frmRecordItemVariation.Designer.cs">
       <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUsersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsersList.Designer.cs">
+      <DependentUpon>frmUsersList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVariationsList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecordItemVariation.resx">
       <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsersList.resx">
+      <DependentUpon>frmUsersList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVariationsList.resx">
       <DependentUpon>frmVariationsList.cs</DependentUpon>
@@ -279,6 +288,8 @@
     <Resource Include="Resources\user-25.png" />
     <Resource Include="Resources\person-25.png" />
     <Resource Include="Resources\key-security-25.png" />
+    <Resource Include="Resources\AddNewUser_25.png" />
+    <Resource Include="Resources\password-30.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

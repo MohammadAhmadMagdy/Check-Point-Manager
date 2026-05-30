@@ -44,6 +44,10 @@ namespace CheckPointBusinessLayer
         {
             return clsUserDataAccess.GetAllActiveUsers();
         }
+        public static DataTable GetAllUsers()
+        {
+            return clsUserDataAccess.GetAllUsers();
+        }
 
         public static clsUser FindByID(int UserID)
         {

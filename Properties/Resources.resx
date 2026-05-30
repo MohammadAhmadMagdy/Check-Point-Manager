@@ -409,11 +409,17 @@
   <data name="AddNewUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddNewUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AddNewUser_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddNewUser_25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="key_security_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\key-security-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="password_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\password-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="password_30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\password-30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="person_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\person-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
