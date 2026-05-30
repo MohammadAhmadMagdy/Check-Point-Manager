@@ -48,11 +48,11 @@
             // 
             this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExit.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(106, 171);
+            this.btnExit.Location = new System.Drawing.Point(147, 225);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(94, 31);
+            this.btnExit.Size = new System.Drawing.Size(110, 39);
             this.btnExit.TabIndex = 26;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -62,11 +62,11 @@
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLogin.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(331, 171);
+            this.btnLogin.Location = new System.Drawing.Point(301, 225);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(94, 31);
+            this.btnLogin.Size = new System.Drawing.Size(110, 39);
             this.btnLogin.TabIndex = 27;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -74,9 +74,9 @@
             // 
             // txbPassword
             // 
-            this.txbPassword.Location = new System.Drawing.Point(249, 126);
+            this.txbPassword.Location = new System.Drawing.Point(213, 128);
             this.txbPassword.Name = "txbPassword";
-            this.txbPassword.Size = new System.Drawing.Size(176, 20);
+            this.txbPassword.Size = new System.Drawing.Size(252, 20);
             this.txbPassword.TabIndex = 29;
             // 
             // cmbUsers
@@ -84,9 +84,9 @@
             this.cmbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUsers.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.cmbUsers.FormattingEnabled = true;
-            this.cmbUsers.Location = new System.Drawing.Point(249, 78);
+            this.cmbUsers.Location = new System.Drawing.Point(213, 78);
             this.cmbUsers.Name = "cmbUsers";
-            this.cmbUsers.Size = new System.Drawing.Size(176, 23);
+            this.cmbUsers.Size = new System.Drawing.Size(252, 23);
             this.cmbUsers.TabIndex = 30;
             this.cmbUsers.SelectedIndexChanged += new System.EventHandler(this.cmbUsers_SelectedIndexChanged);
             // 
@@ -94,25 +94,25 @@
             // 
             this.lblSelectUserName.AutoSize = true;
             this.lblSelectUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblSelectUserName.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectUserName.Font = new System.Drawing.Font("Segoe UI", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectUserName.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblSelectUserName.Location = new System.Drawing.Point(75, 80);
+            this.lblSelectUserName.Location = new System.Drawing.Point(97, 81);
             this.lblSelectUserName.Name = "lblSelectUserName";
-            this.lblSelectUserName.Size = new System.Drawing.Size(111, 15);
+            this.lblSelectUserName.Size = new System.Drawing.Size(96, 20);
             this.lblSelectUserName.TabIndex = 34;
-            this.lblSelectUserName.Text = "Select User Name :";
+            this.lblSelectUserName.Text = "User Name :";
             // 
             // lblEnterPassword
             // 
             this.lblEnterPassword.AutoSize = true;
             this.lblEnterPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblEnterPassword.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnterPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEnterPassword.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblEnterPassword.Location = new System.Drawing.Point(87, 128);
+            this.lblEnterPassword.Location = new System.Drawing.Point(97, 126);
             this.lblEnterPassword.Name = "lblEnterPassword";
-            this.lblEnterPassword.Size = new System.Drawing.Size(99, 15);
+            this.lblEnterPassword.Size = new System.Drawing.Size(85, 20);
             this.lblEnterPassword.TabIndex = 35;
-            this.lblEnterPassword.Text = "Enter Password :";
+            this.lblEnterPassword.Text = "Password :";
             // 
             // lblHeader
             // 
@@ -146,9 +146,9 @@
             // pbxPassword
             // 
             this.pbxPassword.Image = global::Check_Point_Manager.Properties.Resources.key_security_25;
-            this.pbxPassword.Location = new System.Drawing.Point(40, 123);
+            this.pbxPassword.Location = new System.Drawing.Point(57, 126);
             this.pbxPassword.Name = "pbxPassword";
-            this.pbxPassword.Size = new System.Drawing.Size(29, 27);
+            this.pbxPassword.Size = new System.Drawing.Size(29, 20);
             this.pbxPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxPassword.TabIndex = 39;
             this.pbxPassword.TabStop = false;
@@ -156,9 +156,9 @@
             // pcbUser
             // 
             this.pcbUser.Image = global::Check_Point_Manager.Properties.Resources.person_25;
-            this.pcbUser.Location = new System.Drawing.Point(40, 74);
+            this.pcbUser.Location = new System.Drawing.Point(57, 81);
             this.pcbUser.Name = "pcbUser";
-            this.pcbUser.Size = new System.Drawing.Size(29, 27);
+            this.pcbUser.Size = new System.Drawing.Size(29, 20);
             this.pcbUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbUser.TabIndex = 38;
             this.pcbUser.TabStop = false;
@@ -172,11 +172,11 @@
             this.btnAddNewUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
             this.btnAddNewUser.Image = global::Check_Point_Manager.Properties.Resources.AddNewUser;
             this.btnAddNewUser.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAddNewUser.Location = new System.Drawing.Point(190, 225);
+            this.btnAddNewUser.Location = new System.Drawing.Point(355, 162);
             this.btnAddNewUser.Name = "btnAddNewUser";
-            this.btnAddNewUser.Size = new System.Drawing.Size(140, 41);
+            this.btnAddNewUser.Size = new System.Drawing.Size(110, 39);
             this.btnAddNewUser.TabIndex = 37;
-            this.btnAddNewUser.Text = "Add New User";
+            this.btnAddNewUser.Text = "New User";
             this.btnAddNewUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddNewUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddNewUser.UseVisualStyleBackColor = false;
