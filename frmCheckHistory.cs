@@ -112,6 +112,8 @@ namespace Check_Point_Manager
             if (dgvCheckHistory.Rows.Count > 0)
             {
                 _AdjustDataGridColumns();
+
+                lblTotalRecords.Text = dgvCheckHistory.RowCount.ToString();
             }
         }
         private void _LoadSelectedGroupHistory(int GroupID)

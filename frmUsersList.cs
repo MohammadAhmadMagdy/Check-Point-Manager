@@ -54,12 +54,24 @@ namespace Check_Point_Manager
             if (dgvUsersList.Rows.Count > 0)
             {
                 _AdjustDataGridColumns();
+
+                lblTotalUsers.Text = dgvUsersList.RowCount.ToString();
             }
         }
 
         private void frmUsersList_Load(object sender, EventArgs e)
         {
             _LoadAllUsersLis();
+        }
+
+        private void dgvUsersList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dgvUsersList.ClearSelection();
+                dgvUsersList.CurrentCell = dgvUsersList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            }
         }
     }
 }

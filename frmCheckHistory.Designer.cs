@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSelectGroup = new System.Windows.Forms.Label();
             this.cmbGroups = new System.Windows.Forms.ComboBox();
             this.dgvCheckHistory = new System.Windows.Forms.DataGridView();
             this.btnAddCheckRecord = new System.Windows.Forms.Button();
             this.btnEditCheckRecord = new System.Windows.Forms.Button();
             this.btnDeleteRecord = new System.Windows.Forms.Button();
+            this.lblTotalRecordsTitle = new System.Windows.Forms.Label();
+            this.lblTotalRecords = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCheckHistory)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,29 +73,29 @@
             this.dgvCheckHistory.AllowUserToOrderColumns = true;
             this.dgvCheckHistory.BackgroundColor = System.Drawing.Color.White;
             this.dgvCheckHistory.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCheckHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCheckHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCheckHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCheckHistory.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCheckHistory.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCheckHistory.Location = new System.Drawing.Point(16, 55);
             this.dgvCheckHistory.Name = "dgvCheckHistory";
             this.dgvCheckHistory.ReadOnly = true;
             this.dgvCheckHistory.RowHeadersVisible = false;
             this.dgvCheckHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCheckHistory.Size = new System.Drawing.Size(654, 401);
+            this.dgvCheckHistory.Size = new System.Drawing.Size(654, 391);
             this.dgvCheckHistory.TabIndex = 27;
             this.dgvCheckHistory.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCheckHistory_CellMouseDown);
             // 
@@ -154,12 +156,37 @@
             this.btnDeleteRecord.UseVisualStyleBackColor = false;
             this.btnDeleteRecord.Click += new System.EventHandler(this.btnDeleteRecord_Click);
             // 
+            // lblTotalRecordsTitle
+            // 
+            this.lblTotalRecordsTitle.AutoSize = true;
+            this.lblTotalRecordsTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalRecordsTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRecordsTitle.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblTotalRecordsTitle.Location = new System.Drawing.Point(13, 450);
+            this.lblTotalRecordsTitle.Name = "lblTotalRecordsTitle";
+            this.lblTotalRecordsTitle.Size = new System.Drawing.Size(90, 15);
+            this.lblTotalRecordsTitle.TabIndex = 34;
+            this.lblTotalRecordsTitle.Text = "Total Records :";
+            // 
+            // lblTotalRecords
+            // 
+            this.lblTotalRecords.AutoSize = true;
+            this.lblTotalRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalRecords.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTotalRecords.Location = new System.Drawing.Point(95, 450);
+            this.lblTotalRecords.Name = "lblTotalRecords";
+            this.lblTotalRecords.Size = new System.Drawing.Size(0, 15);
+            this.lblTotalRecords.TabIndex = 35;
+            // 
             // frmCheckHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(886, 474);
+            this.Controls.Add(this.lblTotalRecordsTitle);
+            this.Controls.Add(this.lblTotalRecords);
             this.Controls.Add(this.btnDeleteRecord);
             this.Controls.Add(this.btnEditCheckRecord);
             this.Controls.Add(this.btnAddCheckRecord);
@@ -185,5 +212,7 @@
         private System.Windows.Forms.Button btnAddCheckRecord;
         private System.Windows.Forms.Button btnEditCheckRecord;
         private System.Windows.Forms.Button btnDeleteRecord;
+        private System.Windows.Forms.Label lblTotalRecordsTitle;
+        private System.Windows.Forms.Label lblTotalRecords;
     }
 }
