@@ -35,6 +35,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainScreen));
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.lblCurrentUser = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.lblAppVersion = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -88,8 +90,6 @@
             this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.lblCurrentUser = new System.Windows.Forms.Label();
-            this.lblUserName = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -124,6 +124,30 @@
             this.pnlTop.Size = new System.Drawing.Size(1347, 35);
             this.pnlTop.TabIndex = 0;
             this.pnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTop_MouseDown);
+            // 
+            // lblCurrentUser
+            // 
+            this.lblCurrentUser.AutoSize = true;
+            this.lblCurrentUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCurrentUser.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentUser.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblCurrentUser.Location = new System.Drawing.Point(1105, 12);
+            this.lblCurrentUser.Name = "lblCurrentUser";
+            this.lblCurrentUser.Size = new System.Drawing.Size(93, 17);
+            this.lblCurrentUser.TabIndex = 35;
+            this.lblCurrentUser.Text = "Current User :";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblUserName.Location = new System.Drawing.Point(1204, 12);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(20, 17);
+            this.lblUserName.TabIndex = 36;
+            this.lblUserName.Text = "??";
             // 
             // lblAppVersion
             // 
@@ -858,30 +882,6 @@
             this.lblLastGroupCheckedTitle.Size = new System.Drawing.Size(124, 15);
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
-            // 
-            // lblCurrentUser
-            // 
-            this.lblCurrentUser.AutoSize = true;
-            this.lblCurrentUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCurrentUser.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentUser.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCurrentUser.Location = new System.Drawing.Point(1092, 9);
-            this.lblCurrentUser.Name = "lblCurrentUser";
-            this.lblCurrentUser.Size = new System.Drawing.Size(104, 20);
-            this.lblCurrentUser.TabIndex = 35;
-            this.lblCurrentUser.Text = "Current User :";
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblUserName.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblUserName.Location = new System.Drawing.Point(1201, 9);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(23, 20);
-            this.lblUserName.TabIndex = 36;
-            this.lblUserName.Text = "??";
             // 
             // frmMainScreen
             // 

@@ -62,7 +62,7 @@
             this.cmbGroups.ItemHeight = 17;
             this.cmbGroups.Location = new System.Drawing.Point(122, 24);
             this.cmbGroups.Name = "cmbGroups";
-            this.cmbGroups.Size = new System.Drawing.Size(548, 25);
+            this.cmbGroups.Size = new System.Drawing.Size(649, 25);
             this.cmbGroups.TabIndex = 25;
             this.cmbGroups.SelectedIndexChanged += new System.EventHandler(this.cmbGroups_SelectedIndexChanged);
             // 
@@ -95,7 +95,7 @@
             this.dgvCheckHistory.ReadOnly = true;
             this.dgvCheckHistory.RowHeadersVisible = false;
             this.dgvCheckHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCheckHistory.Size = new System.Drawing.Size(654, 391);
+            this.dgvCheckHistory.Size = new System.Drawing.Size(755, 391);
             this.dgvCheckHistory.TabIndex = 27;
             this.dgvCheckHistory.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCheckHistory_CellMouseDown);
             // 
@@ -108,7 +108,7 @@
             this.btnAddCheckRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
             this.btnAddCheckRecord.Image = global::Check_Point_Manager.Properties.Resources.History1;
             this.btnAddCheckRecord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAddCheckRecord.Location = new System.Drawing.Point(697, 103);
+            this.btnAddCheckRecord.Location = new System.Drawing.Point(788, 55);
             this.btnAddCheckRecord.Name = "btnAddCheckRecord";
             this.btnAddCheckRecord.Size = new System.Drawing.Size(161, 37);
             this.btnAddCheckRecord.TabIndex = 30;
@@ -127,7 +127,7 @@
             this.btnEditCheckRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
             this.btnEditCheckRecord.Image = global::Check_Point_Manager.Properties.Resources.History1;
             this.btnEditCheckRecord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEditCheckRecord.Location = new System.Drawing.Point(697, 162);
+            this.btnEditCheckRecord.Location = new System.Drawing.Point(788, 114);
             this.btnEditCheckRecord.Name = "btnEditCheckRecord";
             this.btnEditCheckRecord.Size = new System.Drawing.Size(161, 37);
             this.btnEditCheckRecord.TabIndex = 31;
@@ -146,7 +146,7 @@
             this.btnDeleteRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
             this.btnDeleteRecord.Image = global::Check_Point_Manager.Properties.Resources.History1;
             this.btnDeleteRecord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteRecord.Location = new System.Drawing.Point(697, 221);
+            this.btnDeleteRecord.Location = new System.Drawing.Point(788, 173);
             this.btnDeleteRecord.Name = "btnDeleteRecord";
             this.btnDeleteRecord.Size = new System.Drawing.Size(161, 37);
             this.btnDeleteRecord.TabIndex = 32;
@@ -184,7 +184,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(886, 474);
+            this.ClientSize = new System.Drawing.Size(965, 474);
             this.Controls.Add(this.lblTotalRecordsTitle);
             this.Controls.Add(this.lblTotalRecords);
             this.Controls.Add(this.btnDeleteRecord);

@@ -16,6 +16,7 @@ namespace CheckPointBusinessLayer
         public int CheckID { get; set; }
         public int GroupID { get; set; }
         public DateTime CheckedDate { get; set; }
+        public int CheckedByUserID {  get; set; }
 
         public clsGroup GroupInfo { get; set; }
 
@@ -24,15 +25,17 @@ namespace CheckPointBusinessLayer
             this.CheckID = -1;
             this.GroupID = -1;
             this.CheckedDate = DateTime.Now;
+            this.CheckedByUserID = -1;
 
             Mode = enMode.AddNew;
         }
 
-        private clsCheck(int CheckID, int GroupID, DateTime CheckedDate)
+        private clsCheck(int CheckID, int GroupID, DateTime CheckedDate, int CheckedByUserID)
         {
             this.CheckID = CheckID;
             this.GroupID = GroupID;
             this.CheckedDate = CheckedDate;
+            this.CheckedByUserID = CheckedByUserID;
             this.GroupInfo = clsGroup.FindByID(GroupID);
 
             Mode = enMode.Update;
@@ -47,9 +50,10 @@ namespace CheckPointBusinessLayer
         {
             int GroupID = -1;
             DateTime CheckedDate = DateTime.MinValue;
+            int CheckedByUserID = -1;
 
-            if (clsCheckData.GetCheckByID(CheckID, ref GroupID, ref CheckedDate))
-                return new clsCheck(CheckID, GroupID, CheckedDate);
+            if (clsCheckData.GetCheckByID(CheckID, ref GroupID, ref CheckedDate, ref CheckedByUserID))
+                return new clsCheck(CheckID, GroupID, CheckedDate, CheckedByUserID);
             else
                 return null;
         }
@@ -61,7 +65,8 @@ namespace CheckPointBusinessLayer
 
         private bool _AddNew()
         {
-            this.CheckID = clsCheckData.AddNewCheck(this.GroupID, this.CheckedDate);
+            this.CheckID = clsCheckData.AddNewCheck(this.GroupID, this.CheckedDate, 
+                clsUser.Current?.UserID?? -1);
 
             return this.CheckID != -1;
         }
@@ -101,9 +106,10 @@ namespace CheckPointBusinessLayer
             int CheckID = -1;
             int GroupID = -1;
             DateTime CheckedDate = DateTime.MinValue;
+            int CheckedByUserID = -1;
 
-            if (clsCheckData.GetLastCheck(ref CheckID, ref GroupID, ref CheckedDate))
-                return new clsCheck(CheckID, GroupID, CheckedDate);
+            if (clsCheckData.GetLastCheck(ref CheckID, ref GroupID, ref CheckedDate, ref CheckedByUserID))
+                return new clsCheck(CheckID, GroupID, CheckedDate, CheckedByUserID);
             else
                 return null;
         }
@@ -112,9 +118,10 @@ namespace CheckPointBusinessLayer
         {
             int CheckID = -1;
             DateTime CheckedDate = DateTime.MinValue;
+            int CheckedByUserID = -1;
 
-            if (clsCheckData.GetLastCheckForGroup(GroupID, ref CheckID, ref CheckedDate))
-                return new clsCheck(CheckID, GroupID, CheckedDate);
+            if (clsCheckData.GetLastCheckForGroup(GroupID, ref CheckID, ref CheckedDate, ref CheckedByUserID))
+                return new clsCheck(CheckID, GroupID, CheckedDate, CheckedByUserID);
             else
                 return null;
         }
@@ -134,7 +141,8 @@ namespace CheckPointBusinessLayer
             clsCheck NewCheck = new clsCheck
             {
                 GroupID = GroupID,
-                CheckedDate = DateTime.Now
+                CheckedDate = DateTime.Now,
+                CheckedByUserID = clsUser.Current?.UserID ?? -1
             };
 
             return NewCheck;
@@ -142,7 +150,7 @@ namespace CheckPointBusinessLayer
 
         public static clsCheck AddNewCheckNow(int GroupID)
         {
-            int CheckID = clsCheckData.AddNewCheckNow(GroupID);
+            int CheckID = clsCheckData.AddNewCheckNow(GroupID, clsUser.Current?.UserID?? -1);
 
             if (CheckID != -1)
                 return FindByID(CheckID);

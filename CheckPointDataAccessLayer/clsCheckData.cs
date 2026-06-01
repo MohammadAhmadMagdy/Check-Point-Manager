@@ -17,24 +17,25 @@ namespace CheckPointDataAccessLayer
             string Order = OrderByDate ? "CheckedDate DESC" : "CheckID";
 
             string Query = $@"SELECT Checks.CheckID, Checks.GroupID, Groups.GroupNumber, Groups.GroupName, Checks.CheckedDate
+                              ,Users.UserName AS CheckedByUserName
                              FROM Checks 
                              INNER JOIN Groups ON Checks.GroupID = Groups.GroupID 
+                             LEFT JOIN Users ON Checks.CheckedByUserID = Users.UserID
                              ORDER BY {Order}";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))
             {
-                using (var Reader = Command.ExecuteReader())
+                using (var Adapter = new SQLiteDataAdapter(Command))
                 {
-                    if (Reader.HasRows)
-                        dt.Load(Reader);
+                    Adapter.Fill(dt);
                 }
             }
 
             return dt;
         }
 
-        public static bool GetCheckByID(int CheckID, ref int GroupID, ref DateTime CheckedDate)
+        public static bool GetCheckByID(int CheckID, ref int GroupID, ref DateTime CheckedDate, ref int CheckedByUserID)
         {
             bool IsFound = false;
 
@@ -54,6 +55,8 @@ namespace CheckPointDataAccessLayer
                         GroupID = Convert.ToInt32(Reader["GroupID"]);
                         CheckedDate = Reader["CheckedDate"] == DBNull.Value ? DateTime.MinValue :
                             Convert.ToDateTime(Reader["CheckedDate"]);
+                        CheckedByUserID = Reader["CheckedByUserID"] == DBNull.Value ? -1 :
+                            Convert.ToInt32(Reader["CheckedByUserID"]);
                     }
                 }
             }
@@ -65,9 +68,10 @@ namespace CheckPointDataAccessLayer
         {
             DataTable dt = new DataTable();
 
-            string Query = @"SELECT Checks.CheckID, Checks.GroupID, Groups.GroupNumber, Groups.GroupName, Checks.CheckedDate
+            string Query = @"SELECT Checks.CheckID, Checks.GroupID, Groups.GroupNumber, Groups.GroupName, Checks.CheckedDate, Users.UserName
                             FROM Checks 
                             INNER JOIN Groups ON Checks.GroupID = Groups.GroupID
+                            LEFT JOIN Users ON Checks.CheckedByUserID = Users.UserID
                             WHERE Checks.GroupID = @GroupID 
                             ORDER BY CheckedDate DESC";
 
@@ -76,24 +80,23 @@ namespace CheckPointDataAccessLayer
             {
                 Command.Parameters.AddWithValue("@GroupID", GroupID);
 
-                using (var Reader = Command.ExecuteReader())
+                using (var Adapter = new SQLiteDataAdapter(Command))
                 {
-                    if (Reader.HasRows)
-                        dt.Load(Reader);
+                    Adapter.Fill(dt);
                 }
             }
 
             return dt;
         }
 
-        public static int AddNewCheck(int GroupID, DateTime CheckedDate)
+        public static int AddNewCheck(int GroupID, DateTime CheckedDate, int CheckedByUserID)
         {
             try
             {
                 int CheckID = -1;
 
-                string Query = @"INSERT INTO Checks (GroupID, CheckedDate)
-                                VALUES (@GroupID, @CheckedDate);
+                string Query = @"INSERT INTO Checks (GroupID, CheckedDate, CheckedByUserID)
+                                VALUES (@GroupID, @CheckedDate, @CheckedByUserID);
                                 SELECT last_insert_rowid();";
 
                 using (var Connection = clsDataAccessSettings.GetConnection())
@@ -101,6 +104,7 @@ namespace CheckPointDataAccessLayer
                 {
                     Command.Parameters.AddWithValue("@GroupID", GroupID);
                     Command.Parameters.AddWithValue("@CheckedDate", CheckedDate);
+                    Command.Parameters.AddWithValue("@CheckedByUserID", CheckedByUserID);
 
                     var Result = Command.ExecuteScalar();
 
@@ -118,9 +122,9 @@ namespace CheckPointDataAccessLayer
             }
         }
 
-        public static int AddNewCheckNow(int GroupID)
+        public static int AddNewCheckNow(int GroupID, int CheckedByUserID)
         {
-            return AddNewCheck(GroupID, DateTime.Now);
+            return AddNewCheck(GroupID, DateTime.Now, CheckedByUserID);
         }
 
         public static bool UpdateCheck(int CheckID, int GroupID, DateTime CheckedDate)
@@ -188,7 +192,7 @@ namespace CheckPointDataAccessLayer
             return AffectedRows > 0;
         }
 
-        public static bool GetLastCheck(ref int CheckID, ref int GroupID, ref DateTime CheckedDate)
+        public static bool GetLastCheck(ref int CheckID, ref int GroupID, ref DateTime CheckedDate, ref int CheckedByUserID)
         {
             bool IsFound = false;
 
@@ -209,6 +213,8 @@ namespace CheckPointDataAccessLayer
                         GroupID = Convert.ToInt32(Reader["GroupID"]);
                         CheckedDate = Reader["CheckedDate"] == DBNull.Value ? DateTime.MinValue :
                             Convert.ToDateTime(Reader["CheckedDate"]);
+                        CheckedByUserID = Reader["CheckedByUserID"] == DBNull.Value ? -1 :
+                            Convert.ToInt32(Reader["CheckedByUserID"]);
                     }
                 }
             }
@@ -216,7 +222,8 @@ namespace CheckPointDataAccessLayer
             return IsFound;
         }
 
-        public static bool GetLastCheckForGroup(int GroupID, ref int CheckID, ref DateTime CheckedDate)
+        public static bool GetLastCheckForGroup(int GroupID, ref int CheckID, ref DateTime CheckedDate,
+            ref int CheckedByUserID)
         {
             bool IsFound = false;
 
@@ -239,6 +246,8 @@ namespace CheckPointDataAccessLayer
                         CheckID = Convert.ToInt32(Reader["CheckID"]);
                         CheckedDate = Reader["CheckedDate"] == DBNull.Value ? DateTime.MinValue :
                             Convert.ToDateTime(Reader["CheckedDate"]);
+                        CheckedByUserID = Reader["CheckedByUserID"] == DBNull.Value ? -1 :
+                           Convert.ToInt32(Reader["CheckedByUserID"]);
                     }
                 }
             }
