@@ -17,7 +17,7 @@ namespace CheckPointBusinessLayer
         public int GroupID { get; set; }
         public DateTime CheckedDate { get; set; }
         public int CheckedByUserID {  get; set; }
-
+        public clsUser UserInfo {  get; set; }
         public clsGroup GroupInfo { get; set; }
 
         public clsCheck()
@@ -36,6 +36,7 @@ namespace CheckPointBusinessLayer
             this.GroupID = GroupID;
             this.CheckedDate = CheckedDate;
             this.CheckedByUserID = CheckedByUserID;
+            this.UserInfo = clsUser.FindByID(CheckedByUserID);
             this.GroupInfo = clsGroup.FindByID(GroupID);
 
             Mode = enMode.Update;

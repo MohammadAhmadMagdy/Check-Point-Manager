@@ -593,7 +593,7 @@ namespace Check_Point_Manager
             {
                 lblLastGroupChecked.Text = LastCheck.GroupInfo.GroupName +
                            LastCheck.CheckedDate.ToString(" ( ddd, dd MMM - hh:mm tt )")
-                           + " - [Done By : " + clsUser.FindByID(LastCheck.CheckedByUserID).UserName + "]";
+                           + " - [Done By : " + LastCheck.UserInfo.UserName + "]";
             }
 
             _SetCueBanner(txbFilterValue, "Search", true);
@@ -928,7 +928,7 @@ namespace Check_Point_Manager
                     {
                         lblLastGroupChecked.Text = NewCheck.GroupInfo.GroupName +
                                     NewCheck.CheckedDate.ToString(" ( ddd, dd MMM - hh:mm tt )")
-                       + " - [Done By : " + clsUser.FindByID(NewCheck.CheckedByUserID).UserName + "]";
+                       + " - [Done By : " + NewCheck.UserInfo.UserName + "]";
                     }
 
                     lblGroupCheckedCounter.Text = clsCheck.GetCheckCountByGroupID(GroupID) + " Time(s)";
