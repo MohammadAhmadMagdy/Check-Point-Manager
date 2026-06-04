@@ -36,14 +36,14 @@
             this.lblEnterPassword = new System.Windows.Forms.Label();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pnlContainer = new System.Windows.Forms.Panel();
+            this.pnlPassword = new System.Windows.Forms.Panel();
             this.pbxPassword = new System.Windows.Forms.PictureBox();
             this.pcbUser = new System.Windows.Forms.PictureBox();
             this.btnAddNewUser = new System.Windows.Forms.Button();
-            this.pnlPassword = new System.Windows.Forms.Panel();
             this.pnlContainer.SuspendLayout();
+            this.pnlPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUser)).BeginInit();
-            this.pnlPassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExit
@@ -145,6 +145,17 @@
             this.pnlContainer.Size = new System.Drawing.Size(545, 250);
             this.pnlContainer.TabIndex = 37;
             // 
+            // pnlPassword
+            // 
+            this.pnlPassword.BackColor = System.Drawing.Color.Transparent;
+            this.pnlPassword.Controls.Add(this.txbPassword);
+            this.pnlPassword.Controls.Add(this.pbxPassword);
+            this.pnlPassword.Controls.Add(this.lblEnterPassword);
+            this.pnlPassword.Location = new System.Drawing.Point(17, 117);
+            this.pnlPassword.Name = "pnlPassword";
+            this.pnlPassword.Size = new System.Drawing.Size(484, 56);
+            this.pnlPassword.TabIndex = 40;
+            // 
             // pbxPassword
             // 
             this.pbxPassword.Image = global::Check_Point_Manager.Properties.Resources.password_30;
@@ -180,17 +191,7 @@
             this.btnAddNewUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddNewUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddNewUser.UseVisualStyleBackColor = false;
-            // 
-            // pnlPassword
-            // 
-            this.pnlPassword.BackColor = System.Drawing.Color.Transparent;
-            this.pnlPassword.Controls.Add(this.txbPassword);
-            this.pnlPassword.Controls.Add(this.pbxPassword);
-            this.pnlPassword.Controls.Add(this.lblEnterPassword);
-            this.pnlPassword.Location = new System.Drawing.Point(17, 117);
-            this.pnlPassword.Name = "pnlPassword";
-            this.pnlPassword.Size = new System.Drawing.Size(484, 56);
-            this.pnlPassword.TabIndex = 40;
+            this.btnAddNewUser.Click += new System.EventHandler(this.btnAddNewUser_Click);
             // 
             // frmLogin
             // 
@@ -206,10 +207,10 @@
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.pnlContainer.ResumeLayout(false);
             this.pnlContainer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxPassword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbUser)).EndInit();
             this.pnlPassword.ResumeLayout(false);
             this.pnlPassword.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbUser)).EndInit();
             this.ResumeLayout(false);
 
         }

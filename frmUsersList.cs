@@ -73,5 +73,46 @@ namespace Check_Point_Manager
                 dgvUsersList.CurrentCell = dgvUsersList.Rows[e.RowIndex].Cells[e.ColumnIndex];
             }
         }
+
+        private void btnAddNewUser_Click(object sender, EventArgs e)
+        {
+            frmAddEditUser frm = new frmAddEditUser();
+            frm.ShowDialog();
+
+            _LoadAllUsersLis();
+        }
+
+        private void editUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int UserID = Convert.ToInt32(dgvUsersList.CurrentRow.Cells[0].Value);
+
+            frmAddEditUser frm = new frmAddEditUser(UserID);
+            frm.ShowDialog();
+
+            _LoadAllUsersLis();
+        }
+
+        private void deleteUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int UserID = Convert.ToInt32(dgvUsersList.CurrentRow.Cells[0].Value);
+
+            if (MessageBox.Show("Are you sure you want to delete user with ID " + UserID + " ?", "Confirm"
+                , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            if (clsUser.Delete(UserID))
+            {
+                MessageBox.Show("User with ID " + UserID + " deleted successfully", "Success"
+                , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _LoadAllUsersLis();
+            }
+            else
+            {
+                MessageBox.Show("Error while deleting data !!", "Error"
+                , MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
     }
 }

@@ -87,6 +87,14 @@ namespace CheckPointBusinessLayer
 
             return Result;
         }
+        public bool Delete()
+        {
+            return clsUserDataAccess.Delete(this.UserID);
+        }
+        public static bool Delete(int UserID)
+        {
+            return clsUserDataAccess.Delete(UserID);
+        }
 
         public static bool Login(int UserID)
         {

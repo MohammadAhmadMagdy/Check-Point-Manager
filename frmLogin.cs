@@ -62,6 +62,12 @@ namespace Check_Point_Manager
             this.Close();
         }
 
-       
+        private void btnAddNewUser_Click(object sender, EventArgs e)
+        {
+            frmAddEditUser frm = new frmAddEditUser();
+            frm.ShowDialog();
+
+            _FillComboBoxUsers();
+        }
     }
 }

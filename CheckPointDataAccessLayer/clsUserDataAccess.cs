@@ -164,5 +164,23 @@ namespace CheckPointDataAccessLayer
 
             return IsFound;
         }
+        public static bool Delete(int UserID)
+        {
+            int RowsAffected = 0;
+
+            string Query = @"DELETE FROM Users WHERE UserID = @UserID";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            {
+                using (var Command = new SQLiteCommand(Query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@UserID", UserID);
+
+                    RowsAffected = Command.ExecuteNonQuery();
+                }
+            }
+
+            return RowsAffected > 0;
+        }
     }
 }

@@ -1241,5 +1241,13 @@ namespace Check_Point_Manager
             btnClearNewItems.Visible = false;
             _LoadItemsTable();
         }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            frmUsersList frm = new frmUsersList();
+            frm.ShowDialog();
+
+
+        }
     }
 }
