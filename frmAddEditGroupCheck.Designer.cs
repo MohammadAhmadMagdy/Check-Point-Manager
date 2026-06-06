@@ -44,6 +44,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblSave = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.cmbUsers = new System.Windows.Forms.ComboBox();
+            this.lblChooseUser = new System.Windows.Forms.Label();
             this.gbxGroupInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -227,6 +229,26 @@
             this.lblTitle.Text = "Add New Checking Point Time";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cmbUsers
+            // 
+            this.cmbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUsers.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.cmbUsers.FormattingEnabled = true;
+            this.cmbUsers.Location = new System.Drawing.Point(119, 291);
+            this.cmbUsers.Name = "cmbUsers";
+            this.cmbUsers.Size = new System.Drawing.Size(234, 23);
+            this.cmbUsers.TabIndex = 31;
+            // 
+            // lblChooseUser
+            // 
+            this.lblChooseUser.AutoSize = true;
+            this.lblChooseUser.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChooseUser.Location = new System.Drawing.Point(37, 291);
+            this.lblChooseUser.Name = "lblChooseUser";
+            this.lblChooseUser.Size = new System.Drawing.Size(76, 20);
+            this.lblChooseUser.TabIndex = 32;
+            this.lblChooseUser.Text = "Done By :";
+            // 
             // frmAddEditGroupCheck
             // 
             this.AcceptButton = this.btnSave;
@@ -234,6 +256,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(835, 342);
+            this.Controls.Add(this.lblChooseUser);
+            this.Controls.Add(this.cmbUsers);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblCancel);
             this.Controls.Add(this.btnCancel);
@@ -272,5 +296,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblSave;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.ComboBox cmbUsers;
+        private System.Windows.Forms.Label lblChooseUser;
     }
 }
