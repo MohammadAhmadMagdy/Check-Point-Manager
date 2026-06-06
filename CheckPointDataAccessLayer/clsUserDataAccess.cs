@@ -182,5 +182,25 @@ namespace CheckPointDataAccessLayer
 
             return RowsAffected > 0;
         }
+        public static bool IsAParticipantInChecks(int UserID)
+        {
+            bool IsFound = false;
+
+            string Query = @"SELECT EXISTS
+                             (SELECT 1 FROM Checks WHERE CheckedByUserID = @UserID)
+                             As IsExists;";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@UserID", UserID);
+
+                var Result = Command.ExecuteScalar();
+
+                IsFound = (Result != null);
+            }
+
+            return IsFound;
+        }
     }
 }

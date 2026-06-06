@@ -95,10 +95,19 @@ namespace Check_Point_Manager
         private void deleteUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int UserID = Convert.ToInt32(dgvUsersList.CurrentRow.Cells[0].Value);
+            clsUser User = clsUser.FindByID(UserID);
 
             if (MessageBox.Show("Are you sure you want to delete user with ID " + UserID + " ?", "Confirm"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
+
+            if (User.IsAParticipantInChecks())
+            {
+                MessageBox.Show("User with ID " + UserID + " Can't be deleted\nbecause He/She is a participant in Checks" +
+                    "\nYou may Inactivate user instead.",
+                    "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             if (clsUser.Delete(UserID))
             {

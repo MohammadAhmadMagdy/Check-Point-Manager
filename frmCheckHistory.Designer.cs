@@ -174,7 +174,7 @@
             this.lblTotalRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTotalRecords.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTotalRecords.Location = new System.Drawing.Point(95, 450);
+            this.lblTotalRecords.Location = new System.Drawing.Point(116, 450);
             this.lblTotalRecords.Name = "lblTotalRecords";
             this.lblTotalRecords.Size = new System.Drawing.Size(0, 15);
             this.lblTotalRecords.TabIndex = 35;

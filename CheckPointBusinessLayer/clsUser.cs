@@ -96,6 +96,11 @@ namespace CheckPointBusinessLayer
             return clsUserDataAccess.Delete(UserID);
         }
 
+        public bool IsAParticipantInChecks()
+        {
+            return clsUserDataAccess.IsAParticipantInChecks(this.UserID);
+        }
+
         public static bool Login(int UserID)
         {
             clsUser User = FindByID(UserID);
