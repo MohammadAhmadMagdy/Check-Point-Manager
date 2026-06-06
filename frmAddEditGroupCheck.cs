@@ -30,15 +30,25 @@ namespace Check_Point_Manager
             else
                 _CheckID = ID;
         }
+        private void _FillComboBoxUsers()
+        {
+            DataTable dtUsers = clsUser.GetAllUsers();
+
+            cmbUsers.DataSource = dtUsers;
+            cmbUsers.DisplayMember = "UserName";
+            cmbUsers.ValueMember = "UserID";
+            cmbUsers.SelectedIndex = -1;
+        }
 
         private void frmAddEditGroupCheck_Load(object sender, EventArgs e)
         {
             dtpCheckDate.Format = DateTimePickerFormat.Custom;
             dtpCheckDate.CustomFormat = "dddd, dd/MM/yyyy - HH:mm tt";
             dtpCheckDate.MaxDate = DateTime.Now;
-            
 
-            if(_Mode == enMode.AddNew)
+            _FillComboBoxUsers();
+
+            if (_Mode == enMode.AddNew)
             {
                 if (_GroupID == -1)
                 {
@@ -63,6 +73,7 @@ namespace Check_Point_Manager
                 lblGpNumber.Text = _Group.GroupNumber.ToString();
                 lblCounter.Text = _Group.CheckCounter.ToString();
                 dtpCheckDate.Value = dtpCheckDate.MaxDate;
+                cmbUsers.SelectedIndex = -1;
 
                 _Check = clsCheck.CreateNewCheckForGroup(_GroupID);
 
@@ -92,6 +103,7 @@ namespace Check_Point_Manager
                 lblGpNumber.Text = _Check.GroupInfo.GroupNumber.ToString();
                 lblCounter.Text = _Check.GroupInfo.CheckCounter.ToString();
                 dtpCheckDate.Value = Convert.ToDateTime(_Check.CheckedDate);
+                cmbUsers.SelectedValue = _Check.CheckedByUserID.ToString();
             } 
 
         }
@@ -101,6 +113,7 @@ namespace Check_Point_Manager
             DateTime CheckDate = dtpCheckDate.Value;
 
             _Check.CheckedDate = CheckDate;
+            _Check.CheckedByUserID = Convert.ToInt32(cmbUsers.SelectedValue);
 
             if(!_Check.Save())
             {

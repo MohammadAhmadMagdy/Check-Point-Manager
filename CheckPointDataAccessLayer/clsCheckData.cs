@@ -127,7 +127,7 @@ namespace CheckPointDataAccessLayer
             return AddNewCheck(GroupID, DateTime.Now, CheckedByUserID);
         }
 
-        public static bool UpdateCheck(int CheckID, int GroupID, DateTime CheckedDate)
+        public static bool UpdateCheck(int CheckID, int GroupID, DateTime CheckedDate, int CheckedByUserID)
         {
             try
             {
@@ -135,7 +135,8 @@ namespace CheckPointDataAccessLayer
 
                 string Query = @"UPDATE Checks 
                                 SET GroupID = @GroupID, 
-                                    CheckedDate = @CheckedDate 
+                                    CheckedDate = @CheckedDate,
+                                    CheckedByUserID = @CheckedByUserID 
                                 WHERE CheckID = @CheckID";
 
                 using (var Connection = clsDataAccessSettings.GetConnection())
@@ -144,6 +145,7 @@ namespace CheckPointDataAccessLayer
                     Command.Parameters.AddWithValue("@CheckID", CheckID);
                     Command.Parameters.AddWithValue("@GroupID", GroupID);
                     Command.Parameters.AddWithValue("@CheckedDate", CheckedDate);
+                    Command.Parameters.AddWithValue("@CheckedByUserID", CheckedByUserID);
 
                     AffectedRows = Command.ExecuteNonQuery();
                 }

@@ -74,7 +74,7 @@ namespace CheckPointBusinessLayer
 
         private bool _Update()
         {
-            return clsCheckData.UpdateCheck(this.CheckID, this.GroupID, this.CheckedDate);
+            return clsCheckData.UpdateCheck(this.CheckID, this.GroupID, this.CheckedDate, this.CheckedByUserID);
         }
 
         public bool Save()
