@@ -52,6 +52,7 @@ namespace CheckPointDataAccessLayer
                         string PhoneNumber = Row.Cell(9).GetValue<string>().Trim();
                         string CustomerName = Row.Cell(8).GetValue<string>().Trim();
                         int ItemCode = Row.Cell(1).GetValue<int>();
+                        string StaffName = Row.Cell(6).GetValue<string>().Trim();
 
                         // ── تجاهل: بدون رقم هاتف أو بدون كود صنف صالح ─────────
                         if (string.IsNullOrEmpty(PhoneNumber) || ItemCode <= 0)
@@ -60,10 +61,17 @@ namespace CheckPointDataAccessLayer
                             continue;
                         }
 
+                        int RowCreatedByUserID = string.IsNullOrEmpty(StaffName)
+                             ? CreatedByUserID 
+                             : clsUserDataAccess.GetUserIDByName(StaffName);
+
+                        if (RowCreatedByUserID == -1)
+                            RowCreatedByUserID = CreatedByUserID;
+
                         // ── البحث عن العميل بالهاتف أو إضافته ─────────────────
                         int CustomerID = _GetOrCreateCustomer(Connection, Transaction,
                                              PhoneNumber, CustomerName,
-                                             CreatedByUserID, ref CustomersAdded);
+                                             RowCreatedByUserID, ref CustomersAdded);
 
                         if (CustomerID == -1)
                         {
@@ -80,7 +88,7 @@ namespace CheckPointDataAccessLayer
 
                         // ── إضافة الطلب الجديد ──────────────────────────────────
                         _InsertOrder(Connection, Transaction, CustomerID, ItemCode,
-                                     DateTime.Now, CreatedByUserID);
+                                     DateTime.Now, RowCreatedByUserID);
                         OrdersAdded++;
                     }
 

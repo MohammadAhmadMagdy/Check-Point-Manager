@@ -153,8 +153,8 @@ namespace CheckPointBusinessLayer
         // ★ استيراد الطلبات من Excel
         public static clsCustomerOrderDataAccess.ImportOrdersResult ImportFromExcel(string ExcelPath)
         {
-            int UserID = clsUser.Current?.UserID ?? -1;
-            return clsCustomerOrderDataAccess.ImportOrdersFromExcel(ExcelPath, UserID);
+            int FallBackUserID = clsUser.Current?.UserID ?? -1;
+            return clsCustomerOrderDataAccess.ImportOrdersFromExcel(ExcelPath, FallBackUserID);
         }
     }
 }

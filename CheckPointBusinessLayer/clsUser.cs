@@ -60,7 +60,10 @@ namespace CheckPointBusinessLayer
             else
                 return null;
         }
-
+        public static int GetUserIDByName(string UserName)
+        {
+            return clsUserDataAccess.GetUserIDByName(UserName);
+        }
         public static bool DoesUserNameExist(string UserName)
         {
             return clsUserDataAccess.DoesUserNameExist(UserName);

@@ -81,6 +81,23 @@ namespace CheckPointDataAccessLayer
 
             return IsFound;
         }
+        public static int GetUserIDByName(string UserName)
+        {
+            string Query = @"SELECT UserID FROM Users 
+                     WHERE UserName = @UserName COLLATE NOCASE
+                     AND IsActive = 1
+                     LIMIT 1";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+                Command.Parameters.AddWithValue("@UserName", UserName.Trim());
+
+                var Result = Command.ExecuteScalar();
+
+                return (Result != null) ? Convert.ToInt32(Result) : -1;
+            }
+        }
 
         public static int AddNewUser(string UserName, string Password, bool IsActive)
         {
