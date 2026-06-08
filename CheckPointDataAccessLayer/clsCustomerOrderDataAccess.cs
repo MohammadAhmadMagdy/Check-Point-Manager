@@ -48,11 +48,20 @@ namespace CheckPointDataAccessLayer
                     {
                         var Row = WorkSheet.Row(RowIndex);
 
+                        if (Row.IsEmpty())
+                        {
+                            continue;
+                        }
+
                         // ── قراءة بيانات الصف ──────────────────────────────────
                         string PhoneNumber = Row.Cell(9).GetValue<string>().Trim();
                         string CustomerName = Row.Cell(8).GetValue<string>().Trim();
-                        int ItemCode = Row.Cell(1).GetValue<int>();
                         string StaffName = Row.Cell(6).GetValue<string>().Trim();
+
+                        int ItemCode = 0;
+                        var ItemCodeCell = Row.Cell(1);
+                        if (!ItemCodeCell.IsEmpty())
+                            int.TryParse(ItemCodeCell.GetValue<string>(), out ItemCode);
 
                         // ── تجاهل: بدون رقم هاتف أو بدون كود صنف صالح ─────────
                         if (string.IsNullOrEmpty(PhoneNumber) || ItemCode <= 0)

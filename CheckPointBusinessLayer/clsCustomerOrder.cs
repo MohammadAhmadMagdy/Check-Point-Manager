@@ -24,6 +24,20 @@ namespace CheckPointBusinessLayer
         public DateTime NotifiedDate { get; set; }
         public int CreatedByUserID { get; set; }
 
+        public struct ImportOrdersResult
+        {
+            public int CustomersAdded;
+            public int OrdersAdded;
+            public int OrdersSkipped;
+
+            public ImportOrdersResult(int customersAdded, int ordersAdded, int ordersSkipped)
+            {
+                CustomersAdded = customersAdded;
+                OrdersAdded = ordersAdded;
+                OrdersSkipped = ordersSkipped;
+            }
+        }
+
         public clsCustomerOrder()
         {
             this.OrderID = -1;
@@ -151,10 +165,15 @@ namespace CheckPointBusinessLayer
         }
 
         // ★ استيراد الطلبات من Excel
-        public static clsCustomerOrderDataAccess.ImportOrdersResult ImportFromExcel(string ExcelPath)
+        public static ImportOrdersResult ImportFromExcel(string ExcelPath)
         {
             int FallBackUserID = clsUser.Current?.UserID ?? -1;
-            return clsCustomerOrderDataAccess.ImportOrdersFromExcel(ExcelPath, FallBackUserID);
+            var DALResult = clsCustomerOrderDataAccess.ImportOrdersFromExcel(ExcelPath, FallBackUserID);
+
+            return new ImportOrdersResult(
+                DALResult.CustomersAdded,
+                DALResult.OrdersAdded,
+                DALResult.OrdersSkipped);
         }
     }
 }

@@ -122,6 +122,12 @@
     <Compile Include="frmCheckHistory.Designer.cs">
       <DependentUpon>frmCheckHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCustomerRequests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomerRequests.Designer.cs">
+      <DependentUpon>frmCustomerRequests.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCheckHistory.resx">
       <DependentUpon>frmCheckHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomerRequests.resx">
+      <DependentUpon>frmCustomerRequests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
