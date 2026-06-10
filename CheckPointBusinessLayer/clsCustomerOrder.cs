@@ -18,6 +18,8 @@ namespace CheckPointBusinessLayer
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
         public int ItemCode { get; set; }
+        public clsItem ItemInfo;
+        public string ItemDescription { get; set; }
         public DateTime OrderDate { get; set; }
         public enStatus Status { get; set; }
         public DateTime AvailableDate { get; set; }
@@ -43,6 +45,7 @@ namespace CheckPointBusinessLayer
             this.OrderID = -1;
             this.CustomerID = -1;
             this.ItemCode = -1;
+            this.ItemDescription = "";
             this.OrderDate = DateTime.Now;
             this.Status = enStatus.Pending;
             this.AvailableDate = DateTime.MinValue;
@@ -52,12 +55,14 @@ namespace CheckPointBusinessLayer
             Mode = enMode.AddNew;
         }
 
-        private clsCustomerOrder(int OrderID, int CustomerID, int ItemCode, DateTime OrderDate,
+        private clsCustomerOrder(int OrderID, int CustomerID, int ItemCode, string ItemDescription, DateTime OrderDate,
             enStatus Status, DateTime AvailableDate, DateTime NotifiedDate, int CreatedByUserID)
         {
             this.OrderID = OrderID;
             this.CustomerID = CustomerID;
             this.ItemCode = ItemCode;
+            this.ItemInfo = clsItem.Find(ItemCode);
+            this.ItemDescription = ItemDescription;
             this.OrderDate = OrderDate;
             this.Status = Status;
             this.AvailableDate = AvailableDate;
@@ -87,16 +92,17 @@ namespace CheckPointBusinessLayer
         {
             int CustomerID = -1;
             int ItemCode = -1;
+            string ItemDescription = "";
             DateTime OrderDate = DateTime.MinValue;
             int StatusValue = 0;
             DateTime AvailableDate = DateTime.MinValue;
             DateTime NotifiedDate = DateTime.MinValue;
             int CreatedByUserID = -1;
 
-            if (clsCustomerOrderDataAccess.GetOrderByID(OrderID, ref CustomerID, ref ItemCode,
+            if (clsCustomerOrderDataAccess.GetOrderByID(OrderID, ref CustomerID, ref ItemCode, ref ItemDescription,
                     ref OrderDate, ref StatusValue, ref AvailableDate,
                     ref NotifiedDate, ref CreatedByUserID))
-                return new clsCustomerOrder(OrderID, CustomerID, ItemCode, OrderDate,
+                return new clsCustomerOrder(OrderID, CustomerID, ItemCode, ItemDescription, OrderDate,
                     (enStatus)StatusValue, AvailableDate, NotifiedDate, CreatedByUserID);
             else
                 return null;

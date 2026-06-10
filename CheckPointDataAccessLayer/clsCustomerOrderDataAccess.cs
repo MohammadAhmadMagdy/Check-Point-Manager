@@ -69,6 +69,7 @@ namespace CheckPointDataAccessLayer
                         string CustomerName = Row.Cell(8).GetValue<string>().Trim();
                         string StaffName = Row.Cell(6).GetValue<string>().Trim();
                         string ItemCodeRow = Row.Cell(1).GetValue<string>().Trim();
+                        string ItemDescription = Row.Cell(2).GetValue<string>().Trim();
 
                         if (!int.TryParse(ItemCodeRow,out int ItemCode)|| ItemCode <= 0)
                         {
@@ -115,7 +116,7 @@ namespace CheckPointDataAccessLayer
                         }
 
                         // ── إضافة الطلب الجديد ──────────────────────────────────
-                        _InsertOrder(Connection, Transaction, CustomerID, ItemCode,
+                        _InsertOrder(Connection, Transaction, CustomerID, ItemCode, ItemDescription,
                                      DateTime.Now, RowCreatedByUserID);
                         OrdersAdded++;
                     }
@@ -201,17 +202,19 @@ namespace CheckPointDataAccessLayer
         }
 
         private static void _InsertOrder(SQLiteConnection Connection, SQLiteTransaction Transaction,
-            int CustomerID, int ItemCode, DateTime OrderDate, int CreatedByUserID)
+            int CustomerID, int ItemCode, string ItemDescription, DateTime OrderDate, int CreatedByUserID)
         {
             string Query = @"INSERT INTO CustomerOrders 
-                         (CustomerID, ItemCode, OrderDate, Status, CreatedByUserID)
+                         (CustomerID, ItemCode, ItemDescription, OrderDate, Status, CreatedByUserID)
                      VALUES 
-                         (@CustomerID, @ItemCode, @OrderDate, 0, @CreatedByUserID)";
+                         (@CustomerID, @ItemCode, @ItemDescription, @OrderDate, 0, @CreatedByUserID)";
 
             using (var Command = new SQLiteCommand(Query, Connection, Transaction))
             {
                 Command.Parameters.AddWithValue("@CustomerID", CustomerID);
                 Command.Parameters.AddWithValue("@ItemCode", ItemCode);
+                Command.Parameters.AddWithValue("@ItemDescription", string.IsNullOrWhiteSpace(ItemDescription)
+                                                             ? (object)DBNull.Value : ItemDescription);
                 Command.Parameters.AddWithValue("@OrderDate", OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 Command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID == -1
                                                                     ? (object)DBNull.Value : CreatedByUserID);
@@ -231,9 +234,9 @@ namespace CheckPointDataAccessLayer
                                  Customers.CustomerName,
                                  Customers.PhoneNumber,
                                  CustomerOrders.ItemCode,
-                                 Items.Description  AS ItemDescription,
-                                 Items.Qty           AS CurrentQty,
-                                 Items.LzQty         AS CurrentLzQty,
+                                 COALESCE(Items.Description, CustomerOrders.ItemDescription, 'Unknown')  AS ItemDescription,
+                                 COALESCE(Items.Qty,   0)  AS CurrentQty,
+                                 COALESCE(Items.LzQty, 0)  AS CurrentLzQty, 
                                  CustomerOrders.OrderDate, 
                                  CASE 
                                      WHEN CustomerOrders.Status = 0 THEN 'Not Available' 
@@ -245,7 +248,7 @@ namespace CheckPointDataAccessLayer
                                  Users.UserName      AS CreatedByUserName
                              FROM CustomerOrders
                              INNER JOIN Customers ON CustomerOrders.CustomerID = Customers.CustomerID
-                             INNER JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode
+                             LEFT JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode
                              LEFT  JOIN Users     ON CustomerOrders.CreatedByUserID = Users.UserID
                              ORDER BY CustomerOrders.OrderDate DESC";
 
@@ -264,26 +267,30 @@ namespace CheckPointDataAccessLayer
             DataTable dt = new DataTable();
 
             string Query = @"SELECT 
-                                 CustomerOrders.OrderID,
-                                 CustomerOrders.CustomerID,
-                                 Customers.CustomerName,
-                                 Customers.PhoneNumber,
-                                 CustomerOrders.ItemCode,
-                                 Items.Description  AS ItemDescription,
-                                 Items.Qty           AS CurrentQty,
-                                 Items.LzQty         AS CurrentLzQty,
-                                 CustomerOrders.OrderDate,
-                                 CustomerOrders.Status,
-                                 CustomerOrders.AvailableDate,
-                                 CustomerOrders.NotifiedDate,
-                                 CustomerOrders.CreatedByUserID,
-                                 Users.UserName      AS CreatedByUserName
-                             FROM CustomerOrders
-                             INNER JOIN Customers ON CustomerOrders.CustomerID = Customers.CustomerID
-                             INNER JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode
-                             LEFT  JOIN Users     ON CustomerOrders.CreatedByUserID = Users.UserID
-                             WHERE CustomerOrders.CustomerID = @CustomerID
-                             ORDER BY CustomerOrders.OrderDate DESC";
+                         CustomerOrders.OrderID,
+                         CustomerOrders.CustomerID,
+                         Customers.CustomerName,
+                         Customers.PhoneNumber,
+                         CustomerOrders.ItemCode,
+                         COALESCE(Items.Description, CustomerOrders.ItemDescription, 'Unknown') AS ItemDescription,
+                         COALESCE(Items.Qty,   0) AS CurrentQty, 
+                         COALESCE(Items.LzQty, 0) AS CurrentLzQty,
+                         CustomerOrders.OrderDate,
+                         CASE 
+                             WHEN CustomerOrders.Status = 0 THEN 'Not Available' 
+                             WHEN CustomerOrders.Status = 1 THEN 'Available Now' 
+                             WHEN CustomerOrders.Status = 2 THEN 'Notified' 
+                         END AS Status,
+                         CustomerOrders.AvailableDate,
+                         CustomerOrders.NotifiedDate,
+                         CustomerOrders.CreatedByUserID,
+                         Users.UserName AS CreatedByUserName
+                     FROM CustomerOrders
+                     INNER JOIN Customers ON CustomerOrders.CustomerID = Customers.CustomerID
+                     LEFT  JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode  
+                     LEFT  JOIN Users     ON CustomerOrders.CreatedByUserID = Users.UserID
+                     WHERE CustomerOrders.CustomerID = @CustomerID
+                     ORDER BY CustomerOrders.OrderDate DESC";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))
@@ -307,21 +314,21 @@ namespace CheckPointDataAccessLayer
             DataTable dt = new DataTable();
 
             string Query = @"SELECT 
-                                 CustomerOrders.OrderID,
-                                 CustomerOrders.CustomerID,
-                                 Customers.CustomerName,
-                                 Customers.PhoneNumber,
-                                 CustomerOrders.ItemCode,
-                                 Items.Description AS ItemDescription,
-                                 Items.Qty          AS CurrentQty,
-                                 Items.LzQty        AS CurrentLzQty,
-                                 CustomerOrders.OrderDate,
-                                 CustomerOrders.AvailableDate
-                             FROM CustomerOrders
-                             INNER JOIN Customers ON CustomerOrders.CustomerID = Customers.CustomerID
-                             INNER JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode
-                             WHERE CustomerOrders.Status = 1
-                             ORDER BY CustomerOrders.AvailableDate DESC";
+                         CustomerOrders.OrderID,
+                         CustomerOrders.CustomerID,
+                         Customers.CustomerName,
+                         Customers.PhoneNumber,
+                         CustomerOrders.ItemCode,
+                         COALESCE(Items.Description, CustomerOrders.ItemDescription, 'Unknown') AS ItemDescription, 
+                         COALESCE(Items.Qty,   0) AS CurrentQty,  
+                         COALESCE(Items.LzQty, 0) AS CurrentLzQty,
+                         CustomerOrders.OrderDate,
+                         CustomerOrders.AvailableDate
+                     FROM CustomerOrders
+                     INNER JOIN Customers ON CustomerOrders.CustomerID = Customers.CustomerID
+                     LEFT  JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode 
+                     WHERE CustomerOrders.Status = 1
+                     ORDER BY CustomerOrders.AvailableDate DESC";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))
@@ -333,7 +340,7 @@ namespace CheckPointDataAccessLayer
             return dt;
         }
 
-        public static bool GetOrderByID(int OrderID, ref int CustomerID, ref int ItemCode,
+        public static bool GetOrderByID(int OrderID, ref int CustomerID, ref int ItemCode, ref string ItemDescription,
             ref DateTime OrderDate, ref int Status, ref DateTime AvailableDate,
             ref DateTime NotifiedDate, ref int CreatedByUserID)
         {
