@@ -41,44 +41,47 @@ namespace Check_Point_Manager
             {
                 dgvAllRequests.Columns[0].HeaderText = "Order ID";
                 dgvAllRequests.Columns[0].Width = 30;
+                dgvAllRequests.Columns[0].Visible = false;
 
                 dgvAllRequests.Columns[1].HeaderText = "Customer ID";
                 dgvAllRequests.Columns[1].Width = 30;
+                dgvAllRequests.Columns[1].Visible = false;
 
                 dgvAllRequests.Columns[2].HeaderText = "Customer Name";
-                dgvAllRequests.Columns[2].Width = 120;
+                dgvAllRequests.Columns[2].Width = 90;
 
                 dgvAllRequests.Columns[3].HeaderText = "Phone";
-                dgvAllRequests.Columns[3].Width = 120;
+                dgvAllRequests.Columns[3].Width = 90;
 
                 dgvAllRequests.Columns[4].HeaderText = "Item Code";
                 dgvAllRequests.Columns[4].Width = 50;
 
                 dgvAllRequests.Columns[5].HeaderText = "Description";
-                dgvAllRequests.Columns[5].Width = 160;
+                dgvAllRequests.Columns[5].Width = 290;
 
                 dgvAllRequests.Columns[6].HeaderText = "Current Qty";
-                dgvAllRequests.Columns[6].Width = 50;
+                dgvAllRequests.Columns[6].Width = 60;
 
                 dgvAllRequests.Columns[7].HeaderText = "Current LzQty";
-                dgvAllRequests.Columns[7].Width = 50;
+                dgvAllRequests.Columns[7].Width = 60;
 
                 dgvAllRequests.Columns[8].HeaderText = "Order Date";
-                dgvAllRequests.Columns[8].Width = 50;
+                dgvAllRequests.Columns[8].Width = 120;
 
                 dgvAllRequests.Columns[9].HeaderText = "Status";
-                dgvAllRequests.Columns[9].Width = 50;
+                dgvAllRequests.Columns[9].Width = 120;
 
                 dgvAllRequests.Columns[10].HeaderText = "Available Date";
-                dgvAllRequests.Columns[10].Width = 50;
+                dgvAllRequests.Columns[10].Width = 120;
 
                 dgvAllRequests.Columns[11].HeaderText = "Notified Date";
-                dgvAllRequests.Columns[11].Width = 50;
+                dgvAllRequests.Columns[11].Width = 120;
 
                 dgvAllRequests.Columns[12].HeaderText = "Created By ID";
                 dgvAllRequests.Columns[12].Width = 50;
+                dgvAllRequests.Columns[12].Visible = false;
 
-                dgvAllRequests.Columns[13].HeaderText = "Created By Name";
+                dgvAllRequests.Columns[13].HeaderText = "Staff Name";
                 dgvAllRequests.Columns[13].Width = 120;
 
 

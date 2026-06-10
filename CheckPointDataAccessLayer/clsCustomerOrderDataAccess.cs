@@ -57,18 +57,26 @@ namespace CheckPointDataAccessLayer
                         string PhoneNumber = Row.Cell(9).GetValue<string>().Trim();
                         string CustomerName = Row.Cell(8).GetValue<string>().Trim();
                         string StaffName = Row.Cell(6).GetValue<string>().Trim();
+                        string ItemCodeRow = Row.Cell(1).GetValue<string>().Trim();
 
-                        int ItemCode = 0;
-                        var ItemCodeCell = Row.Cell(1);
-                        if (!ItemCodeCell.IsEmpty())
-                            int.TryParse(ItemCodeCell.GetValue<string>(), out ItemCode);
-
-                        // ── تجاهل: بدون رقم هاتف أو بدون كود صنف صالح ─────────
-                        if (string.IsNullOrEmpty(PhoneNumber) || ItemCode <= 0)
+                        if (!int.TryParse(ItemCodeRow,out int ItemCode)|| ItemCode <= 0)
                         {
                             OrdersSkipped++;
                             continue;
                         }
+
+                        if(string.IsNullOrWhiteSpace(PhoneNumber) ||
+                            !PhoneNumber.All(char.IsDigit) ||
+                            PhoneNumber.Length < 8 ||
+                            PhoneNumber.Length > 15)
+                        {
+                            OrdersSkipped++;
+                            continue;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(CustomerName))
+                            CustomerName = "Unknown";
+
 
                         int RowCreatedByUserID = string.IsNullOrEmpty(StaffName)
                              ? CreatedByUserID 
@@ -209,8 +217,11 @@ namespace CheckPointDataAccessLayer
                                  Items.Description  AS ItemDescription,
                                  Items.Qty           AS CurrentQty,
                                  Items.LzQty         AS CurrentLzQty,
-                                 CustomerOrders.OrderDate,
-                                 CustomerOrders.Status,
+                                 CustomerOrders.OrderDate, 
+                                 CASE 
+                                     WHEN CustomerOrders.Status = 0 THEN 'Not Available' 
+                                     WHEN CustomerOrders.Status = 1 THEN 'Available Now' 
+                                     WHEN CustomerOrders.Status = 2 THEN 'Notified' END  AS Status,
                                  CustomerOrders.AvailableDate,
                                  CustomerOrders.NotifiedDate,
                                  CustomerOrders.CreatedByUserID,

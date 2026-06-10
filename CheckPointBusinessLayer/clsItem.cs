@@ -48,9 +48,11 @@ namespace CheckPointBusinessLayer
             Mode = enMode.Update;
         }
 
-        public static int UpdateStockAndGetNewItemsCount(string ExcelPath)
+        public static (int NewlyAddwdCount, int AvailableRequestsCount) UpdateStock(string ExcelPath)
         {
-            return clsItemDataAccess.UpdateItemsFromExcel(ExcelPath);
+            clsItemDataAccess.UpdateItemsFromExcel(ExcelPath, out int NewlyAddedCount, out int AvailableRequestsCount);
+
+            return (NewlyAddedCount, AvailableRequestsCount);
         }
         public static DataTable GetAllStockList()
         {

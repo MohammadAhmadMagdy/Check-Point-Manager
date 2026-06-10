@@ -28,12 +28,14 @@ namespace CheckPointDataAccessLayer
             }
         }
 
-        public static int UpdateItemsFromExcel(string ExcelPath)
+        public static void UpdateItemsFromExcel(string ExcelPath, out int NewlyAddedCount, out int AvailableRequestsCount)
         {
             var WorkBook = new XLWorkbook(ExcelPath);
             var WorkSheet = WorkBook.Worksheet(1);
 
-            int addedToNewlyAddedCount = 0;
+            NewlyAddedCount = 0;
+            AvailableRequestsCount = 0;
+
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             {
@@ -108,25 +110,25 @@ namespace CheckPointDataAccessLayer
                                         }
                                     }
                                 }
+
+                                if (Qty > 0 || LzQty > 0)
+                                {
+                                    int RequestsUpdated = clsCustomerOrderDataAccess.MarkOrdersAsAvailable
+                                           (Connection, Transaction, ItemCode);
+
+                                    AvailableRequestsCount += RequestsUpdated;
+                                }
                             }
                         }
 
                         
                         if (itemsToAddToNewlyAdded.Count > 0)
                         {
-                           
-                            //string DeleteQuery = "DELETE FROM NewlyAddedItems";
-                            //using (var DeleteCmd = new SQLiteCommand(DeleteQuery, Connection, Transaction))
-                            //{
-                            //    DeleteCmd.ExecuteNonQuery();
-                            //}
-
-                            
                             foreach (var item in itemsToAddToNewlyAdded)
                             {
                                 AddToNewlyAddedItems(Connection, Transaction, item.ItemCode, item.Description, 
                                     item.Qty, item.LzQty, item.RetailPrice);
-                                addedToNewlyAddedCount++;
+                                NewlyAddedCount++;
                             }
                         }
 
@@ -140,7 +142,6 @@ namespace CheckPointDataAccessLayer
                 }
             }
 
-            return addedToNewlyAddedCount;
         }
 
         private static void InsertItemIntoDatabase(SQLiteConnection conn, SQLiteTransaction trans,

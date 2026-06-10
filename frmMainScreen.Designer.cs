@@ -78,6 +78,7 @@
             this.pnlGroupsListSep = new System.Windows.Forms.Panel();
             this.lblGroupsListTitle = new System.Windows.Forms.Label();
             this.pnlAction = new System.Windows.Forms.Panel();
+            this.btnUsers = new System.Windows.Forms.Button();
             this.lblLastStockUpdateTitle = new System.Windows.Forms.Label();
             this.lblLastStockUpdate = new System.Windows.Forms.Label();
             this.pnlUpdateInfo = new System.Windows.Forms.Panel();
@@ -90,7 +91,7 @@
             this.lklShowCheckingHistory = new System.Windows.Forms.LinkLabel();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
-            this.btnUsers = new System.Windows.Forms.Button();
+            this.btnRequests = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -730,6 +731,7 @@
             // pnlAction
             // 
             this.pnlAction.BackColor = System.Drawing.Color.White;
+            this.pnlAction.Controls.Add(this.btnRequests);
             this.pnlAction.Controls.Add(this.btnUsers);
             this.pnlAction.Controls.Add(this.lblLastStockUpdateTitle);
             this.pnlAction.Controls.Add(this.lblLastStockUpdate);
@@ -740,6 +742,25 @@
             this.pnlAction.Name = "pnlAction";
             this.pnlAction.Size = new System.Drawing.Size(1334, 42);
             this.pnlAction.TabIndex = 4;
+            // 
+            // btnUsers
+            // 
+            this.btnUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
+            this.btnUsers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsers.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
+            this.btnUsers.Image = global::Check_Point_Manager.Properties.Resources.person_25;
+            this.btnUsers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUsers.Location = new System.Drawing.Point(796, 8);
+            this.btnUsers.Name = "btnUsers";
+            this.btnUsers.Size = new System.Drawing.Size(83, 27);
+            this.btnUsers.TabIndex = 34;
+            this.btnUsers.Text = "Users";
+            this.btnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUsers.UseVisualStyleBackColor = false;
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // lblLastStockUpdateTitle
             // 
@@ -885,24 +906,24 @@
             this.lblLastGroupCheckedTitle.TabIndex = 32;
             this.lblLastGroupCheckedTitle.Text = "Last Group Checked :";
             // 
-            // btnUsers
+            // btnRequests
             // 
-            this.btnUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
-            this.btnUsers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsers.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
-            this.btnUsers.Image = global::Check_Point_Manager.Properties.Resources.person_25;
-            this.btnUsers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUsers.Location = new System.Drawing.Point(796, 8);
-            this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(83, 27);
-            this.btnUsers.TabIndex = 34;
-            this.btnUsers.Text = "Users";
-            this.btnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnUsers.UseVisualStyleBackColor = false;
-            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
+            this.btnRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
+            this.btnRequests.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRequests.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequests.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequests.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
+            this.btnRequests.Image = global::Check_Point_Manager.Properties.Resources.History1;
+            this.btnRequests.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRequests.Location = new System.Drawing.Point(885, 8);
+            this.btnRequests.Name = "btnRequests";
+            this.btnRequests.Size = new System.Drawing.Size(115, 27);
+            this.btnRequests.TabIndex = 35;
+            this.btnRequests.Text = "Requests";
+            this.btnRequests.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRequests.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRequests.UseVisualStyleBackColor = false;
+            this.btnRequests.Click += new System.EventHandler(this.btnRequests_Click);
             // 
             // frmMainScreen
             // 
@@ -1012,5 +1033,6 @@
         private System.Windows.Forms.Label lblCurrentUser;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Button btnUsers;
+        private System.Windows.Forms.Button btnRequests;
     }
 }

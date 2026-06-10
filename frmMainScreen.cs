@@ -694,7 +694,10 @@ namespace Check_Point_Manager
                 lblUpdateStatus.Visible = true;
                 
 
-                _NewlyAddedItemsCount = await Task.Run(() => clsItem.UpdateStockAndGetNewItemsCount(_ExcelFile));
+                var Result = await Task.Run(() => clsItem.UpdateStock(_ExcelFile));
+
+                _NewlyAddedItemsCount = Result.NewlyAddwdCount;
+                int AvailableRequestsCount = Result.AvailableRequestsCount;
 
                 if (!clsSettings.RecordStockUpdate())
                 {
@@ -708,24 +711,41 @@ namespace Check_Point_Manager
                 ProgressBox.Close();
                 ProgressBox.Dispose();
 
+                //--- Build Success Message -------------------------------------------------------------------
+
+                string SuccessDetails = "";
+
+                if (_NewlyAddedItemsCount > 0)
+                    SuccessDetails += $"{_NewlyAddedItemsCount} New Items Added\n";
+                else
+                    SuccessDetails += "No New Items Added\n";
+
+                if (AvailableRequestsCount > 0)
+                    SuccessDetails += $"{AvailableRequestsCount} Customer Order(s) Now Available ✅";
+
+                lblUpdateStatus.Text = "Stock Updated Successfully, "; //+ SuccessDetails.Replace("\n", " | ");
+
+                //--- Show Success Message -------------------------------------------------------------------
+
                 if (_NewlyAddedItemsCount > 0)
                 {
-
-                    lblUpdateStatus.Text = "Stock Updated Successfully, " + _NewlyAddedItemsCount + " New Items Added";
-
-                    if (MessageBox.Show("Stock Updated Successfully\n" + _NewlyAddedItemsCount + " New Items Added\n" +
-                        "Do you want to explore Newly Added Items ?", "Success",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show(
+                            $"Stock Updated Successfully\n\n{SuccessDetails}\n\n" +
+                            "Do you want to explore Newly Added Items ?",
+                            "Success",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         cmbItemsFilterBy.SelectedIndex = 5;
                     }
                 }
                 else
                 {
-
-                    lblUpdateStatus.Text = "Stock Updated Successfully, No New Items Added";
-                    MessageBox.Show("Stock Updated Successfully\nNo New Items Added", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        $"Stock Updated Successfully\n\n{SuccessDetails}",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 _ExcelFile = null;
@@ -1248,6 +1268,12 @@ namespace Check_Point_Manager
             frm.ShowDialog();
 
 
+        }
+
+        private void btnRequests_Click(object sender, EventArgs e)
+        {
+            frmCustomerRequests frm = new frmCustomerRequests();
+            frm.ShowDialog();
         }
     }
 }
