@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace CheckPointDataAccessLayer
 {
@@ -29,22 +31,31 @@ namespace CheckPointDataAccessLayer
 
         public static ImportOrdersResult ImportOrdersFromExcel(string ExcelPath, int CreatedByUserID)
         {
-            var WorkBook = new XLWorkbook(ExcelPath);
+            string tempFile = null;
+            tempFile = Path.GetTempFileName() + Path.GetExtension(ExcelPath);
+            File.Copy(ExcelPath, tempFile, overwrite: true);
+
+            var WorkBook = new XLWorkbook(tempFile);
             var WorkSheet = WorkBook.Worksheet(1);
 
             int CustomersAdded = 0;
             int OrdersAdded = 0;
             int OrdersSkipped = 0;
 
+            int StartRow = 2; // الصف الأول هو Header
+            int LastRow = WorkSheet.LastRowUsed().RowNumber();
+            int RowIndex = StartRow;
+
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Transaction = Connection.BeginTransaction())
             {
                 try
                 {
-                    int StartRow = 2; // الصف الأول هو Header
-                    int LastRow = WorkSheet.LastRowUsed().RowNumber();
+                    
 
-                    for (int RowIndex = StartRow; RowIndex <= LastRow; RowIndex++)
+                    
+
+                    for (RowIndex = StartRow; RowIndex <= LastRow; RowIndex++)
                     {
                         var Row = WorkSheet.Row(RowIndex);
 
@@ -111,10 +122,16 @@ namespace CheckPointDataAccessLayer
 
                     Transaction.Commit();
                 }
-                catch
+                catch(Exception ex)
                 {
                     Transaction.Rollback();
-                    throw;
+                    throw new Exception($"Error at Row {RowIndex}:{ex.Message}",ex);
+                }
+                finally
+                {
+
+                    if (tempFile != null && File.Exists(tempFile))
+                        File.Delete(tempFile);
                 }
             }
 

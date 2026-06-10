@@ -17,6 +17,8 @@ namespace Check_Point_Manager
     {
         private DataTable _dtAllRequests;
         private string _DefaultExcelRequestsFile = "";
+        private string _SelectedRequestsFile = "";
+
         private void _AddVisualStyleToTable(DataGridView dgv)
         {
             dgv.EnableHeadersVisualStyles = false;
@@ -87,55 +89,70 @@ namespace Check_Point_Manager
 
             }
         }
-        private string _GetDefaultRequestsFile()
+        private bool _IsValidRequestsFile(string filePath)
         {
-            string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string tempFile = null;
+            try
+            {
+                
+                tempFile = Path.GetTempFileName() + Path.GetExtension(filePath);
+                File.Copy(filePath, tempFile, overwrite: true);
 
-            string TargetFolder = Path.Combine(DesktopPath, "Check Point Update");
+                using (var workbook = new ClosedXML.Excel.XLWorkbook(tempFile))
+                {
+                    var ws = workbook.Worksheet(1);
+                    string c1 = ws.Cell("C1").GetValue<string>().Trim();
+                    string j1 = ws.Cell("J1").GetValue<string>().Trim();
 
-            string XlsxFile = Path.Combine(TargetFolder, "Requests.xlsx");
-            string XlsFile = Path.Combine(TargetFolder, "Requests.xls");
-
-            if (File.Exists(XlsxFile))
-                return XlsxFile;
-
-            if (File.Exists(XlsFile))
-                return XlsFile;
-
-            return null;
+                    return string.Equals(c1, "Bounced Quantity", StringComparison.OrdinalIgnoreCase)
+                        && string.Equals(j1, "Repetition", StringComparison.OrdinalIgnoreCase);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+               
+                if (tempFile != null && File.Exists(tempFile))
+                    File.Delete(tempFile);
+            }
         }
+
         public frmCustomerRequests()
         {
             InitializeComponent();
 
+            btnUpdate.Enabled = false;
             _LoadRequestsTable();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(_SelectedRequestsFile))
+            {
+                MessageBox.Show("Please select a valid file first.",
+                    "No File Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             frmProgressBox ProgressBox = new frmProgressBox();
 
             try
             {
                 Cursor = Cursors.WaitCursor;
-
                 ProgressBox.SetMessage("Updating Requests List ...");
                 ProgressBox.Show(this);
 
-
-
-
                 ProgressBox.SetMessage("Updating Requests .. Please Wait");
 
-                _DefaultExcelRequestsFile = _GetDefaultRequestsFile();
-
-                clsCustomerOrder.ImportFromExcel(_DefaultExcelRequestsFile);
-
+                clsCustomerOrder.ImportFromExcel(_SelectedRequestsFile);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -149,5 +166,47 @@ namespace Check_Point_Manager
 
             _LoadRequestsTable();
         }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Select Requests File";
+                ofd.Filter = "Excel Files|*.xlsx;*.xls";
+                ofd.InitialDirectory = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                    "Bounced Sheet 2026");
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string selectedFile = ofd.FileName;
+
+                if (_IsValidRequestsFile(selectedFile))
+                {
+                    _SelectedRequestsFile = selectedFile;
+                    txtFilePath.Text = selectedFile;         // اختياري: TextBox لعرض المسار
+                    btnUpdate.Enabled = true;
+                    lblFileStatus.Text = "✔ Valid file";     // اختياري: Label للحالة
+                    lblFileStatus.ForeColor = Color.Green;
+                }
+                else
+                {
+                    _SelectedRequestsFile = "";
+                    txtFilePath.Text = "";
+                    btnUpdate.Enabled = false;
+                    lblFileStatus.Text = "✘ Invalid file — wrong format";
+                    lblFileStatus.ForeColor = Color.Red;
+
+                    MessageBox.Show(
+                        "The selected file is not a valid Requests file.\n\n",
+                        "Invalid File",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+        }
+
     }
 }
+
