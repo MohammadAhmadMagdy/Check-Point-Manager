@@ -432,6 +432,21 @@ namespace CheckPointDataAccessLayer
                 return Command.ExecuteNonQuery();
             }
         }
+        public static int MarkOrdersAsUnavailable(SQLiteConnection Connection, SQLiteTransaction Transaction,
+            int ItemCode)
+        {
+            string Query = @"UPDATE CustomerOrders
+                     SET Status        = 0,
+                         AvailableDate = NULL
+                     WHERE ItemCode = @ItemCode
+                       AND Status   = 1";
+
+            using (var Command = new SQLiteCommand(Query, Connection, Transaction))
+            {
+                Command.Parameters.AddWithValue("@ItemCode", ItemCode);
+                return Command.ExecuteNonQuery();
+            }
+        }
 
         // ★ تُستدعى بعد إرسال الواتساب لاحقاً ★
         public static bool MarkOrderAsNotified(int OrderID)

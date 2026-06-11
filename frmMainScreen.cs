@@ -721,7 +721,7 @@ namespace Check_Point_Manager
                     SuccessDetails += "No New Items Added\n";
 
                 if (AvailableRequestsCount > 0)
-                    SuccessDetails += $"{AvailableRequestsCount} Customer Order(s) Now Available ✅";
+                    SuccessDetails += $"\n{AvailableRequestsCount} Customer Order(s) Now Available ✅";
 
                 lblUpdateStatus.Text = "Stock Updated Successfully, "; //+ SuccessDetails.Replace("\n", " | ");
 
@@ -953,33 +953,11 @@ namespace Check_Point_Manager
 
                     lblGroupCheckedCounter.Text = clsCheck.GetCheckCountByGroupID(GroupID) + " Time(s)";
 
-                    //if (!clsGroup.CounterPlus(GroupID))
-                    //{
-                    //    MessageBox.Show("Error in counting check !", "Error", 
-                    //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    return;
-                    //}
-                    //if (!clsGroup.RecordCheckDate(GroupID))
-                    //{
-                    //    MessageBox.Show("Error Recording Check Date in DataBase !", "Error", MessageBoxButtons.OK,
-                    //        MessageBoxIcon.Error);
-                    //    return;
-                    //}
                 }
 
 
                 _FilterDataAndExportToExcel();
 
-                //_LastCheckedGroup = clsGroup.GetLastCheckedGroup();
-
-                //if (_LastCheckedGroup != null)
-                //{
-                //    lblLastGroupChecked.Text = lblLastGroupChecked.Text = _LastCheckedGroup.GroupName +
-                //                _LastCheckedGroup.LastCheckDate.ToString(" ( ddd, dd MMM - hh:mm tt )");
-                //}
-
-                //lblGroupChecked.Text = clsGroup.FindByID(GroupID).CheckCounter.ToString() + " Time(s)";
-                
             }
             catch (Exception ex)
             {
@@ -1221,7 +1199,7 @@ namespace Check_Point_Manager
 
         }
 
-        [Conditional("AppVersionSet")]
+        //[Conditional("AppVersionSet")]
         private void _AdjustAppVersion()
         {
             frmAppVersion frm = new frmAppVersion();
@@ -1231,7 +1209,10 @@ namespace Check_Point_Manager
         }
         private void lblAppVersion_DoubleClick(object sender, EventArgs e)
         {
-            _AdjustAppVersion();
+            if (clsUser.Current.UserID == 1)
+            {
+                _AdjustAppVersion();
+            }
         }
 
         private void lklShowCheckingHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

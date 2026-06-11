@@ -427,4 +427,13 @@
   <data name="user_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="customers_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\customers-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Orders_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orders-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="users_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\users-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

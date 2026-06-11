@@ -121,11 +121,10 @@
             // 
             this.lblFileStatus.AutoSize = true;
             this.lblFileStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileStatus.Location = new System.Drawing.Point(602, 49);
+            this.lblFileStatus.Location = new System.Drawing.Point(582, 49);
             this.lblFileStatus.Name = "lblFileStatus";
-            this.lblFileStatus.Size = new System.Drawing.Size(57, 21);
+            this.lblFileStatus.Size = new System.Drawing.Size(0, 21);
             this.lblFileStatus.TabIndex = 32;
-            this.lblFileStatus.Text = "label1";
             // 
             // frmCustomerRequests
             // 

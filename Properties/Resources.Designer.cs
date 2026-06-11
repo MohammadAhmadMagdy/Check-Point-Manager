@@ -233,6 +233,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap customers_20 {
+            get {
+                object obj = ResourceManager.GetObject("customers_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap data_processing {
             get {
                 object obj = ResourceManager.GetObject("data_processing", resourceCulture);
@@ -763,6 +773,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Orders_20 {
+            get {
+                object obj = ResourceManager.GetObject("Orders_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap password_25 {
             get {
                 object obj = ResourceManager.GetObject("password_25", resourceCulture);
@@ -1056,6 +1076,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap user_25 {
             get {
                 object obj = ResourceManager.GetObject("user_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap users_20 {
+            get {
+                object obj = ResourceManager.GetObject("users_20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

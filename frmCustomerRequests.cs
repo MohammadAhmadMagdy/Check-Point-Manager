@@ -92,9 +92,17 @@ namespace Check_Point_Manager
         private bool _IsValidRequestsFile(string filePath)
         {
             string tempFile = null;
+
+            frmProgressBox ProgressBox = new frmProgressBox();
+
             try
             {
+                Cursor = Cursors.WaitCursor;
                 
+                ProgressBox.Show(this);
+                ProgressBox.SetMessage("Validating Update File ...");
+
+
                 tempFile = Path.GetTempFileName() + Path.GetExtension(filePath);
                 File.Copy(filePath, tempFile, overwrite: true);
 
@@ -114,6 +122,13 @@ namespace Check_Point_Manager
             }
             finally
             {
+                if(!ProgressBox.IsDisposed)
+                {
+                    ProgressBox.Close();
+                    ProgressBox.Dispose();
+                }
+
+                Cursor = Cursors.Default;
                
                 if (tempFile != null && File.Exists(tempFile))
                     File.Delete(tempFile);
@@ -147,7 +162,17 @@ namespace Check_Point_Manager
 
                 ProgressBox.SetMessage("Updating Requests .. Please Wait");
 
-                clsCustomerOrder.ImportFromExcel(_SelectedRequestsFile);
+                clsCustomerOrder.ImportOrdersResult UpdatedRequestsResult =
+                    clsCustomerOrder.ImportFromExcel(_SelectedRequestsFile);
+
+                MessageBox.Show("Requests updated successfully ✔\n\n" +
+                                $"Customers Added: {UpdatedRequestsResult.CustomersAdded}\n" +
+                                $"Requests Added: {UpdatedRequestsResult.OrdersAdded}\n",
+                                "Import Result",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+
+
             }
             catch (Exception ex)
             {
@@ -195,7 +220,7 @@ namespace Check_Point_Manager
                     _SelectedRequestsFile = "";
                     txtFilePath.Text = "";
                     btnUpdate.Enabled = false;
-                    lblFileStatus.Text = "✘ Invalid file — wrong format";
+                    lblFileStatus.Text = "✘ Invalid file - wrong format";
                     lblFileStatus.ForeColor = Color.Red;
 
                     MessageBox.Show(

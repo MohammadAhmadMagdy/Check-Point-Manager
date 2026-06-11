@@ -21,6 +21,7 @@ namespace Check_Point_Manager
         private void frmAppVersion_Load(object sender, EventArgs e)
         {
             lblCurrentVersion.Text = clsSettings.GetValue(clsSettings.Keys.AppVersion);
+            txbUpdateAppVersion.Text = lblCurrentVersion.Text;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -47,6 +48,7 @@ namespace Check_Point_Manager
 
             MessageBox.Show("New version saved successfully", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             lblCurrentVersion.Text = clsSettings.GetValue(clsSettings.Keys.AppVersion);
+            this.Close();
         }
     }
 }

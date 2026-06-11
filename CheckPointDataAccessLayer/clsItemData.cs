@@ -98,8 +98,8 @@ namespace CheckPointDataAccessLayer
                                 
                                 if (wasZeroQty && (Qty > 0 || LzQty > 0))
                                 {
-                                    string GroupCheckQuery = "SELECT COUNT(*) FROM ItemsGroups WHERE ItemCode = " +
-                                        "@ItemCode";
+                                    string GroupCheckQuery = @"SELECT COUNT(*) FROM ItemsGroups WHERE ItemCode = @ItemCode";
+
                                     using (var GroupCheckCmd = new SQLiteCommand(GroupCheckQuery, Connection, Transaction))
                                     {
                                         GroupCheckCmd.Parameters.AddWithValue("@ItemCode", ItemCode);
@@ -117,6 +117,10 @@ namespace CheckPointDataAccessLayer
                                            (Connection, Transaction, ItemCode);
 
                                     AvailableRequestsCount += RequestsUpdated;
+                                }
+                                else
+                                {
+                                    clsCustomerOrderDataAccess.MarkOrdersAsUnavailable(Connection, Transaction, ItemCode);
                                 }
                             }
                         }

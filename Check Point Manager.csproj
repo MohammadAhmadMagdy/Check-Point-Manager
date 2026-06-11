@@ -308,6 +308,9 @@
     <Resource Include="Resources\key-security-25.png" />
     <Resource Include="Resources\AddNewUser_25.png" />
     <Resource Include="Resources\password-30.png" />
+    <Resource Include="Resources\users-20.png" />
+    <Resource Include="Resources\customers-20.png" />
+    <Resource Include="Resources\Orders-20.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
