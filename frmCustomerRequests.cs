@@ -232,6 +232,21 @@ namespace Check_Point_Manager
             }
         }
 
+        private void btnNotify_Click(object sender, EventArgs e)
+        {
+            int OrderID = Convert.ToInt32(dgvAllRequests.CurrentRow.Cells["OrderID"].Value);
+
+            if (clsWhatsApp.NotifyCustomer(OrderID))
+            {
+                // تحديث الـ Grid
+                _LoadRequestsTable();
+            }
+            else
+            {
+                MessageBox.Show("Failed to notify customer.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 

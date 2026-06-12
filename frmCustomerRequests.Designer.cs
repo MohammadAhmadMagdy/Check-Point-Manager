@@ -35,6 +35,7 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.lblFileStatus = new System.Windows.Forms.Label();
+            this.btnNotify = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,12 +127,32 @@
             this.lblFileStatus.Size = new System.Drawing.Size(0, 21);
             this.lblFileStatus.TabIndex = 32;
             // 
+            // btnNotify
+            // 
+            this.btnNotify.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnNotify.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNotify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNotify.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNotify.ForeColor = System.Drawing.Color.White;
+            this.btnNotify.Image = global::Check_Point_Manager.Properties.Resources.Hand_Right;
+            this.btnNotify.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNotify.Location = new System.Drawing.Point(744, 43);
+            this.btnNotify.Name = "btnNotify";
+            this.btnNotify.Size = new System.Drawing.Size(108, 35);
+            this.btnNotify.TabIndex = 33;
+            this.btnNotify.Text = "  Notify";
+            this.btnNotify.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNotify.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNotify.UseVisualStyleBackColor = false;
+            this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
+            // 
             // frmCustomerRequests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
             this.ClientSize = new System.Drawing.Size(1280, 483);
+            this.Controls.Add(this.btnNotify);
             this.Controls.Add(this.lblFileStatus);
             this.Controls.Add(this.txtFilePath);
             this.Controls.Add(this.btnBrowse);
@@ -154,5 +175,6 @@
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txtFilePath;
         private System.Windows.Forms.Label lblFileStatus;
+        private System.Windows.Forms.Button btnNotify;
     }
 }
