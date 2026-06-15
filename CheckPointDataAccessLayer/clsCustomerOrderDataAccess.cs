@@ -239,8 +239,8 @@ namespace CheckPointDataAccessLayer
                                  COALESCE(Items.LzQty, 0)  AS CurrentLzQty, 
                                  CustomerOrders.OrderDate, 
                                  CASE 
-                                     WHEN CustomerOrders.Status = 0 THEN 'Not Available' 
-                                     WHEN CustomerOrders.Status = 1 THEN 'Available Now' 
+                                     WHEN CustomerOrders.Status = 0 THEN 'Pending' 
+                                     WHEN CustomerOrders.Status = 1 THEN 'Available' 
                                      WHEN CustomerOrders.Status = 2 THEN 'Notified' END  AS Status,
                                  CustomerOrders.AvailableDate,
                                  CustomerOrders.NotifiedDate,
@@ -277,8 +277,8 @@ namespace CheckPointDataAccessLayer
                          COALESCE(Items.LzQty, 0) AS CurrentLzQty,
                          CustomerOrders.OrderDate,
                          CASE 
-                             WHEN CustomerOrders.Status = 0 THEN 'Not Available' 
-                             WHEN CustomerOrders.Status = 1 THEN 'Available Now' 
+                             WHEN CustomerOrders.Status = 0 THEN 'Pending' 
+                             WHEN CustomerOrders.Status = 1 THEN 'Available' 
                              WHEN CustomerOrders.Status = 2 THEN 'Notified' 
                          END AS Status,
                          CustomerOrders.AvailableDate,

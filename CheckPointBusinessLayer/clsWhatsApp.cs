@@ -23,9 +23,14 @@ namespace CheckPointBusinessLayer
             if (Customer == null)
                 return false;
 
-            string ItemDescription = !string.IsNullOrWhiteSpace(Order.ItemDescription)
-                                     ? Order.ItemDescription
-                                     : $"Item Code: {Order.ItemCode}";
+            string ItemDescription = Order.ItemDescription;
+
+            if (string.IsNullOrWhiteSpace(ItemDescription))
+            {
+                ItemDescription = Order.ItemInfo != null
+                    ? Order.ItemInfo.Description
+                    : "No Description Available";
+            }
 
             // إرسال الإشعار
             _NotifyViaWhatsAppWeb(Customer.PhoneNumber, Customer.CustomerName, ItemDescription);
@@ -62,7 +67,7 @@ namespace CheckPointBusinessLayer
 
             string Message = Uri.EscapeDataString(
                 $"مرحباً {CustomerName} 👋\n" +
-                $"الصنف الذي طلبته *{ItemDescription}* أصبح متوفراً الآن ✅\n" +
+                $"الصنف الذي طلبته \n*{ItemDescription}*\n  أصبح متوفراً الآن لدى صيدليه طيبا✅\n" +
                 $"يسعدنا خدمتك 🙏"
             );
 

@@ -67,8 +67,9 @@
             this.dgvAllRequests.Name = "dgvAllRequests";
             this.dgvAllRequests.RowHeadersVisible = false;
             this.dgvAllRequests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllRequests.Size = new System.Drawing.Size(1256, 336);
+            this.dgvAllRequests.Size = new System.Drawing.Size(1264, 336);
             this.dgvAllRequests.TabIndex = 23;
+            this.dgvAllRequests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllRequests_CellClick);
             // 
             // btnUpdate
             // 
@@ -151,7 +152,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
-            this.ClientSize = new System.Drawing.Size(1280, 483);
+            this.ClientSize = new System.Drawing.Size(1288, 483);
             this.Controls.Add(this.btnNotify);
             this.Controls.Add(this.lblFileStatus);
             this.Controls.Add(this.txtFilePath);

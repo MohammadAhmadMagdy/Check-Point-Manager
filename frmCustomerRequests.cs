@@ -35,6 +35,15 @@ namespace Check_Point_Manager
         {
             _dtAllRequests = clsCustomerOrder.GetAllOrders();
 
+            if(!_dtAllRequests.Columns.Contains("Notify"))
+            {
+                _dtAllRequests.Columns.Add("Notify",typeof(string));
+            }
+            foreach (DataRow Row in _dtAllRequests.Rows)
+            {
+                Row["Notify"] = Row["Status"].ToString() == "Available" ? "Notify" : "--";
+            }
+
             dgvAllRequests.DataSource = _dtAllRequests;
 
             _AddVisualStyleToTable(dgvAllRequests);
@@ -68,27 +77,42 @@ namespace Check_Point_Manager
                 dgvAllRequests.Columns[7].Width = 60;
 
                 dgvAllRequests.Columns[8].HeaderText = "Order Date";
-                dgvAllRequests.Columns[8].Width = 120;
+                dgvAllRequests.Columns[8].Width = 90;
 
                 dgvAllRequests.Columns[9].HeaderText = "Status";
-                dgvAllRequests.Columns[9].Width = 120;
+                dgvAllRequests.Columns[9].Width = 90;
 
                 dgvAllRequests.Columns[10].HeaderText = "Available Date";
-                dgvAllRequests.Columns[10].Width = 120;
+                dgvAllRequests.Columns[10].Width = 90;
 
                 dgvAllRequests.Columns[11].HeaderText = "Notified Date";
-                dgvAllRequests.Columns[11].Width = 120;
+                dgvAllRequests.Columns[11].Width = 90;
 
                 dgvAllRequests.Columns[12].HeaderText = "Created By ID";
                 dgvAllRequests.Columns[12].Width = 50;
                 dgvAllRequests.Columns[12].Visible = false;
 
                 dgvAllRequests.Columns[13].HeaderText = "Staff Name";
-                dgvAllRequests.Columns[13].Width = 120;
+                dgvAllRequests.Columns[13].Width = 90;
 
+                if (dgvAllRequests.Columns["Notify"] != null)
+                {
+                    int ColumnIndex = dgvAllRequests.Columns["Notify"].Index;
 
+                    dgvAllRequests.Columns.Remove("Notify");
+
+                    DataGridViewButtonColumn btnNotify = new DataGridViewButtonColumn();
+
+                    btnNotify.Name = "Notify";
+                    btnNotify.HeaderText = "Action";
+                    btnNotify.DataPropertyName = "Notify";
+                    btnNotify.Width = 80;
+
+                    dgvAllRequests.Columns.Insert(ColumnIndex, btnNotify);
+                }
             }
         }
+
         private bool _IsValidRequestsFile(string filePath)
         {
             string tempFile = null;
@@ -245,6 +269,30 @@ namespace Check_Point_Manager
             {
                 MessageBox.Show("Failed to notify customer.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvAllRequests_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (dgvAllRequests.Columns[e.ColumnIndex].Name != "Notify")
+                return;
+
+            string status = dgvAllRequests.Rows[e.RowIndex].Cells["Status"].Value?.ToString();
+
+
+            if (!status.Equals("Available", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            int orderID = Convert.ToInt32(
+                dgvAllRequests.Rows[e.RowIndex]
+                .Cells["OrderID"].Value);
+
+            if (clsWhatsApp.NotifyCustomer(orderID))
+            {
+                _LoadRequestsTable();
             }
         }
     }
