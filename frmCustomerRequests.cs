@@ -32,9 +32,39 @@ namespace Check_Point_Manager
             dgv.RowsDefaultCellStyle.BackColor = Coloring.White;
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Coloring.FromArgb(241, 240, 241);
         }
+        private void _ConvertDateColumnsToDateTimeFormat(DataTable dt)
+        {
+            string[] DateColumns = { "OrderDate", "AvailableDate", "NotifiedDate" };
+
+            foreach (string ColName in DateColumns)
+            {
+                if (!dt.Columns.Contains(ColName)) continue;
+
+
+                string TempCol = ColName + "_dt";
+                dt.Columns.Add(TempCol, typeof(DateTime));
+
+                foreach (DataRow Row in dt.Rows)
+                {
+                    if (Row[ColName] != DBNull.Value &&
+                        DateTime.TryParse(Row[ColName].ToString(), out DateTime ParsedDate))
+                        Row[TempCol] = ParsedDate;
+                    else
+                        Row[TempCol] = DBNull.Value;
+                }
+
+
+                int ColIndex = dt.Columns[ColName].Ordinal;
+                dt.Columns.Remove(ColName);
+                dt.Columns[TempCol].ColumnName = ColName;
+                dt.Columns[ColName].SetOrdinal(ColIndex);
+            }
+        }
         private void _LoadRequestsTable()
         {
             _dtAllRequests = clsCustomerOrder.GetAllOrders();
+
+            _ConvertDateColumnsToDateTimeFormat(_dtAllRequests);
 
             if(!_dtAllRequests.Columns.Contains("Notify"))
             {
@@ -78,15 +108,18 @@ namespace Check_Point_Manager
                 dgvAllRequests.Columns[7].Width = 60;
 
                 dgvAllRequests.Columns[8].HeaderText = "Order Date";
+                dgvAllRequests.Columns[8].DefaultCellStyle.Format = "dd/M/yyyy";
                 dgvAllRequests.Columns[8].Width = 90;
 
                 dgvAllRequests.Columns[9].HeaderText = "Status";
                 dgvAllRequests.Columns[9].Width = 90;
 
                 dgvAllRequests.Columns[10].HeaderText = "Available Date";
+                dgvAllRequests.Columns[10].DefaultCellStyle.Format = "dd/M/yyyy";
                 dgvAllRequests.Columns[10].Width = 90;
 
                 dgvAllRequests.Columns[11].HeaderText = "Notified Date";
+                dgvAllRequests.Columns[11].DefaultCellStyle.Format = "dd/M/yyyy";
                 dgvAllRequests.Columns[11].Width = 90;
 
                 dgvAllRequests.Columns[12].HeaderText = "Created By ID";
@@ -297,14 +330,6 @@ namespace Check_Point_Manager
             }
         }
 
-        private void dgvAllRequests_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                dgvAllRequests.ClearSelection();
-                dgvAllRequests.CurrentCell = dgvAllRequests.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            }
-        }
 
         private void revertNotifiedToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -319,6 +344,18 @@ namespace Check_Point_Manager
             }
 
             _LoadRequestsTable();
+        }
+
+        private void dgvAllRequests_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right) return;
+
+            var HitTest = dgvAllRequests.HitTest(e.X, e.Y);
+
+            if (HitTest.RowIndex < 0 || HitTest.ColumnIndex < 0) return;
+
+            dgvAllRequests.ClearSelection();
+            dgvAllRequests.CurrentCell = dgvAllRequests.Rows[HitTest.RowIndex].Cells[HitTest.ColumnIndex];
         }
     }
 }

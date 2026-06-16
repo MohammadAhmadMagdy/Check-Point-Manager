@@ -75,7 +75,8 @@
             this.dgvAllRequests.Size = new System.Drawing.Size(1264, 336);
             this.dgvAllRequests.TabIndex = 23;
             this.dgvAllRequests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllRequests_CellClick);
-            this.dgvAllRequests.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvAllRequests_CellMouseClick);
+         
+            this.dgvAllRequests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvAllRequests_MouseDown);
             // 
             // btnUpdate
             // 
@@ -158,13 +159,13 @@
             this.cmsOrderOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.revertNotifiedToolStripMenuItem});
             this.cmsOrderOptions.Name = "cmsOrderOptions";
-            this.cmsOrderOptions.Size = new System.Drawing.Size(181, 48);
+            this.cmsOrderOptions.Size = new System.Drawing.Size(154, 26);
             // 
             // revertNotifiedToolStripMenuItem
             // 
             this.revertNotifiedToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.remove_red_32;
             this.revertNotifiedToolStripMenuItem.Name = "revertNotifiedToolStripMenuItem";
-            this.revertNotifiedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.revertNotifiedToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.revertNotifiedToolStripMenuItem.Text = "Revert Notified";
             this.revertNotifiedToolStripMenuItem.Click += new System.EventHandler(this.revertNotifiedToolStripMenuItem_Click);
             // 
