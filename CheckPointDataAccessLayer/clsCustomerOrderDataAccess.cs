@@ -186,16 +186,37 @@ namespace CheckPointDataAccessLayer
         private static bool _ActiveOrderExists(SQLiteConnection Connection, SQLiteTransaction Transaction,
             int CustomerID, int ItemCode)
         {
-            string Query = @"SELECT 1 FROM CustomerOrders
+            DateTime StartOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            DateTime StartOfNextMonth = StartOfMonth.AddMonths(1);
+
+            string Query = @"
+                     SELECT 1
+                     FROM CustomerOrders
                      WHERE CustomerID = @CustomerID
                        AND ItemCode   = @ItemCode
-                       AND Status     IN (0, 1)
+                       AND
+                       (
+                           Status IN (0,1)
+                           OR
+                           (
+                               Status = 2
+                               AND OrderDate >= @StartOfMonth
+                               AND OrderDate <  @StartOfNextMonth
+                           )
+                       )
                      LIMIT 1";
+           
 
             using (var Command = new SQLiteCommand(Query, Connection, Transaction))
             {
                 Command.Parameters.AddWithValue("@CustomerID", CustomerID);
                 Command.Parameters.AddWithValue("@ItemCode", ItemCode);
+
+                Command.Parameters.AddWithValue("@StartOfMonth",
+                    StartOfMonth.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                Command.Parameters.AddWithValue("@StartOfNextMonth",
+                    StartOfNextMonth.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 return Command.ExecuteScalar() != null;
             }
@@ -250,7 +271,14 @@ namespace CheckPointDataAccessLayer
                              INNER JOIN Customers ON CustomerOrders.CustomerID = Customers.CustomerID
                              LEFT JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode
                              LEFT  JOIN Users     ON CustomerOrders.CreatedByUserID = Users.UserID
-                             ORDER BY CustomerOrders.OrderDate DESC";
+                             ORDER BY 
+                                     CASE CustomerOrders.Status
+                                         WHEN 1 THEN 1
+                                         WHEN 0 THEN 2
+                                         WHEN 2 THEN 3
+                                         ELSE 4
+                                     END,
+                                     CustomerOrders.OrderDate DESC";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))

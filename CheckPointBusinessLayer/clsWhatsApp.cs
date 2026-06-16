@@ -66,10 +66,21 @@ namespace CheckPointBusinessLayer
             Phone = _FormatPhone(Phone);
 
             string Message = Uri.EscapeDataString(
-                $"مرحباً {CustomerName} 👋\n" +
-                $"الصنف الذي طلبته \n*{ItemDescription}*\n  أصبح متوفراً الآن لدى صيدليه طيبا✅\n" +
-                $"يسعدنا خدمتك 🙏"
-            );
+                             $"مرحباً {CustomerName} 🌿\n\n" +
+                             $"الصنف / المنتج الذي طلبته:\n" +
+                             $"*{ItemDescription}*\n\n" +
+                             $"أصبح متوفراً الآن لدى صيدلية طيبة - فرع صحار.\n" +
+                             $"شكراً لثقتكم بنا، ويسعدنا خدمتكم دائماً.\n\n" +
+                          
+                             $"────────────────\n\n" +
+                          
+                             $"Hello {CustomerName},\n\n" +
+                             $"The item/product you requested:\n" +
+                             $"*{ItemDescription}*\n\n" +
+                             $"is now available at Taibah Pharmacy - Sohar Branch.\n" +
+                             $"Thank you for your trust. We are always happy to serve you.\n\n" +
+                             $"🌿"
+                         );
 
             Process.Start(new ProcessStartInfo
             {
