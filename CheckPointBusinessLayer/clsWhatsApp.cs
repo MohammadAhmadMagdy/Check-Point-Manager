@@ -77,7 +77,7 @@ namespace CheckPointBusinessLayer
                              $"Hello {CustomerName},\n\n" +
                              $"The item/product you requested:\n" +
                              $"*{ItemDescription}*\n\n" +
-                             $"is now available at Taibah Pharmacy - Sohar Branch.\n" +
+                             $"is now available at Taiba Pharmacy - Sohar Branch.\n" +
                              $"Thank you for your trust. We are always happy to serve you.\n\n" +
                              $"🌿"
                          );

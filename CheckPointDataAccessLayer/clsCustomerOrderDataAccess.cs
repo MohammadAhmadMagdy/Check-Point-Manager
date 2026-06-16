@@ -493,6 +493,21 @@ namespace CheckPointDataAccessLayer
                 return Command.ExecuteNonQuery() > 0;
             }
         }
+        public static bool RevertOrderNotified(int OrderID)
+        {
+            string Query = @"UPDATE CustomerOrders
+                     SET Status       = 1,
+                         NotifiedDate = NULL
+                     WHERE OrderID  = @OrderID
+                       AND Status   = 2";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+                    using (var Command = new SQLiteCommand(Query, Connection))
+                    {
+                        Command.Parameters.AddWithValue("@OrderID", OrderID);
+                        return Command.ExecuteNonQuery() > 0;
+                    }
+        }
 
         public static bool DeleteOrder(int OrderID)
         {

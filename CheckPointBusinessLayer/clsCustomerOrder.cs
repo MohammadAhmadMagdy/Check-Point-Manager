@@ -159,6 +159,15 @@ namespace CheckPointBusinessLayer
         {
             return clsCustomerOrderDataAccess.MarkOrderAsNotified(this.OrderID);
         }
+        public static bool RevertNotified(int OrderID)
+        {
+            return clsCustomerOrderDataAccess.RevertOrderNotified(OrderID);
+        }
+
+        public bool RevertNotified()
+        {
+            return clsCustomerOrderDataAccess.RevertOrderNotified(this.OrderID);
+        }
 
         public static bool Delete(int OrderID)
         {

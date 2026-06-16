@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvAllRequests = new System.Windows.Forms.DataGridView();
@@ -36,7 +37,10 @@
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.lblFileStatus = new System.Windows.Forms.Label();
             this.btnNotify = new System.Windows.Forms.Button();
+            this.cmsOrderOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.revertNotifiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).BeginInit();
+            this.cmsOrderOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvAllRequests
@@ -55,6 +59,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAllRequests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAllRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAllRequests.ContextMenuStrip = this.cmsOrderOptions;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -70,6 +75,7 @@
             this.dgvAllRequests.Size = new System.Drawing.Size(1264, 336);
             this.dgvAllRequests.TabIndex = 23;
             this.dgvAllRequests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllRequests_CellClick);
+            this.dgvAllRequests.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvAllRequests_CellMouseClick);
             // 
             // btnUpdate
             // 
@@ -147,6 +153,21 @@
             this.btnNotify.UseVisualStyleBackColor = false;
             this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
             // 
+            // cmsOrderOptions
+            // 
+            this.cmsOrderOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.revertNotifiedToolStripMenuItem});
+            this.cmsOrderOptions.Name = "cmsOrderOptions";
+            this.cmsOrderOptions.Size = new System.Drawing.Size(181, 48);
+            // 
+            // revertNotifiedToolStripMenuItem
+            // 
+            this.revertNotifiedToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.remove_red_32;
+            this.revertNotifiedToolStripMenuItem.Name = "revertNotifiedToolStripMenuItem";
+            this.revertNotifiedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.revertNotifiedToolStripMenuItem.Text = "Revert Notified";
+            this.revertNotifiedToolStripMenuItem.Click += new System.EventHandler(this.revertNotifiedToolStripMenuItem_Click);
+            // 
             // frmCustomerRequests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,6 +185,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Requests";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).EndInit();
+            this.cmsOrderOptions.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +199,7 @@
         private System.Windows.Forms.TextBox txtFilePath;
         private System.Windows.Forms.Label lblFileStatus;
         private System.Windows.Forms.Button btnNotify;
+        private System.Windows.Forms.ContextMenuStrip cmsOrderOptions;
+        private System.Windows.Forms.ToolStripMenuItem revertNotifiedToolStripMenuItem;
     }
 }

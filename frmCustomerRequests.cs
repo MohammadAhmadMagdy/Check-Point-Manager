@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckPointBusinessLayer;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Coloring = System.Drawing.Color;
 
 namespace Check_Point_Manager
@@ -237,7 +238,7 @@ namespace Check_Point_Manager
                     txtFilePath.Text = selectedFile;         // اختياري: TextBox لعرض المسار
                     btnUpdate.Enabled = true;
                     lblFileStatus.Text = "✔ Valid file";     // اختياري: Label للحالة
-                    lblFileStatus.ForeColor = Color.Green;
+                    lblFileStatus.ForeColor = Coloring.Green;
                 }
                 else
                 {
@@ -245,7 +246,7 @@ namespace Check_Point_Manager
                     txtFilePath.Text = "";
                     btnUpdate.Enabled = false;
                     lblFileStatus.Text = "✘ Invalid file - wrong format";
-                    lblFileStatus.ForeColor = Color.Red;
+                    lblFileStatus.ForeColor = Coloring.Red;
 
                     MessageBox.Show(
                         "The selected file is not a valid Requests file.\n\n",
@@ -294,6 +295,30 @@ namespace Check_Point_Manager
             {
                 _LoadRequestsTable();
             }
+        }
+
+        private void dgvAllRequests_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dgvAllRequests.ClearSelection();
+                dgvAllRequests.CurrentCell = dgvAllRequests.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            }
+        }
+
+        private void revertNotifiedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int OrderID = Convert.ToInt32(dgvAllRequests.CurrentRow.Cells["OrderID"].Value);
+
+            if (OrderID == -1) return;
+
+            if (!clsCustomerOrder.RevertNotified(OrderID))
+            {
+                MessageBox.Show("Error performing revert notification !","Error",MessageBoxButtons.OK
+                    ,MessageBoxIcon.Error);
+            }
+
+            _LoadRequestsTable();
         }
     }
 }
