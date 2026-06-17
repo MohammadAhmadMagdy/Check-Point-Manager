@@ -38,7 +38,7 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.lblFileStatus = new System.Windows.Forms.Label();
-            this.btnNotify = new System.Windows.Forms.Button();
+            this.btnNotifyAll = new System.Windows.Forms.Button();
             this.cmbRequestsFilterBy = new System.Windows.Forms.ComboBox();
             this.txbRequestsFilterValue = new System.Windows.Forms.TextBox();
             this.lblFilterBy = new System.Windows.Forms.Label();
@@ -152,24 +152,24 @@
             this.lblFileStatus.Size = new System.Drawing.Size(0, 21);
             this.lblFileStatus.TabIndex = 32;
             // 
-            // btnNotify
+            // btnNotifyAll
             // 
-            this.btnNotify.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
-            this.btnNotify.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNotify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNotify.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNotify.ForeColor = System.Drawing.Color.White;
-            this.btnNotify.Image = global::Check_Point_Manager.Properties.Resources.Hand_Right;
-            this.btnNotify.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNotify.Location = new System.Drawing.Point(744, 50);
-            this.btnNotify.Name = "btnNotify";
-            this.btnNotify.Size = new System.Drawing.Size(108, 35);
-            this.btnNotify.TabIndex = 33;
-            this.btnNotify.Text = "  Notify";
-            this.btnNotify.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNotify.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNotify.UseVisualStyleBackColor = false;
-            this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
+            this.btnNotifyAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnNotifyAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNotifyAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNotifyAll.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNotifyAll.ForeColor = System.Drawing.Color.White;
+            this.btnNotifyAll.Image = global::Check_Point_Manager.Properties.Resources.Hand_Right;
+            this.btnNotifyAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNotifyAll.Location = new System.Drawing.Point(673, 50);
+            this.btnNotifyAll.Name = "btnNotifyAll";
+            this.btnNotifyAll.Size = new System.Drawing.Size(126, 35);
+            this.btnNotifyAll.TabIndex = 33;
+            this.btnNotifyAll.Text = "  Notify All";
+            this.btnNotifyAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNotifyAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNotifyAll.UseVisualStyleBackColor = false;
+            this.btnNotifyAll.Click += new System.EventHandler(this.btnNotify_Click);
             // 
             // cmbRequestsFilterBy
             // 
@@ -220,7 +220,7 @@
             this.Controls.Add(this.lblFilterBy);
             this.Controls.Add(this.cmbRequestsFilterBy);
             this.Controls.Add(this.txbRequestsFilterValue);
-            this.Controls.Add(this.btnNotify);
+            this.Controls.Add(this.btnNotifyAll);
             this.Controls.Add(this.lblFileStatus);
             this.Controls.Add(this.txtFilePath);
             this.Controls.Add(this.btnBrowse);
@@ -244,7 +244,7 @@
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txtFilePath;
         private System.Windows.Forms.Label lblFileStatus;
-        private System.Windows.Forms.Button btnNotify;
+        private System.Windows.Forms.Button btnNotifyAll;
         private System.Windows.Forms.ContextMenuStrip cmsOrderOptions;
         private System.Windows.Forms.ToolStripMenuItem revertNotifiedToolStripMenuItem;
         private System.Windows.Forms.ComboBox cmbRequestsFilterBy;

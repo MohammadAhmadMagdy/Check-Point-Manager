@@ -303,18 +303,12 @@ namespace Check_Point_Manager
         }
         private void btnNotify_Click(object sender, EventArgs e)
         {
-            int OrderID = Convert.ToInt32(dgvAllRequests.CurrentRow.Cells["OrderID"].Value);
+            int Count = clsWhatsApp.NotifyAllAvailable();
 
-            if (clsWhatsApp.NotifyCustomer(OrderID))
-            {
-                // تحديث الـ Grid
-                _LoadRequestsTable();
-            }
-            else
-            {
-                MessageBox.Show("Failed to notify customer.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            _LoadRequestsTable();
+
+            MessageBox.Show($"Sent {Count} notification(s) successfully. ✅",
+                "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void dgvAllRequests_CellClick(object sender, DataGridViewCellEventArgs e)
         {
