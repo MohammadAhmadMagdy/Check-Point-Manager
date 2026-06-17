@@ -17,7 +17,6 @@ namespace Check_Point_Manager
     public partial class frmCustomerRequests : Form
     {
         private DataTable _dtAllRequests;
-        private string _DefaultExcelRequestsFile = "";
         private string _SelectedRequestsFile = "";
 
         private void _AddVisualStyleToTable(DataGridView dgv)
@@ -146,7 +145,6 @@ namespace Check_Point_Manager
                 }
             }
         }
-
         private bool _IsValidRequestsFile(string filePath)
         {
             string tempFile = null;
@@ -192,15 +190,30 @@ namespace Check_Point_Manager
                     File.Delete(tempFile);
             }
         }
-
+        private string _GetColumnName()
+        {
+            switch (cmbRequestsFilterBy.Text)
+            {
+                case "Customer Name":
+                    return "CustomerName";
+                case "Phone Number":
+                    return "PhoneNumber";
+                case "Item Code":
+                    return "ItemCode";
+                case "Item Description":
+                    return "ItemDescription";
+                default:
+                    return cmbRequestsFilterBy.Text;
+            }
+        }
         public frmCustomerRequests()
         {
             InitializeComponent();
 
             btnUpdate.Enabled = false;
+            cmbRequestsFilterBy.SelectedIndex = 0;
             _LoadRequestsTable();
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_SelectedRequestsFile))
@@ -249,7 +262,6 @@ namespace Check_Point_Manager
 
             _LoadRequestsTable();
         }
-
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -289,7 +301,6 @@ namespace Check_Point_Manager
                 }
             }
         }
-
         private void btnNotify_Click(object sender, EventArgs e)
         {
             int OrderID = Convert.ToInt32(dgvAllRequests.CurrentRow.Cells["OrderID"].Value);
@@ -305,7 +316,6 @@ namespace Check_Point_Manager
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void dgvAllRequests_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -329,8 +339,6 @@ namespace Check_Point_Manager
                 _LoadRequestsTable();
             }
         }
-
-
         private void revertNotifiedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int OrderID = Convert.ToInt32(dgvAllRequests.CurrentRow.Cells["OrderID"].Value);
@@ -345,7 +353,6 @@ namespace Check_Point_Manager
 
             _LoadRequestsTable();
         }
-
         private void dgvAllRequests_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
@@ -356,6 +363,60 @@ namespace Check_Point_Manager
 
             dgvAllRequests.ClearSelection();
             dgvAllRequests.CurrentCell = dgvAllRequests.Rows[HitTest.RowIndex].Cells[HitTest.ColumnIndex];
+        }
+
+        private void txbRequestsFilterValue_TextChanged(object sender, EventArgs e)
+        {
+            string ColumnName = _GetColumnName();
+
+            if (ColumnName == null) return;
+
+            string FilterValue = txbRequestsFilterValue.Text.Trim().Replace("'", "''");
+
+            if (ColumnName == "None" || string.IsNullOrEmpty(ColumnName) || string.IsNullOrEmpty(FilterValue))
+            {
+                _dtAllRequests.DefaultView.RowFilter = "";
+                return;
+            }
+
+            if (_dtAllRequests.Columns[ColumnName].DataType == typeof(string))
+            {
+                _dtAllRequests.DefaultView.RowFilter = $"{ColumnName} LIKE '%{FilterValue}%'";
+            }
+            else
+                _dtAllRequests.DefaultView.RowFilter = $"{ColumnName} = {FilterValue}";
+        }
+
+        private void cmbRequestsFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            txbRequestsFilterValue.Enabled = cmbRequestsFilterBy.SelectedIndex != 0;
+
+            bool NeedsText =
+                cmbRequestsFilterBy.Text != "Pending" &&
+                cmbRequestsFilterBy.Text != "Available" &&
+                cmbRequestsFilterBy.Text != "Notified";
+
+            txbRequestsFilterValue.Visible = NeedsText;
+
+            if (txbRequestsFilterValue.Visible)
+            {
+                _dtAllRequests.DefaultView.RowFilter = "";
+            }
+
+            if (!NeedsText)
+            {
+                _dtAllRequests.DefaultView.RowFilter = $"Status LIKE '%{cmbRequestsFilterBy.Text}%'";
+            }
+
+                txbRequestsFilterValue.Text = "";
+
+        }
+
+        private void txbRequestsFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cmbRequestsFilterBy.Text == "Item Code")
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
