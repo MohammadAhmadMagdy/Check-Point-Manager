@@ -62,25 +62,24 @@ namespace CheckPointBusinessLayer
 
         private static void _NotifyViaWhatsAppWeb(string Phone, string CustomerName, string ItemDescription)
         {
-            // تأكد أن الرقم بالصيغة الدولية (عُمان 968)
+            
             Phone = _FormatPhone(Phone);
 
             string Message = Uri.EscapeDataString(
-                             $"مرحباً {CustomerName} 🌿\n\n" +
-                             $"الصنف / المنتج الذي طلبته:\n" +
-                             $"*{ItemDescription}*\n\n" +
-                             $"أصبح متوفراً الآن لدى صيدلية طيبة - فرع صحار.\n" +
-                             $"شكراً لثقتكم بنا، ويسعدنا خدمتكم دائماً.\n\n" +
-                          
-                             $"────────────────\n\n" +
-                          
-                             $"Hello {CustomerName},\n\n" +
-                             $"The item/product you requested:\n" +
-                             $"*{ItemDescription}*\n\n" +
-                             $"is now available at Taiba Pharmacy - Sohar Branch.\n" +
-                             $"Thank you for your trust. We are always happy to serve you.\n\n" +
-                             $"🌿"
-                         );
+                             $"🌿 *صيدلية طيبا - فرع صحار*\n\n" +
+                             $"السلام عليكم {CustomerName} 👋\n\n" +
+                             $"يسعدنا إخبارك بأن المنتج الذي طلبته:\n" +
+                             $"📦 *{ItemDescription}*\n\n" +
+                             $"أصبح متوفراً لدينا الآن.\n" +
+                             $"نتطلع لخدمتكم في أقرب وقت.\n\n" +
+                             $"━━━━━━━━━━━━━━━━━━\n\n" +
+                             $"🌿 *Taiba Pharmacy - Sohar Branch*\n\n" +
+                             $"Dear {CustomerName},\n\n" +
+                             $"We're pleased to inform you that the item you requested:\n" +
+                             $"📦 *{ItemDescription}*\n\n" +
+                             $"is now available in our pharmacy.\n" +
+                             $"We look forward to serving you soon."
+                            );
 
             Process.Start(new ProcessStartInfo
             {
