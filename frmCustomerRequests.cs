@@ -143,8 +143,56 @@ namespace Check_Point_Manager
 
                     dgvAllRequests.Columns.Insert(ColumnIndex, btnNotify);
                 }
+
+                _ColorRowsByStatus();
+            }
+
+            
+        }
+
+        private void _ColorRowsByStatus()
+        {
+            foreach (DataGridViewRow Row in dgvAllRequests.Rows)
+            {
+                if (Row.IsNewRow) continue;
+
+
+                if (Row.Cells["Status"] == null) continue;
+
+                string Status = Row.Cells["Status"].Value?.ToString();
+
+
+                DataGridViewCell statusCell = Row.Cells["Status"];
+
+                switch (Status)
+                {
+                    case "Available":
+                        statusCell.Style.BackColor = Coloring.FromArgb(212, 239, 223);
+                        statusCell.Style.ForeColor = Coloring.FromArgb(21, 67, 34);
+                        statusCell.Style.SelectionBackColor = Coloring.FromArgb(169, 223, 191);
+                        statusCell.Style.SelectionForeColor = Coloring.FromArgb(21, 67, 34);
+                        statusCell.Style.Font = new System.Drawing.Font(dgvAllRequests.Font, FontStyle.Bold);
+                        break;
+
+                    case "Notified":
+                        statusCell.Style.BackColor = Coloring.FromArgb(214, 234, 248);
+                        statusCell.Style.ForeColor = Coloring.FromArgb(27, 79, 114);
+                        statusCell.Style.SelectionBackColor = Coloring.FromArgb(169, 204, 227);
+                        statusCell.Style.SelectionForeColor = Coloring.FromArgb(27, 79, 114);
+                        statusCell.Style.Font = new System.Drawing.Font(dgvAllRequests.Font, FontStyle.Bold);
+                        break;
+
+                    default:
+                        statusCell.Style.BackColor = Coloring.FromArgb(249, 215, 215);
+                        statusCell.Style.ForeColor = Coloring.FromArgb(120, 40, 40);
+                        statusCell.Style.SelectionBackColor = Coloring.FromArgb(242, 174, 174);
+                        statusCell.Style.SelectionForeColor = Coloring.FromArgb(120, 40, 40);
+                        statusCell.Style.Font = new System.Drawing.Font(dgvAllRequests.Font, FontStyle.Bold);
+                        break;
+                }
             }
         }
+
         private bool _IsValidRequestsFile(string filePath)
         {
             string tempFile = null;
@@ -411,6 +459,11 @@ namespace Check_Point_Manager
         {
             if (cmbRequestsFilterBy.Text == "Item Code")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void dgvAllRequests_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            _ColorRowsByStatus();
         }
     }
 }
