@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvAllRequests = new System.Windows.Forms.DataGridView();
             this.cmsOrderOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.revertNotifiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +42,9 @@
             this.cmbRequestsFilterBy = new System.Windows.Forms.ComboBox();
             this.txbRequestsFilterValue = new System.Windows.Forms.TextBox();
             this.lblFilterBy = new System.Windows.Forms.Label();
+            this.rdbDate = new System.Windows.Forms.RadioButton();
+            this.rdbStatus = new System.Windows.Forms.RadioButton();
+            this.lblOrderBy = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).BeginInit();
             this.cmsOrderOptions.SuspendLayout();
             this.SuspendLayout();
@@ -53,24 +56,24 @@
             this.dgvAllRequests.AllowUserToOrderColumns = true;
             this.dgvAllRequests.BackgroundColor = System.Drawing.Color.White;
             this.dgvAllRequests.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Agency FB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAllRequests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Agency FB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAllRequests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAllRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllRequests.ContextMenuStrip = this.cmsOrderOptions;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAllRequests.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAllRequests.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvAllRequests.Location = new System.Drawing.Point(12, 148);
             this.dgvAllRequests.Name = "dgvAllRequests";
             this.dgvAllRequests.ReadOnly = true;
@@ -163,7 +166,7 @@
             this.btnNotifyAll.ForeColor = System.Drawing.Color.White;
             this.btnNotifyAll.Image = global::Check_Point_Manager.Properties.Resources.Hand_Right;
             this.btnNotifyAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNotifyAll.Location = new System.Drawing.Point(673, 50);
+            this.btnNotifyAll.Location = new System.Drawing.Point(783, 50);
             this.btnNotifyAll.Name = "btnNotifyAll";
             this.btnNotifyAll.Size = new System.Drawing.Size(126, 35);
             this.btnNotifyAll.TabIndex = 33;
@@ -213,12 +216,49 @@
             this.lblFilterBy.TabIndex = 36;
             this.lblFilterBy.Text = "Filter By :";
             // 
+            // rdbDate
+            // 
+            this.rdbDate.AutoSize = true;
+            this.rdbDate.Location = new System.Drawing.Point(589, 121);
+            this.rdbDate.Name = "rdbDate";
+            this.rdbDate.Size = new System.Drawing.Size(48, 17);
+            this.rdbDate.TabIndex = 37;
+            this.rdbDate.TabStop = true;
+            this.rdbDate.Text = "Date";
+            this.rdbDate.UseVisualStyleBackColor = true;
+            this.rdbDate.CheckedChanged += new System.EventHandler(this.rdbDate_CheckedChanged);
+            // 
+            // rdbStatus
+            // 
+            this.rdbStatus.AutoSize = true;
+            this.rdbStatus.Location = new System.Drawing.Point(643, 121);
+            this.rdbStatus.Name = "rdbStatus";
+            this.rdbStatus.Size = new System.Drawing.Size(56, 17);
+            this.rdbStatus.TabIndex = 38;
+            this.rdbStatus.TabStop = true;
+            this.rdbStatus.Text = "Status";
+            this.rdbStatus.UseVisualStyleBackColor = true;
+            this.rdbStatus.CheckedChanged += new System.EventHandler(this.rdbStatus_CheckedChanged);
+            // 
+            // lblOrderBy
+            // 
+            this.lblOrderBy.AutoSize = true;
+            this.lblOrderBy.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderBy.Location = new System.Drawing.Point(518, 120);
+            this.lblOrderBy.Name = "lblOrderBy";
+            this.lblOrderBy.Size = new System.Drawing.Size(69, 17);
+            this.lblOrderBy.TabIndex = 39;
+            this.lblOrderBy.Text = "Order By :";
+            // 
             // frmCustomerRequests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
             this.ClientSize = new System.Drawing.Size(1288, 582);
+            this.Controls.Add(this.lblOrderBy);
+            this.Controls.Add(this.rdbStatus);
+            this.Controls.Add(this.rdbDate);
             this.Controls.Add(this.lblFilterBy);
             this.Controls.Add(this.cmbRequestsFilterBy);
             this.Controls.Add(this.txbRequestsFilterValue);
@@ -232,6 +272,7 @@
             this.Name = "frmCustomerRequests";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Requests";
+            this.Load += new System.EventHandler(this.frmCustomerRequests_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).EndInit();
             this.cmsOrderOptions.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -252,5 +293,8 @@
         private System.Windows.Forms.ComboBox cmbRequestsFilterBy;
         private System.Windows.Forms.TextBox txbRequestsFilterValue;
         private System.Windows.Forms.Label lblFilterBy;
+        private System.Windows.Forms.RadioButton rdbDate;
+        private System.Windows.Forms.RadioButton rdbStatus;
+        private System.Windows.Forms.Label lblOrderBy;
     }
 }

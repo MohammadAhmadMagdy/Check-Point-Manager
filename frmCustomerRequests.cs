@@ -67,13 +67,25 @@ namespace Check_Point_Manager
 
             _ConvertDateColumnsToDateTimeFormat(_dtAllRequests);
 
-            if(!_dtAllRequests.Columns.Contains("Notify"))
+            if (!_dtAllRequests.Columns.Contains("Notify"))
             {
                 _dtAllRequests.Columns.Add("Notify",typeof(string));
             }
+
+            if (!_dtAllRequests.Columns.Contains("StatusSortOrder"))
+                _dtAllRequests.Columns.Add("StatusSortOrder", typeof(int));
+
             foreach (DataRow Row in _dtAllRequests.Rows)
             {
-                Row["Notify"] = Row["Status"].ToString() == "Available" ? "Notify" : "--";
+                string Status = Row["Status"].ToString();
+
+                Row["Notify"] = Status == "Available" ? "Notify" : "--";
+
+               
+                Row["StatusSortOrder"] = Status == "Available" ? 0
+                                        : Status == "Pending" ? 1
+                                        : Status == "Notified" ? 2
+                                        : 3;
             }
 
             dgvAllRequests.DataSource = _dtAllRequests;
@@ -130,6 +142,9 @@ namespace Check_Point_Manager
 
                 dgvAllRequests.Columns[13].HeaderText = "Staff Name";
                 dgvAllRequests.Columns[13].Width = 90;
+
+                if (dgvAllRequests.Columns.Contains("StatusSortOrder"))
+                    dgvAllRequests.Columns["StatusSortOrder"].Visible = false;
 
                 if (dgvAllRequests.Columns["Notify"] != null)
                 {
@@ -467,6 +482,27 @@ namespace Check_Point_Manager
         private void dgvAllRequests_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             _ColorRowsByStatus();
+        }
+
+        private void rdbDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!rdbDate.Checked) return;
+
+            _dtAllRequests.DefaultView.Sort = "OrderDate DESC";
+            
+        }
+
+        private void rdbStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!rdbStatus.Checked) return;
+
+            _dtAllRequests.DefaultView.Sort = "StatusSortOrder ASC";
+            
+        }
+
+        private void frmCustomerRequests_Load(object sender, EventArgs e)
+        {
+            rdbStatus.Checked = true;
         }
     }
 }
