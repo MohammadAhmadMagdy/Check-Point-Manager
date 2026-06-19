@@ -52,7 +52,7 @@
             this.dgvAllRequests.AllowUserToDeleteRows = false;
             this.dgvAllRequests.AllowUserToOrderColumns = true;
             this.dgvAllRequests.BackgroundColor = System.Drawing.Color.White;
-            this.dgvAllRequests.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvAllRequests.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Agency FB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -73,6 +73,7 @@
             this.dgvAllRequests.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAllRequests.Location = new System.Drawing.Point(12, 148);
             this.dgvAllRequests.Name = "dgvAllRequests";
+            this.dgvAllRequests.ReadOnly = true;
             this.dgvAllRequests.RowHeadersVisible = false;
             this.dgvAllRequests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAllRequests.Size = new System.Drawing.Size(1264, 422);

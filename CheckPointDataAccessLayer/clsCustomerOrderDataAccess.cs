@@ -272,12 +272,12 @@ namespace CheckPointDataAccessLayer
                              LEFT JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode
                              LEFT  JOIN Users     ON CustomerOrders.CreatedByUserID = Users.UserID
                              ORDER BY 
-                                     CASE CustomerOrders.Status
-                                         WHEN 1 THEN 1
-                                         WHEN 0 THEN 2
-                                         WHEN 2 THEN 3
-                                         ELSE 4
-                                     END,
+                                     --CASE CustomerOrders.Status
+                                     --    WHEN 1 THEN 1
+                                     --    WHEN 0 THEN 2
+                                     --    WHEN 2 THEN 3
+                                     --    ELSE 4
+                                     --END,
                                      CustomerOrders.OrderDate DESC";
 
             using (var Connection = clsDataAccessSettings.GetConnection())

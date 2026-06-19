@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckPointBusinessLayer;
+using DocumentFormat.OpenXml.Drawing.Wordprocessing;
+using DocumentFormat.OpenXml.Math;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Coloring = System.Drawing.Color;
 
@@ -112,6 +114,7 @@ namespace Check_Point_Manager
 
                 dgvAllRequests.Columns[9].HeaderText = "Status";
                 dgvAllRequests.Columns[9].Width = 90;
+                dgvAllRequests.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvAllRequests.Columns[10].HeaderText = "Available Date";
                 dgvAllRequests.Columns[10].DefaultCellStyle.Format = "dd/M/yyyy";
