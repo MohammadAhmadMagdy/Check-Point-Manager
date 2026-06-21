@@ -161,13 +161,10 @@ namespace Check_Point_Manager
 
                     dgvAllRequests.Columns.Insert(ColumnIndex, btnNotify);
                 }
-
-                _ColorRowsByStatus();
             }
 
-            
+            _ApplySort();
         }
-
         private void _ColorRowsByStatus()
         {
             foreach (DataGridViewRow Row in dgvAllRequests.Rows)
@@ -210,7 +207,6 @@ namespace Check_Point_Manager
                 }
             }
         }
-
         private bool _IsValidRequestsFile(string filePath)
         {
             string tempFile = null;
@@ -271,6 +267,13 @@ namespace Check_Point_Manager
                 default:
                     return cmbRequestsFilterBy.Text;
             }
+        }
+        private void _ApplySort()
+        {
+            if (rdbStatus.Checked)
+                _dtAllRequests.DefaultView.Sort = "StatusSortOrder ASC";
+            else if (rdbDate.Checked)
+                _dtAllRequests.DefaultView.Sort = "OrderDate DESC";
         }
         public frmCustomerRequests()
         {
@@ -424,7 +427,6 @@ namespace Check_Point_Manager
             dgvAllRequests.ClearSelection();
             dgvAllRequests.CurrentCell = dgvAllRequests.Rows[HitTest.RowIndex].Cells[HitTest.ColumnIndex];
         }
-
         private void txbRequestsFilterValue_TextChanged(object sender, EventArgs e)
         {
             string ColumnName = _GetColumnName();
@@ -446,7 +448,6 @@ namespace Check_Point_Manager
             else
                 _dtAllRequests.DefaultView.RowFilter = $"{ColumnName} = {FilterValue}";
         }
-
         private void cmbRequestsFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -472,34 +473,25 @@ namespace Check_Point_Manager
                 txbRequestsFilterValue.Text = "";
 
         }
-
         private void txbRequestsFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cmbRequestsFilterBy.Text == "Item Code")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
         private void dgvAllRequests_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             _ColorRowsByStatus();
         }
-
         private void rdbDate_CheckedChanged(object sender, EventArgs e)
         {
-            if (!rdbDate.Checked) return;
-
-            _dtAllRequests.DefaultView.Sort = "OrderDate DESC";
-            
+            if (rdbDate.Checked)
+                _ApplySort();
         }
-
         private void rdbStatus_CheckedChanged(object sender, EventArgs e)
         {
-            if (!rdbStatus.Checked) return;
-
-            _dtAllRequests.DefaultView.Sort = "StatusSortOrder ASC";
-            
+            if (rdbStatus.Checked)
+                _ApplySort();
         }
-
         private void frmCustomerRequests_Load(object sender, EventArgs e)
         {
             rdbStatus.Checked = true;
