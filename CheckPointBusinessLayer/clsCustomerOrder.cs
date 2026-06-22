@@ -108,6 +108,11 @@ namespace CheckPointBusinessLayer
                 return null;
         }
 
+        public static int GetOrdersCountByStatus(enStatus Status)
+        {
+            return clsCustomerOrderDataAccess.GetOrdersCountByStatus((int)Status);
+        }
+
         public static bool DoesActiveOrderExist(int CustomerID, int ItemCode)
         {
             return clsCustomerOrderDataAccess.DoesActiveOrderExist(CustomerID, ItemCode);

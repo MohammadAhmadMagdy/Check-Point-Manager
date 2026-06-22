@@ -27,7 +27,7 @@ namespace Check_Point_Manager
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Coloring.FromArgb(219, 220, 218);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Coloring.Black;
             dgv.ColumnHeadersDefaultCellStyle.Font =
-                new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
+                new System.Drawing.Font("Segoe UI", 8, FontStyle.Bold);
 
 
             dgv.RowsDefaultCellStyle.BackColor = Coloring.White;
@@ -103,22 +103,22 @@ namespace Check_Point_Manager
                 dgvAllRequests.Columns[1].Visible = false;
 
                 dgvAllRequests.Columns[2].HeaderText = "Customer Name";
-                dgvAllRequests.Columns[2].Width = 90;
+                dgvAllRequests.Columns[2].Width = 110;
 
                 dgvAllRequests.Columns[3].HeaderText = "Phone";
-                dgvAllRequests.Columns[3].Width = 90;
+                dgvAllRequests.Columns[3].Width = 100;
 
                 dgvAllRequests.Columns[4].HeaderText = "Item Code";
-                dgvAllRequests.Columns[4].Width = 50;
+                dgvAllRequests.Columns[4].Width = 70;
 
                 dgvAllRequests.Columns[5].HeaderText = "Description";
-                dgvAllRequests.Columns[5].Width = 290;
+                dgvAllRequests.Columns[5].Width = 312;
 
                 dgvAllRequests.Columns[6].HeaderText = "Current Qty";
-                dgvAllRequests.Columns[6].Width = 60;
+                dgvAllRequests.Columns[6].Width = 70;
 
                 dgvAllRequests.Columns[7].HeaderText = "Current LzQty";
-                dgvAllRequests.Columns[7].Width = 60;
+                dgvAllRequests.Columns[7].Width = 70;
 
                 dgvAllRequests.Columns[8].HeaderText = "Order Date";
                 dgvAllRequests.Columns[8].DefaultCellStyle.Format = "dd/M/yyyy";
@@ -164,6 +164,12 @@ namespace Check_Point_Manager
             }
 
             _ApplySort();
+
+
+            lblTotalRequests.Text = dgvAllRequests.RowCount.ToString();
+            lblAvailable.Text = clsCustomerOrder.GetOrdersCountByStatus(clsCustomerOrder.enStatus.Available).ToString();
+            lblPending.Text = clsCustomerOrder.GetOrdersCountByStatus(clsCustomerOrder.enStatus.Pending).ToString();
+            lblNotified.Text = clsCustomerOrder.GetOrdersCountByStatus(clsCustomerOrder.enStatus.Notified).ToString();
         }
         private void _ColorRowsByStatus()
         {
@@ -280,7 +286,9 @@ namespace Check_Point_Manager
             InitializeComponent();
 
             btnUpdate.Enabled = false;
+
             cmbRequestsFilterBy.SelectedIndex = 0;
+
             _LoadRequestsTable();
         }
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -495,7 +503,10 @@ namespace Check_Point_Manager
         private void frmCustomerRequests_Load(object sender, EventArgs e)
         {
             rdbStatus.Checked = true;
+
         }
+
+       
     }
 }
 

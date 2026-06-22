@@ -272,12 +272,6 @@ namespace CheckPointDataAccessLayer
                              LEFT JOIN Items     ON CustomerOrders.ItemCode   = Items.ItemCode
                              LEFT  JOIN Users     ON CustomerOrders.CreatedByUserID = Users.UserID
                              ORDER BY 
-                                     --CASE CustomerOrders.Status
-                                     --    WHEN 1 THEN 1
-                                     --    WHEN 0 THEN 2
-                                     --    WHEN 2 THEN 3
-                                     --    ELSE 4
-                                     --END,
                                      CustomerOrders.OrderDate DESC";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
@@ -333,10 +327,7 @@ namespace CheckPointDataAccessLayer
 
             return dt;
         }
-        
-        // ★ هذه الميثود هي القلب المستقبلي لخاصية الواتساب ★
-        // ترجع كل الطلبات التي أصبح الصنف متوفراً (Status = 1)
-        // وتشمل رقم هاتف العميل واسم الصنف — جاهزة للإرسال مباشرة
+       
         public static DataTable GetAvailableOrders()
         {
             DataTable dt = new DataTable();
@@ -366,6 +357,24 @@ namespace CheckPointDataAccessLayer
             }
 
             return dt;
+        }
+        public static int GetOrdersCountByStatus(int Status)
+        {
+            string Query = @"SELECT COUNT(OrderID) FROM CustomerOrders WHERE Status = @Status";
+
+            using (var Connection = clsDataAccessSettings.GetConnection())
+            using (var Command = new SQLiteCommand(Query, Connection))
+            {
+
+                Command.Parameters.AddWithValue("@Status", Status);
+
+                var Result = Command.ExecuteScalar();
+
+                if (Result != null && Result != DBNull.Value)
+                    return Convert.ToInt32(Result);
+            }
+
+            return 0;
         }
 
         public static bool GetOrderByID(int OrderID, ref int CustomerID, ref int ItemCode, ref string ItemDescription,

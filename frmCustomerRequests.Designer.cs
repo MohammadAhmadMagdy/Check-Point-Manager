@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvAllRequests = new System.Windows.Forms.DataGridView();
             this.cmsOrderOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.revertNotifiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,8 +45,18 @@
             this.rdbDate = new System.Windows.Forms.RadioButton();
             this.rdbStatus = new System.Windows.Forms.RadioButton();
             this.lblOrderBy = new System.Windows.Forms.Label();
+            this.pnlStatistics = new System.Windows.Forms.Panel();
+            this.lblNotified = new System.Windows.Forms.Label();
+            this.lblNotifiedTitle = new System.Windows.Forms.Label();
+            this.lblAvailable = new System.Windows.Forms.Label();
+            this.lblPending = new System.Windows.Forms.Label();
+            this.lblAvailableTitle = new System.Windows.Forms.Label();
+            this.lblPendingTitle = new System.Windows.Forms.Label();
+            this.lblTotalRequests = new System.Windows.Forms.Label();
+            this.lblTotalRequestsTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).BeginInit();
             this.cmsOrderOptions.SuspendLayout();
+            this.pnlStatistics.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvAllRequests
@@ -56,30 +66,30 @@
             this.dgvAllRequests.AllowUserToOrderColumns = true;
             this.dgvAllRequests.BackgroundColor = System.Drawing.Color.White;
             this.dgvAllRequests.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Agency FB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAllRequests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Agency FB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAllRequests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAllRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllRequests.ContextMenuStrip = this.cmsOrderOptions;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAllRequests.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvAllRequests.Location = new System.Drawing.Point(12, 148);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAllRequests.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAllRequests.Location = new System.Drawing.Point(12, 152);
             this.dgvAllRequests.Name = "dgvAllRequests";
             this.dgvAllRequests.ReadOnly = true;
             this.dgvAllRequests.RowHeadersVisible = false;
             this.dgvAllRequests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllRequests.Size = new System.Drawing.Size(1264, 422);
+            this.dgvAllRequests.Size = new System.Drawing.Size(1264, 463);
             this.dgvAllRequests.TabIndex = 23;
             this.dgvAllRequests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllRequests_CellClick);
             this.dgvAllRequests.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAllRequests_DataBindingComplete);
@@ -109,7 +119,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::Check_Point_Manager.Properties.Resources.update_25;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(412, 50);
+            this.btnUpdate.Location = new System.Drawing.Point(412, 12);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(155, 35);
             this.btnUpdate.TabIndex = 29;
@@ -128,7 +138,7 @@
             this.btnBrowse.ForeColor = System.Drawing.Color.White;
             this.btnBrowse.Image = global::Check_Point_Manager.Properties.Resources.icons8_open_folder_25;
             this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBrowse.Location = new System.Drawing.Point(12, 50);
+            this.btnBrowse.Location = new System.Drawing.Point(12, 12);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(155, 35);
             this.btnBrowse.TabIndex = 30;
@@ -141,7 +151,7 @@
             // txtFilePath
             // 
             this.txtFilePath.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilePath.Location = new System.Drawing.Point(173, 50);
+            this.txtFilePath.Location = new System.Drawing.Point(173, 12);
             this.txtFilePath.Multiline = true;
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
@@ -152,7 +162,7 @@
             // 
             this.lblFileStatus.AutoSize = true;
             this.lblFileStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileStatus.Location = new System.Drawing.Point(582, 56);
+            this.lblFileStatus.Location = new System.Drawing.Point(582, 18);
             this.lblFileStatus.Name = "lblFileStatus";
             this.lblFileStatus.Size = new System.Drawing.Size(0, 21);
             this.lblFileStatus.TabIndex = 32;
@@ -166,7 +176,7 @@
             this.btnNotifyAll.ForeColor = System.Drawing.Color.White;
             this.btnNotifyAll.Image = global::Check_Point_Manager.Properties.Resources.Hand_Right;
             this.btnNotifyAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNotifyAll.Location = new System.Drawing.Point(783, 50);
+            this.btnNotifyAll.Location = new System.Drawing.Point(1150, 111);
             this.btnNotifyAll.Name = "btnNotifyAll";
             this.btnNotifyAll.Size = new System.Drawing.Size(126, 35);
             this.btnNotifyAll.TabIndex = 33;
@@ -250,12 +260,129 @@
             this.lblOrderBy.TabIndex = 39;
             this.lblOrderBy.Text = "Order By :";
             // 
+            // pnlStatistics
+            // 
+            this.pnlStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlStatistics.AutoSize = true;
+            this.pnlStatistics.BackColor = System.Drawing.Color.White;
+            this.pnlStatistics.Controls.Add(this.lblNotified);
+            this.pnlStatistics.Controls.Add(this.lblNotifiedTitle);
+            this.pnlStatistics.Controls.Add(this.lblAvailable);
+            this.pnlStatistics.Controls.Add(this.lblPending);
+            this.pnlStatistics.Controls.Add(this.lblAvailableTitle);
+            this.pnlStatistics.Controls.Add(this.lblPendingTitle);
+            this.pnlStatistics.Controls.Add(this.lblTotalRequests);
+            this.pnlStatistics.Controls.Add(this.lblTotalRequestsTitle);
+            this.pnlStatistics.Location = new System.Drawing.Point(12, 621);
+            this.pnlStatistics.Name = "pnlStatistics";
+            this.pnlStatistics.Size = new System.Drawing.Size(1264, 45);
+            this.pnlStatistics.TabIndex = 40;
+            // 
+            // lblNotified
+            // 
+            this.lblNotified.AutoSize = true;
+            this.lblNotified.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblNotified.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotified.ForeColor = System.Drawing.Color.Blue;
+            this.lblNotified.Location = new System.Drawing.Point(1007, 12);
+            this.lblNotified.Name = "lblNotified";
+            this.lblNotified.Size = new System.Drawing.Size(24, 21);
+            this.lblNotified.TabIndex = 39;
+            this.lblNotified.Text = "??";
+            // 
+            // lblNotifiedTitle
+            // 
+            this.lblNotifiedTitle.AutoSize = true;
+            this.lblNotifiedTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblNotifiedTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotifiedTitle.ForeColor = System.Drawing.Color.Blue;
+            this.lblNotifiedTitle.Location = new System.Drawing.Point(924, 12);
+            this.lblNotifiedTitle.Name = "lblNotifiedTitle";
+            this.lblNotifiedTitle.Size = new System.Drawing.Size(77, 21);
+            this.lblNotifiedTitle.TabIndex = 38;
+            this.lblNotifiedTitle.Text = "Notified :";
+            // 
+            // lblAvailable
+            // 
+            this.lblAvailable.AutoSize = true;
+            this.lblAvailable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblAvailable.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvailable.ForeColor = System.Drawing.Color.Green;
+            this.lblAvailable.Location = new System.Drawing.Point(554, 12);
+            this.lblAvailable.Name = "lblAvailable";
+            this.lblAvailable.Size = new System.Drawing.Size(24, 21);
+            this.lblAvailable.TabIndex = 37;
+            this.lblAvailable.Text = "??";
+            // 
+            // lblPending
+            // 
+            this.lblPending.AutoSize = true;
+            this.lblPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblPending.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPending.ForeColor = System.Drawing.Color.Red;
+            this.lblPending.Location = new System.Drawing.Point(776, 12);
+            this.lblPending.Name = "lblPending";
+            this.lblPending.Size = new System.Drawing.Size(24, 21);
+            this.lblPending.TabIndex = 35;
+            this.lblPending.Text = "??";
+            // 
+            // lblAvailableTitle
+            // 
+            this.lblAvailableTitle.AutoSize = true;
+            this.lblAvailableTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblAvailableTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvailableTitle.ForeColor = System.Drawing.Color.Green;
+            this.lblAvailableTitle.Location = new System.Drawing.Point(461, 12);
+            this.lblAvailableTitle.Name = "lblAvailableTitle";
+            this.lblAvailableTitle.Size = new System.Drawing.Size(87, 21);
+            this.lblAvailableTitle.TabIndex = 36;
+            this.lblAvailableTitle.Text = "Available :";
+            // 
+            // lblPendingTitle
+            // 
+            this.lblPendingTitle.AutoSize = true;
+            this.lblPendingTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblPendingTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPendingTitle.ForeColor = System.Drawing.Color.Red;
+            this.lblPendingTitle.Location = new System.Drawing.Point(693, 12);
+            this.lblPendingTitle.Name = "lblPendingTitle";
+            this.lblPendingTitle.Size = new System.Drawing.Size(77, 21);
+            this.lblPendingTitle.TabIndex = 34;
+            this.lblPendingTitle.Text = "Pending :";
+            // 
+            // lblTotalRequests
+            // 
+            this.lblTotalRequests.AutoSize = true;
+            this.lblTotalRequests.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalRequests.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRequests.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lblTotalRequests.Location = new System.Drawing.Point(345, 12);
+            this.lblTotalRequests.Name = "lblTotalRequests";
+            this.lblTotalRequests.Size = new System.Drawing.Size(24, 21);
+            this.lblTotalRequests.TabIndex = 33;
+            this.lblTotalRequests.Text = "??";
+            // 
+            // lblTotalRequestsTitle
+            // 
+            this.lblTotalRequestsTitle.AutoSize = true;
+            this.lblTotalRequestsTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTotalRequestsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRequestsTitle.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lblTotalRequestsTitle.Location = new System.Drawing.Point(215, 12);
+            this.lblTotalRequestsTitle.Name = "lblTotalRequestsTitle";
+            this.lblTotalRequestsTitle.Size = new System.Drawing.Size(124, 21);
+            this.lblTotalRequestsTitle.TabIndex = 32;
+            this.lblTotalRequestsTitle.Text = "Total Requests :";
+            // 
             // frmCustomerRequests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
-            this.ClientSize = new System.Drawing.Size(1288, 582);
+            this.ClientSize = new System.Drawing.Size(1288, 678);
+            this.Controls.Add(this.pnlStatistics);
             this.Controls.Add(this.lblOrderBy);
             this.Controls.Add(this.rdbStatus);
             this.Controls.Add(this.rdbDate);
@@ -275,6 +402,8 @@
             this.Load += new System.EventHandler(this.frmCustomerRequests_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).EndInit();
             this.cmsOrderOptions.ResumeLayout(false);
+            this.pnlStatistics.ResumeLayout(false);
+            this.pnlStatistics.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,5 +425,14 @@
         private System.Windows.Forms.RadioButton rdbDate;
         private System.Windows.Forms.RadioButton rdbStatus;
         private System.Windows.Forms.Label lblOrderBy;
+        private System.Windows.Forms.Panel pnlStatistics;
+        private System.Windows.Forms.Label lblPending;
+        private System.Windows.Forms.Label lblPendingTitle;
+        private System.Windows.Forms.Label lblTotalRequests;
+        private System.Windows.Forms.Label lblTotalRequestsTitle;
+        private System.Windows.Forms.Label lblNotified;
+        private System.Windows.Forms.Label lblNotifiedTitle;
+        private System.Windows.Forms.Label lblAvailable;
+        private System.Windows.Forms.Label lblAvailableTitle;
     }
 }

@@ -94,6 +94,7 @@
             this.btnRequests = new System.Windows.Forms.Button();
             this.pnlNavBar = new System.Windows.Forms.Panel();
             this.btnCustomers = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -112,6 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnlNavBar.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -132,6 +134,7 @@
             // 
             // lblCurrentUser
             // 
+            this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCurrentUser.AutoSize = true;
             this.lblCurrentUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCurrentUser.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,6 +147,7 @@
             // 
             // lblUserName
             // 
+            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUserName.AutoSize = true;
             this.lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -169,6 +173,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_exit_60;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -181,6 +186,7 @@
             // 
             // btnMinimize
             // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_minimize_90;
             this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -219,9 +225,10 @@
             this.pnlItemsList.Controls.Add(this.pcbItemsList);
             this.pnlItemsList.Controls.Add(this.lblItemsListTitle);
             this.pnlItemsList.Controls.Add(this.pnlAllItemsSep);
-            this.pnlItemsList.Location = new System.Drawing.Point(6, 128);
+            this.pnlItemsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlItemsList.Location = new System.Drawing.Point(3, 3);
             this.pnlItemsList.Name = "pnlItemsList";
-            this.pnlItemsList.Size = new System.Drawing.Size(664, 586);
+            this.pnlItemsList.Size = new System.Drawing.Size(664, 578);
             this.pnlItemsList.TabIndex = 2;
             // 
             // btnClearNewItems
@@ -468,9 +475,10 @@
             this.pnlGroupsList.Controls.Add(this.pcbGroupsList);
             this.pnlGroupsList.Controls.Add(this.pnlGroupsListSep);
             this.pnlGroupsList.Controls.Add(this.lblGroupsListTitle);
-            this.pnlGroupsList.Location = new System.Drawing.Point(676, 128);
+            this.pnlGroupsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlGroupsList.Location = new System.Drawing.Point(673, 3);
             this.pnlGroupsList.Name = "pnlGroupsList";
-            this.pnlGroupsList.Size = new System.Drawing.Size(664, 586);
+            this.pnlGroupsList.Size = new System.Drawing.Size(664, 578);
             this.pnlGroupsList.TabIndex = 3;
             // 
             // btnRemoveItems
@@ -733,6 +741,9 @@
             // 
             // pnlAction
             // 
+            this.pnlAction.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlAction.AutoSize = true;
             this.pnlAction.BackColor = System.Drawing.Color.White;
             this.pnlAction.Controls.Add(this.lblLastStockUpdateTitle);
             this.pnlAction.Controls.Add(this.lblLastStockUpdate);
@@ -746,6 +757,8 @@
             // 
             // lblLastStockUpdateTitle
             // 
+            this.lblLastStockUpdateTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastStockUpdateTitle.AutoSize = true;
             this.lblLastStockUpdateTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLastStockUpdateTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -758,6 +771,8 @@
             // 
             // lblLastStockUpdate
             // 
+            this.lblLastStockUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastStockUpdate.AutoSize = true;
             this.lblLastStockUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLastStockUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
@@ -863,6 +878,9 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.lklShowCheckingHistory);
             this.panel1.Controls.Add(this.lblLastGroupChecked);
@@ -930,6 +948,8 @@
             // 
             // pnlNavBar
             // 
+            this.pnlNavBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlNavBar.BackColor = System.Drawing.Color.White;
             this.pnlNavBar.Controls.Add(this.btnCustomers);
             this.pnlNavBar.Controls.Add(this.btnRequests);
@@ -958,18 +978,36 @@
             this.btnCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCustomers.UseVisualStyleBackColor = false;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.pnlItemsList, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pnlGroupsList, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 125);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1340, 584);
+            this.tableLayoutPanel1.TabIndex = 32;
+            // 
             // frmMainScreen
             // 
             this.AcceptButton = this.btnAddToGroup;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
             this.ClientSize = new System.Drawing.Size(1347, 759);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pnlNavBar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlAction);
-            this.Controls.Add(this.pnlGroupsList);
-            this.Controls.Add(this.pnlItemsList);
             this.Controls.Add(this.pcbIcon);
             this.Controls.Add(this.pnlTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -979,6 +1017,7 @@
             this.Name = "frmMainScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CheckPoint Manager";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMainScreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMainScreen_KeyDown);
             this.pnlTop.ResumeLayout(false);
@@ -1005,7 +1044,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlNavBar.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1071,5 +1112,6 @@
         private System.Windows.Forms.Button btnRequests;
         private System.Windows.Forms.Panel pnlNavBar;
         private System.Windows.Forms.Button btnCustomers;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
