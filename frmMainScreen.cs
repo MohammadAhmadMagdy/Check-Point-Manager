@@ -1256,5 +1256,10 @@ namespace Check_Point_Manager
             frmCustomerRequests frm = new frmCustomerRequests();
             frm.ShowDialog();
         }
+
+        private void frmMainScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            clsUtil.BackupDatabaseWithAutoCleanAsync();
+        }
     }
 }

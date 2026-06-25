@@ -228,7 +228,7 @@
             this.pnlItemsList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlItemsList.Location = new System.Drawing.Point(3, 3);
             this.pnlItemsList.Name = "pnlItemsList";
-            this.pnlItemsList.Size = new System.Drawing.Size(664, 578);
+            this.pnlItemsList.Size = new System.Drawing.Size(664, 585);
             this.pnlItemsList.TabIndex = 2;
             // 
             // btnClearNewItems
@@ -478,7 +478,7 @@
             this.pnlGroupsList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGroupsList.Location = new System.Drawing.Point(673, 3);
             this.pnlGroupsList.Name = "pnlGroupsList";
-            this.pnlGroupsList.Size = new System.Drawing.Size(664, 578);
+            this.pnlGroupsList.Size = new System.Drawing.Size(664, 585);
             this.pnlGroupsList.TabIndex = 3;
             // 
             // btnRemoveItems
@@ -993,7 +993,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1340, 584);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1340, 591);
             this.tableLayoutPanel1.TabIndex = 32;
             // 
             // frmMainScreen
@@ -1017,6 +1017,7 @@
             this.Name = "frmMainScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CheckPoint Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainScreen_FormClosing);
             this.Load += new System.EventHandler(this.frmMainScreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMainScreen_KeyDown);
             this.pnlTop.ResumeLayout(false);
