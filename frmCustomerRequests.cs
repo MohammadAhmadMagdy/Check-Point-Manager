@@ -416,13 +416,45 @@ namespace Check_Point_Manager
 
             if (OrderID == -1) return;
 
-            if (!clsCustomerOrder.RevertNotified(OrderID))
+            clsCustomerOrder Order = clsCustomerOrder.FindByID(OrderID);
+
+            if (Order == null)
             {
-                MessageBox.Show("Error performing revert notification !","Error",MessageBoxButtons.OK
-                    ,MessageBoxIcon.Error);
+                MessageBox.Show("Order Not Found !", "Error", MessageBoxButtons.OK
+                       , MessageBoxIcon.Error);
+                return;
             }
 
-            _LoadRequestsTable();
+            bool IsAvailable = false;
+
+            if (Order.ItemInfo != null)
+            {
+                IsAvailable = (Order.ItemInfo.Qty > 0 || Order.ItemInfo.LzQty > 0);
+            }
+            else
+            {
+                IsAvailable = false;
+            }
+
+
+            if (IsAvailable)
+            {
+                if (!clsCustomerOrder.RevertNotifiedToAvailable(OrderID))
+                {
+                    MessageBox.Show("Error performing revert notification !", "Error", MessageBoxButtons.OK
+                        , MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                if (!clsCustomerOrder.RevertOrderNotifiedToPending(OrderID))
+                {
+                    MessageBox.Show("Error performing revert notification !", "Error", MessageBoxButtons.OK
+                        , MessageBoxIcon.Error);
+                }
+            }
+
+                _LoadRequestsTable();
         }
         private void dgvAllRequests_MouseDown(object sender, MouseEventArgs e)
         {
@@ -506,7 +538,50 @@ namespace Check_Point_Manager
 
         }
 
-       
+        private void markAsNotifiedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int OrderID = Convert.ToInt32(dgvAllRequests.CurrentRow.Cells["OrderID"].Value);
+
+            if (OrderID == -1) return;
+
+            if (!clsCustomerOrder.MarkAsNotified(OrderID))
+            {
+                MessageBox.Show("Error while marking as notified !", "Error", MessageBoxButtons.OK
+                    , MessageBoxIcon.Error);
+            }
+
+            _LoadRequestsTable();
+        }
+
+        private void deleteRequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int OrderID = Convert.ToInt32(dgvAllRequests.CurrentRow.Cells["OrderID"].Value);
+
+            if (OrderID == -1) return;
+
+            clsCustomerOrder Order = clsCustomerOrder.FindByID(OrderID);
+
+            if (Order == null) return;
+
+            string CustomerName = clsCustomer.FindByID(Order.CustomerID).CustomerName;
+
+            if (MessageBox.Show($"Are you sure you want to delete this request for \"{CustomerName}\"? ", "Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (!clsCustomerOrder.Delete(OrderID))
+                {
+                    MessageBox.Show("Error while Deleting Request !", "Error", MessageBoxButtons.OK
+                    , MessageBoxIcon.Error);
+                }
+
+                MessageBox.Show("Request Deleted Successfully", "Success", MessageBoxButtons.OK
+                    , MessageBoxIcon.Information);
+
+                _LoadRequestsTable();
+            }
+            else
+                return;
+        }
     }
 }
 

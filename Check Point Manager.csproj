@@ -53,6 +53,9 @@
     <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
@@ -70,6 +73,7 @@
     <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Design" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -276,7 +280,6 @@
     <Resource Include="Resources\icons8-clipboard-64.png" />
     <Resource Include="Resources\icons8-clipboard-writing-25.png" />
     <Resource Include="Resources\icons8-clipboard-writing-48.png" />
-    <None Include="Resources\icons8-open-folder-25.png" />
     <None Include="Resources\icons8-open-folder-32.png" />
     <Resource Include="Resources\left-arrow-60.png" />
     <Resource Include="Resources\right-arrow-60.png" />
@@ -311,6 +314,17 @@
     <Resource Include="Resources\users-20.png" />
     <Resource Include="Resources\customers-20.png" />
     <Resource Include="Resources\Orders-20.png" />
+    <Resource Include="Resources\icons8-update-25.png" />
+    <Resource Include="Resources\icons8-magnifying-25.png" />
+    <Resource Include="Resources\icons8-delete-25.png" />
+    <Resource Include="Resources\icons8-open-folder-25.png" />
+    <Resource Include="Resources\icons8-restart-25.png" />
+    <Resource Include="Resources\icons8-trash-25.png" />
+    <Resource Include="Resources\icons8-save-25.png" />
+    <Resource Include="Resources\icons8-print-25.png" />
+    <Resource Include="Resources\icons8-outgoing-call-25.png" />
+    <Resource Include="Resources\icons8-user-groups-25.png" />
+    <Resource Include="Resources\icons8-commercial-25.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

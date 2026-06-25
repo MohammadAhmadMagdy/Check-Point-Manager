@@ -34,6 +34,7 @@
             this.dgvAllRequests = new System.Windows.Forms.DataGridView();
             this.cmsOrderOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.revertNotifiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.markAsNotifiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
@@ -54,6 +55,7 @@
             this.lblPendingTitle = new System.Windows.Forms.Label();
             this.lblTotalRequests = new System.Windows.Forms.Label();
             this.lblTotalRequestsTitle = new System.Windows.Forms.Label();
+            this.deleteRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllRequests)).BeginInit();
             this.cmsOrderOptions.SuspendLayout();
             this.pnlStatistics.SuspendLayout();
@@ -98,17 +100,27 @@
             // cmsOrderOptions
             // 
             this.cmsOrderOptions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.revertNotifiedToolStripMenuItem});
+            this.markAsNotifiedToolStripMenuItem,
+            this.revertNotifiedToolStripMenuItem,
+            this.deleteRequestToolStripMenuItem});
             this.cmsOrderOptions.Name = "cmsOrderOptions";
-            this.cmsOrderOptions.Size = new System.Drawing.Size(154, 26);
+            this.cmsOrderOptions.Size = new System.Drawing.Size(181, 92);
             // 
             // revertNotifiedToolStripMenuItem
             // 
             this.revertNotifiedToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.remove_red_32;
             this.revertNotifiedToolStripMenuItem.Name = "revertNotifiedToolStripMenuItem";
-            this.revertNotifiedToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.revertNotifiedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.revertNotifiedToolStripMenuItem.Text = "Revert Notified";
             this.revertNotifiedToolStripMenuItem.Click += new System.EventHandler(this.revertNotifiedToolStripMenuItem_Click);
+            // 
+            // markAsNotifiedToolStripMenuItem
+            // 
+            this.markAsNotifiedToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.right;
+            this.markAsNotifiedToolStripMenuItem.Name = "markAsNotifiedToolStripMenuItem";
+            this.markAsNotifiedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.markAsNotifiedToolStripMenuItem.Text = "Mark as Notified";
+            this.markAsNotifiedToolStripMenuItem.Click += new System.EventHandler(this.markAsNotifiedToolStripMenuItem_Click);
             // 
             // btnUpdate
             // 
@@ -376,6 +388,14 @@
             this.lblTotalRequestsTitle.TabIndex = 32;
             this.lblTotalRequestsTitle.Text = "Total Requests :";
             // 
+            // deleteRequestToolStripMenuItem
+            // 
+            this.deleteRequestToolStripMenuItem.Image = global::Check_Point_Manager.Properties.Resources.icons8_trash_25;
+            this.deleteRequestToolStripMenuItem.Name = "deleteRequestToolStripMenuItem";
+            this.deleteRequestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteRequestToolStripMenuItem.Text = "Delete Request";
+            this.deleteRequestToolStripMenuItem.Click += new System.EventHandler(this.deleteRequestToolStripMenuItem_Click);
+            // 
             // frmCustomerRequests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,5 +454,7 @@
         private System.Windows.Forms.Label lblNotifiedTitle;
         private System.Windows.Forms.Label lblAvailable;
         private System.Windows.Forms.Label lblAvailableTitle;
+        private System.Windows.Forms.ToolStripMenuItem markAsNotifiedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteRequestToolStripMenuItem;
     }
 }

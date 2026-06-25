@@ -18,7 +18,7 @@ namespace CheckPointBusinessLayer
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
         public int ItemCode { get; set; }
-        public clsItem ItemInfo;
+        public clsItem ItemInfo {  get; set; }
         public string ItemDescription { get; set; }
         public DateTime OrderDate { get; set; }
         public enStatus Status { get; set; }
@@ -164,14 +164,22 @@ namespace CheckPointBusinessLayer
         {
             return clsCustomerOrderDataAccess.MarkOrderAsNotified(this.OrderID);
         }
-        public static bool RevertNotified(int OrderID)
+        public static bool RevertNotifiedToAvailable(int OrderID)
         {
-            return clsCustomerOrderDataAccess.RevertOrderNotified(OrderID);
+            return clsCustomerOrderDataAccess.RevertOrderNotifiedToAvailable(OrderID);
         }
 
-        public bool RevertNotified()
+        public bool RevertNotifiedToAvailable()
         {
-            return clsCustomerOrderDataAccess.RevertOrderNotified(this.OrderID);
+            return clsCustomerOrderDataAccess.RevertOrderNotifiedToAvailable(this.OrderID);
+        }
+        public static bool RevertOrderNotifiedToPending(int OrderID)
+        {
+            return clsCustomerOrderDataAccess.RevertOrderNotifiedToPending(OrderID);
+        }
+        public bool RevertOrderNotifiedToPending()
+        {
+            return clsCustomerOrderDataAccess.RevertOrderNotifiedToPending(this.OrderID);
         }
 
         public static bool Delete(int OrderID)
