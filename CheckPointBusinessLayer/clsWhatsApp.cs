@@ -31,8 +31,9 @@ namespace CheckPointBusinessLayer
                     : "No Description Available";
             }
 
-           
-            _NotifyViaWhatsAppWeb(Customer.PhoneNumber, Customer.CustomerName, ItemDescription);
+            decimal? Price = Order.ItemInfo?.RetailPrice;
+
+            _NotifyViaWhatsAppWeb(Customer.PhoneNumber, Customer.CustomerName, ItemDescription, Price);
 
             
             return clsCustomerOrderDataAccess.MarkOrderAsNotified(OrderID);
@@ -58,26 +59,32 @@ namespace CheckPointBusinessLayer
 
         
 
-        private static void _NotifyViaWhatsAppWeb(string Phone, string CustomerName, string ItemDescription)
+        private static void _NotifyViaWhatsAppWeb(string Phone, string CustomerName, string ItemDescription, decimal? Price)
         {
             
             Phone = _FormatPhone(Phone);
+
+            string PriceLineAr = Price.HasValue ? $"💰 السعر: {Price.Value:0.000} ريال عماني\n\n" : "\n";
+            string PriceLineEn = Price.HasValue ? $"💰 Price: {Price.Value:0.000} OMR\n\n" : "\n";
 
             string Message = Uri.EscapeDataString(
                              $"🌿 *صيدلية طيبا - فرع صحار*\n\n" +
                              $"السلام عليكم {CustomerName} 👋\n\n" +
                              $"يسعدنا إخبارك بأن المنتج الذي طلبته:\n" +
-                             $"📦 *{ItemDescription}*\n\n" +
+                             $"📦 *{ItemDescription}*\n" +
+                             PriceLineAr +
                              $"أصبح متوفراً لدينا الآن.\n" +
                              $"نتطلع لخدمتكم في أقرب وقت.\n\n" +
                              $"━━━━━━━━━━━━━━━━━━\n\n" +
                              $"🌿 *Taiba Pharmacy - Sohar Branch*\n\n" +
                              $"Dear {CustomerName},\n\n" +
                              $"We're pleased to inform you that the item you requested:\n" +
-                             $"📦 *{ItemDescription}*\n\n" +
+                             $"📦 *{ItemDescription}*\n" +
+                             PriceLineEn +
                              $"is now available in our pharmacy.\n" +
                              $"We look forward to serving you soon."
                             );
+
 
             Process.Start(new ProcessStartInfo
             {
