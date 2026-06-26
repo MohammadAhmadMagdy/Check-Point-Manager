@@ -10,11 +10,10 @@ namespace CheckPointBusinessLayer
 {
     public class clsWhatsApp
     {
-        // ★ الميثود الرئيسية — الـ UI يستدعي هذه فقط
-        // عند الانتقال للـ API لاحقاً — تغيير هذه الميثود فقط
+        
         public static bool NotifyCustomer(int OrderID)
         {
-            // جلب بيانات الطلب والعميل
+            
             clsCustomerOrder Order = clsCustomerOrder.FindByID(OrderID);
             if (Order == null)
                 return false;
@@ -32,15 +31,14 @@ namespace CheckPointBusinessLayer
                     : "No Description Available";
             }
 
-            // إرسال الإشعار
+           
             _NotifyViaWhatsAppWeb(Customer.PhoneNumber, Customer.CustomerName, ItemDescription);
 
-            // تسجيل أن العميل تم إبلاغه
+            
             return clsCustomerOrderDataAccess.MarkOrderAsNotified(OrderID);
         }
 
-        // ★ إرسال كل الطلبات المتوفرة دفعة واحدة
-        // ترجع عدد الإشعارات التي تم إرسالها
+        
         public static int NotifyAllAvailable()
         {
             System.Data.DataTable AvailableOrders = clsCustomerOrder.GetAvailableOrders();
@@ -58,7 +56,7 @@ namespace CheckPointBusinessLayer
             return NotifiedCount;
         }
 
-        // ── Private ───────────────────────────────────────────────────────
+        
 
         private static void _NotifyViaWhatsAppWeb(string Phone, string CustomerName, string ItemDescription)
         {
@@ -88,7 +86,7 @@ namespace CheckPointBusinessLayer
             });
         }
 
-        // جاهزة للمستقبل — فقط اكتب المنطق هنا عند الانتقال للـ API
+        
         private static bool _NotifyViaAPI(string Phone, string CustomerName, string ItemDescription)
         {
             throw new NotImplementedException("API notification not implemented yet.");
@@ -96,10 +94,10 @@ namespace CheckPointBusinessLayer
 
         private static string _FormatPhone(string Phone)
         {
-            // إزالة أي مسافات أو رموز
+           
             Phone = Phone.Trim().Replace(" ", "").Replace("-", "").Replace("+", "");
 
-            // لو الرقم 8 أرقام (عُماني بدون كود) أضف 968
+            
             if (Phone.Length == 8)
                 Phone = "968" + Phone;
 

@@ -21,7 +21,7 @@ namespace Check_Point_Manager
                     if (!File.Exists(sourceFile)) return;
 
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    string targetFolder = Path.Combine(desktopPath, "Check Point Update");
+                    string targetFolder = Path.Combine(desktopPath, @"Check Point Update\db_Backup");
 
                     if (!Directory.Exists(targetFolder))
                     {
