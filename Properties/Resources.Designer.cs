@@ -1093,6 +1093,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap talabat_25 {
+            get {
+                object obj = ResourceManager.GetObject("talabat_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap text_bullet_list_add_filled_icon_201781 {
             get {
                 object obj = ResourceManager.GetObject("text_bullet_list_add_filled_icon_201781", resourceCulture);

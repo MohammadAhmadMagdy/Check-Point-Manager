@@ -24,7 +24,7 @@ namespace CheckPointDataAccessLayer
                                  Users.UserName AS CreatedByUserName
                              FROM Customers
                              LEFT JOIN Users ON Customers.CreatedByUserID = Users.UserID
-                             ORDER BY Customers.CustomerName";
+                             ORDER BY Customers.CustomerID";
 
             using (var Connection = clsDataAccessSettings.GetConnection())
             using (var Command = new SQLiteCommand(Query, Connection))

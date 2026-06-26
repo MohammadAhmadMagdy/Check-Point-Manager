@@ -133,6 +133,12 @@
     <Compile Include="frmCustomerRequests.Designer.cs">
       <DependentUpon>frmCustomerRequests.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCustomersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomersList.Designer.cs">
+      <DependentUpon>frmCustomersList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,12 @@
     </Compile>
     <Compile Include="frmRecordItemVariation.Designer.cs">
       <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTalabatSync.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTalabatSync.Designer.cs">
+      <DependentUpon>frmTalabatSync.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUsersList.cs">
       <SubType>Form</SubType>
@@ -195,6 +207,9 @@
     <EmbeddedResource Include="frmCustomerRequests.resx">
       <DependentUpon>frmCustomerRequests.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomersList.resx">
+      <DependentUpon>frmCustomersList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRecordItemVariation.resx">
       <DependentUpon>frmRecordItemVariation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTalabatSync.resx">
+      <DependentUpon>frmTalabatSync.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsersList.resx">
       <DependentUpon>frmUsersList.cs</DependentUpon>
@@ -326,6 +344,7 @@
     <Resource Include="Resources\icons8-outgoing-call-25.png" />
     <Resource Include="Resources\icons8-user-groups-25.png" />
     <Resource Include="Resources\icons8-commercial-25.png" />
+    <Resource Include="Resources\talabat-25.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

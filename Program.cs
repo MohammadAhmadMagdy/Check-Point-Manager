@@ -26,6 +26,8 @@ namespace Check_Point_Manager
              //Application.Run(new frmCustomerRequests());
            Application.Run(new frmLogin());
             //Application.Run(new frmMainScreen());
+            // Application.Run(new frmCustomersList());
+           // Application.Run(new frmTalabatSync());
         }
     }
 }

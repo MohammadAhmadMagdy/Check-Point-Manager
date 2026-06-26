@@ -93,6 +93,7 @@
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
             this.btnRequests = new System.Windows.Forms.Button();
             this.pnlNavBar = new System.Windows.Forms.Panel();
+            this.btnTalabatSync = new System.Windows.Forms.Button();
             this.btnCustomers = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlTop.SuspendLayout();
@@ -951,6 +952,7 @@
             this.pnlNavBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlNavBar.BackColor = System.Drawing.Color.White;
+            this.pnlNavBar.Controls.Add(this.btnTalabatSync);
             this.pnlNavBar.Controls.Add(this.btnCustomers);
             this.pnlNavBar.Controls.Add(this.btnRequests);
             this.pnlNavBar.Controls.Add(this.btnUsers);
@@ -958,6 +960,26 @@
             this.pnlNavBar.Name = "pnlNavBar";
             this.pnlNavBar.Size = new System.Drawing.Size(1334, 33);
             this.pnlNavBar.TabIndex = 6;
+            // 
+            // btnTalabatSync
+            // 
+            this.btnTalabatSync.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnTalabatSync.FlatAppearance.BorderSize = 0;
+            this.btnTalabatSync.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.btnTalabatSync.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.btnTalabatSync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTalabatSync.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTalabatSync.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnTalabatSync.Image = global::Check_Point_Manager.Properties.Resources.talabat_25;
+            this.btnTalabatSync.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnTalabatSync.Location = new System.Drawing.Point(329, 0);
+            this.btnTalabatSync.Name = "btnTalabatSync";
+            this.btnTalabatSync.Size = new System.Drawing.Size(133, 33);
+            this.btnTalabatSync.TabIndex = 37;
+            this.btnTalabatSync.Text = "Talabat Sync";
+            this.btnTalabatSync.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTalabatSync.UseVisualStyleBackColor = false;
+            this.btnTalabatSync.Click += new System.EventHandler(this.btnTalabatSync_Click);
             // 
             // btnCustomers
             // 
@@ -977,6 +999,7 @@
             this.btnCustomers.Text = "Customers";
             this.btnCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCustomers.UseVisualStyleBackColor = false;
+            this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -1113,5 +1136,6 @@
         private System.Windows.Forms.Panel pnlNavBar;
         private System.Windows.Forms.Button btnCustomers;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnTalabatSync;
     }
 }

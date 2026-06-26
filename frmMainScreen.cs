@@ -1261,5 +1261,17 @@ namespace Check_Point_Manager
         {
             clsUtil.BackupDatabaseWithAutoCleanAsync();
         }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            frmCustomersList frm = new frmCustomersList();
+            frm.ShowDialog();
+        }
+
+        private void btnTalabatSync_Click(object sender, EventArgs e)
+        {
+            frmTalabatSync frm = new frmTalabatSync();
+            frm.ShowDialog();
+        }
     }
 }
