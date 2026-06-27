@@ -56,8 +56,8 @@ namespace Check_Point_Manager
         private void _InitializeQuantityPolicyOptions()
         {
             cmbSingleQtyPolicy.Items.Clear();
-            cmbSingleQtyPolicy.Items.Add("Treat Quantity (1) as Available (ONES)");
-            cmbSingleQtyPolicy.Items.Add("Treat Quantity (1) as Out of Stock (ZEROS)");
+            cmbSingleQtyPolicy.Items.Add("Show Last Piece");
+            cmbSingleQtyPolicy.Items.Add("Hide Last Piece");
             cmbSingleQtyPolicy.SelectedIndex = 0; // Default
         }
 
@@ -186,8 +186,7 @@ namespace Check_Point_Manager
                 MessageBox.Show($"Synchronization Done successfully!\n\n" +
                                 $"Total in WhiteList: {includedItems.Count}\n" +
                                 $"Displayed in ZEROS: {zerosList.Count}\n" +
-                                $"Displayed in ONES: {onesList.Count}\n\n" +
-                                $"📊 الحسبة الآن: {zerosList.Count} + {onesList.Count} = {zerosList.Count + onesList.Count} صنف تم توزيعهم بالكامل دون تجاهل أي كود!",
+                                $"Displayed in ONES: {onesList.Count}\n\n",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
