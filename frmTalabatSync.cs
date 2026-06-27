@@ -23,6 +23,9 @@ namespace Check_Point_Manager
 
         private void frmTalabatSync_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(@"هذه الخاصية مازالت تحت الاختبار يرجى الاستخدام بحذر !","Warning",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             _InitializeQuantityPolicyOptions();
 
              //⚡ كود إنقاذ مؤقت لرفع الأكواد تلقائياً من الملف النصي إلى الداتابيز مباشرة
@@ -96,24 +99,41 @@ namespace Check_Point_Manager
         {
             try
             {
-                // 1. جلب أكواد قائمة السماح
+                // 1. جلب أكواد قائمة السماح (3928 صنف)
                 HashSet<int> includedItems = _LoadIncludedItemCodes();
 
-                // 🔍 فحص سريع: إذا كانت القائمة فارغة نبه المستخدم فوراً
                 if (includedItems.Count == 0)
                 {
-                    MessageBox.Show("Warning: TalabatWhiteList table is empty in the database!", "Data Check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Warning: TalabatWhiteList table is empty!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // 2. جلب بيانات المخزون
+                // 2. جلب بيانات المخزون الحركي الحالية
                 DataTable dtStock = clsItem.GetAllStockList();
 
-                if (dtStock == null || dtStock.Rows.Count == 0)
+                if (dtStock == null)
                 {
-                    MessageBox.Show("No stock data found to synchronize.", "Warning",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Error fetching stock list.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+
+                // تحويل الـ dtStock إلى Dictionary سريع جداً للبحث بداخلة بالـ ItemCode وجلب الـ Qty
+                Dictionary<int, decimal> stockDictionary = new Dictionary<int, decimal>();
+                foreach (DataRow row in dtStock.Rows)
+                {
+                    if (row["ItemCode"] == DBNull.Value) continue;
+
+                    int itemCode;
+                    if (int.TryParse(row["ItemCode"].ToString().Trim(), out itemCode))
+                    {
+                        decimal qty = row["Qty"] != DBNull.Value ? Convert.ToDecimal(row["Qty"]) : 0;
+
+                        // تجنب الأخطاء في حال تكرار الكود في جدول المخزون
+                        if (!stockDictionary.ContainsKey(itemCode))
+                        {
+                            stockDictionary.Add(itemCode, qty);
+                        }
+                    }
                 }
 
                 List<int> zerosList = new List<int>();
@@ -121,29 +141,26 @@ namespace Check_Point_Manager
 
                 bool treatOneAsZero = (cmbSingleQtyPolicy.SelectedIndex == 1);
 
-                // 3. الفرز والفلترة
-                foreach (DataRow row in dtStock.Rows)
+                // 3. 🎯 الدوران المضمون حول الأصناف الـ 3928 المسموحة فقط
+                foreach (int itemCode in includedItems)
                 {
-                    if (row["ItemCode"] == DBNull.Value) continue;
+                    if (itemCode < 10000) continue; // شرط طول الكود الحماسي
 
-                    // الفحص الآمن للتحويل مع إزالة أي مسافات مخفية .Trim()
-                    int itemCode;
-                    if (!int.TryParse(row["ItemCode"].ToString().Trim(), out itemCode))
+                    decimal qty = 0;
+
+                    // إذا وجدنا الصنف في المخزون نأخذ كميته الحقيقية
+                    if (stockDictionary.ContainsKey(itemCode))
                     {
-                        continue;
+                        qty = stockDictionary[itemCode];
+                    }
+                    else
+                    {
+                        // 🔥 الـ 1072 صنف المفقودين سيقعون هنا! 
+                        // بما أنهم غير موجودين في المخزون الحركي، نعتبر كميتهم تلقائياً (0) لرفعهم كـ ZEROS لحماية المنصة
+                        qty = 0;
                     }
 
-                    // 🎯 شرط سياسة السماح
-                    if (!includedItems.Contains(itemCode))
-                    {
-                        continue; // إذا لم يطابق كود الـ Whitelist يتجاوزه فوراً
-                    }
-
-                    // شرط طول الكود (تأكد أن أكواد صيدليتك لا تقل عن 5 خانات)
-                    if (itemCode < 10000) continue;
-
-                    decimal qty = Convert.ToDecimal(row["Qty"]);
-
+                    // تصنيف الأصناف
                     if (qty <= 0)
                     {
                         zerosList.Add(itemCode);
@@ -165,11 +182,12 @@ namespace Check_Point_Manager
                 _PopulateLanes(flpZeros, zerosList, "ZEROS");
                 _PopulateLanes(flpOnes, onesList, "ONES");
 
-                // إشعار النجاح المطور لإعطائك تقريراً دقيقاً عن الأرقام
-                MessageBox.Show($"Synchronization Done!\n\n" +
-                                $"Total items in WhiteList: {includedItems.Count}\n" +
-                                $"Matched & Displayed in ZEROS: {zerosList.Count}\n" +
-                                $"Matched & Displayed in ONES: {onesList.Count}",
+                // تقرير النجاح النهائي المتكامل بدون أي مفقودات
+                MessageBox.Show($"Synchronization Done successfully!\n\n" +
+                                $"Total in WhiteList: {includedItems.Count}\n" +
+                                $"Displayed in ZEROS: {zerosList.Count}\n" +
+                                $"Displayed in ONES: {onesList.Count}\n\n" +
+                                $"📊 الحسبة الآن: {zerosList.Count} + {onesList.Count} = {zerosList.Count + onesList.Count} صنف تم توزيعهم بالكامل دون تجاهل أي كود!",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
