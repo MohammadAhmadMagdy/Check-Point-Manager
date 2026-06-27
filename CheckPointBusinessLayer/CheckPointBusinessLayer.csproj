@@ -57,6 +57,7 @@
     <Compile Include="clsItem.cs" />
     <Compile Include="clsItemGroup.cs" />
     <Compile Include="clsSettings.cs" />
+    <Compile Include="clsTalabatWhiteListCode.cs" />
     <Compile Include="clsUser.cs" />
     <Compile Include="clsWhatsApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
