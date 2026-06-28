@@ -51,7 +51,7 @@ namespace Check_Point_Manager
             lblCustomerID.Text = "[????]";
             lblCustomerInfoName.Text = "[????]";
             lblCustomerInfoPhone.Text = "[????]";
-            lblCreatedDate.Text = DateTime.Now.ToString("D");
+            lblCreatedDate.Text = DateTime.Now.ToString("d/M/yyyy");
             lblCreatedBy.Text = clsUser.Current?.UserName ?? "";
             lblInfoNotes.Text = "[????]";
         }
@@ -68,7 +68,7 @@ namespace Check_Point_Manager
             lblCustomerID.Text = _Customer.CustomerID.ToString();
             lblCustomerInfoName.Text = _Customer.CustomerName;
             lblCustomerInfoPhone.Text = _Customer.PhoneNumber;
-            lblCreatedDate.Text = _Customer.CreatedDate.ToShortDateString();
+            lblCreatedDate.Text = _Customer.CreatedDate.ToString("d/M/yyyy");
             lblCreatedBy.Text = clsUser.FindByID(_Customer.CreatedByUserID)?.UserName ??  "";
             lblInfoNotes.Text = _Customer.Notes == "" ? "No notes" : _Customer.Notes;
 
