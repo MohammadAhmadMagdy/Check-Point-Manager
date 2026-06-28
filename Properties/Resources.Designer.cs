@@ -273,6 +273,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap date_25 {
+            get {
+                object obj = ResourceManager.GetObject("date_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap document_6886723 {
             get {
                 object obj = ResourceManager.GetObject("document_6886723", resourceCulture);
@@ -853,6 +863,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap notes_25 {
+            get {
+                object obj = ResourceManager.GetObject("notes_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap numbers_11072538 {
             get {
                 object obj = ResourceManager.GetObject("numbers_11072538", resourceCulture);
@@ -906,6 +926,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap person_25 {
             get {
                 object obj = ResourceManager.GetObject("person_25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap phone_25 {
+            get {
+                object obj = ResourceManager.GetObject("phone_25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

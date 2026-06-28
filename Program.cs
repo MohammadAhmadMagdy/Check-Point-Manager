@@ -16,18 +16,19 @@ namespace Check_Point_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             //Application.Run(new frmListItems());
             //Application.Run(new frmManageListGroup());
             //Application.Run(new frmVariationsList());
             //Application.Run(new frmCheckHistory());
             // Application.Run(new frmUsersList());
             //Application.Run(new frmAddEditUser(5));
-             //Application.Run(new frmCustomerRequests());
-           Application.Run(new frmLogin());
+            //Application.Run(new frmCustomerRequests());
+            Application.Run(new frmLogin());
             //Application.Run(new frmMainScreen());
             // Application.Run(new frmCustomersList());
-           // Application.Run(new frmTalabatSync());
+            // Application.Run(new frmTalabatSync());
+            //Application.Run(new frmAddEditCustomer());
         }
     }
 }

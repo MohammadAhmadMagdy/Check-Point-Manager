@@ -67,14 +67,14 @@ namespace Check_Point_Manager
                 dgvCustomersList.Columns["CustomerID"].Width = 50;
 
                 dgvCustomersList.Columns["CustomerName"].HeaderText = "Name";
-                dgvCustomersList.Columns["CustomerName"].Width = 200;
+                dgvCustomersList.Columns["CustomerName"].Width = 220;
 
                 dgvCustomersList.Columns["PhoneNumber"].HeaderText = "Phone";
-                dgvCustomersList.Columns["PhoneNumber"].Width = 170;
+                dgvCustomersList.Columns["PhoneNumber"].Width = 190;
                 //dgvCustomersList.Columns["PhoneNumber"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dgvCustomersList.Columns["CreatedDate"].HeaderText = "Created Date";
-                dgvCustomersList.Columns["CreatedDate"].Width = 130;
+                dgvCustomersList.Columns["CreatedDate"].Width = 140;
                 dgvCustomersList.Columns["CreatedDate"].DefaultCellStyle.Format = "dd/M/yyyy";
                 //dgvCustomersList.Columns["CreatedDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -91,12 +91,39 @@ namespace Check_Point_Manager
                 dgvCustomersList.Columns["Notes"].Visible = false;
             }
 
-
+            lblTotalCustomers.Text = dgvCustomersList.Rows.Count.ToString();
         }
 
         private void frmCustomersList_Load(object sender, EventArgs e)
         {
             _LoadCustomersList();
+        }
+
+        private void btnAddNewCustomer_Click(object sender, EventArgs e)
+        {
+            frmAddEditCustomer frm = new frmAddEditCustomer();
+            frm.ShowDialog();
+
+            _LoadCustomersList();
+        }
+
+        private void editCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int CustomerID = Convert.ToInt32(dgvCustomersList.CurrentRow.Cells["CustomerID"].Value);
+
+            frmAddEditCustomer frm = new frmAddEditCustomer(CustomerID);
+            frm.ShowDialog();
+
+            _LoadCustomersList();
+        }
+
+        private void dgvCustomersList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dgvCustomersList.ClearSelection();
+                dgvCustomersList.CurrentCell = dgvCustomersList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            }
         }
     }
 }

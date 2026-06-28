@@ -97,6 +97,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsUtil.cs" />
+    <Compile Include="frmAddEditCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditCustomer.Designer.cs">
+      <DependentUpon>frmAddEditCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddEditGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddEditCustomer.resx">
+      <DependentUpon>frmAddEditCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditGroup.resx">
       <DependentUpon>frmAddEditGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,6 +354,9 @@
     <Resource Include="Resources\icons8-user-groups-25.png" />
     <Resource Include="Resources\icons8-commercial-25.png" />
     <Resource Include="Resources\talabat-25.png" />
+    <Resource Include="Resources\phone-25.png" />
+    <Resource Include="Resources\notes-25.png" />
+    <Resource Include="Resources\date-25.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
