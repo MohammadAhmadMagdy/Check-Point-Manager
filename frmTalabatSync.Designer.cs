@@ -36,6 +36,7 @@
             this.gbxOnes = new System.Windows.Forms.GroupBox();
             this.gbxZeros = new System.Windows.Forms.GroupBox();
             this.lblSingleQtyPolicy = new MaterialSkin.Controls.MaterialLabel();
+            this.lblStatus = new MaterialSkin.Controls.MaterialLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbxOnes.SuspendLayout();
             this.gbxZeros.SuspendLayout();
@@ -67,18 +68,18 @@
             // 
             this.flpZeros.AutoScroll = true;
             this.flpZeros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpZeros.Location = new System.Drawing.Point(3, 16);
+            this.flpZeros.Location = new System.Drawing.Point(3, 19);
             this.flpZeros.Name = "flpZeros";
-            this.flpZeros.Size = new System.Drawing.Size(265, 447);
+            this.flpZeros.Size = new System.Drawing.Size(265, 407);
             this.flpZeros.TabIndex = 1;
             // 
             // flpOnes
             // 
             this.flpOnes.AutoScroll = true;
             this.flpOnes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpOnes.Location = new System.Drawing.Point(3, 16);
+            this.flpOnes.Location = new System.Drawing.Point(3, 19);
             this.flpOnes.Name = "flpOnes";
-            this.flpOnes.Size = new System.Drawing.Size(266, 447);
+            this.flpOnes.Size = new System.Drawing.Size(266, 407);
             this.flpOnes.TabIndex = 2;
             // 
             // btnSync
@@ -110,20 +111,21 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.gbxOnes, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbxZeros, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 120);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 157);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(555, 472);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(555, 435);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // gbxOnes
             // 
             this.gbxOnes.Controls.Add(this.flpOnes);
             this.gbxOnes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbxOnes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxOnes.Location = new System.Drawing.Point(280, 3);
             this.gbxOnes.Name = "gbxOnes";
-            this.gbxOnes.Size = new System.Drawing.Size(272, 466);
+            this.gbxOnes.Size = new System.Drawing.Size(272, 429);
             this.gbxOnes.TabIndex = 5;
             this.gbxOnes.TabStop = false;
             this.gbxOnes.Text = "ONES";
@@ -132,9 +134,10 @@
             // 
             this.gbxZeros.Controls.Add(this.flpZeros);
             this.gbxZeros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbxZeros.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxZeros.Location = new System.Drawing.Point(3, 3);
             this.gbxZeros.Name = "gbxZeros";
-            this.gbxZeros.Size = new System.Drawing.Size(271, 466);
+            this.gbxZeros.Size = new System.Drawing.Size(271, 429);
             this.gbxZeros.TabIndex = 5;
             this.gbxZeros.TabStop = false;
             this.gbxZeros.Text = "ZEROS";
@@ -146,7 +149,7 @@
             this.lblSingleQtyPolicy.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lblSingleQtyPolicy.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
             this.lblSingleQtyPolicy.ForeColor = System.Drawing.Color.Coral;
-            this.lblSingleQtyPolicy.Location = new System.Drawing.Point(13, 35);
+            this.lblSingleQtyPolicy.Location = new System.Drawing.Point(15, 32);
             this.lblSingleQtyPolicy.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblSingleQtyPolicy.Name = "lblSingleQtyPolicy";
             this.lblSingleQtyPolicy.Size = new System.Drawing.Size(223, 17);
@@ -154,12 +157,28 @@
             this.lblSingleQtyPolicy.Text = "Choose to Show or Hide last piece :";
             this.lblSingleQtyPolicy.UseAccent = true;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Depth = 0;
+            this.lblStatus.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.lblStatus.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
+            this.lblStatus.ForeColor = System.Drawing.Color.Coral;
+            this.lblStatus.Location = new System.Drawing.Point(15, 127);
+            this.lblStatus.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(42, 17);
+            this.lblStatus.TabIndex = 6;
+            this.lblStatus.Text = "Status";
+            this.lblStatus.UseAccent = true;
+            // 
             // frmTalabatSync
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(580, 604);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblSingleQtyPolicy);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnSync);
@@ -187,5 +206,6 @@
         private System.Windows.Forms.GroupBox gbxZeros;
         private System.Windows.Forms.GroupBox gbxOnes;
         private MaterialSkin.Controls.MaterialLabel lblSingleQtyPolicy;
+        private MaterialSkin.Controls.MaterialLabel lblStatus;
     }
 }

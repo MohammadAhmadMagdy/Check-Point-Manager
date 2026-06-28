@@ -13,7 +13,7 @@ namespace Check_Point_Manager
 {
     public partial class frmTalabatSync : Form
     {
-        // Maximum number of items per chunk (max 999 as requested)
+
         private const int CHUNK_SIZE = 999;
 
         public frmTalabatSync()
@@ -23,15 +23,18 @@ namespace Check_Point_Manager
 
         private void frmTalabatSync_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(@"هذه الخاصية مازالت تحت الاختبار يرجى الاستخدام بحذر !","Warning",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             _InitializeQuantityPolicyOptions();
 
-             //⚡ كود إنقاذ مؤقت لرفع الأكواد تلقائياً من الملف النصي إلى الداتابيز مباشرة
+            lblStatus.Text = "";
+
+            MessageBox.Show(@"هذه الخاصية مازالت تحت الاختبار يرجى الاستخدام بحذر !", "Warning",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+            //⚡ Code to import multiple white list codes from txt file:
             //try
             //{
-            //    string filePath = "New Text Document.txt"; // تأكد من وضع الملف بجانب ملف الـ .exe
+            //    string filePath = "New Text Document.txt"; // put in main directory beside .exe
             //    if (System.IO.File.Exists(filePath))
             //    {
             //        var lines = System.IO.File.ReadAllLines(filePath);
@@ -40,11 +43,11 @@ namespace Check_Point_Manager
             //            int code;
             //            if (int.TryParse(line.Trim(), out code))
             //            {
-            //                // استدعاء دالة الإضافة التي كتبناها في الـ BL
+            //               
             //                clsTalabatWhiteListCode.AddToWhiteList(code);
             //            }
             //        }
-            //        //MessageBox.Show("تم رفع الأكواد بنجاح برمجياً إلى جدول TalabatWhiteList!");
+            //        //MessageBox.Show("Codes imported successfully to TalabatWhiteList!");
             //    }
             //}
             //catch (Exception ex)
@@ -58,7 +61,7 @@ namespace Check_Point_Manager
             cmbSingleQtyPolicy.Items.Clear();
             cmbSingleQtyPolicy.Items.Add("Show Last Piece");
             cmbSingleQtyPolicy.Items.Add("Hide Last Piece");
-            cmbSingleQtyPolicy.SelectedIndex = 0; // Default
+            cmbSingleQtyPolicy.SelectedIndex = 0; 
         }
 
         private void btnSync_Click(object sender, EventArgs e)
@@ -66,14 +69,12 @@ namespace Check_Point_Manager
             _ExecuteSync();
         }
 
-        // 🔄 دالة ميكانيكية لجلب قائمة الأكواد المسموحة فقط (TalabatIncludedItems)
         private HashSet<int> _LoadIncludedItemCodes()
         {
             HashSet<int> includedCodes = new HashSet<int>();
             try
             {
-                // استدعاء دالة جلب المسموحات من طبقة العمل (Business Layer)
-                // تأكد من إضافة دالة GetAllIncludedItemCodes داخل كلاس clsItem في الـ BL
+                
                 DataTable dtIncluded = clsTalabatWhiteListCode.GetAllIncludedItemCodes();
 
                 if (dtIncluded != null)
@@ -94,12 +95,12 @@ namespace Check_Point_Manager
             return includedCodes;
         }
 
-        // 🛠️ الدالة الرئيسية المحدثة تكتيكياً بناءً على سياسة السماح (Whitelist)
+        
         private void _ExecuteSync()
         {
             try
             {
-                // 1. جلب أكواد قائمة السماح (3928 صنف)
+                
                 HashSet<int> includedItems = _LoadIncludedItemCodes();
 
                 if (includedItems.Count == 0)
@@ -108,7 +109,7 @@ namespace Check_Point_Manager
                     return;
                 }
 
-                // 2. جلب بيانات المخزون الحركي الحالية
+                
                 DataTable dtStock = clsItem.GetAllStockList();
 
                 if (dtStock == null)
@@ -117,7 +118,7 @@ namespace Check_Point_Manager
                     return;
                 }
 
-                // تحويل الـ dtStock إلى Dictionary سريع جداً للبحث بداخلة بالـ ItemCode وجلب الـ Qty
+                
                 Dictionary<int, decimal> stockDictionary = new Dictionary<int, decimal>();
                 foreach (DataRow row in dtStock.Rows)
                 {
@@ -128,7 +129,7 @@ namespace Check_Point_Manager
                     {
                         decimal qty = row["Qty"] != DBNull.Value ? Convert.ToDecimal(row["Qty"]) : 0;
 
-                        // تجنب الأخطاء في حال تكرار الكود في جدول المخزون
+                        
                         if (!stockDictionary.ContainsKey(itemCode))
                         {
                             stockDictionary.Add(itemCode, qty);
@@ -141,26 +142,24 @@ namespace Check_Point_Manager
 
                 bool treatOneAsZero = (cmbSingleQtyPolicy.SelectedIndex == 1);
 
-                // 3. 🎯 الدوران المضمون حول الأصناف الـ 3928 المسموحة فقط
+               
                 foreach (int itemCode in includedItems)
                 {
-                    if (itemCode < 10000) continue; // شرط طول الكود الحماسي
+                    if (itemCode < 10000) continue; 
 
                     decimal qty = 0;
 
-                    // إذا وجدنا الصنف في المخزون نأخذ كميته الحقيقية
+                    
                     if (stockDictionary.ContainsKey(itemCode))
                     {
                         qty = stockDictionary[itemCode];
                     }
                     else
                     {
-                        // 🔥 الـ 1072 صنف المفقودين سيقعون هنا! 
-                        // بما أنهم غير موجودين في المخزون الحركي، نعتبر كميتهم تلقائياً (0) لرفعهم كـ ZEROS لحماية المنصة
                         qty = 0;
                     }
 
-                    // تصنيف الأصناف
+          
                     if (qty <= 0)
                     {
                         zerosList.Add(itemCode);
@@ -178,16 +177,19 @@ namespace Check_Point_Manager
                     }
                 }
 
-                // 4. ضخ وتحديث عناصر الواجهة
+
                 _PopulateLanes(flpZeros, zerosList, "ZEROS");
                 _PopulateLanes(flpOnes, onesList, "ONES");
 
-                // تقرير النجاح النهائي المتكامل بدون أي مفقودات
-                MessageBox.Show($"Synchronization Done successfully!\n\n" +
-                                $"Total in WhiteList: {includedItems.Count}\n" +
-                                $"Displayed in ZEROS: {zerosList.Count}\n" +
-                                $"Displayed in ONES: {onesList.Count}\n\n",
-                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblStatus.Text = $"Total Items : {includedItems.Count}";
+                gbxZeros.Text = $"ZEROS: ({zerosList.Count} Items)";
+                gbxOnes.Text = $"ONES: ({onesList.Count} Items)";
+
+                //MessageBox.Show($"Synchronization Done successfully!\n\n" +
+                //                $"Total in WhiteList: {includedItems.Count}\n" +
+                //                $"Displayed in ZEROS: {zerosList.Count}\n" +
+                //                $"Displayed in ONES: {onesList.Count}\n\n",
+                //                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -197,7 +199,7 @@ namespace Check_Point_Manager
 
         private void _PopulateLanes(FlowLayoutPanel panel, List<int> itemsList, string typeName)
         {
-            panel.Controls.Clear(); // تفريغ اللوحة قبل إعادة التحميل
+            panel.Controls.Clear(); 
 
             int chunkIndex = 1;
             for (int i = 0; i < itemsList.Count; i += CHUNK_SIZE)
@@ -223,7 +225,7 @@ namespace Check_Point_Manager
                 btnCopy.Location = new Point(10, 60);
                 btnCopy.Cursor = Cursors.Hand;
                 btnCopy.FlatStyle = FlatStyle.Flat;
-                btnCopy.BackColor = Color.FromArgb(255, 90, 0); // لـون طلبات البرتقالي
+                btnCopy.BackColor = Color.FromArgb(255, 90, 0);
                 btnCopy.ForeColor = Color.White;
                 btnCopy.Font = new Font("Segoe UI", 9, FontStyle.Bold);
 
