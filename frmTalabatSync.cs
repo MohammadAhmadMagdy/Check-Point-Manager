@@ -27,9 +27,6 @@ namespace Check_Point_Manager
 
             lblStatus.Text = "";
 
-            MessageBox.Show(@"هذه الخاصية مازالت تحت الاختبار يرجى الاستخدام بحذر !", "Warning",
-                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
 
             //⚡ Code to import multiple white list codes from txt file:
             //try
