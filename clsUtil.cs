@@ -38,7 +38,7 @@ namespace Check_Point_Manager
               
                     DirectoryInfo directoryInfo = new DirectoryInfo(targetFolder);
                     FileInfo[] files = directoryInfo.GetFiles("Stock_Backup_*.db");
-                    DateTime thresholdDate = DateTime.Now.AddDays(-7);
+                    DateTime thresholdDate = DateTime.Now.AddDays(-3);
 
                     foreach (FileInfo file in files)
                     {

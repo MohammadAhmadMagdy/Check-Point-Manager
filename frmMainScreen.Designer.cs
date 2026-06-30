@@ -893,6 +893,8 @@
             // 
             // lklShowCheckingHistory
             // 
+            this.lklShowCheckingHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lklShowCheckingHistory.AutoSize = true;
             this.lklShowCheckingHistory.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lklShowCheckingHistory.Location = new System.Drawing.Point(1214, 6);

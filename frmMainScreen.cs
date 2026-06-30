@@ -1271,7 +1271,7 @@ namespace Check_Point_Manager
         private void btnTalabatSync_Click(object sender, EventArgs e)
         {
             frmTalabatSync frm = new frmTalabatSync();
-            frm.ShowDialog();
+            frm.Show();
         }
     }
 }
