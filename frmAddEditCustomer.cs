@@ -113,6 +113,17 @@ namespace Check_Point_Manager
                 return;
             }
 
+            if (clsCustomer.DoesPhoneNumberExist(txbPhoneNumber.Text.Trim()))
+            {
+                clsCustomer customer = clsCustomer.FindByPhone(txbPhoneNumber.Text.Trim());
+
+                MessageBox.Show($"Phone number already exists for a customer  named :\n({customer.CustomerName})\nenter another phone number", 
+                    "Phone Number Exists", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txbPhoneNumber.Focus();
+                return;
+            }
+
             _Customer.CustomerName = txbCustomerName.Text.Trim();
             _Customer.PhoneNumber = txbPhoneNumber.Text.Trim();
             _Customer.Notes = txbNotes.Text.Trim();
