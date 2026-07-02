@@ -357,6 +357,15 @@
     <Resource Include="Resources\phone-25.png" />
     <Resource Include="Resources\notes-25.png" />
     <Resource Include="Resources\date-25.png" />
+    <Resource Include="Resources\arrows-rotate-solid.png" />
+    <Resource Include="Resources\Arrow_Update_36.png" />
+    <Resource Include="Resources\Arrow_Update_42.png" />
+    <Resource Include="Resources\Requests_42.png" />
+    <Resource Include="Resources\Customers_42.png" />
+    <Resource Include="Resources\Users_42.png" />
+    <Resource Include="Resources\talabat-42.png" />
+    <Resource Include="Resources\Variations_42.png" />
+    <Resource Include="Resources\Groups_42.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

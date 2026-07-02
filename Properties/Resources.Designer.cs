@@ -153,6 +153,36 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Arrow_Update_36 {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_Update_36", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Arrow_Update_42 {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_Update_42", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrows_rotate_solid {
+            get {
+                object obj = ResourceManager.GetObject("arrows_rotate_solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap article {
             get {
                 object obj = ResourceManager.GetObject("article", resourceCulture);
@@ -236,6 +266,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap customers_20 {
             get {
                 object obj = ResourceManager.GetObject("customers_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Customers_42 {
+            get {
+                object obj = ResourceManager.GetObject("Customers_42", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -416,6 +456,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap folder1 {
             get {
                 object obj = ResourceManager.GetObject("folder1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Groups_42 {
+            get {
+                object obj = ResourceManager.GetObject("Groups_42", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -993,6 +1043,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Requests_42 {
+            get {
+                object obj = ResourceManager.GetObject("Requests_42", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reset_20 {
             get {
                 object obj = ResourceManager.GetObject("reset_20", resourceCulture);
@@ -1133,6 +1193,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap talabat_42 {
+            get {
+                object obj = ResourceManager.GetObject("talabat_42", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap text_bullet_list_add_filled_icon_201781 {
             get {
                 object obj = ResourceManager.GetObject("text_bullet_list_add_filled_icon_201781", resourceCulture);
@@ -1233,6 +1303,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Users_42 {
+            get {
+                object obj = ResourceManager.GetObject("Users_42", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Variation_24 {
             get {
                 object obj = ResourceManager.GetObject("Variation_24", resourceCulture);
@@ -1246,6 +1326,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap Variation_48 {
             get {
                 object obj = ResourceManager.GetObject("Variation_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Variations_42 {
+            get {
+                object obj = ResourceManager.GetObject("Variations_42", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

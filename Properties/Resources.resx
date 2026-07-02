@@ -478,4 +478,31 @@
   <data name="phone_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\phone-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="arrows_rotate_solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrows-rotate-solid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arrow_Update_36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arrow_Update_36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arrow_Update_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arrow_Update_42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Customers_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Customers_42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Groups_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Groups_42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Requests_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Requests_42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="talabat_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\talabat-42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Users_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Users_42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Variations_42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Variations_42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
