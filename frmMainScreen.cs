@@ -60,6 +60,15 @@ namespace Check_Point_Manager
         public frmMainScreen()
         {
             InitializeComponent();
+
+            //maximize but not cover taskbar while no border:
+            this.Bounds = Screen.PrimaryScreen.WorkingArea;
+
+            //this gives the same result to maximize but not cover taskbar:
+
+            //this.StartPosition = FormStartPosition.Manual;
+            //this.Location = Screen.PrimaryScreen.WorkingArea.Location;
+            //this.Size = Screen.PrimaryScreen.WorkingArea.Size;
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
