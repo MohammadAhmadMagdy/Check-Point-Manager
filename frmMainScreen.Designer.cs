@@ -36,14 +36,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainScreen));
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblCurrentUser = new System.Windows.Forms.Label();
+            this.pnlUpdateInfo = new System.Windows.Forms.Panel();
+            this.pcbUpdateInfo = new System.Windows.Forms.PictureBox();
+            this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblAppVersion = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.pnlUpdateInfo = new System.Windows.Forms.Panel();
-            this.pcbUpdateInfo = new System.Windows.Forms.PictureBox();
-            this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.pnlItemsList = new System.Windows.Forms.Panel();
             this.btnClearNewItems = new System.Windows.Forms.Button();
             this.btnVariationList = new System.Windows.Forms.Button();
@@ -143,69 +143,6 @@
             this.lblCurrentUser.TabIndex = 35;
             this.lblCurrentUser.Text = "Current User :";
             // 
-            // lblUserName
-            // 
-            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.ForeColor = System.Drawing.Color.White;
-            this.lblUserName.Location = new System.Drawing.Point(1204, 12);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(20, 17);
-            this.lblUserName.TabIndex = 36;
-            this.lblUserName.Text = "??";
-            // 
-            // lblAppVersion
-            // 
-            this.lblAppVersion.AutoSize = true;
-            this.lblAppVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblAppVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppVersion.ForeColor = System.Drawing.Color.White;
-            this.lblAppVersion.Location = new System.Drawing.Point(250, 14);
-            this.lblAppVersion.Name = "lblAppVersion";
-            this.lblAppVersion.Size = new System.Drawing.Size(26, 15);
-            this.lblAppVersion.TabIndex = 34;
-            this.lblAppVersion.Text = "Ver.";
-            this.lblAppVersion.DoubleClick += new System.EventHandler(this.lblAppVersion_DoubleClick);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_exit_60;
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Location = new System.Drawing.Point(1315, 5);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(25, 24);
-            this.btnExit.TabIndex = 3;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.BackgroundImage = global::Check_Point_Manager.Properties.Resources.icons8_minimize_90;
-            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Location = new System.Drawing.Point(1284, 5);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(25, 24);
-            this.btnMinimize.TabIndex = 2;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
-            // lblHeader
-            // 
-            this.lblHeader.AutoSize = true;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.ForeColor = System.Drawing.Color.White;
-            this.lblHeader.Location = new System.Drawing.Point(35, 2);
-            this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(218, 30);
-            this.lblHeader.TabIndex = 2;
-            this.lblHeader.Text = "Checkpoint Manager";
-            // 
             // pnlUpdateInfo
             // 
             this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
@@ -240,6 +177,71 @@
             this.lblUpdateStatus.Text = "Put the \"Stock\" file inside \"Check Point Update\" folder then press Update Stock b" +
     "utton";
             // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.ForeColor = System.Drawing.Color.White;
+            this.lblUserName.Location = new System.Drawing.Point(1204, 12);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(20, 17);
+            this.lblUserName.TabIndex = 36;
+            this.lblUserName.Text = "??";
+            // 
+            // lblAppVersion
+            // 
+            this.lblAppVersion.AutoSize = true;
+            this.lblAppVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblAppVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppVersion.ForeColor = System.Drawing.Color.White;
+            this.lblAppVersion.Location = new System.Drawing.Point(250, 14);
+            this.lblAppVersion.Name = "lblAppVersion";
+            this.lblAppVersion.Size = new System.Drawing.Size(26, 15);
+            this.lblAppVersion.TabIndex = 34;
+            this.lblAppVersion.Text = "Ver.";
+            this.lblAppVersion.DoubleClick += new System.EventHandler(this.lblAppVersion_DoubleClick);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackgroundImage = global::Check_Point_Manager.Properties.Resources.close_60;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Location = new System.Drawing.Point(1315, 5);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(25, 24);
+            this.btnExit.TabIndex = 3;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.BackgroundImage = global::Check_Point_Manager.Properties.Resources.minimize_60;
+            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Location = new System.Drawing.Point(1284, 5);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(25, 24);
+            this.btnMinimize.TabIndex = 2;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // lblHeader
+            // 
+            this.lblHeader.AutoSize = true;
+            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.ForeColor = System.Drawing.Color.White;
+            this.lblHeader.Location = new System.Drawing.Point(35, 2);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(218, 30);
+            this.lblHeader.TabIndex = 2;
+            this.lblHeader.Text = "Checkpoint Manager";
+            // 
             // pnlItemsList
             // 
             this.pnlItemsList.AutoSize = true;
@@ -261,7 +263,7 @@
             this.pnlItemsList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlItemsList.Location = new System.Drawing.Point(3, 3);
             this.pnlItemsList.Name = "pnlItemsList";
-            this.pnlItemsList.Size = new System.Drawing.Size(664, 585);
+            this.pnlItemsList.Size = new System.Drawing.Size(664, 597);
             this.pnlItemsList.TabIndex = 2;
             // 
             // btnClearNewItems
@@ -280,7 +282,7 @@
             // 
             // btnVariationList
             // 
-            this.btnVariationList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVariationList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVariationList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
             this.btnVariationList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnVariationList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -288,7 +290,7 @@
             this.btnVariationList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
             this.btnVariationList.Image = global::Check_Point_Manager.Properties.Resources.Variation_24;
             this.btnVariationList.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVariationList.Location = new System.Drawing.Point(482, 539);
+            this.btnVariationList.Location = new System.Drawing.Point(482, 551);
             this.btnVariationList.Name = "btnVariationList";
             this.btnVariationList.Size = new System.Drawing.Size(172, 37);
             this.btnVariationList.TabIndex = 30;
@@ -324,11 +326,12 @@
             // 
             // lblItemRecordsTitle
             // 
+            this.lblItemRecordsTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblItemRecordsTitle.AutoSize = true;
             this.lblItemRecordsTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblItemRecordsTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemRecordsTitle.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblItemRecordsTitle.Location = new System.Drawing.Point(8, 552);
+            this.lblItemRecordsTitle.Location = new System.Drawing.Point(8, 564);
             this.lblItemRecordsTitle.Name = "lblItemRecordsTitle";
             this.lblItemRecordsTitle.Size = new System.Drawing.Size(90, 15);
             this.lblItemRecordsTitle.TabIndex = 23;
@@ -357,11 +360,12 @@
             // 
             // lblItemRecords
             // 
+            this.lblItemRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblItemRecords.AutoSize = true;
             this.lblItemRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblItemRecords.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblItemRecords.Location = new System.Drawing.Point(103, 551);
+            this.lblItemRecords.Location = new System.Drawing.Point(103, 563);
             this.lblItemRecords.Name = "lblItemRecords";
             this.lblItemRecords.Size = new System.Drawing.Size(0, 15);
             this.lblItemRecords.TabIndex = 24;
@@ -371,8 +375,10 @@
             this.dgvAllStockList.AllowUserToAddRows = false;
             this.dgvAllStockList.AllowUserToDeleteRows = false;
             this.dgvAllStockList.AllowUserToOrderColumns = true;
-            this.dgvAllStockList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvAllStockList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvAllStockList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAllStockList.BackgroundColor = System.Drawing.Color.White;
             this.dgvAllStockList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -397,7 +403,7 @@
             this.dgvAllStockList.Name = "dgvAllStockList";
             this.dgvAllStockList.RowHeadersVisible = false;
             this.dgvAllStockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllStockList.Size = new System.Drawing.Size(643, 445);
+            this.dgvAllStockList.Size = new System.Drawing.Size(643, 457);
             this.dgvAllStockList.TabIndex = 22;
             this.dgvAllStockList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this._dgv_CellBeginEdit);
             this.dgvAllStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgv_CellContentClick);
@@ -557,7 +563,7 @@
             this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsers.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsers.ForeColor = System.Drawing.Color.White;
-            this.btnUsers.Image = global::Check_Point_Manager.Properties.Resources.Users_42;
+            this.btnUsers.Image = global::Check_Point_Manager.Properties.Resources.Users2_42;
             this.btnUsers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnUsers.Location = new System.Drawing.Point(102, 3);
             this.btnUsers.Name = "btnUsers";
@@ -594,7 +600,7 @@
             this.pnlGroupsList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGroupsList.Location = new System.Drawing.Point(673, 3);
             this.pnlGroupsList.Name = "pnlGroupsList";
-            this.pnlGroupsList.Size = new System.Drawing.Size(664, 585);
+            this.pnlGroupsList.Size = new System.Drawing.Size(664, 597);
             this.pnlGroupsList.TabIndex = 3;
             // 
             // btnRemoveItems
@@ -657,11 +663,12 @@
             // 
             // lblGroupRecordTitle
             // 
+            this.lblGroupRecordTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblGroupRecordTitle.AutoSize = true;
             this.lblGroupRecordTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblGroupRecordTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupRecordTitle.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblGroupRecordTitle.Location = new System.Drawing.Point(7, 552);
+            this.lblGroupRecordTitle.Location = new System.Drawing.Point(7, 564);
             this.lblGroupRecordTitle.Name = "lblGroupRecordTitle";
             this.lblGroupRecordTitle.Size = new System.Drawing.Size(90, 15);
             this.lblGroupRecordTitle.TabIndex = 28;
@@ -669,8 +676,7 @@
             // 
             // btnManageGroups
             // 
-            this.btnManageGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnManageGroups.AutoSize = true;
+            this.btnManageGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnManageGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(236)))), ((int)(((byte)(251)))));
             this.btnManageGroups.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnManageGroups.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -678,7 +684,7 @@
             this.btnManageGroups.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(103)))));
             this.btnManageGroups.Image = global::Check_Point_Manager.Properties.Resources.manage_25;
             this.btnManageGroups.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnManageGroups.Location = new System.Drawing.Point(482, 539);
+            this.btnManageGroups.Location = new System.Drawing.Point(482, 551);
             this.btnManageGroups.Name = "btnManageGroups";
             this.btnManageGroups.Size = new System.Drawing.Size(172, 37);
             this.btnManageGroups.TabIndex = 29;
@@ -690,18 +696,19 @@
             // 
             // lblGroupRecord
             // 
+            this.lblGroupRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblGroupRecord.AutoSize = true;
             this.lblGroupRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblGroupRecord.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupRecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblGroupRecord.Location = new System.Drawing.Point(103, 550);
+            this.lblGroupRecord.Location = new System.Drawing.Point(103, 562);
             this.lblGroupRecord.Name = "lblGroupRecord";
             this.lblGroupRecord.Size = new System.Drawing.Size(0, 15);
             this.lblGroupRecord.TabIndex = 29;
             // 
             // btnExportFile
             // 
-            this.btnExportFile.AutoSize = true;
+            this.btnExportFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
             this.btnExportFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExportFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -709,7 +716,7 @@
             this.btnExportFile.ForeColor = System.Drawing.Color.White;
             this.btnExportFile.Image = global::Check_Point_Manager.Properties.Resources.downloading_updates_25;
             this.btnExportFile.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExportFile.Location = new System.Drawing.Point(353, 539);
+            this.btnExportFile.Location = new System.Drawing.Point(353, 551);
             this.btnExportFile.Name = "btnExportFile";
             this.btnExportFile.Size = new System.Drawing.Size(123, 38);
             this.btnExportFile.TabIndex = 27;
@@ -742,7 +749,7 @@
             this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.Logo__2_;
             this.pcbGroupsBackground.Location = new System.Drawing.Point(16, 119);
             this.pcbGroupsBackground.Name = "pcbGroupsBackground";
-            this.pcbGroupsBackground.Size = new System.Drawing.Size(628, 404);
+            this.pcbGroupsBackground.Size = new System.Drawing.Size(628, 416);
             this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbGroupsBackground.TabIndex = 27;
             this.pcbGroupsBackground.TabStop = false;
@@ -753,8 +760,10 @@
             this.dgvGroupItems.AllowUserToAddRows = false;
             this.dgvGroupItems.AllowUserToDeleteRows = false;
             this.dgvGroupItems.AllowUserToOrderColumns = true;
-            this.dgvGroupItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvGroupItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvGroupItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGroupItems.BackgroundColor = System.Drawing.Color.White;
             this.dgvGroupItems.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -778,7 +787,7 @@
             this.dgvGroupItems.Name = "dgvGroupItems";
             this.dgvGroupItems.RowHeadersVisible = false;
             this.dgvGroupItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGroupItems.Size = new System.Drawing.Size(644, 417);
+            this.dgvGroupItems.Size = new System.Drawing.Size(644, 429);
             this.dgvGroupItems.TabIndex = 26;
             this.dgvGroupItems.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this._dgv_CellBeginEdit);
             this.dgvGroupItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._dgv_CellContentClick);
@@ -888,13 +897,12 @@
             // 
             // lblLastStockUpdateTitle
             // 
-            this.lblLastStockUpdateTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLastStockUpdateTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastStockUpdateTitle.AutoSize = true;
             this.lblLastStockUpdateTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLastStockUpdateTitle.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastStockUpdateTitle.ForeColor = System.Drawing.Color.White;
-            this.lblLastStockUpdateTitle.Location = new System.Drawing.Point(1056, 17);
+            this.lblLastStockUpdateTitle.Location = new System.Drawing.Point(1038, 16);
             this.lblLastStockUpdateTitle.Name = "lblLastStockUpdateTitle";
             this.lblLastStockUpdateTitle.Size = new System.Drawing.Size(114, 15);
             this.lblLastStockUpdateTitle.TabIndex = 33;
@@ -902,13 +910,12 @@
             // 
             // lblLastStockUpdate
             // 
-            this.lblLastStockUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLastStockUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastStockUpdate.AutoSize = true;
             this.lblLastStockUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblLastStockUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.lblLastStockUpdate.ForeColor = System.Drawing.Color.White;
-            this.lblLastStockUpdate.Location = new System.Drawing.Point(1179, 17);
+            this.lblLastStockUpdate.Location = new System.Drawing.Point(1161, 16);
             this.lblLastStockUpdate.Name = "lblLastStockUpdate";
             this.lblLastStockUpdate.Size = new System.Drawing.Size(17, 15);
             this.lblLastStockUpdate.TabIndex = 32;
@@ -1016,11 +1023,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.pnlItemsList, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.pnlGroupsList, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 125);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 113);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1340, 591);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1340, 603);
             this.tableLayoutPanel1.TabIndex = 32;
             // 
             // frmMainScreen

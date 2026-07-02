@@ -366,6 +366,9 @@
     <Resource Include="Resources\talabat-42.png" />
     <Resource Include="Resources\Variations_42.png" />
     <Resource Include="Resources\Groups_42.png" />
+    <Resource Include="Resources\close_60.png" />
+    <Resource Include="Resources\minimize_60.png" />
+    <Resource Include="Resources\Users2_42.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
