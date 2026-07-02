@@ -61,16 +61,22 @@ namespace Check_Point_Manager
         {
             InitializeComponent();
 
+            
+        }
+        private void frmMainScreen_Shown(object sender, EventArgs e)
+        {
             //maximize but not cover taskbar while no border:
-            this.Bounds = Screen.PrimaryScreen.WorkingArea;
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Bounds = Screen.FromControl(this).WorkingArea;
 
             //this gives the same result to maximize but not cover taskbar:
 
             //this.StartPosition = FormStartPosition.Manual;
             //this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             //this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-        }
 
+        }
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -580,8 +586,7 @@ namespace Check_Point_Manager
         }
         private void frmMainScreen_Load(object sender, EventArgs e)
         {
-
-
+           
             _FillGroupsComboBox();
 
             _LoadItemsTable();
@@ -1282,5 +1287,7 @@ namespace Check_Point_Manager
             frmTalabatSync frm = new frmTalabatSync();
             frm.Show();
         }
+
+       
     }
 }

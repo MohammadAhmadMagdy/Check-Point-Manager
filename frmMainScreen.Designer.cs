@@ -1035,7 +1035,6 @@
             this.AcceptButton = this.btnAddToGroup;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
             this.ClientSize = new System.Drawing.Size(1347, 759);
             this.Controls.Add(this.panel1);
@@ -1052,6 +1051,7 @@
             this.Text = "CheckPoint Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainScreen_FormClosing);
             this.Load += new System.EventHandler(this.frmMainScreen_Load);
+            this.Shown += new System.EventHandler(this.frmMainScreen_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMainScreen_KeyDown);
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
