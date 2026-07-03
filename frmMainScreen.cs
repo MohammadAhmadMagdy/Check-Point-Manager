@@ -579,7 +579,7 @@ namespace Check_Point_Manager
                 e.Graphics.DrawImage(pcbGroupsBackground.Image, new Rectangle(0, 0, pcbGroupsBackground.Width,
                     pcbGroupsBackground.Height));
                 using (Brush semiTransparentBrush = new SolidBrush
-                    (Coloring.FromArgb(180, Coloring.Transparent)))
+                    (Coloring.FromArgb(200, Coloring.Transparent)))
                 {
                     e.Graphics.FillRectangle(semiTransparentBrush, pcbGroupsBackground.ClientRectangle);
                 }
@@ -595,6 +595,7 @@ namespace Check_Point_Manager
             cmbItemsFilterBy.SelectedIndex = 2;
             cmbGroupsFilterBy.SelectedIndex = 2;
             lblGroupRecord.Text = "";
+            lblToday.Text = $"{DateTime.Now.ToString("D")}";
 
             chbFastMode.Checked = true;
 
@@ -1230,12 +1231,6 @@ namespace Check_Point_Manager
             }
         }
 
-        private void lklShowCheckingHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            frmCheckHistory frm = new frmCheckHistory();
-            frm.ShowDialog();
-        }
-
         private void btnClearNewItems_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("Are you sure you want to delete Newly Added Items Table ?","Confirmation",
@@ -1289,6 +1284,10 @@ namespace Check_Point_Manager
             frm.Show();
         }
 
-       
+        private void btnCheckHistory_Click(object sender, EventArgs e)
+        {
+            frmCheckHistory frm = new frmCheckHistory();
+            frm.ShowDialog();
+        }
     }
 }
