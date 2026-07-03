@@ -128,7 +128,7 @@ namespace Check_Point_Manager
 
             DataRow Row = _dtGroupsList.NewRow();
 
-            Row["GroupName"] = "None";
+            Row["GroupName"] = "-- Select Group --";
             Row["GroupID"] = -1;
             Row["GroupNumber"] = -1;
             Row["CheckCounter"] = 0;

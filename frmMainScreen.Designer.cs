@@ -72,7 +72,6 @@
             this.btnGroupsSelectAll = new System.Windows.Forms.Button();
             this.pcbGroupsBackground = new System.Windows.Forms.PictureBox();
             this.dgvGroupItems = new System.Windows.Forms.DataGridView();
-            this.lblSelectGroup = new System.Windows.Forms.Label();
             this.cmbGroups = new System.Windows.Forms.ComboBox();
             this.cmbGroupsFilterBy = new System.Windows.Forms.ComboBox();
             this.txbGroupsFilterValue = new System.Windows.Forms.TextBox();
@@ -584,7 +583,6 @@
             this.pnlGroupsList.Controls.Add(this.btnGroupsSelectAll);
             this.pnlGroupsList.Controls.Add(this.pcbGroupsBackground);
             this.pnlGroupsList.Controls.Add(this.dgvGroupItems);
-            this.pnlGroupsList.Controls.Add(this.lblSelectGroup);
             this.pnlGroupsList.Controls.Add(this.cmbGroups);
             this.pnlGroupsList.Controls.Add(this.cmbGroupsFilterBy);
             this.pnlGroupsList.Controls.Add(this.txbGroupsFilterValue);
@@ -740,16 +738,6 @@
             this.dgvGroupItems.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_CellPainting);
             this.dgvGroupItems.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
             // 
-            // lblSelectGroup
-            // 
-            this.lblSelectGroup.AutoSize = true;
-            this.lblSelectGroup.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectGroup.Location = new System.Drawing.Point(16, 56);
-            this.lblSelectGroup.Name = "lblSelectGroup";
-            this.lblSelectGroup.Size = new System.Drawing.Size(103, 17);
-            this.lblSelectGroup.TabIndex = 24;
-            this.lblSelectGroup.Text = "Select a Group :";
-            // 
             // cmbGroups
             // 
             this.cmbGroups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -761,9 +749,9 @@
             this.cmbGroups.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.cmbGroups.FormattingEnabled = true;
             this.cmbGroups.ItemHeight = 17;
-            this.cmbGroups.Location = new System.Drawing.Point(126, 55);
+            this.cmbGroups.Location = new System.Drawing.Point(10, 55);
             this.cmbGroups.Name = "cmbGroups";
-            this.cmbGroups.Size = new System.Drawing.Size(528, 25);
+            this.cmbGroups.Size = new System.Drawing.Size(644, 25);
             this.cmbGroups.TabIndex = 23;
             this.cmbGroups.SelectedIndexChanged += new System.EventHandler(this.cmbGroups_SelectedIndexChanged);
             // 
@@ -1073,7 +1061,6 @@
         private System.Windows.Forms.ComboBox cmbGroupsFilterBy;
         private System.Windows.Forms.TextBox txbGroupsFilterValue;
         private System.Windows.Forms.ComboBox cmbGroups;
-        private System.Windows.Forms.Label lblSelectGroup;
         private System.Windows.Forms.Button btnGroupsSelectAll;
         private System.Windows.Forms.DataGridView dgvGroupItems;
         private System.Windows.Forms.PictureBox pcbGroupsBackground;
