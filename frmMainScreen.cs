@@ -579,7 +579,7 @@ namespace Check_Point_Manager
                 e.Graphics.DrawImage(pcbGroupsBackground.Image, new Rectangle(0, 0, pcbGroupsBackground.Width,
                     pcbGroupsBackground.Height));
                 using (Brush semiTransparentBrush = new SolidBrush
-                    (Coloring.FromArgb(200, Coloring.Transparent)))
+                    (Coloring.FromArgb(180, Coloring.Transparent)))
                 {
                     e.Graphics.FillRectangle(semiTransparentBrush, pcbGroupsBackground.ClientRectangle);
                 }

@@ -372,6 +372,12 @@
     <Resource Include="Resources\Remove_24.png" />
     <Resource Include="Resources\Add_24.png" />
     <Resource Include="Resources\print_24.png" />
+    <Resource Include="Resources\excel_out-24.png" />
+    <Resource Include="Resources\BackgroundList.png" />
+    <Resource Include="Resources\BackgroundList2.png" />
+    <Resource Include="Resources\BackgroundList3.png" />
+    <Resource Include="Resources\BackgroundList4.png" />
+    <Resource Include="Resources\BackgroundList5.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

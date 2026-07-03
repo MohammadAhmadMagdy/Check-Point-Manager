@@ -265,7 +265,10 @@
             // 
             // btnClearNewItems
             // 
-            this.btnClearNewItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnClearNewItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(115)))), ((int)(((byte)(170)))));
+            this.btnClearNewItems.FlatAppearance.BorderSize = 0;
+            this.btnClearNewItems.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(61)))), ((int)(((byte)(97)))));
+            this.btnClearNewItems.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(92)))), ((int)(((byte)(141)))));
             this.btnClearNewItems.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClearNewItems.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearNewItems.ForeColor = System.Drawing.Color.White;
@@ -397,7 +400,10 @@
             // 
             // btnSelectAll
             // 
-            this.btnSelectAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnSelectAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(115)))), ((int)(((byte)(170)))));
+            this.btnSelectAll.FlatAppearance.BorderSize = 0;
+            this.btnSelectAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(61)))), ((int)(((byte)(97)))));
+            this.btnSelectAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(92)))), ((int)(((byte)(141)))));
             this.btnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSelectAll.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectAll.ForeColor = System.Drawing.Color.White;
@@ -656,7 +662,7 @@
             this.btnExportFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportFile.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportFile.ForeColor = System.Drawing.Color.White;
-            this.btnExportFile.Image = global::Check_Point_Manager.Properties.Resources.print_24;
+            this.btnExportFile.Image = global::Check_Point_Manager.Properties.Resources.excel_out_24;
             this.btnExportFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportFile.Location = new System.Drawing.Point(519, 557);
             this.btnExportFile.Name = "btnExportFile";
@@ -670,7 +676,10 @@
             // 
             // btnGroupsSelectAll
             // 
-            this.btnGroupsSelectAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(130)))), ((int)(((byte)(174)))));
+            this.btnGroupsSelectAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(115)))), ((int)(((byte)(170)))));
+            this.btnGroupsSelectAll.FlatAppearance.BorderSize = 0;
+            this.btnGroupsSelectAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(61)))), ((int)(((byte)(97)))));
+            this.btnGroupsSelectAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(92)))), ((int)(((byte)(141)))));
             this.btnGroupsSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGroupsSelectAll.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnGroupsSelectAll.ForeColor = System.Drawing.Color.White;
@@ -688,11 +697,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcbGroupsBackground.Enabled = false;
-            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.Logo__2_;
-            this.pcbGroupsBackground.Location = new System.Drawing.Point(16, 119);
+            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.BackgroundList4;
+            this.pcbGroupsBackground.Location = new System.Drawing.Point(13, 120);
             this.pcbGroupsBackground.Name = "pcbGroupsBackground";
-            this.pcbGroupsBackground.Size = new System.Drawing.Size(628, 416);
-            this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbGroupsBackground.Size = new System.Drawing.Size(638, 422);
+            this.pcbGroupsBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbGroupsBackground.TabIndex = 27;
             this.pcbGroupsBackground.TabStop = false;
             this.pcbGroupsBackground.Paint += new System.Windows.Forms.PaintEventHandler(this.pcbGroupsBackground_Paint);
