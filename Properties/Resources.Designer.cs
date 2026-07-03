@@ -83,6 +83,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_24 {
+            get {
+                object obj = ResourceManager.GetObject("Add_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_insert_document_13988 {
             get {
                 object obj = ResourceManager.GetObject("add_insert_document_13988", resourceCulture);
@@ -1023,6 +1033,16 @@ namespace Check_Point_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap print_24 {
+            get {
+                object obj = ResourceManager.GetObject("print_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap recycle_bin {
             get {
                 object obj = ResourceManager.GetObject("recycle_bin", resourceCulture);
@@ -1036,6 +1056,16 @@ namespace Check_Point_Manager.Properties {
         internal static System.Drawing.Bitmap remove {
             get {
                 object obj = ResourceManager.GetObject("remove", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Remove_24 {
+            get {
+                object obj = ResourceManager.GetObject("Remove_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

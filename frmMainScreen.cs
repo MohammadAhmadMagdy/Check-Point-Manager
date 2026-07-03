@@ -140,7 +140,6 @@ namespace Check_Point_Manager
             cmbGroups.ValueMember = "GroupID";
 
             cmbGroups.SelectedIndex = 0;
-            lblGroupCheckedCounter.Visible = false;
 
             _IsLoadingGroup = false;
 
@@ -203,7 +202,7 @@ namespace Check_Point_Manager
 
 
             txbFilterValue_TextChanged(null, null);
-            lblItemRecords.Text = dgvAllStockList.Rows.Count.ToString();
+            lblItemRecords.Text = $"{dgvAllStockList.Rows.Count.ToString()} Items";
         }
         private void _LoadSelectedGroupItems(int GroupID)
         {
@@ -248,8 +247,10 @@ namespace Check_Point_Manager
             }
 
             txbGroupsFilterValue_TextChanged(null, null);
-            lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
-            lblGroupCheckedCounter.Text = clsCheck.GetCheckCountByGroupID(GroupID) + " Time(s)";
+            lblGroupRecord.Text =
+                $"{dgvGroupItems.RowCount.ToString()} Items in group - Counted {clsCheck.GetCheckCountByGroupID(GroupID)} Time(s)";
+           // lblGroupCheckedCounter.Text = $"- Counted {clsCheck.GetCheckCountByGroupID(GroupID)} Time(s)";
+
         }
         private string _GetDefaultStockFile()
         {
@@ -593,6 +594,7 @@ namespace Check_Point_Manager
 
             cmbItemsFilterBy.SelectedIndex = 2;
             cmbGroupsFilterBy.SelectedIndex = 2;
+            lblGroupRecord.Text = "";
 
             chbFastMode.Checked = true;
 
@@ -677,12 +679,10 @@ namespace Check_Point_Manager
             {
                 dgvGroupItems.DataSource = null;
                 pcbGroupsBackground.Visible = true;
-                lblGroupRecord.Text = dgvGroupItems.RowCount.ToString();
-                lblGroupCheckedCounter.Visible = false;
+                lblGroupRecord.Text = "";
                 return;
             }
 
-            lblGroupCheckedCounter.Visible = true;
             txbGroupsFilterValue.Text = string.Empty;
             _LoadSelectedGroupItems(GroupID);
         }
@@ -965,7 +965,8 @@ namespace Check_Point_Manager
                        + " - [Done By : " + NewCheck.UserInfo.UserName + "]";
                     }
 
-                    lblGroupCheckedCounter.Text = clsCheck.GetCheckCountByGroupID(GroupID) + " Time(s)";
+                    lblGroupRecord.Text =
+                    $"{dgvGroupItems.RowCount.ToString()} Items in group - Counted {clsCheck.GetCheckCountByGroupID(GroupID)} Time(s)";
 
                 }
 

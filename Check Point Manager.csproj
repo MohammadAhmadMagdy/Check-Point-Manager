@@ -369,6 +369,9 @@
     <Resource Include="Resources\close_60.png" />
     <Resource Include="Resources\minimize_60.png" />
     <Resource Include="Resources\Users2_42.png" />
+    <Resource Include="Resources\Remove_24.png" />
+    <Resource Include="Resources\Add_24.png" />
+    <Resource Include="Resources\print_24.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
