@@ -379,6 +379,8 @@
     <Resource Include="Resources\BackgroundList4.png" />
     <Resource Include="Resources\BackgroundList5.png" />
     <Resource Include="Resources\history_42.png" />
+    <Resource Include="Resources\excelExport2-42.png" />
+    <Resource Include="Resources\excelExport-42.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
