@@ -47,7 +47,6 @@
             this.pnlItemsList = new System.Windows.Forms.Panel();
             this.btnClearNewItems = new System.Windows.Forms.Button();
             this.pcbItemsSearchIcon = new System.Windows.Forms.PictureBox();
-            this.chbFastMode = new System.Windows.Forms.CheckBox();
             this.btnAddToGroup = new System.Windows.Forms.Button();
             this.lblItemRecords = new System.Windows.Forms.Label();
             this.dgvAllStockList = new System.Windows.Forms.DataGridView();
@@ -59,6 +58,7 @@
             this.pcbItemsList = new System.Windows.Forms.PictureBox();
             this.lblItemsListTitle = new System.Windows.Forms.Label();
             this.pnlAllItemsSep = new System.Windows.Forms.Panel();
+            this.chbFastMode = new System.Windows.Forms.CheckBox();
             this.btnVariationList = new System.Windows.Forms.Button();
             this.btnTalabatSync = new System.Windows.Forms.Button();
             this.btnCustomers = new System.Windows.Forms.Button();
@@ -293,18 +293,6 @@
             this.pcbItemsSearchIcon.TabStop = false;
             this.pcbItemsSearchIcon.Click += new System.EventHandler(this.pcbItemsSearchIcon_Click);
             // 
-            // chbFastMode
-            // 
-            this.chbFastMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chbFastMode.AutoSize = true;
-            this.chbFastMode.ForeColor = System.Drawing.Color.DarkBlue;
-            this.chbFastMode.Location = new System.Drawing.Point(583, 95);
-            this.chbFastMode.Name = "chbFastMode";
-            this.chbFastMode.Size = new System.Drawing.Size(76, 17);
-            this.chbFastMode.TabIndex = 25;
-            this.chbFastMode.Text = "Fast Mode";
-            this.chbFastMode.UseVisualStyleBackColor = true;
-            // 
             // btnAddToGroup
             // 
             this.btnAddToGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -470,6 +458,18 @@
             this.pnlAllItemsSep.Name = "pnlAllItemsSep";
             this.pnlAllItemsSep.Size = new System.Drawing.Size(644, 2);
             this.pnlAllItemsSep.TabIndex = 0;
+            // 
+            // chbFastMode
+            // 
+            this.chbFastMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chbFastMode.AutoSize = true;
+            this.chbFastMode.ForeColor = System.Drawing.Color.DarkBlue;
+            this.chbFastMode.Location = new System.Drawing.Point(583, 95);
+            this.chbFastMode.Name = "chbFastMode";
+            this.chbFastMode.Size = new System.Drawing.Size(76, 17);
+            this.chbFastMode.TabIndex = 25;
+            this.chbFastMode.Text = "Fast Mode";
+            this.chbFastMode.UseVisualStyleBackColor = true;
             // 
             // btnVariationList
             // 
@@ -670,7 +670,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcbGroupsBackground.Enabled = false;
-            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.BackgroundList5;
+            this.pcbGroupsBackground.Image = global::Check_Point_Manager.Properties.Resources.clipboard;
             this.pcbGroupsBackground.Location = new System.Drawing.Point(13, 122);
             this.pcbGroupsBackground.Name = "pcbGroupsBackground";
             this.pcbGroupsBackground.Size = new System.Drawing.Size(638, 464);
@@ -959,7 +959,7 @@
             this.lblToday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblToday.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToday.ForeColor = System.Drawing.Color.White;
-            this.lblToday.Location = new System.Drawing.Point(1212, 8);
+            this.lblToday.Location = new System.Drawing.Point(1198, 8);
             this.lblToday.Name = "lblToday";
             this.lblToday.Size = new System.Drawing.Size(45, 15);
             this.lblToday.TabIndex = 34;

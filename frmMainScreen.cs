@@ -415,6 +415,50 @@ namespace Check_Point_Manager
 
             return true;
         }
+        private bool _IsStockFileRecent(string FilePath)
+        {
+            try
+            {
+                string TempFile = Path.GetTempFileName() + ".xlsx";
+                File.Copy(FilePath, TempFile, true);
+
+                DateTime SheetDate = DateTime.MinValue;
+
+                using (var wb = new ClosedXML.Excel.XLWorkbook(TempFile))
+                {
+                    var ws = wb.Worksheet(1);
+
+                   
+                    string Row3 = ws.Cell(3, 1).GetValue<string>().Trim();
+
+               
+                    int DateIndex = Row3.IndexOf(": ");
+                    if (DateIndex >= 0)
+                    {
+                        string DateStr = Row3.Substring(DateIndex + 2).Trim();
+                        DateTime.TryParseExact(DateStr, "dd/MM/yyyy",
+                            System.Globalization.CultureInfo.InvariantCulture,
+                            System.Globalization.DateTimeStyles.None,
+                            out SheetDate);
+                    }
+                }
+
+                File.Delete(TempFile);
+
+               
+                if (SheetDate != DateTime.MinValue && SheetDate.Date < DateTime.Today)
+                    return false;
+
+                DateTime FileWriteTime = File.GetLastWriteTime(FilePath);
+                TimeSpan Age = DateTime.Now - FileWriteTime;
+
+                return Age.TotalMinutes <= 30;
+            }
+            catch
+            {
+                return true; 
+            }
+        }
         private void _FilterDataAndExportToExcel()
         {
             DataView dv = new DataView(_dtSelectedGroupItems);
@@ -579,7 +623,7 @@ namespace Check_Point_Manager
                 e.Graphics.DrawImage(pcbGroupsBackground.Image, new Rectangle(0, 0, pcbGroupsBackground.Width,
                     pcbGroupsBackground.Height));
                 using (Brush semiTransparentBrush = new SolidBrush
-                    (Coloring.FromArgb(200, Coloring.Transparent)))
+                    (Coloring.FromArgb(220, Coloring.Transparent)))
                 {
                     e.Graphics.FillRectangle(semiTransparentBrush, pcbGroupsBackground.ClientRectangle);
                 }
@@ -702,6 +746,21 @@ namespace Check_Point_Manager
 
                 if (!_GetValidUpdateStockExcelFile(ProgressBox))
                     return;
+
+                if (!_IsStockFileRecent(_ExcelFile))
+                {
+                    var UserChoice = MessageBox.Show(
+                        "⚠️ Warning: This stock file appears to be older than 30 minutes " +
+                        "or not from today.\n\n" +
+                        "Stock data may not be current.\n\n" +
+                        "Do you want to proceed anyway?",
+                        "Old File Warning",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (UserChoice == DialogResult.No)
+                        return;
+                }
 
                 ProgressBox.SetMessage("Updating Stock .. Please Wait");
 
