@@ -12,6 +12,7 @@ using CheckPointBusinessLayer;
 using DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using DocumentFormat.OpenXml.Math;
 using DocumentFormat.OpenXml.Wordprocessing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Coloring = System.Drawing.Color;
 
 namespace Check_Point_Manager
@@ -217,16 +218,9 @@ namespace Check_Point_Manager
         {
             string tempFile = null;
 
-            frmProgressBox ProgressBox = new frmProgressBox();
-
             try
             {
-                Cursor = Cursors.WaitCursor;
-                
-                ProgressBox.Show(this);
-                ProgressBox.SetMessage("Validating Update File ...");
-
-
+               
                 tempFile = Path.GetTempFileName() + Path.GetExtension(filePath);
                 File.Copy(filePath, tempFile, overwrite: true);
 
@@ -245,15 +239,7 @@ namespace Check_Point_Manager
                 return false;
             }
             finally
-            {
-                if(!ProgressBox.IsDisposed)
-                {
-                    ProgressBox.Close();
-                    ProgressBox.Dispose();
-                }
-
-                Cursor = Cursors.Default;
-               
+            { 
                 if (tempFile != null && File.Exists(tempFile))
                     File.Delete(tempFile);
             }
@@ -291,7 +277,7 @@ namespace Check_Point_Manager
 
             _LoadRequestsTable();
         }
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private async void btnUpdate_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_SelectedRequestsFile))
             {
@@ -310,8 +296,9 @@ namespace Check_Point_Manager
 
                 ProgressBox.SetMessage("Updating Requests .. Please Wait");
 
-                clsCustomerOrder.ImportOrdersResult UpdatedRequestsResult =
-                    clsCustomerOrder.ImportFromExcel(_SelectedRequestsFile);
+                clsCustomerOrder.ImportOrdersResult UpdatedRequestsResult = 
+                    await Task.Run(() => clsCustomerOrder.ImportFromExcel(_SelectedRequestsFile));
+
 
                 MessageBox.Show("Requests updated successfully ✔\n\n" +
                                 $"Customers Added: {UpdatedRequestsResult.CustomersAdded}\n" +
@@ -339,7 +326,7 @@ namespace Check_Point_Manager
 
             _LoadRequestsTable();
         }
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private async void btnBrowse_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
@@ -354,28 +341,61 @@ namespace Check_Point_Manager
 
                 string selectedFile = ofd.FileName;
 
-                if (_IsValidRequestsFile(selectedFile))
+                frmProgressBox progressBox = new frmProgressBox();
+
+                try
                 {
-                    _SelectedRequestsFile = selectedFile;
-                    txtFilePath.Text = selectedFile;         // اختياري: TextBox لعرض المسار
-                    btnUpdate.Enabled = true;
-                    lblFileStatus.Text = "✔ Valid file";     // اختياري: Label للحالة
-                    lblFileStatus.ForeColor = Coloring.Green;
+                    Cursor = Cursors.WaitCursor;
+
+                    progressBox.Show(this);
+                    progressBox.SetMessage("\"Validating Update File ...");
+
+                    bool ValidFile = await Task.Run(
+                        () => _IsValidRequestsFile(selectedFile));
+
+                    if (ValidFile)
+                    {
+                        _SelectedRequestsFile = selectedFile;
+                        txtFilePath.Text = selectedFile;
+                        btnUpdate.Enabled = true;
+                        lblFileStatus.Text = "✔ Valid file";
+                        lblFileStatus.ForeColor = Coloring.Green;
+                    }
+                    else
+                    {
+                        _SelectedRequestsFile = "";
+                        txtFilePath.Text = "";
+                        btnUpdate.Enabled = false;
+                        lblFileStatus.Text = "✘ Invalid file - wrong format";
+                        lblFileStatus.ForeColor = Coloring.Red;
+
+                        MessageBox.Show(
+                            "The selected file is not a valid Requests file.\n\n",
+                            "Invalid File",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    _SelectedRequestsFile = "";
-                    txtFilePath.Text = "";
-                    btnUpdate.Enabled = false;
-                    lblFileStatus.Text = "✘ Invalid file - wrong format";
-                    lblFileStatus.ForeColor = Coloring.Red;
 
                     MessageBox.Show(
-                        "The selected file is not a valid Requests file.\n\n",
+                        "Error while getting file\n\n" + ex.Message,
                         "Invalid File",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
                 }
+                finally
+                {
+                    if (!progressBox.IsDisposed)
+                    {
+                        progressBox.Close();
+                        progressBox.Dispose();
+                    }
+
+                    Cursor = Cursors.Default;
+                }
+                
             }
         }
         private void btnNotify_Click(object sender, EventArgs e)
