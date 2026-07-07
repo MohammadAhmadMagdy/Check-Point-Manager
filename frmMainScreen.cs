@@ -739,7 +739,6 @@ namespace Check_Point_Manager
             {
                 Cursor = Cursors.WaitCursor;
 
-                lblUpdateStatus.Text = "Validating Stock File ...";
                 ProgressBox.SetMessage("Validating Stock File ...");
                 ProgressBox.Show(this);
                
@@ -764,10 +763,6 @@ namespace Check_Point_Manager
 
                 ProgressBox.SetMessage("Updating Stock .. Please Wait");
 
-                lblUpdateStatus.Text = "Updating Stock .. Please Wait";
-                lblUpdateStatus.Visible = true;
-                
-
                 var Result = await Task.Run(() => clsItem.UpdateStock(_ExcelFile));
 
                 _NewlyAddedItemsCount = Result.NewlyAddwdCount;
@@ -777,7 +772,6 @@ namespace Check_Point_Manager
                 {
                     MessageBox.Show("Warning : Couldn't save Update date !", "Warning",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    pcbUpdateInfo.Visible = true;
                 }
 
                 lblLastStockUpdate.Text = clsSettings.GetLastStockUpdateToDisplay();
@@ -797,7 +791,7 @@ namespace Check_Point_Manager
                 if (AvailableRequestsCount > 0)
                     SuccessDetails += $"\n{AvailableRequestsCount} Customer Order(s) Now Available ✅";
 
-                lblUpdateStatus.Text = "Stock Updated Successfully, "; //+ SuccessDetails.Replace("\n", " | ");
+                
 
                 //--- Show Success Message -------------------------------------------------------------------
 

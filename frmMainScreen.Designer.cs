@@ -35,9 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainScreen));
             this.pnlTop = new System.Windows.Forms.Panel();
-            this.pnlUpdateInfo = new System.Windows.Forms.Panel();
-            this.pcbUpdateInfo = new System.Windows.Forms.PictureBox();
-            this.lblUpdateStatus = new System.Windows.Forms.Label();
             this.lblAppVersion = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -86,15 +83,18 @@
             this.lblLastStockUpdateTitle = new System.Windows.Forms.Label();
             this.lblLastStockUpdate = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlBottomBar = new System.Windows.Forms.Panel();
             this.lblToday = new System.Windows.Forms.Label();
             this.lblLastGroupChecked = new System.Windows.Forms.Label();
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlStatus = new System.Windows.Forms.Panel();
+            this.panelSep1 = new System.Windows.Forms.Panel();
+            this.panelSep2 = new System.Windows.Forms.Panel();
+            this.panelSep4 = new System.Windows.Forms.Panel();
+            this.panelSep5 = new System.Windows.Forms.Panel();
+            this.panelSep3 = new System.Windows.Forms.Panel();
             this.pnlTop.SuspendLayout();
-            this.pnlUpdateInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateInfo)).BeginInit();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStockList)).BeginInit();
@@ -107,7 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).BeginInit();
             this.pnlAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnlBottomBar.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             this.SuspendLayout();
@@ -115,7 +115,6 @@
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(78)))), ((int)(((byte)(122)))));
-            this.pnlTop.Controls.Add(this.pnlUpdateInfo);
             this.pnlTop.Controls.Add(this.lblAppVersion);
             this.pnlTop.Controls.Add(this.btnExit);
             this.pnlTop.Controls.Add(this.btnMinimize);
@@ -126,40 +125,6 @@
             this.pnlTop.Size = new System.Drawing.Size(1347, 35);
             this.pnlTop.TabIndex = 0;
             this.pnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTop_MouseDown);
-            // 
-            // pnlUpdateInfo
-            // 
-            this.pnlUpdateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.pnlUpdateInfo.Controls.Add(this.pcbUpdateInfo);
-            this.pnlUpdateInfo.Controls.Add(this.lblUpdateStatus);
-            this.pnlUpdateInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
-            this.pnlUpdateInfo.Location = new System.Drawing.Point(479, 5);
-            this.pnlUpdateInfo.Name = "pnlUpdateInfo";
-            this.pnlUpdateInfo.Size = new System.Drawing.Size(591, 24);
-            this.pnlUpdateInfo.TabIndex = 27;
-            this.pnlUpdateInfo.Visible = false;
-            // 
-            // pcbUpdateInfo
-            // 
-            this.pcbUpdateInfo.Image = global::Check_Point_Manager.Properties.Resources.InfoIco_25;
-            this.pcbUpdateInfo.Location = new System.Drawing.Point(3, 3);
-            this.pcbUpdateInfo.Name = "pcbUpdateInfo";
-            this.pcbUpdateInfo.Size = new System.Drawing.Size(27, 28);
-            this.pcbUpdateInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pcbUpdateInfo.TabIndex = 31;
-            this.pcbUpdateInfo.TabStop = false;
-            // 
-            // lblUpdateStatus
-            // 
-            this.lblUpdateStatus.AutoSize = true;
-            this.lblUpdateStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(72)))));
-            this.lblUpdateStatus.Location = new System.Drawing.Point(36, 8);
-            this.lblUpdateStatus.Name = "lblUpdateStatus";
-            this.lblUpdateStatus.Size = new System.Drawing.Size(543, 17);
-            this.lblUpdateStatus.TabIndex = 20;
-            this.lblUpdateStatus.Text = "Put the \"Stock\" file inside \"Check Point Update\" folder then press Update Stock b" +
-    "utton";
             // 
             // lblAppVersion
             // 
@@ -351,7 +316,7 @@
             this.dgvAllStockList.ContextMenuStrip = this.cmsItemOptions;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SkyBlue;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -484,7 +449,7 @@
             this.btnVariationList.ForeColor = System.Drawing.Color.White;
             this.btnVariationList.Image = global::Check_Point_Manager.Properties.Resources.Variations_42;
             this.btnVariationList.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVariationList.Location = new System.Drawing.Point(591, 3);
+            this.btnVariationList.Location = new System.Drawing.Point(636, 3);
             this.btnVariationList.Name = "btnVariationList";
             this.btnVariationList.Size = new System.Drawing.Size(93, 66);
             this.btnVariationList.TabIndex = 30;
@@ -505,7 +470,7 @@
             this.btnTalabatSync.ForeColor = System.Drawing.Color.White;
             this.btnTalabatSync.Image = global::Check_Point_Manager.Properties.Resources.talabat_42;
             this.btnTalabatSync.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTalabatSync.Location = new System.Drawing.Point(395, 3);
+            this.btnTalabatSync.Location = new System.Drawing.Point(425, 3);
             this.btnTalabatSync.Name = "btnTalabatSync";
             this.btnTalabatSync.Size = new System.Drawing.Size(93, 66);
             this.btnTalabatSync.TabIndex = 37;
@@ -526,7 +491,7 @@
             this.btnCustomers.ForeColor = System.Drawing.Color.White;
             this.btnCustomers.Image = global::Check_Point_Manager.Properties.Resources.Customers_42;
             this.btnCustomers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCustomers.Location = new System.Drawing.Point(199, 3);
+            this.btnCustomers.Location = new System.Drawing.Point(214, 3);
             this.btnCustomers.Name = "btnCustomers";
             this.btnCustomers.Size = new System.Drawing.Size(93, 66);
             this.btnCustomers.TabIndex = 36;
@@ -547,7 +512,7 @@
             this.btnRequests.ForeColor = System.Drawing.Color.White;
             this.btnRequests.Image = global::Check_Point_Manager.Properties.Resources.Requests_42;
             this.btnRequests.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRequests.Location = new System.Drawing.Point(297, 3);
+            this.btnRequests.Location = new System.Drawing.Point(315, 3);
             this.btnRequests.Name = "btnRequests";
             this.btnRequests.Size = new System.Drawing.Size(93, 66);
             this.btnRequests.TabIndex = 35;
@@ -568,7 +533,7 @@
             this.btnUsers.ForeColor = System.Drawing.Color.White;
             this.btnUsers.Image = global::Check_Point_Manager.Properties.Resources.Users2_42;
             this.btnUsers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUsers.Location = new System.Drawing.Point(101, 3);
+            this.btnUsers.Location = new System.Drawing.Point(113, 3);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(93, 66);
             this.btnUsers.TabIndex = 34;
@@ -804,7 +769,7 @@
             this.btnExportFile.ForeColor = System.Drawing.Color.White;
             this.btnExportFile.Image = global::Check_Point_Manager.Properties.Resources.excelExport_42;
             this.btnExportFile.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExportFile.Location = new System.Drawing.Point(787, 3);
+            this.btnExportFile.Location = new System.Drawing.Point(847, 3);
             this.btnExportFile.Name = "btnExportFile";
             this.btnExportFile.Size = new System.Drawing.Size(93, 66);
             this.btnExportFile.TabIndex = 27;
@@ -826,7 +791,7 @@
             this.btnManageGroups.ForeColor = System.Drawing.Color.White;
             this.btnManageGroups.Image = global::Check_Point_Manager.Properties.Resources.Groups_42;
             this.btnManageGroups.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnManageGroups.Location = new System.Drawing.Point(493, 3);
+            this.btnManageGroups.Location = new System.Drawing.Point(535, 3);
             this.btnManageGroups.Name = "btnManageGroups";
             this.btnManageGroups.Size = new System.Drawing.Size(93, 66);
             this.btnManageGroups.TabIndex = 29;
@@ -842,6 +807,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlAction.AutoSize = true;
             this.pnlAction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(115)))), ((int)(((byte)(170)))));
+            this.pnlAction.Controls.Add(this.panelSep3);
+            this.pnlAction.Controls.Add(this.panelSep5);
+            this.pnlAction.Controls.Add(this.panelSep4);
+            this.pnlAction.Controls.Add(this.panelSep2);
+            this.pnlAction.Controls.Add(this.panelSep1);
             this.pnlAction.Controls.Add(this.btnSettings);
             this.pnlAction.Controls.Add(this.btnCheckHistory);
             this.pnlAction.Controls.Add(this.btnTalabatSync);
@@ -869,7 +839,7 @@
             this.btnSettings.ForeColor = System.Drawing.Color.White;
             this.btnSettings.Image = global::Check_Point_Manager.Properties.Resources.settings_42;
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSettings.Location = new System.Drawing.Point(885, 3);
+            this.btnSettings.Location = new System.Drawing.Point(957, 3);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(93, 66);
             this.btnSettings.TabIndex = 39;
@@ -890,7 +860,7 @@
             this.btnCheckHistory.ForeColor = System.Drawing.Color.White;
             this.btnCheckHistory.Image = global::Check_Point_Manager.Properties.Resources.history_42;
             this.btnCheckHistory.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCheckHistory.Location = new System.Drawing.Point(689, 3);
+            this.btnCheckHistory.Location = new System.Drawing.Point(737, 3);
             this.btnCheckHistory.Name = "btnCheckHistory";
             this.btnCheckHistory.Size = new System.Drawing.Size(93, 66);
             this.btnCheckHistory.TabIndex = 38;
@@ -957,18 +927,18 @@
             this.pcbIcon.TabIndex = 1;
             this.pcbIcon.TabStop = false;
             // 
-            // panel1
+            // pnlBottomBar
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlBottomBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(76)))), ((int)(((byte)(120)))));
-            this.panel1.Controls.Add(this.lblToday);
-            this.panel1.Controls.Add(this.lblLastGroupChecked);
-            this.panel1.Controls.Add(this.lblLastGroupCheckedTitle);
-            this.panel1.Location = new System.Drawing.Point(6, 720);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1334, 30);
-            this.panel1.TabIndex = 5;
+            this.pnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(76)))), ((int)(((byte)(120)))));
+            this.pnlBottomBar.Controls.Add(this.lblToday);
+            this.pnlBottomBar.Controls.Add(this.lblLastGroupChecked);
+            this.pnlBottomBar.Controls.Add(this.lblLastGroupCheckedTitle);
+            this.pnlBottomBar.Location = new System.Drawing.Point(6, 720);
+            this.pnlBottomBar.Name = "pnlBottomBar";
+            this.pnlBottomBar.Size = new System.Drawing.Size(1334, 30);
+            this.pnlBottomBar.TabIndex = 5;
             // 
             // lblToday
             // 
@@ -1046,6 +1016,46 @@
             this.pnlStatus.Size = new System.Drawing.Size(1347, 30);
             this.pnlStatus.TabIndex = 35;
             // 
+            // panelSep1
+            // 
+            this.panelSep1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep1.Location = new System.Drawing.Point(104, 10);
+            this.panelSep1.Name = "panelSep1";
+            this.panelSep1.Size = new System.Drawing.Size(1, 55);
+            this.panelSep1.TabIndex = 37;
+            // 
+            // panelSep2
+            // 
+            this.panelSep2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep2.Location = new System.Drawing.Point(416, 10);
+            this.panelSep2.Name = "panelSep2";
+            this.panelSep2.Size = new System.Drawing.Size(1, 55);
+            this.panelSep2.TabIndex = 39;
+            // 
+            // panelSep4
+            // 
+            this.panelSep4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep4.Location = new System.Drawing.Point(838, 10);
+            this.panelSep4.Name = "panelSep4";
+            this.panelSep4.Size = new System.Drawing.Size(1, 55);
+            this.panelSep4.TabIndex = 43;
+            // 
+            // panelSep5
+            // 
+            this.panelSep5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep5.Location = new System.Drawing.Point(948, 10);
+            this.panelSep5.Name = "panelSep5";
+            this.panelSep5.Size = new System.Drawing.Size(1, 55);
+            this.panelSep5.TabIndex = 45;
+            // 
+            // panelSep3
+            // 
+            this.panelSep3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep3.Location = new System.Drawing.Point(526, 10);
+            this.panelSep3.Name = "panelSep3";
+            this.panelSep3.Size = new System.Drawing.Size(1, 55);
+            this.panelSep3.TabIndex = 44;
+            // 
             // frmMainScreen
             // 
             this.AcceptButton = this.btnAddToGroup;
@@ -1054,7 +1064,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(219)))));
             this.ClientSize = new System.Drawing.Size(1347, 759);
             this.Controls.Add(this.pnlStatus);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlBottomBar);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pnlAction);
             this.Controls.Add(this.pcbIcon);
@@ -1072,9 +1082,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMainScreen_KeyDown);
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
-            this.pnlUpdateInfo.ResumeLayout(false);
-            this.pnlUpdateInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbUpdateInfo)).EndInit();
             this.pnlItemsList.ResumeLayout(false);
             this.pnlItemsList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).EndInit();
@@ -1089,8 +1096,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbGroupsList)).EndInit();
             this.pnlAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlBottomBar.ResumeLayout(false);
+            this.pnlBottomBar.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
@@ -1129,22 +1136,19 @@
         private System.Windows.Forms.Label lblItemRecords;
         private System.Windows.Forms.CheckBox chbFastMode;
         private System.Windows.Forms.Panel pnlAction;
-        private System.Windows.Forms.Label lblUpdateStatus;
         private System.Windows.Forms.Button btnAddToGroup;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnExportFile;
         private System.Windows.Forms.Button btnManageGroups;
-        private System.Windows.Forms.Panel pnlUpdateInfo;
         private System.Windows.Forms.Button btnRemoveItems;
         private System.Windows.Forms.PictureBox pcbItemsSearchIcon;
         private System.Windows.Forms.PictureBox pcbGroupSearchIcon;
         private System.Windows.Forms.ContextMenuStrip cmsItemOptions;
         private System.Windows.Forms.ToolStripMenuItem recordItemVariationToolStripMenuItem;
         private System.Windows.Forms.Button btnVariationList;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlBottomBar;
         private System.Windows.Forms.Label lblLastGroupChecked;
         private System.Windows.Forms.Label lblLastGroupCheckedTitle;
-        private System.Windows.Forms.PictureBox pcbUpdateInfo;
         private System.Windows.Forms.Label lblLastStockUpdate;
         private System.Windows.Forms.Label lblLastStockUpdateTitle;
         private System.Windows.Forms.Label lblAppVersion;
@@ -1160,5 +1164,10 @@
         private System.Windows.Forms.Label lblToday;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel pnlStatus;
+        private System.Windows.Forms.Panel panelSep1;
+        private System.Windows.Forms.Panel panelSep2;
+        private System.Windows.Forms.Panel panelSep3;
+        private System.Windows.Forms.Panel panelSep5;
+        private System.Windows.Forms.Panel panelSep4;
     }
 }
