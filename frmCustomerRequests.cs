@@ -328,18 +328,30 @@ namespace Check_Point_Manager
         }
         private async void btnBrowse_Click(object sender, EventArgs e)
         {
+            string SavedRequestsFolder = clsSettings.GetValue(clsSettings.Keys.DefaultRequestsFolder);
+            string Desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Title = "Select Requests File";
                 ofd.Filter = "Excel Files|*.xlsx;*.xls";
-                ofd.InitialDirectory = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                    "Bounced Sheet 2026");
+                ofd.InitialDirectory = string.IsNullOrEmpty(SavedRequestsFolder) ? Desktop :
+                    Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop), SavedRequestsFolder);
 
                 if (ofd.ShowDialog() != DialogResult.OK)
                     return;
 
                 string selectedFile = ofd.FileName;
+
+                string currentFolderPath = Path.GetDirectoryName(selectedFile);
+                string currentFolderName = Path.GetFileName(currentFolderPath);
+
+                if (!clsSettings.SetValue(clsSettings.Keys.DefaultRequestsFolder, currentFolderName))
+                {
+                    MessageBox.Show("Error Saving Current Folder Path\nDefault path will be Desktop.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
                 frmProgressBox progressBox = new frmProgressBox();
 

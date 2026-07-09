@@ -13,6 +13,7 @@ namespace CheckPointBusinessLayer
         {
             public const string LastStockUpdate = "LastStockUpdate";
             public const string AppVersion = "AppVersion";
+            public const string DefaultRequestsFolder = "DefaultRequestsFolder";
         }
 
         public string Key { get; private set; }
