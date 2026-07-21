@@ -77,9 +77,15 @@
             this.btnExportFile = new System.Windows.Forms.Button();
             this.btnManageGroups = new System.Windows.Forms.Button();
             this.pnlAction = new System.Windows.Forms.Panel();
+            this.panelSep3 = new System.Windows.Forms.Panel();
+            this.panelSep5 = new System.Windows.Forms.Panel();
+            this.panelSep4 = new System.Windows.Forms.Panel();
+            this.panelSep2 = new System.Windows.Forms.Panel();
+            this.panelSep1 = new System.Windows.Forms.Panel();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnCheckHistory = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.lblLastStockUpdateTitle = new System.Windows.Forms.Label();
             this.lblLastStockUpdate = new System.Windows.Forms.Label();
             this.pcbIcon = new System.Windows.Forms.PictureBox();
@@ -89,11 +95,6 @@
             this.lblLastGroupCheckedTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlStatus = new System.Windows.Forms.Panel();
-            this.panelSep1 = new System.Windows.Forms.Panel();
-            this.panelSep2 = new System.Windows.Forms.Panel();
-            this.panelSep4 = new System.Windows.Forms.Panel();
-            this.panelSep5 = new System.Windows.Forms.Panel();
-            this.panelSep3 = new System.Windows.Forms.Panel();
             this.pnlTop.SuspendLayout();
             this.pnlItemsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbItemsSearchIcon)).BeginInit();
@@ -189,7 +190,7 @@
             this.lblCurrentUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCurrentUser.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentUser.ForeColor = System.Drawing.Color.White;
-            this.lblCurrentUser.Location = new System.Drawing.Point(1172, 6);
+            this.lblCurrentUser.Location = new System.Drawing.Point(1110, 6);
             this.lblCurrentUser.Name = "lblCurrentUser";
             this.lblCurrentUser.Size = new System.Drawing.Size(93, 17);
             this.lblCurrentUser.TabIndex = 35;
@@ -202,7 +203,7 @@
             this.lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserName.ForeColor = System.Drawing.Color.White;
-            this.lblUserName.Location = new System.Drawing.Point(1271, 6);
+            this.lblUserName.Location = new System.Drawing.Point(1209, 6);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(44, 17);
             this.lblUserName.TabIndex = 36;
@@ -827,6 +828,46 @@
             this.pnlAction.Size = new System.Drawing.Size(1347, 75);
             this.pnlAction.TabIndex = 4;
             // 
+            // panelSep3
+            // 
+            this.panelSep3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep3.Location = new System.Drawing.Point(526, 10);
+            this.panelSep3.Name = "panelSep3";
+            this.panelSep3.Size = new System.Drawing.Size(1, 55);
+            this.panelSep3.TabIndex = 44;
+            // 
+            // panelSep5
+            // 
+            this.panelSep5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep5.Location = new System.Drawing.Point(948, 10);
+            this.panelSep5.Name = "panelSep5";
+            this.panelSep5.Size = new System.Drawing.Size(1, 55);
+            this.panelSep5.TabIndex = 45;
+            // 
+            // panelSep4
+            // 
+            this.panelSep4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep4.Location = new System.Drawing.Point(838, 10);
+            this.panelSep4.Name = "panelSep4";
+            this.panelSep4.Size = new System.Drawing.Size(1, 55);
+            this.panelSep4.TabIndex = 43;
+            // 
+            // panelSep2
+            // 
+            this.panelSep2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep2.Location = new System.Drawing.Point(416, 10);
+            this.panelSep2.Name = "panelSep2";
+            this.panelSep2.Size = new System.Drawing.Size(1, 55);
+            this.panelSep2.TabIndex = 39;
+            // 
+            // panelSep1
+            // 
+            this.panelSep1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
+            this.panelSep1.Location = new System.Drawing.Point(104, 10);
+            this.panelSep1.Name = "panelSep1";
+            this.panelSep1.Size = new System.Drawing.Size(1, 55);
+            this.panelSep1.TabIndex = 37;
+            // 
             // btnSettings
             // 
             this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(115)))), ((int)(((byte)(170)))));
@@ -891,6 +932,29 @@
             this.btnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(115)))), ((int)(((byte)(170)))));
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(61)))), ((int)(((byte)(97)))));
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(92)))), ((int)(((byte)(141)))));
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Image = global::Check_Point_Manager.Properties.Resources.Logout_18dp;
+            this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogout.Location = new System.Drawing.Point(1259, 0);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(81, 26);
+            this.btnLogout.TabIndex = 46;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // lblLastStockUpdateTitle
             // 
@@ -1007,6 +1071,7 @@
             this.pnlStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(115)))), ((int)(((byte)(170)))));
+            this.pnlStatus.Controls.Add(this.btnLogout);
             this.pnlStatus.Controls.Add(this.lblCurrentUser);
             this.pnlStatus.Controls.Add(this.lblLastStockUpdateTitle);
             this.pnlStatus.Controls.Add(this.lblUserName);
@@ -1015,46 +1080,6 @@
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(1347, 30);
             this.pnlStatus.TabIndex = 35;
-            // 
-            // panelSep1
-            // 
-            this.panelSep1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
-            this.panelSep1.Location = new System.Drawing.Point(104, 10);
-            this.panelSep1.Name = "panelSep1";
-            this.panelSep1.Size = new System.Drawing.Size(1, 55);
-            this.panelSep1.TabIndex = 37;
-            // 
-            // panelSep2
-            // 
-            this.panelSep2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
-            this.panelSep2.Location = new System.Drawing.Point(416, 10);
-            this.panelSep2.Name = "panelSep2";
-            this.panelSep2.Size = new System.Drawing.Size(1, 55);
-            this.panelSep2.TabIndex = 39;
-            // 
-            // panelSep4
-            // 
-            this.panelSep4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
-            this.panelSep4.Location = new System.Drawing.Point(838, 10);
-            this.panelSep4.Name = "panelSep4";
-            this.panelSep4.Size = new System.Drawing.Size(1, 55);
-            this.panelSep4.TabIndex = 43;
-            // 
-            // panelSep5
-            // 
-            this.panelSep5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
-            this.panelSep5.Location = new System.Drawing.Point(948, 10);
-            this.panelSep5.Name = "panelSep5";
-            this.panelSep5.Size = new System.Drawing.Size(1, 55);
-            this.panelSep5.TabIndex = 45;
-            // 
-            // panelSep3
-            // 
-            this.panelSep3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(96)))), ((int)(((byte)(145)))));
-            this.panelSep3.Location = new System.Drawing.Point(526, 10);
-            this.panelSep3.Name = "panelSep3";
-            this.panelSep3.Size = new System.Drawing.Size(1, 55);
-            this.panelSep3.TabIndex = 44;
             // 
             // frmMainScreen
             // 
@@ -1169,5 +1194,6 @@
         private System.Windows.Forms.Panel panelSep3;
         private System.Windows.Forms.Panel panelSep5;
         private System.Windows.Forms.Panel panelSep4;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

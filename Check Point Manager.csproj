@@ -382,6 +382,9 @@
     <Resource Include="Resources\excelExport2-42.png" />
     <Resource Include="Resources\excelExport-42.png" />
     <Resource Include="Resources\settings_42.png" />
+    <Resource Include="Resources\Logout_42dp.png" />
+    <Resource Include="Resources\Logout_20dp.png" />
+    <Resource Include="Resources\Logout_18dp.png" />
     <Content Include="Stock.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

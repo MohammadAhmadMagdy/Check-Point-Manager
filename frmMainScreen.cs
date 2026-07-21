@@ -15,7 +15,10 @@ using System.Windows.Forms;
 using CheckPointBusinessLayer;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Coloring = System.Drawing.Color;
+using TextBox = System.Windows.Forms.TextBox;
+using ComboBox = System.Windows.Forms.ComboBox;
 
 
 
@@ -329,12 +332,13 @@ namespace Check_Point_Manager
                 return false;
             }
         }
-        private bool _IsValidStockFile(string filePath, frmProgressBox ProgressBox, bool showMessages = true)
+        private bool _IsValidStockFile(string filePath, frmProgressBox ProgressBox = null, bool showMessages = true)
         {
            
             if (!_IsValidExcelStockFileName(filePath))
             {
-                ProgressBox.Hide();
+                if (ProgressBox != null)
+                    ProgressBox.Hide();
 
                 if (showMessages)
                     MessageBox.Show(
@@ -348,7 +352,8 @@ namespace Check_Point_Manager
         
             if (!_IsValidExcelStockFileStructure(filePath))
             {
-                ProgressBox.Hide();
+                if (ProgressBox != null)
+                    ProgressBox.Hide();
 
                 if (showMessages)
                     MessageBox.Show(
@@ -362,7 +367,7 @@ namespace Check_Point_Manager
 
             return true;
         }
-        private bool _GetValidUpdateStockExcelFile(frmProgressBox ProgressBox)
+        private bool _GetValidUpdateStockExcelFile(frmProgressBox ProgressBox = null)
         {
             if (string.IsNullOrEmpty(_ExcelFile))
             {
@@ -374,7 +379,8 @@ namespace Check_Point_Manager
                 }
                 else
                 {
-                    ProgressBox.Hide();
+                    if (ProgressBox != null)
+                        ProgressBox.Hide();
 
                     DialogResult Choice = MessageBox.Show
                        ("Stock file was not found in the expected folder.\n\n" +
@@ -404,8 +410,8 @@ namespace Check_Point_Manager
                     }
                 }
             }
-
-            ProgressBox.Resume("Validating Stock File ...");
+            if (ProgressBox != null)
+                ProgressBox.Resume("Validating Stock File ...");
 
             if (!_IsValidStockFile(_ExcelFile, ProgressBox))
             {
@@ -730,6 +736,21 @@ namespace Check_Point_Manager
 
             txbGroupsFilterValue.Text = string.Empty;
             _LoadSelectedGroupItems(GroupID);
+        }
+        private async Task _UpdateStockCoreAsync()
+        {
+            await Task.Run(() => clsItem.UpdateStock(_ExcelFile));
+        }
+        private async Task _UpdateStockForRequestsAsync()
+        {
+            if (!_GetValidUpdateStockExcelFile())
+            {
+                MessageBox.Show("Error Getting Stock update file","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+                
+
+            await Task.Run(() => clsItem.UpdateStock(_ExcelFile));
         }
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -1317,6 +1338,9 @@ namespace Check_Point_Manager
         private void btnRequests_Click(object sender, EventArgs e)
         {
             frmCustomerRequests frm = new frmCustomerRequests();
+
+            //frm.UpdateStockCallback = _UpdateStockForRequestsAsync;
+
             frm.ShowDialog();
         }
 
@@ -1341,6 +1365,15 @@ namespace Check_Point_Manager
         {
             frmCheckHistory frm = new frmCheckHistory();
             frm.ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            clsUser.Logout();
+            frmLogin frm = new frmLogin();
+            frm.ShowDialog();
+            this.Close();
         }
     }
 }

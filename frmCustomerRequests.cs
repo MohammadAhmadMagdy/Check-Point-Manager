@@ -21,6 +21,7 @@ namespace Check_Point_Manager
     {
         private DataTable _dtAllRequests;
         private string _SelectedRequestsFile = "";
+        public Func<Task> UpdateStockCallback {  get; set; }
 
         private void _AddVisualStyleToTable(DataGridView dgv)
         {
@@ -307,6 +308,13 @@ namespace Check_Point_Manager
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
 
+                if (UpdatedRequestsResult.OrdersAdded > 0)
+                {
+                    if (UpdateStockCallback != null)
+                    {
+                        await UpdateStockCallback();
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -322,6 +330,9 @@ namespace Check_Point_Manager
                     ProgressBox.Dispose();
                 }
                 Cursor = Cursors.Default;
+
+                this.Activate();
+                this.BringToFront();
             }
 
             _LoadRequestsTable();
