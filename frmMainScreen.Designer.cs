@@ -1012,7 +1012,7 @@
             this.lblToday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblToday.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToday.ForeColor = System.Drawing.Color.White;
-            this.lblToday.Location = new System.Drawing.Point(1198, 8);
+            this.lblToday.Location = new System.Drawing.Point(1167, 8);
             this.lblToday.Name = "lblToday";
             this.lblToday.Size = new System.Drawing.Size(45, 15);
             this.lblToday.TabIndex = 34;
