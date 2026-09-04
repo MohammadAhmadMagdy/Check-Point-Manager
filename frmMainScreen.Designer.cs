@@ -1009,14 +1009,14 @@
             this.lblToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblToday.AutoSize = true;
             this.lblToday.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(76)))), ((int)(((byte)(120)))));
-            this.lblToday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblToday.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToday.ForeColor = System.Drawing.Color.White;
-            this.lblToday.Location = new System.Drawing.Point(1167, 8);
+            this.lblToday.Location = new System.Drawing.Point(1177, 8);
             this.lblToday.Name = "lblToday";
             this.lblToday.Size = new System.Drawing.Size(45, 15);
             this.lblToday.TabIndex = 34;
             this.lblToday.Text = "Today :";
+            this.lblToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblLastGroupChecked
             // 
